@@ -1,7 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
-	
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta content="text/html; charset=utf-8" http-equiv="content-type">
@@ -44,8 +41,8 @@
     <header>
       <div class="container">
         <div class="row">
-          <div class="col-xs-6"> <a href="index.html"><img src="img/fondo-trasparente.png"
-                alt="Logo"></a> </div>
+          <div class="col-xs-6"> <a href="index.html"><img src="img/logo.svg" alt="Logo"></a>
+          </div>
           <div class="col-xs-6 signin text-right navbar-nav"> <a href="#">Registrarse</a>&nbsp;
             &nbsp;<a href="#">Ingresar</a>&nbsp; &nbsp;<a href="#" class="scroll">Conócenos</a>&nbsp;
             &nbsp;<a href="#">Ayuda</a> </div>
