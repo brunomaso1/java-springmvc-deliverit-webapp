@@ -134,7 +134,7 @@ a:hover, a:focus {
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
   background-color: #8be2e5;
   color: #ffffff;
-  -webkit-transition:.btn-primary all 0.35s ease-in-out;
+  -webkit-transition: btn-primary all 0.35s ease-in-out;
   -moz-transition: all 0.35s ease-in-out;
   -o-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
