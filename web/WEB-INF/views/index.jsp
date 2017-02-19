@@ -152,7 +152,7 @@
 					<h4 class="modal-title">Iniciar</h4>
 				</div>
 				<div class="modal-body">
-					<form>
+					<form action="loguearse.html" method="POST">
 						<div class="form-group">
 							<label for="email">Nombre de usuario o correo: </label>
 							<input type="#" class="form-control" id="#">
@@ -161,6 +161,7 @@
 							<label for="email">Contraseña: </label>
 							<input type="#" class="form-control" id="#">
 							<button type="submit" class="btn btn-default">Iniciar</button>
+						</div>
 					</form>
 				</div>
 				<div class="modal-footer">

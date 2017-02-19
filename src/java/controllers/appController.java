@@ -20,11 +20,15 @@ public class appController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String showPage(ModelMap model) {
-		return "app";
+		return "viajes";
 	}
 	
 	@RequestMapping(value = "/nuevoViaje", method = RequestMethod.POST)
-	public String registrarse(ModelMap model) {
+	public String publicarPopup(ModelMap model) {
+		//Crear viaje.
+		//Insertar viaje.
+		//Obtener deliverys macheo.
+		//Notificar deiverys.
 		return "nuevoViaje";
 	}	
 }

@@ -29,4 +29,10 @@ public class indexController {
 		return "registrarse";
 	}
 	
+	@RequestMapping(value = "/loguearse", method = RequestMethod.POST)
+	public String loguearse(ModelMap model) {
+		// Llamar a la logica.
+		return "loguearse";
+	}
+	
 }

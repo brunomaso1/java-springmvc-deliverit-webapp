@@ -7,5 +7,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
 	//Only redirect.
-	response.sendRedirect("app.html");
+	response.sendRedirect("sucursales.html");
 %>
