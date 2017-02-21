@@ -20,7 +20,7 @@ public class Pedido  {
 
     private String formaPago;
 
-    private Viaje viaje1;
+    private Viaje viaje;
 
     private Cliente cliente;
 
@@ -59,12 +59,12 @@ public class Pedido  {
         this.formaPago = formaPago;
     }
 
-    public Viaje getViaje1() {
-        return viaje1;
+    public Viaje getViaje() {
+        return viaje;
     }
 
-    public void setViaje1(Viaje viaje1) {
-        this.viaje1 = viaje1;
+    public void setViaje(Viaje viaje) {
+        this.viaje = viaje;
     }
 
     public Cliente getCliente() {

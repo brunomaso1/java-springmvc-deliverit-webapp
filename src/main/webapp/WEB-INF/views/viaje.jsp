@@ -83,7 +83,7 @@
 						<div class="image-button-img">
 							<img src="res/img/pendiente.jpg">	
 						</div>
-						<div class="image-button-btn bottom-padding-3">				
+						<div class="image-button-btn bottom-padding-3">	
 							<button type="button" class="btn btn-primary btn-lg">Pendientes</button>
 						</div>
 					</div>
@@ -130,11 +130,11 @@
 								<table class="table table-striped table-hover">
 									<thead>
 										<tr>
-											<th>#</th>
-											<th>Header</th>
-											<th>Header</th>
-											<th>Header</th>
-											<th>Header</th>
+											<th>Viaje</th>
+											<th>Cliente</th>
+											<th>Direccion</th>
+											<th>Delivery</th>
+											<th>Telefono</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -168,17 +168,16 @@
 					<h4 class="modal-title">Nuevo viaje</h4>
 				</div>
 				<div class="modal-body">
-					<form action="nuevoViaje.html" method="POST">					
+					<form action="viaje/nuevoViaje.html" method="POST">					
 						<div class="row">
 							<div class="table-responsive bottom-padding-5">
 								<table id="pedidos" class="table table-striped table-hover">
 									<thead>
 										<tr>
 											<th>#</th>
-											<th>Header</th>
-											<th>Header</th>
-											<th>Header</th>
-											<th>Header</th>
+											<th>Cliente</th>
+											<th>Direccion</th>
+											<th>Telefono</th>
 										</tr>
 									</thead>
 									<tbody>

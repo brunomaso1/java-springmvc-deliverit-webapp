@@ -6,13 +6,11 @@
 package clases.viaje;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -28,7 +26,7 @@ public class ViajeController {
 		return "viaje";
 	}
 	
-	@PostMapping(value = "/nuevoViaje")
+	@RequestMapping(value = "/nuevoViaje", method = POST)
 	public String publicarPopup(@RequestParam String tipo) {
 		//Crear viaje.
 		//Insertar viaje.
