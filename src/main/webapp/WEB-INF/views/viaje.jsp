@@ -1,5 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="clases.viaje.ViajeUtil" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -139,8 +142,8 @@
 									</thead>
 									<tbody>
 										<%
-											ViajeUtil u = new ViajeUtil();
-											out.print(u.popularTabla("1","1"));
+											out.print(ViajeUtil.popularTabla());
+											System.out.println("JSP");
 										%>
 									</tbody>
 								</table>
@@ -223,15 +226,16 @@
 					<h4 class="modal-title">Nuevo viaje</h4>
 				</div>
 				<div class="modal-body">
-					<div class="form-group">
-						<label for="email">Nombre de usuario o correo: </label>
-						<input type="#" class="form-control" id="#">
-					</div>
-					<div class="form-group">
-						<label for="email">Contraseña: </label>
-						<input type="#" class="form-control" id="#">
-						<button type="button" class="btn btn-primary btn-md" onclick="nuevoPedido('pedidos')" data-dismiss="modal">Agregar</button>
-					</div>
+					<form action="nuevoPedido.html" method="POST">
+						<input class="form-group" id="nombre" name="nombre" placeholder="Nombre cliente"/>
+						<input class="form-group" id="calle" name="calle" placeholder="Calle"/>
+						<input class="form-horizontal" id="puerta" name="puerta" placeholder="Nnumero de puerta"/>
+						<input class="form-group" id="esquina" name="esquina" placeholder="Esquina"/>
+						<input class="form-horizontal" id="apartamento" name="apartamento" placeholder="Apartamento"/>
+						<input class="form-group" id="telefono" name="telefono" placeholder="Telefono"/>
+						<input class="form-group input-lg" id="aclaraciones" name="aclaraciones" placeholder="Aclaraciones"/>
+						<button type="submit" class="btn btn-primary">Agregar</button>>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -3,6 +3,7 @@ dominio\Configuracion.class
 dominio\Sucursal.class
 dominio\Usuario.class
 dominio\UsuarioTelefonoPK.class
+clases\viaje\FormBean.class
 dominio\Direccion.class
 dominio\EstadoViaje.class
 dominio\UsuarioTelefono.class
