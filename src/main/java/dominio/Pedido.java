@@ -27,6 +27,14 @@ public class Pedido  {
     public Pedido() {
     }
 
+	public Pedido(PedidoPK pedidoPK, String detalle, String formaPago, Viaje viaje, Cliente cliente) {
+		this.pedidoPK = pedidoPK;
+		this.detalle = detalle;
+		this.formaPago = formaPago;
+		this.viaje = viaje;
+		this.cliente = cliente;
+	}
+
     public Pedido(PedidoPK pedidoPK) {
         this.pedidoPK = pedidoPK;
     }

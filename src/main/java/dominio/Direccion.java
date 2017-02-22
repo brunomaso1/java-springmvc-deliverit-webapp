@@ -45,6 +45,18 @@ public class Direccion  {
         this.nroPuerta = nroPuerta;
     }
 
+	public Direccion(Integer id, String calle, short nroPuerta, String esquina, Double latitud, Double longitud, Collection<Cliente> clienteCollection, Collection<Sucursal> sucursalCollection) {
+		this.id = id;
+		this.calle = calle;
+		this.nroPuerta = nroPuerta;
+		this.esquina = esquina;
+		this.latitud = latitud;
+		this.longitud = longitud;
+		this.clienteCollection = clienteCollection;
+		this.sucursalCollection = sucursalCollection;
+	}
+	
+
     public Integer getId() {
         return id;
     }

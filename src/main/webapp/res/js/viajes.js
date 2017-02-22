@@ -1,8 +1,3 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 function nuevoPedido(nombreTabla) {
     var table = document.getElementById(nombreTabla);
 	var row = table.insertRow(-1);
@@ -17,5 +12,17 @@ function nuevoPedido(nombreTabla) {
     cell4.innerHTML = "NEW CELL4";
 	cell5.innerHTML = "NEW CELL5";
 }
-
-
+/**
+ * Este metodo se encarga de activar el Modal (popup) del elemento deseado. Se
+ * ejecuta condicionado segun haya datos en la tabla o no, cada vez que se 
+ * carga la pantalla.
+ * @param {String} nombreBoton El nombre del boton a activar.
+ * @param {String} nombreTabla El nombre de la tabla a buscar los datos.
+ * @returns {undefined}
+ */
+function activarModal(nombreBoton, nombreTabla){
+	var table = document.getElementById(nombreTabla);
+	if (table.rows.length > 1) {
+		document.getElementById(nombreBoton).click();
+	}
+}

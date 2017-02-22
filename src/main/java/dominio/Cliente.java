@@ -24,6 +24,15 @@ public class Cliente {
     public Cliente() {
     }
 
+	public Cliente(Integer id, String nombre, Direccion direccion, Collection<Pedido> pedidoCollection, Collection<ClienteTelefono> clienteTelefonoCollection) {
+		this.id = id;
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.pedidoCollection = pedidoCollection;
+		this.clienteTelefonoCollection = clienteTelefonoCollection;
+	}
+	
+
     public Cliente(Integer id) {
         this.id = id;
     }

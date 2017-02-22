@@ -19,7 +19,8 @@ public class ClienteTelefonoPK  {
     private String telefono;
 
     public ClienteTelefonoPK() {
-    }
+    }	
+	
 
     public ClienteTelefonoPK(int cliente, String telefono) {
         this.cliente = cliente;

@@ -21,6 +21,12 @@ public class ClienteTelefono  {
     public ClienteTelefono() {
     }
 
+	public ClienteTelefono(ClienteTelefonoPK clienteTelefonoPK, Cliente cliente1) {
+		this.clienteTelefonoPK = clienteTelefonoPK;
+		this.cliente1 = cliente1;
+	}
+	
+
     public ClienteTelefono(ClienteTelefonoPK clienteTelefonoPK) {
         this.clienteTelefonoPK = clienteTelefonoPK;
     }

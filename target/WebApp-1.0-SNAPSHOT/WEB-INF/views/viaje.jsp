@@ -59,23 +59,23 @@
 			<!-- Side menu -->
 			<div class="col-sm-3 col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-			<!--	<li><a href="#">Sucursales</a></li>
-					<li><a href="#">Calificaciones</a></li>	-->
+					<!--	<li><a href="#">Sucursales</a></li>
+							<li><a href="#">Calificaciones</a></li>	-->
 					<li class="active"><a href="viajes.html">Viajes <span class="sr-only">(current)</span></a></li>
-					
+
 				</ul>
-			<!--	<ul class="nav nav-sidebar">
-					<li><a href="">Nav item</a></li>
-					<li><a href="">Nav item again</a></li>
-					<li><a href="">One more nav</a></li>
-					<li><a href="">Another nav item</a></li>
-					<li><a href="">More navigation</a></li>
-				</ul>
-				<ul class="nav nav-sidebar">
-					<li><a href="">Nav item again</a></li>
-					<li><a href="">One more nav</a></li>
-					<li><a href="">Another nav item</a></li>
-				</ul>	-->
+				<!--	<ul class="nav nav-sidebar">
+						<li><a href="">Nav item</a></li>
+						<li><a href="">Nav item again</a></li>
+						<li><a href="">One more nav</a></li>
+						<li><a href="">Another nav item</a></li>
+						<li><a href="">More navigation</a></li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<li><a href="">Nav item again</a></li>
+						<li><a href="">One more nav</a></li>
+						<li><a href="">Another nav item</a></li>
+					</ul>	-->
 			</div>
 			<!-- Contenido -->
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -125,7 +125,7 @@
 								<input type="text" class="form-control" placeholder="Busqueda...">
 							</div>
 							<div class="col-md-4 ">
-								<button type="button" data-toggle="modal" data-target="#popupNuevoViaje" class="btn btn-primary btn-md pull-right">Nuevo Viaje</button>
+								<button type="button" id="llamarModal" data-toggle="modal" data-target="#popupNuevoViaje" class="btn btn-primary btn-md pull-right">Nuevo Viaje</button>
 							</div>
 						</div>
 						<div class="row">
@@ -142,8 +142,7 @@
 									</thead>
 									<tbody>
 										<%
-											out.print(ViajeUtil.popularTabla());
-											System.out.println("JSP");
+											out.print(ViajeUtil.popularTablaPrincipal());
 										%>
 									</tbody>
 								</table>
@@ -160,7 +159,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Popup Nuevo viaje -->
     <div id="popupNuevoViaje" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -184,7 +183,9 @@
 										</tr>
 									</thead>
 									<tbody>
-
+										<%
+											out.print(ViajeUtil.popularTablaPedidos());
+										%>
 									</tbody>
 								</table>
 							</div>
@@ -195,7 +196,7 @@
 									<button type="button" data-toggle="modal" data-target="#popupNuevoPedido" class="btn btn-secondary btn-md ">Agregar Pedido</button>
 								</div>
 								<div class="bottom-padding-5">
-									<input type="text" class="form-control" placeholder="Precio">
+									<input type="text" id="precio" name="precio" class="form-control" placeholder="Precio">
 								</div>
 							</div>					
 						</div>
@@ -215,7 +216,7 @@
 			</div>
 		</div>
     </div>
-	
+
 	<!-- Popup Nuevo Pedido -->
     <div id="popupNuevoPedido" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -226,15 +227,23 @@
 					<h4 class="modal-title">Nuevo viaje</h4>
 				</div>
 				<div class="modal-body">
-					<form action="nuevoPedido.html" method="POST">
-						<input class="form-group" id="nombre" name="nombre" placeholder="Nombre cliente"/>
-						<input class="form-group" id="calle" name="calle" placeholder="Calle"/>
-						<input class="form-horizontal" id="puerta" name="puerta" placeholder="Nnumero de puerta"/>
-						<input class="form-group" id="esquina" name="esquina" placeholder="Esquina"/>
-						<input class="form-horizontal" id="apartamento" name="apartamento" placeholder="Apartamento"/>
-						<input class="form-group" id="telefono" name="telefono" placeholder="Telefono"/>
-						<input class="form-group input-lg" id="aclaraciones" name="aclaraciones" placeholder="Aclaraciones"/>
-						<button type="submit" class="btn btn-primary">Agregar</button>>
+					<form action="viaje/nuevoPedido.html" method="POST">
+						<div class="form-group">
+							<input id="nombre" name="nombre" placeholder="Nombre cliente"/>
+						</div>
+						<div class="form-horizontal">
+							<input id="calle" name="calle" placeholder="Calle"/>
+							<input id="puerta" name="puerta" placeholder="Numero de puerta"/>
+						</div>
+						<div class="form-horizontal">
+							<input id="esquina" name="esquina" placeholder="Esquina"/>
+							<input id="apartamento" name="apartamento" placeholder="Apartamento"/>
+							<input id="telefono" name="telefono" placeholder="Telefono"/>
+						</div>
+						<div class="form-group">
+							<input class="input-lg" id="aclaraciones" name="aclaraciones" placeholder="Aclaraciones"/>
+						</div>
+						<button type="submit" class="btn btn-primary">Agregar</button>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -243,14 +252,16 @@
 			</div>
 		</div>
     </div>
-	
+
 	<!-- Bootstrap core JavaScript
 	================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+	<script src="res/js/jquery-3.1.1.min.js"></script>
 	<script src="res/js/bootstrap.min.js"></script>
 	<script src="res/js/mapa.js"></script>
 	<script src="res/js/viajes.js"></script>	
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=myMap"></script>
+	<script>activarModal("llamarModal","pedidos");</script>
 </body>
 </html>

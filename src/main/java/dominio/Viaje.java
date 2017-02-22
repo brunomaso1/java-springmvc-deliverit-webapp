@@ -43,6 +43,19 @@ public class Viaje {
         this.precio = precio;
     }
 
+	public Viaje(Integer id, Short calificacion, short precio, Collection<Transaccion> transaccionCollection, Collection<Pedido> pedidoCollection, Delivery delivery, Sucursal sucursal, EstadoViaje estado) {
+		this.id = id;
+		this.calificacion = calificacion;
+		this.precio = precio;
+		this.transaccionCollection = transaccionCollection;
+		this.pedidoCollection = pedidoCollection;
+		this.delivery = delivery;
+		this.sucursal = sucursal;
+		this.estado = estado;
+	}
+	
+	
+
     public Integer getId() {
         return id;
     }

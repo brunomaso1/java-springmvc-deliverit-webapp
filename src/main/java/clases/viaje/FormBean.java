@@ -1,28 +1,89 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases.viaje;
 
-/**
- *
- * @author bruno
- */
 public class FormBean {
 	
-	String nombre;
+	private String nombre;
 	
-	String calle;
+	private String calle;
 	
-	String puerta;
+	private String puerta;
 	
-	String esquina;
+	private String esquina;
 	
-	String apartamento;
+	private String apartamento;
 	
-	String telefono;
+	private String telefono;
 	
-	String aclaraciones;
+	private String aclaraciones;
+
+	//Constructors
+	public FormBean() {
+	}
+
+	public FormBean(String nombre, String calle, String puerta, String esquina, String apartamento, String telefono, String aclaraciones) {
+		this.nombre = nombre;
+		this.calle = calle;
+		this.puerta = puerta;
+		this.esquina = esquina;
+		this.apartamento = apartamento;
+		this.telefono = telefono;
+		this.aclaraciones = aclaraciones;
+	}
+
+	//Getters and Setters
+	public String getNombre() {
+		return nombre;
+	}
 	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public String getPuerta() {
+		return puerta;
+	}
+
+	public void setPuerta(String puerta) {
+		this.puerta = puerta;
+	}
+
+	public String getEsquina() {
+		return esquina;
+	}
+
+	public void setEsquina(String esquina) {
+		this.esquina = esquina;
+	}
+
+	public String getApartamento() {
+		return apartamento;
+	}
+
+	public void setApartamento(String apartamento) {
+		this.apartamento = apartamento;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getAclaraciones() {
+		return aclaraciones;
+	}
+
+	public void setAclaraciones(String aclaraciones) {
+		this.aclaraciones = aclaraciones;
+	}	
 }
