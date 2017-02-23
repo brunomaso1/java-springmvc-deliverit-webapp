@@ -16,14 +16,14 @@ public class ClienteTelefono  {
 	
     protected ClienteTelefonoPK clienteTelefonoPK;
   
-    private Cliente cliente1;
+    private Cliente cliente;
 
     public ClienteTelefono() {
     }
 
 	public ClienteTelefono(ClienteTelefonoPK clienteTelefonoPK, Cliente cliente1) {
 		this.clienteTelefonoPK = clienteTelefonoPK;
-		this.cliente1 = cliente1;
+		this.cliente = cliente1;
 	}
 	
 
@@ -44,11 +44,11 @@ public class ClienteTelefono  {
     }
 
     public Cliente getCliente1() {
-        return cliente1;
+        return cliente;
     }
 
     public void setCliente1(Cliente cliente1) {
-        this.cliente1 = cliente1;
+        this.cliente = cliente1;
     }
 
     @Override
