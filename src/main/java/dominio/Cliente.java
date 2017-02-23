@@ -30,8 +30,7 @@ public class Cliente {
 		this.direccion = direccion;
 		this.pedidoCollection = pedidoCollection;
 		this.clienteTelefonoCollection = clienteTelefonoCollection;
-	}
-	
+	}	
 
     public Cliente(Integer id) {
         this.id = id;

@@ -1,5 +1,8 @@
 package clases.viaje;
 
+/**
+ * Bean del formulario de nuevo pedido.
+ */
 public class FormBean {
 	
 	private String nombre;

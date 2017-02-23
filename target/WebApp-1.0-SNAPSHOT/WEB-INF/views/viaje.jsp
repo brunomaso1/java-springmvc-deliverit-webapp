@@ -87,7 +87,7 @@
 							<img src="res/img/pendiente.jpg">	
 						</div>
 						<div class="image-button-btn bottom-padding-3">	
-							<button type="button" class="btn btn-primary btn-lg">Pendientes</button>
+							<button type="button" onclick="location.href='viaje/refreshPendiente.html'" class="btn btn-primary btn-lg">Pendientes</button>
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-3">
@@ -95,7 +95,7 @@
 							<img src="res/img/publicados.jpg">	
 						</div>
 						<div class="image-button-btn bottom-padding-3">				
-							<button type="button" class="btn btn-primary btn-lg">Publicados</button>
+							<button type="button" onclick="location.href='viaje/refreshPublicado.html'" class="btn btn-primary btn-lg">Publicados</button>
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-3">
@@ -103,7 +103,7 @@
 							<img src="res/img/en-proceso.jpg">	
 						</div>
 						<div class="image-button-btn bottom-padding-3">				
-							<button type="button" class="btn btn-primary btn-lg">En Proceso</button>
+							<button type="button" onclick="location.href='viaje/refreshEnProceso.html'" class="btn btn-primary btn-lg">En Proceso</button>
 						</div>
 					</div>
 					<div class="col-xs-6 col-sm-3">
@@ -111,7 +111,7 @@
 							<img src="res/img/terminados.jpg">	
 						</div>
 						<div class="image-button-btn bottom-padding-3">				
-							<button type="button" class="btn btn-primary btn-lg">Terminados</button>
+							<button type="button" onclick="location.href='viaje/refreshTerminado.html'" class="btn btn-primary btn-lg">Terminados</button>
 						</div>
 					</div>
 				</div>
