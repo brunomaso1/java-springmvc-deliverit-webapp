@@ -31,10 +31,9 @@ public class ViajeController {
 	
 	@RequestMapping(value = "/nuevoViaje", method = POST)
 	public String publicarPopup(@RequestParam String tipo, @RequestParam String precio) {
-//		Viaje viaje = new Viaje(1, null, Short.parseShort(precio), null, null, null, new Sucursal(new SucursalPK((short)1, 1)), new EstadoViaje((short)1));
-//		System.out.println("Se creo el viaje.");
-//		ViajeUtil.crearViaje(viaje);
-		System.out.println("Termino la insercion.");
+//		System.out.println("Se inicio la insercion.");
+//		ViajeLogica.crearViaje(precio);
+//		System.out.println("Termino la insercion.");
 		if (tipo.equals("publicar")) {
 			//Obtener deliverys macheo.
 			//Notificar deiverys.

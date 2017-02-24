@@ -22,6 +22,8 @@ public class Usuario  {
     private String password;
 
     private String mail;
+	
+	private String telefono;
 
     private int cuentaRedPagos;
  
@@ -31,8 +33,6 @@ public class Usuario  {
     
     private Collection<Restaurant> restaurantCollection;
     
-    private Collection<UsuarioTelefono> usuarioTelefonoCollection;
-
     public Usuario() {
     }
 
@@ -79,6 +79,14 @@ public class Usuario  {
         this.mail = mail;
     }
 
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
     public int getCuentaRedPagos() {
         return cuentaRedPagos;
     }
@@ -109,14 +117,6 @@ public class Usuario  {
 
     public void setRestaurantCollection(Collection<Restaurant> restaurantCollection) {
         this.restaurantCollection = restaurantCollection;
-    }
-
-    public Collection<UsuarioTelefono> getUsuarioTelefonoCollection() {
-        return usuarioTelefonoCollection;
-    }
-
-    public void setUsuarioTelefonoCollection(Collection<UsuarioTelefono> usuarioTelefonoCollection) {
-        this.usuarioTelefonoCollection = usuarioTelefonoCollection;
     }
 
     @Override

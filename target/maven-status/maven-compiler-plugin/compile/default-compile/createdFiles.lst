@@ -6,11 +6,7 @@ clases\dominio\EstadoViaje.class
 clases\dominio\Vehiculo.class
 clases\index\IndexController.class
 clases\dominio\Pedido.class
-clases\dominio\UsuarioTelefonoPK.class
 clases\dominio\Viaje.class
-clases\dominio\ClienteTelefono.class
-clases\dominio\UsuarioTelefono.class
-clases\dominio\ClienteTelefonoPK.class
 clases\dominio\Restaurant.class
 clases\dominio\Sucursal.class
 clases\dominio\Transaccion.class

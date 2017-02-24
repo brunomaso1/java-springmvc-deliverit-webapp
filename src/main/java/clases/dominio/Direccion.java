@@ -7,7 +7,6 @@ package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Collection;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,6 +26,8 @@ public class Direccion  {
     private Double latitud;
     
     private Double longitud;
+	
+	private short apartamento;
     
     private Collection<Cliente> clienteCollection;
     
@@ -35,25 +36,21 @@ public class Direccion  {
     public Direccion() {
     }
 
-    public Direccion(Integer id) {
-        this.id = id;
-    }
-
-    public Direccion(Integer id, String calle, short nroPuerta) {
-        this.id = id;
-        this.calle = calle;
-        this.nroPuerta = nroPuerta;
-    }
-
-	public Direccion(Integer id, String calle, short nroPuerta, String esquina, Double latitud, Double longitud, Collection<Cliente> clienteCollection, Collection<Sucursal> sucursalCollection) {
-		this.id = id;
+	public Direccion(String calle, short nroPuerta, String esquina, Double latitud, Double longitud, short apartamento) {
 		this.calle = calle;
 		this.nroPuerta = nroPuerta;
 		this.esquina = esquina;
 		this.latitud = latitud;
 		this.longitud = longitud;
-		this.clienteCollection = clienteCollection;
-		this.sucursalCollection = sucursalCollection;
+		this.apartamento = apartamento;
+	}
+	
+	public Direccion(String calle, short nroPuerta, String esquina, Double latitud, Double longitud) {
+		this.calle = calle;
+		this.nroPuerta = nroPuerta;
+		this.esquina = esquina;
+		this.latitud = latitud;
+		this.longitud = longitud;
 	}
 	
 
@@ -105,7 +102,14 @@ public class Direccion  {
         this.longitud = longitud;
     }
 
-    @XmlTransient
+	public short getApartamento() {
+		return apartamento;
+	}
+
+	public void setApartamento(short apartamento) {
+		this.apartamento = apartamento;
+	}
+
     public Collection<Cliente> getClienteCollection() {
         return clienteCollection;
     }
@@ -114,7 +118,6 @@ public class Direccion  {
         this.clienteCollection = clienteCollection;
     }
 
-    @XmlTransient
     public Collection<Sucursal> getSucursalCollection() {
         return sucursalCollection;
     }

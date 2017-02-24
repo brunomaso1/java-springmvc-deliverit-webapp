@@ -2,6 +2,7 @@ package clases.viaje;
 
 import clases.dominio.*;
 import clases.configuration.*;
+import java.math.BigInteger;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 
@@ -115,7 +116,7 @@ public final class ViajeLogica {
 				tabla += "<td>" + pedido.getCliente().getNombre() + "</td>";
 				tabla += "<td>" + pedido.getCliente().getDireccion().getCalle()
 						+ pedido.getCliente().getDireccion().getNroPuerta() + "</td>";
-				tabla += "<td>" + pedido.getCliente().getClienteTelefonoCollection().iterator().next().getClienteTelefonoPK().getTelefono() + "</td>";
+				tabla += "<td>" + pedido.getCliente().getTelefono() + "</td>";
 				tabla += "</tr>";
 				i++;
 			}
@@ -156,12 +157,12 @@ public final class ViajeLogica {
 				parser[i][1] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getNombre();
 				parser[i][2] = pedidos[i].getCliente() == null ? "Cliente no encontrado"
 						: pedidos[i].getCliente().getDireccion() == null ? "Direcccion no encontrada"
-						: pedidos[i].getCliente().getDireccion().getCalle().toString() + " "
-						+ pedidos[i].getCliente().getDireccion().getNroPuerta();;
+						: pedidos[i].getCliente().getDireccion().getCalle() + " "
+						+ pedidos[i].getCliente().getDireccion().getNroPuerta();
 				parser[i][3] = pedidos[i].getViaje().getDelivery() == null
-						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre().toString();
+						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre();
 				parser[i][4] = pedidos[i].getCliente() == null ? "Cliente no encontrado"
-						: pedidos[i].getCliente().getClienteTelefonoCollection() == null ? "Telefono no encontrado" : pedidos[i].getCliente().getClienteTelefonoCollection().iterator().next().getClienteTelefonoPK().getTelefono().toString();
+						: pedidos[i].getCliente().getTelefono()== null ? "Telefono no encontrado" : pedidos[i].getCliente().getTelefono();
 			}
 			return parser;
 		}
@@ -176,9 +177,11 @@ public final class ViajeLogica {
 	 * @param viaje Nuevo viaje a crear.
 	 * @return True si y solo si se ha creado correctamente el viaje.
 	 */
-	public static boolean crearViaje(Viaje viaje) {
-		//Insertar viaje.
+	public static boolean crearViaje(String precio) {
 		RestTemplate restTemplate = new RestTemplate();
+		
+		//Insertar viaje.
+		Viaje viaje = new Viaje(Short.parseShort(precio), new Sucursal((short)1, 1), new EstadoViaje((short)1));
 		Viaje v = restTemplate.postForObject(Configuration.restViajePost(), viaje, Viaje.class);
 		System.out.println("Se inserto el viaje.");
 		System.out.println(v.getId());
@@ -200,14 +203,6 @@ public final class ViajeLogica {
 			pedido.setCliente(cli);
 			System.out.println("Se inserto el cliente.");
 
-			//Obtengo los telefonos del cliente y lo inserto.
-			ClienteTelefono cliTel = restTemplate.postForObject(Configuration.restClienteTelefonoPost(), pedido.getCliente().getClienteTelefonoCollection().iterator().next(), ClienteTelefono.class);
-			//Le asigno el id del telefono que traje al cliente.
-			cli.setClienteTelefonoCollection(new ArrayList<ClienteTelefono>());
-			cli.getClienteTelefonoCollection().add(cliTel);
-			pedido.setCliente(cli);
-			System.out.println("Se inserto el telefono.");
-
 			//Finalmente inserto el pedido que ya tiene todo lo asociado.
 			restTemplate.postForObject(Configuration.restPedidoPost(), pedido, Pedido.class);
 			System.out.println("Se inserto el pedido.");
@@ -228,7 +223,7 @@ public final class ViajeLogica {
 		ArrayList<Pedido> pedidosTemp = new ArrayList<>();
 
 		for (Pedido pedido : pedidosBase) {
-			if (pedido.getViaje().getEstado().getId() == getEstado()) {
+			if (pedido.getViaje().getEstado().getId() == estado) {
 				pedidosTemp.add(pedido);
 			}
 		}
@@ -242,6 +237,7 @@ public final class ViajeLogica {
 			int i = 0;
 			for (Pedido pedido : pedidosTemp) {
 				pedidos[i] = pedido;
+				i++;
 			}
 
 			return pedidos;
@@ -249,16 +245,30 @@ public final class ViajeLogica {
 	}
 
 	public static void nuevoPedido(ViajeFormBean bean) {
-		Direccion dir = new Direccion(1, bean.getCalle(), Short.parseShort(bean.getPuerta()), bean.getEsquina(), -34.9166122d, -56.1568794d, new ArrayList<Cliente>(), new ArrayList<Sucursal>());
-		Cliente cli = new Cliente(1, bean.getNombre(), dir, null, new ArrayList<ClienteTelefono>());
-		ClienteTelefono ct = new ClienteTelefono(new ClienteTelefonoPK(cli.getId(), bean.getTelefono()), cli);
-		cli.getClienteTelefonoCollection().add(ct);
-		Pedido ped = new Pedido(null, bean.getAclaraciones(), "Contado", null, cli);
+		Direccion dir;
+		if (bean.getApartamento() == "")
+			dir = new Direccion(bean.getCalle(), Short.parseShort(bean.getPuerta()), bean.getEsquina(), -34.9166122d, -56.1568794d, Short.parseShort(bean.getApartamento()));
+		else
+			dir = new Direccion(bean.getCalle(), Short.parseShort(bean.getPuerta()), bean.getEsquina(), -34.9166122d, -56.1568794d);
+		
+		Cliente cli = new Cliente(bean.getNombre(), dir, bean.getTelefono());
+		Pedido ped = new Pedido(null, bean.getAclaraciones(), "E", null, cli);
 		pedidos.add(ped);
 	}
 	
 	public static String test() {
-		//Obtener todos los viajes		
+		RestTemplate rest = new RestTemplate();
+		//Obtener todos los viajes
+		Direccion dir = new Direccion("calle", Short.parseShort("1234"), "esquina", -34.9166122d, -56.1568794d, Short.parseShort("1234"));		
+//		Restaurant restaurante = new Restaurant(2, new BigInteger("12334556664"));
+//		
+//		Restaurant r = rest.postForObject("http://192.168.1.44:8080/BackCore/ws/restaurant", restaurante, Restaurant.class);
+//		
+//		
+//		Direccion dir2 = new Direccion("calle", Short.parseShort("1234"), "esquina", -34.9166122d, -56.1568794d);
+		Direccion respuesta = rest.postForObject(Configuration.restDireccionPost(), dir, Direccion.class);
+		//Direccion respuesta2 = rest.postForObject(Configuration.restDireccionPost(), dir2, Direccion.class);
+		System.out.println(respuesta.toString());
 		return "sdf";
 	}
 }

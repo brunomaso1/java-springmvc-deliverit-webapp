@@ -54,7 +54,11 @@ public class Viaje {
 		this.estado = estado;
 	}
 	
-	
+	public Viaje(short precio, Sucursal sucursal, EstadoViaje estado) {
+		this.precio = precio;
+		this.sucursal = sucursal;
+		this.estado = estado;
+	}
 
     public Integer getId() {
         return id;

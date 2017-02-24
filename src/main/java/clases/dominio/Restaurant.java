@@ -6,6 +6,7 @@
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.math.BigInteger;
 import java.util.Collection;
 
 /**
@@ -19,7 +20,7 @@ public class Restaurant  {
 
     private Integer id;
     
-    private int rut;
+    private BigInteger rut;
     
     private String razonSocial;
     
@@ -34,7 +35,7 @@ public class Restaurant  {
         this.id = id;
     }
 
-    public Restaurant(Integer id, int rut) {
+    public Restaurant(Integer id, BigInteger rut) {
         this.id = id;
         this.rut = rut;
     }
@@ -47,11 +48,11 @@ public class Restaurant  {
         this.id = id;
     }
 
-    public int getRut() {
+    public BigInteger getRut() {
         return rut;
     }
 
-    public void setRut(int rut) {
+    public void setRut(BigInteger rut) {
         this.rut = rut;
     }
 

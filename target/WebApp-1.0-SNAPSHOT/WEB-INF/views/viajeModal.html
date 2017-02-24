@@ -34,24 +34,26 @@
 				<div class="btn-group bottom-padding-1">
 					<button type="button" data-toggle="modal" data-target="#popupNuevoPedido" class="btn btn-secondary btn-md pull-right">Agregar Pedido</button>
 				</div>
-				<div class="input-group bottom-padding-1">
-					<input type="text" class="form-control" id="precio" name="precio" placeholder="Ingresa el precio">
-					<div class="input-group-btn">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-usd" aria-hidden="true"></i><span class="caret"></span></button>
-						<ul class="dropdown-menu">
-							<li><a onclick="document.getElementById('precio').value = '10';"href="#">$ 10</a></li>
-							<li><a onclick="document.getElementById('precio').value = '20';"href="#">$ 20</a></li>
-							<li><a onclick="document.getElementById('precio').value = '30';"href="#">$ 30</a></li>
-							<li><a onclick="document.getElementById('precio').value = '50';"href="#">$ 50</a></li>
-							<li><a onclick="document.getElementById('precio').value = '80';"href="#">$ 80</a></li>
-							<li><a onclick="document.getElementById('precio').value = '130';"href="#">$ 130</a></li>
-						</ul>
-					</div><!-- /btn-group -->
-				</div><!-- /input-group -->
-				<div>
-					<button type="submit" name="tipo" value="publicar" class="btn btn-danger btn-md">Publicar</button>
-					<button type="submit" name="tipo" value="guardar" class="btn btn-secondary btn-md">Guardar</button>
-				</div>
+				<form  action="viaje/nuevoViaje.html" method="POST">
+					<div class="input-group bottom-padding-1">
+						<input type="text" class="form-control" id="precio" name="precio" placeholder="Ingresa el precio">
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-usd" aria-hidden="true"></i><span class="caret"></span></button>
+							<ul class="dropdown-menu">
+								<li><a onclick="document.getElementById('precio').value = '10';"href="#">$ 10</a></li>
+								<li><a onclick="document.getElementById('precio').value = '20';"href="#">$ 20</a></li>
+								<li><a onclick="document.getElementById('precio').value = '30';"href="#">$ 30</a></li>
+								<li><a onclick="document.getElementById('precio').value = '50';"href="#">$ 50</a></li>
+								<li><a onclick="document.getElementById('precio').value = '80';"href="#">$ 80</a></li>
+								<li><a onclick="document.getElementById('precio').value = '130';"href="#">$ 130</a></li>
+							</ul>
+						</div><!-- /btn-group -->
+					</div><!-- /input-group -->
+					<div>
+						<button type="submit" name="tipo" value="publicar" class="btn btn-danger btn-md">Publicar</button>
+						<button type="submit" name="tipo" value="guardar" class="btn btn-secondary btn-md">Guardar</button>
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

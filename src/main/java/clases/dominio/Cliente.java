@@ -16,25 +16,19 @@ public class Cliente {
     private String nombre;
     
     private Direccion direccion;
+	
+	private String telefono;
     
     private Collection<Pedido> pedidoCollection;
-    
-    private Collection<ClienteTelefono> clienteTelefonoCollection;
 
     public Cliente() {
     }
-
-	public Cliente(Integer id, String nombre, Direccion direccion, Collection<Pedido> pedidoCollection, Collection<ClienteTelefono> clienteTelefonoCollection) {
-		this.id = id;
+	
+	public Cliente(String nombre, Direccion direccion, String telefono) {
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.pedidoCollection = pedidoCollection;
-		this.clienteTelefonoCollection = clienteTelefonoCollection;
-	}	
-
-    public Cliente(Integer id) {
-        this.id = id;
-    }
+		this.telefono = telefono;
+	}
 
     public Integer getId() {
         return id;
@@ -60,20 +54,20 @@ public class Cliente {
         this.direccion = direccion;
     }
 
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
     public Collection<Pedido> getPedidoCollection() {
         return pedidoCollection;
     }
 
     public void setPedidoCollection(Collection<Pedido> pedidoCollection) {
         this.pedidoCollection = pedidoCollection;
-    }
-
-    public Collection<ClienteTelefono> getClienteTelefonoCollection() {
-        return clienteTelefonoCollection;
-    }
-
-    public void setClienteTelefonoCollection(Collection<ClienteTelefono> clienteTelefonoCollection) {
-        this.clienteTelefonoCollection = clienteTelefonoCollection;
     }
 
     @Override
