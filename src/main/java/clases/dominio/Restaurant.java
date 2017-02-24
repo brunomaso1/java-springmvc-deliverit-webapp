@@ -14,95 +14,92 @@ import java.util.Collection;
  * @author JMArtegoytia
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Restaurant  {
+public class Restaurant {
 
-    private static final long serialVersionUID = 1L;
+	private Integer id;
 
-    private Integer id;
-    
-    private BigInteger rut;
-    
-    private String razonSocial;
-    
-    private Usuario usuario;
-    
-    private Collection<Sucursal> sucursalCollection;
+	private BigInteger rut;
 
-    public Restaurant() {
-    }
+	private String razonSocial;
 
-    public Restaurant(Integer id) {
-        this.id = id;
-    }
+	private Usuario usuario;
 
-    public Restaurant(Integer id, BigInteger rut) {
-        this.id = id;
-        this.rut = rut;
-    }
+	private Collection<Sucursal> sucursalCollection;
 
-    public Integer getId() {
-        return id;
-    }
+	public Restaurant() {
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public Restaurant(Integer id, BigInteger rut, String razonSocial, Usuario usuario, Collection<Sucursal> sucursalCollection) {
+		this.id = id;
+		this.rut = rut;
+		this.razonSocial = razonSocial;
+		this.usuario = usuario;
+		this.sucursalCollection = sucursalCollection;
+	}
 
-    public BigInteger getRut() {
-        return rut;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setRut(BigInteger rut) {
-        this.rut = rut;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getRazonSocial() {
-        return razonSocial;
-    }
+	public BigInteger getRut() {
+		return rut;
+	}
 
-    public void setRazonSocial(String razonSocial) {
-        this.razonSocial = razonSocial;
-    }
+	public void setRut(BigInteger rut) {
+		this.rut = rut;
+	}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public String getRazonSocial() {
+		return razonSocial;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public void setRazonSocial(String razonSocial) {
+		this.razonSocial = razonSocial;
+	}
 
-    public Collection<Sucursal> getSucursalCollection() {
-        return sucursalCollection;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-    public void setSucursalCollection(Collection<Sucursal> sucursalCollection) {
-        this.sucursalCollection = sucursalCollection;
-    }
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	public Collection<Sucursal> getSucursalCollection() {
+		return sucursalCollection;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Restaurant)) {
-            return false;
-        }
-        Restaurant other = (Restaurant) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	public void setSucursalCollection(Collection<Sucursal> sucursalCollection) {
+		this.sucursalCollection = sucursalCollection;
+	}
 
-    @Override
-    public String toString() {
-        return "ucu.deliverit.backcore.entidades.Restaurant[ id=" + id + " ]";
-    }
-    
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Restaurant)) {
+			return false;
+		}
+		Restaurant other = (Restaurant) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ucu.deliverit.backcore.entidades.Restaurant[ id=" + id + " ]";
+	}
+
 }

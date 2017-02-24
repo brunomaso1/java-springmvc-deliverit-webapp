@@ -2,9 +2,15 @@ package clases.viaje;
 
 import clases.dominio.*;
 import clases.configuration.*;
+import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import java.math.BigInteger;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
 
 /**
  * Clase que prove utilidades para el controlador y las vistas de viaje.
@@ -14,69 +20,56 @@ public final class ViajeLogica {
 	private static int sucursal = 1;
 	private static int restaurant = 1;
 	private static int estado = 1;
+	private static int pedidosPendientes = 0;
+	private static int pedidosPublicados = 0;
+	private static int pedidosEnProceso = 0;
+	private static int pedidosTerminados = 0;
 	private static ArrayList<Pedido> pedidos = new ArrayList<>();
 
-	/**
-	 * @return the sucursal
-	 */
 	public static int getSucursal() {
 		return sucursal;
 	}
 
-	/**
-	 * @param aSucursal the sucursal to set
-	 */
 	public static void setSucursal(int aSucursal) {
 		sucursal = aSucursal;
 	}
 
-	/**
-	 * @return the restaurant
-	 */
 	public static int getRestaurant() {
 		return restaurant;
 	}
 
-	/**
-	 * @param aRestaurant the restaurant to set
-	 */
 	public static void setRestaurant(int aRestaurant) {
 		restaurant = aRestaurant;
 	}
 
-	/**
-	 * @return the estado
-	 */
 	public static int getEstado() {
 		return estado;
 	}
 
-	/**
-	 * @param aEstado the estado to set
-	 */
 	public static void setEstado(int aEstado) {
 		estado = aEstado;
 	}
 
-	/**
-	 * @return the pedidos
-	 */
-	public static ArrayList<Pedido> getPedidos() {
-		return pedidos;
+	public static int getPedidosPendientes() {
+		return pedidosPendientes;
 	}
 
-	/**
-	 * @param aPedidos the pedidos to set
-	 */
-	public static void setPedidos(ArrayList<Pedido> aPedidos) {
-		pedidos = aPedidos;
+	public static int getPedidosPublicados() {
+		return pedidosPublicados;
+	}
+
+	public static int getPedidosEnProceso() {
+		return pedidosEnProceso;
+	}
+
+	public static int getPedidosTerminados() {
+		return pedidosTerminados;
 	}
 
 	/**
 	 * Devuelve un String conteniendo los items de la tabla ubicada en la pagina
 	 * del viaje. Estos items ya estan filtrados segun lo que esté en el
 	 * parametro estado.
-	 *
 	 * @return String Una cadena conteniendo los items.
 	 */
 	public static String popularTablaPrincipal() {
@@ -162,7 +155,7 @@ public final class ViajeLogica {
 				parser[i][3] = pedidos[i].getViaje().getDelivery() == null
 						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre();
 				parser[i][4] = pedidos[i].getCliente() == null ? "Cliente no encontrado"
-						: pedidos[i].getCliente().getTelefono()== null ? "Telefono no encontrado" : pedidos[i].getCliente().getTelefono();
+						: pedidos[i].getCliente().getTelefono() == null ? "Telefono no encontrado" : pedidos[i].getCliente().getTelefono();
 			}
 			return parser;
 		}
@@ -177,35 +170,45 @@ public final class ViajeLogica {
 	 * @param viaje Nuevo viaje a crear.
 	 * @return True si y solo si se ha creado correctamente el viaje.
 	 */
-	public static boolean crearViaje(String precio) {
+	public static boolean crearViaje(String precio, short estadoid) {
 		RestTemplate restTemplate = new RestTemplate();
-		
+
 		//Insertar viaje.
-		Viaje viaje = new Viaje(Short.parseShort(precio), new Sucursal((short)1, 1), new EstadoViaje((short)1));
+		Viaje viaje = new Viaje(null, null, Short.valueOf(precio),
+				new ArrayList<Transaccion>(), new ArrayList<Pedido>(), null,
+				new Sucursal((short) 1, 1, null, null, null, new ArrayList<Viaje>()),
+				new EstadoViaje(estadoid, null, new ArrayList<Viaje>()));
+
 		Viaje v = restTemplate.postForObject(Configuration.restViajePost(), viaje, Viaje.class);
 		System.out.println("Se inserto el viaje.");
-		System.out.println(v.getId());
 		//Insertar pedidos.
+		int pedidoId = 1;
 		for (Pedido pedido : pedidos) {
 			//Seto el id de viaje al pedido.
+			//v.getPedidoCollection().add(pedido);
 			pedido.setViaje(v);
+			pedido.setPedidoPK(new PedidoPK(pedidoId, v.getId()));
 			System.out.println("Se asocio el viaje.");
 
 			//Obtengo la direccion del pedido y la inserto.
 			Direccion dir = restTemplate.postForObject(Configuration.restDireccionPost(), pedido.getCliente().getDireccion(), Direccion.class);
 			//Le asigno el id de la direccion que traje a la direccion en el pedido .
+			//dir.getClienteCollection().add(pedido.getCliente());
 			pedido.getCliente().setDireccion(dir);
 			System.out.println("Se inserto la direccion.");
 
 			//Obtengo el cliente y lo inserto.
 			Cliente cli = restTemplate.postForObject(Configuration.restClientePost(), pedido.getCliente(), Cliente.class);
 			//Le asigno el id del cliente que traje al pedido.
+			//cli.getPedidoCollection().add(pedido);
 			pedido.setCliente(cli);
 			System.out.println("Se inserto el cliente.");
 
 			//Finalmente inserto el pedido que ya tiene todo lo asociado.
-			restTemplate.postForObject(Configuration.restPedidoPost(), pedido, Pedido.class);
+			Pedido p = restTemplate.postForObject(Configuration.restPedidoPost(), pedido, Pedido.class);
 			System.out.println("Se inserto el pedido.");
+			
+			pedidoId++;
 		}
 		//Limpio la lista de pedidos para la proxima inserccion.
 		pedidos.clear();
@@ -221,10 +224,18 @@ public final class ViajeLogica {
 	 */
 	private static Pedido[] filtrarPedidos(Pedido[] pedidosBase) {
 		ArrayList<Pedido> pedidosTemp = new ArrayList<>();
-
+		
+		pedidosPendientes = 0;
+		pedidosPublicados = 0;
+		pedidosEnProceso = 0;
+		pedidosTerminados = 0;
+		
 		for (Pedido pedido : pedidosBase) {
-			if (pedido.getViaje().getEstado().getId() == estado) {
-				pedidosTemp.add(pedido);
+			switch (pedido.getViaje().getEstado().getId()) {
+				case 1 : pedidosPendientes++; if (estado == 1) pedidosTemp.add(pedido); break;
+				case 2 : pedidosPublicados++; if (estado == 2) pedidosTemp.add(pedido); break;
+				case 3 : pedidosEnProceso++; if (estado == 3) pedidosTemp.add(pedido); break;
+				case 4 : pedidosTerminados++; if (estado == 4) pedidosTemp.add(pedido); break;
 			}
 		}
 
@@ -243,32 +254,22 @@ public final class ViajeLogica {
 			return pedidos;
 		}
 	}
-
+	
+	/**
+	 * Crea un nuevo pedido desde un formulario dinamico.
+	 * @param bean Formulario dinamico.
+	 */
 	public static void nuevoPedido(ViajeFormBean bean) {
 		Direccion dir;
-		if (bean.getApartamento() == "")
-			dir = new Direccion(bean.getCalle(), Short.parseShort(bean.getPuerta()), bean.getEsquina(), -34.9166122d, -56.1568794d, Short.parseShort(bean.getApartamento()));
-		else
-			dir = new Direccion(bean.getCalle(), Short.parseShort(bean.getPuerta()), bean.getEsquina(), -34.9166122d, -56.1568794d);
-		
-		Cliente cli = new Cliente(bean.getNombre(), dir, bean.getTelefono());
+		if (bean.getApartamento() == "") {
+			dir = new Direccion(null, bean.getCalle(), Short.parseShort(bean.getPuerta()), (short) 0, bean.getEsquina(), -34.9166122d, -56.1568794d, new ArrayList<Cliente>(), new ArrayList<Sucursal>());
+		} else {
+			dir = new Direccion(null, bean.getCalle(), Short.parseShort(bean.getPuerta()), Short.parseShort(bean.getApartamento()), bean.getEsquina(), -34.9166122d, -56.1568794d, new ArrayList<Cliente>(), new ArrayList<Sucursal>());
+		}
+
+		Cliente cli = new Cliente(null, bean.getNombre(), dir, new ArrayList<Pedido>(), bean.getTelefono());
 		Pedido ped = new Pedido(null, bean.getAclaraciones(), "E", null, cli);
+
 		pedidos.add(ped);
-	}
-	
-	public static String test() {
-		RestTemplate rest = new RestTemplate();
-		//Obtener todos los viajes
-		Direccion dir = new Direccion("calle", Short.parseShort("1234"), "esquina", -34.9166122d, -56.1568794d, Short.parseShort("1234"));		
-//		Restaurant restaurante = new Restaurant(2, new BigInteger("12334556664"));
-//		
-//		Restaurant r = rest.postForObject("http://192.168.1.44:8080/BackCore/ws/restaurant", restaurante, Restaurant.class);
-//		
-//		
-//		Direccion dir2 = new Direccion("calle", Short.parseShort("1234"), "esquina", -34.9166122d, -56.1568794d);
-		Direccion respuesta = rest.postForObject(Configuration.restDireccionPost(), dir, Direccion.class);
-		//Direccion respuesta2 = rest.postForObject(Configuration.restDireccionPost(), dir2, Direccion.class);
-		System.out.println(respuesta.toString());
-		return "sdf";
 	}
 }

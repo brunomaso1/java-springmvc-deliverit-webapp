@@ -22,22 +22,24 @@ public class ViajeController {
 		model.addAttribute("datosTablaPrincipal", ViajeLogica.popularTablaPrincipal());
 		if (request.getParameter("datosTablaPedido") != null)
 			model.addAttribute("datosTablaPedido", request.getParameter("datosTablaPedido"));
-		model.addAttribute("pedidosPendientes", 3);
-		model.addAttribute("viajesPublicaods", 4);
-		model.addAttribute("viajesEnProceso", 1);
-		model.addAttribute("viajesTerminados", 12);
+		model.addAttribute("pedidosPendientes", ViajeLogica.getPedidosPendientes());
+		model.addAttribute("viajesPublicaods", ViajeLogica.getPedidosPublicados());
+		model.addAttribute("viajesEnProceso", ViajeLogica.getPedidosEnProceso());
+		model.addAttribute("viajesTerminados", ViajeLogica.getPedidosTerminados());
 		return "viaje";
 	}
 	
 	@RequestMapping(value = "/nuevoViaje", method = POST)
 	public String publicarPopup(@RequestParam String tipo, @RequestParam String precio) {
-//		System.out.println("Se inicio la insercion.");
-//		ViajeLogica.crearViaje(precio);
-//		System.out.println("Termino la insercion.");
-		if (tipo.equals("publicar")) {
-			//Obtener deliverys macheo.
-			//Notificar deiverys.
-		} else ViajeLogica.test();
+		if (tipo.equals("publicar") == true) {
+			System.out.println("Se inicio la insercion del viaje publicado.");
+			ViajeLogica.crearViaje(precio,(short)2);
+			System.out.println("Termino la insercion del viaje publicado.");
+		} else {
+			System.out.println("Se inicio la insercion del viaje publicado.");
+			ViajeLogica.crearViaje(precio,(short)1);
+			System.out.println("Termino la insercion del viaje publicado.");
+		}
 		return "redirect:/viaje.html";
 	}
 	

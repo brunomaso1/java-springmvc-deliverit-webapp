@@ -24,9 +24,11 @@ public class EstadoViaje  {
     public EstadoViaje() {
     }
 
-    public EstadoViaje(Short id) {
-        this.id = id;
-    }
+	public EstadoViaje(Short id, String descripcion, Collection<Viaje> viajeCollection) {
+		this.id = id;
+		this.descripcion = descripcion;
+		this.viajeCollection = viajeCollection;
+	}
 
     public Short getId() {
         return id;

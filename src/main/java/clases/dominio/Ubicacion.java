@@ -12,78 +12,81 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * @author JMArtegoytia
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Ubicacion  {
+public class Ubicacion {
 
-    private Short id;
-    
-    private Double latitud;
-    
-    private Double longitud;
+	private Short id;
 
-    private Delivery delivery;
+	private Double latitud;
 
-    public Ubicacion() {
-    }
+	private Double longitud;
 
-    public Ubicacion(Short id) {
-        this.id = id;
-    }
+	private Delivery delivery;
 
-    public Short getId() {
-        return id;
-    }
+	public Ubicacion() {
+	}
 
-    public void setId(Short id) {
-        this.id = id;
-    }
+	public Ubicacion(Short id, Double latitud, Double longitud, Delivery delivery) {
+		this.id = id;
+		this.latitud = latitud;
+		this.longitud = longitud;
+		this.delivery = delivery;
+	}
 
-    public Double getLatitud() {
-        return latitud;
-    }
+	public Short getId() {
+		return id;
+	}
 
-    public void setLatitud(Double latitud) {
-        this.latitud = latitud;
-    }
+	public void setId(Short id) {
+		this.id = id;
+	}
 
-    public Double getLongitud() {
-        return longitud;
-    }
+	public Double getLatitud() {
+		return latitud;
+	}
 
-    public void setLongitud(Double longitud) {
-        this.longitud = longitud;
-    }
+	public void setLatitud(Double latitud) {
+		this.latitud = latitud;
+	}
 
-    public Delivery getDelivery() {
-        return delivery;
-    }
+	public Double getLongitud() {
+		return longitud;
+	}
 
-    public void setDelivery(Delivery delivery) {
-        this.delivery = delivery;
-    }
+	public void setLongitud(Double longitud) {
+		this.longitud = longitud;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	public Delivery getDelivery() {
+		return delivery;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Ubicacion)) {
-            return false;
-        }
-        Ubicacion other = (Ubicacion) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	public void setDelivery(Delivery delivery) {
+		this.delivery = delivery;
+	}
 
-    @Override
-    public String toString() {
-        return "ucu.deliverit.backcore.entidades.Ubicacion[ id=" + id + " ]";
-    }
-    
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Ubicacion)) {
+			return false;
+		}
+		Ubicacion other = (Ubicacion) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ucu.deliverit.backcore.entidades.Ubicacion[ id=" + id + " ]";
+	}
+
 }

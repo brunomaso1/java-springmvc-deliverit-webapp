@@ -8,99 +8,89 @@ package clases.dominio;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Collection;
 
-/**
- *
- * @author JMArtegoytia
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Direccion  {
-   
-    private Integer id;
-    
-    private String calle;
-    
-    private short nroPuerta;
-    
-    private String esquina;
-   
-    private Double latitud;
-    
-    private Double longitud;
-	
+public class Direccion {
+
+	private Integer id;
+
+	private String calle;
+
+	private short nroPuerta;
+
 	private short apartamento;
-    
-    private Collection<Cliente> clienteCollection;
-    
-    private Collection<Sucursal> sucursalCollection;
 
-    public Direccion() {
-    }
+	private String esquina;
 
-	public Direccion(String calle, short nroPuerta, String esquina, Double latitud, Double longitud, short apartamento) {
+	private Double latitud;
+
+	private Double longitud;
+
+	private Collection<Cliente> clienteCollection;
+
+	private Collection<Sucursal> sucursalCollection;
+
+	public Direccion() {
+	}
+
+	public Direccion(Integer id, String calle, short nroPuerta, short apartamento, String esquina, Double latitud, Double longitud, Collection<Cliente> clienteCollection, Collection<Sucursal> sucursalCollection) {
+		this.id = id;
 		this.calle = calle;
 		this.nroPuerta = nroPuerta;
-		this.esquina = esquina;
-		this.latitud = latitud;
-		this.longitud = longitud;
 		this.apartamento = apartamento;
-	}
-	
-	public Direccion(String calle, short nroPuerta, String esquina, Double latitud, Double longitud) {
-		this.calle = calle;
-		this.nroPuerta = nroPuerta;
 		this.esquina = esquina;
 		this.latitud = latitud;
 		this.longitud = longitud;
+		this.clienteCollection = clienteCollection;
+		this.sucursalCollection = sucursalCollection;
 	}
-	
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getCalle() {
-        return calle;
-    }
+	public String getCalle() {
+		return calle;
+	}
 
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
 
-    public short getNroPuerta() {
-        return nroPuerta;
-    }
+	public short getNroPuerta() {
+		return nroPuerta;
+	}
 
-    public void setNroPuerta(short nroPuerta) {
-        this.nroPuerta = nroPuerta;
-    }
+	public void setNroPuerta(short nroPuerta) {
+		this.nroPuerta = nroPuerta;
+	}
 
-    public String getEsquina() {
-        return esquina;
-    }
+	public String getEsquina() {
+		return esquina;
+	}
 
-    public void setEsquina(String esquina) {
-        this.esquina = esquina;
-    }
+	public void setEsquina(String esquina) {
+		this.esquina = esquina;
+	}
 
-    public Double getLatitud() {
-        return latitud;
-    }
+	public Double getLatitud() {
+		return latitud;
+	}
 
-    public void setLatitud(Double latitud) {
-        this.latitud = latitud;
-    }
+	public void setLatitud(Double latitud) {
+		this.latitud = latitud;
+	}
 
-    public Double getLongitud() {
-        return longitud;
-    }
+	public Double getLongitud() {
+		return longitud;
+	}
 
-    public void setLongitud(Double longitud) {
-        this.longitud = longitud;
-    }
+	public void setLongitud(Double longitud) {
+		this.longitud = longitud;
+	}
 
 	public short getApartamento() {
 		return apartamento;
@@ -110,45 +100,45 @@ public class Direccion  {
 		this.apartamento = apartamento;
 	}
 
-    public Collection<Cliente> getClienteCollection() {
-        return clienteCollection;
-    }
+	public Collection<Cliente> getClienteCollection() {
+		return clienteCollection;
+	}
 
-    public void setClienteCollection(Collection<Cliente> clienteCollection) {
-        this.clienteCollection = clienteCollection;
-    }
+	public void setClienteCollection(Collection<Cliente> clienteCollection) {
+		this.clienteCollection = clienteCollection;
+	}
 
-    public Collection<Sucursal> getSucursalCollection() {
-        return sucursalCollection;
-    }
+	public Collection<Sucursal> getSucursalCollection() {
+		return sucursalCollection;
+	}
 
-    public void setSucursalCollection(Collection<Sucursal> sucursalCollection) {
-        this.sucursalCollection = sucursalCollection;
-    }
+	public void setSucursalCollection(Collection<Sucursal> sucursalCollection) {
+		this.sucursalCollection = sucursalCollection;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Direccion)) {
-            return false;
-        }
-        Direccion other = (Direccion) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Direccion)) {
+			return false;
+		}
+		Direccion other = (Direccion) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
 
-    @Override
-    public String toString() {
-        return "ucu.deliverit.backcore.entidades.Direccion[ id=" + id + " ]";
-    }
-    
+	@Override
+	public String toString() {
+		return "ucu.deliverit.backcore.entidades.Direccion[ id=" + id + " ]";
+	}
+
 }

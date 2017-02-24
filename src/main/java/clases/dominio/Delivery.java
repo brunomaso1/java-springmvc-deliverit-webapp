@@ -13,108 +13,114 @@ import java.util.Collection;
  * @author JMArtegoytia
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Delivery  {
+public class Delivery {
 
-    private Integer id;
-    
-    private Short calificacion;
-    
-    private String token;
-    
-    private Vehiculo vehiculo;
-    
-    private Usuario usuario;
-    
-    private Ubicacion ubicacion;
-    
-    private Collection<Viaje> viajeCollection;
+	private Integer id;
 
-    public Delivery() {
-    }
+	private Short calificacion;
 
-    public Delivery(Integer id) {
-        this.id = id;
-    }
+	private String token;
 
-    public Integer getId() {
-        return id;
-    }
+	private Vehiculo vehiculo;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private Usuario usuario;
 
-    public Short getCalificacion() {
-        return calificacion;
-    }
+	private Ubicacion ubicacion;
 
-    public void setCalificacion(Short calificacion) {
-        this.calificacion = calificacion;
-    }
+	private Collection<Viaje> viajeCollection;
 
-    public String getToken() {
-        return token;
-    }
+	public Delivery() {
+	}
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+	public Delivery(Integer id, Short calificacion, String token, Vehiculo vehiculo, Usuario usuario, Ubicacion ubicacion, Collection<Viaje> viajeCollection) {
+		this.id = id;
+		this.calificacion = calificacion;
+		this.token = token;
+		this.vehiculo = vehiculo;
+		this.usuario = usuario;
+		this.ubicacion = ubicacion;
+		this.viajeCollection = viajeCollection;
+	}
 
-    public Vehiculo getVehiculo() {
-        return vehiculo;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setVehiculo(Vehiculo vehiculo) {
-        this.vehiculo = vehiculo;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public Short getCalificacion() {
+		return calificacion;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    
-    public Ubicacion getUbicacion() {
-        return ubicacion;
-    }
+	public void setCalificacion(Short calificacion) {
+		this.calificacion = calificacion;
+	}
 
-    public void setUbicacion(Ubicacion ubicacion) {
-        this.ubicacion = ubicacion;
-    }
+	public String getToken() {
+		return token;
+	}
 
-    public Collection<Viaje> getViajeCollection() {
-        return viajeCollection;
-    }
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-    public void setViajeCollection(Collection<Viaje> viajeCollection) {
-        this.viajeCollection = viajeCollection;
-    }
+	public Vehiculo getVehiculo() {
+		return vehiculo;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	public void setVehiculo(Vehiculo vehiculo) {
+		this.vehiculo = vehiculo;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Delivery)) {
-            return false;
-        }
-        Delivery other = (Delivery) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-    @Override
-    public String toString() {
-        return "ucu.deliverit.backcore.entidades.Delivery[ id=" + id + " ]";
-    }
-    
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Ubicacion getUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(Ubicacion ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public Collection<Viaje> getViajeCollection() {
+		return viajeCollection;
+	}
+
+	public void setViajeCollection(Collection<Viaje> viajeCollection) {
+		this.viajeCollection = viajeCollection;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Delivery)) {
+			return false;
+		}
+		Delivery other = (Delivery) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ucu.deliverit.backcore.entidades.Delivery[ id=" + id + " ]";
+	}
+
 }

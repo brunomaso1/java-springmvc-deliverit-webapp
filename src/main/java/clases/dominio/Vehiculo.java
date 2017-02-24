@@ -13,68 +13,70 @@ import java.util.Collection;
  * @author JMArtegoytia
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Vehiculo  {
+public class Vehiculo {
 
-    private Short id;
-   
-    private String descripcion;
-    
-    private Collection<Delivery> deliveryCollection;
+	private Short id;
 
-    public Vehiculo() {
-    }
+	private String descripcion;
 
-    public Vehiculo(Short id) {
-        this.id = id;
-    }
+	private Collection<Delivery> deliveryCollection;
 
-    public Short getId() {
-        return id;
-    }
+	public Vehiculo() {
+	}
 
-    public void setId(Short id) {
-        this.id = id;
-    }
+	public Vehiculo(Short id, String descripcion, Collection<Delivery> deliveryCollection) {
+		this.id = id;
+		this.descripcion = descripcion;
+		this.deliveryCollection = deliveryCollection;
+	}
 
-    public String getDescripcion() {
-        return descripcion;
-    }
+	public Short getId() {
+		return id;
+	}
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
+	public void setId(Short id) {
+		this.id = id;
+	}
 
-    public Collection<Delivery> getDeliveryCollection() {
-        return deliveryCollection;
-    }
+	public String getDescripcion() {
+		return descripcion;
+	}
 
-    public void setDeliveryCollection(Collection<Delivery> deliveryCollection) {
-        this.deliveryCollection = deliveryCollection;
-    }
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
+	public Collection<Delivery> getDeliveryCollection() {
+		return deliveryCollection;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Vehiculo)) {
-            return false;
-        }
-        Vehiculo other = (Vehiculo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
+	public void setDeliveryCollection(Collection<Delivery> deliveryCollection) {
+		this.deliveryCollection = deliveryCollection;
+	}
 
-    @Override
-    public String toString() {
-        return "ucu.deliverit.backcore.entidades.Vehiculo[ id=" + id + " ]";
-    }
-    
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (id != null ? id.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Vehiculo)) {
+			return false;
+		}
+		Vehiculo other = (Vehiculo) object;
+		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "ucu.deliverit.backcore.entidades.Vehiculo[ id=" + id + " ]";
+	}
+
 }
