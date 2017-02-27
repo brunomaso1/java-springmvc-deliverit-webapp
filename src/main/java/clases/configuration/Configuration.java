@@ -2,7 +2,7 @@ package clases.configuration;
 
 public final class Configuration {
 	
-	private static String ambienteJuan = "http://192.168.1.44:8080/BackCore/ws/";
+	private static String ambienteJuan = "http://192.168.43.171:8080/BackCore/ws/";
 	
 	private static String ambienteBruno = "http://localhost:38526/backcore/ws/";
 	

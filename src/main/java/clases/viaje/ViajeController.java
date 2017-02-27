@@ -1,6 +1,12 @@
 package clases.viaje;
 
+import clases.dominio.Pedido;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,76 +22,92 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "/viaje")
 public class ViajeController {
-	
+
+	//Logger
+	private final static Logger LOGGER = Logger.getLogger(ViajeController.class.getName());
+
+	private ViajeLogica vl;
+	private ViajeControllerHelper vch;
+
+	public ViajeController() {
+		this.vl = new ViajeLogica();
+		this.vch = new ViajeControllerHelper();
+	}
+
 	@GetMapping
 	public String showPage(HttpServletRequest request, Model model) {
-		model.addAttribute("datosTablaPrincipal", ViajeLogica.popularTablaPrincipal());
-		if (request.getParameter("datosTablaPedido") != null)
+		String sucursalId = (String) request.getSession(false).getAttribute("sucursalId");
+		String restaurantId = (String) request.getSession(false).getAttribute("restaurantId");
+		String estado = (String) request.getSession(false).getAttribute("estado");
+
+		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidos(sucursalId, restaurantId), Integer.parseInt(estado));
+
+		model.addAttribute("datosTablaPrincipal", vch.tablaPrincipalHtml(pedidos));
+
+		if (request.getParameter("datosTablaPedido") != null) {
 			model.addAttribute("datosTablaPedido", request.getParameter("datosTablaPedido"));
-		model.addAttribute("pedidosPendientes", ViajeLogica.getPedidosPendientes());
-		model.addAttribute("viajesPublicaods", ViajeLogica.getPedidosPublicados());
-		model.addAttribute("viajesEnProceso", ViajeLogica.getPedidosEnProceso());
-		model.addAttribute("viajesTerminados", ViajeLogica.getPedidosTerminados());
+		}
+
+		model.addAttribute("pedidosPendientes", vl.getPedidosPendientes());
+		model.addAttribute("viajesPublicaods", vl.getPedidosPublicados());
+		model.addAttribute("viajesEnProceso", vl.getPedidosEnProceso());
+		model.addAttribute("viajesTerminados", vl.getPedidosTerminados());
+
 		return "viaje";
 	}
-	
+
 	@RequestMapping(value = "/nuevoViaje", method = POST)
 	public String publicarPopup(@RequestParam String tipo, @RequestParam String precio) {
 		if (tipo.equals("publicar") == true) {
-			System.out.println("Se inicio la insercion del viaje publicado.");
-			ViajeLogica.crearViaje(precio,(short)2);
-			System.out.println("Termino la insercion del viaje publicado.");
+			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");
+			vl.crearViaje(precio, (short) 2);
+			LOGGER.log(Level.FINEST, "Termino la insercion del viaje publicado.");
 		} else {
-			System.out.println("Se inicio la insercion del viaje publicado.");
-			ViajeLogica.crearViaje(precio,(short)1);
-			System.out.println("Termino la insercion del viaje publicado.");
+			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");
+			vl.crearViaje(precio, (short) 1);
+			LOGGER.log(Level.FINEST, "Termino la insercion del viaje publicado.");
 		}
 		return "redirect:/viaje.html";
 	}
-	
+
 	@RequestMapping(value = "/nuevoPedido", method = POST)
-	public String nuevoPedido(@ModelAttribute ViajeFormBean bean, Model model){
-		ViajeLogica.nuevoPedido(bean);
-		model.addAttribute("datosTablaPedido", ViajeLogica.popularTablaPedidos());
+	public String nuevoPedido(@ModelAttribute ViajeFormBean bean, Model model) {
+		vl.nuevoPedido(bean);
+		model.addAttribute("datosTablaPedido", vch.tablaPedidosHtml(vl.getPedidos()));
 		return "redirect:/viaje.html";
 	}
-	
+
 	@RequestMapping(value = "/refresh", method = GET)
-	public String refresh(){
-		System.out.println("Se hizo refresh.");
-		//ViajeUtil.getPedidos().clear();
+	public String refresh() {
+		LOGGER.log(Level.FINEST, "Se hizo refresh.");
 		return "redirect:/viaje.html";
 	}
-	
+
 	@RequestMapping(value = "/refreshPendiente", method = GET)
-	public String refreshPendiente() {
-		ViajeLogica.setEstado(1);
-		//ViajeUtil.getPedidos().clear();
-		System.out.println("Se hizo refresh. Se filtro los viajes al estado 1.");
+	public String refreshPendiente(HttpServletRequest request) {
+		request.getSession(false).setAttribute("estado", "1");
+		LOGGER.log(Level.FINEST, "Se hizo refresh. Se filtro los viajes al estado 1.");
 		return "redirect:/viaje.html";
 	}
-	
+
 	@RequestMapping(value = "/refreshPublicado", method = GET)
-	public String refreshPublicado() {
-		ViajeLogica.setEstado(2);
-		//ViajeUtil.getPedidos().clear();
-		System.out.println("Se hizo refresh. Se filtro los viajes al estado 2.");
+	public String refreshPublicado(HttpServletRequest request) {
+		request.getSession(false).setAttribute("estado", "2");
+		LOGGER.log(Level.FINEST, "Se hizo refresh. Se filtro los viajes al estado 2.");
 		return "redirect:/viaje.html";
 	}
-	
+
 	@RequestMapping(value = "/refreshEnProceso", method = GET)
-	public String refreshEnProceso() {
-		ViajeLogica.setEstado(3);
-		//ViajeUtil.getPedidos().clear();
-		System.out.println("Se hizo refresh. Se filtro los viajes al estado 3.");
+	public String refreshEnProceso(HttpServletRequest request) {
+		request.getSession(false).setAttribute("estado", "3");
+		LOGGER.log(Level.FINEST, "Se hizo refresh. Se filtro los viajes al estado 3.");
 		return "redirect:/viaje.html";
 	}
-	
+
 	@RequestMapping(value = "/refreshTerminado", method = GET)
-	public String refreshTerminado() {
-		ViajeLogica.setEstado(4);
-		//ViajeUtil.getPedidos().clear();
-		System.out.println("Se hizo refresh. Se filtro los viajes al estado 4.");
+	public String refreshTerminado(HttpServletRequest request) {
+		request.getSession(false).setAttribute("estado", "4");
+		LOGGER.log(Level.FINEST, "Se hizo refresh. Se filtro los viajes al estado 4.");
 		return "redirect:/viaje.html";
 	}
 }
