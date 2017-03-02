@@ -1,6 +1,7 @@
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -19,11 +20,10 @@ public class Cliente {
 	public Cliente() {
 	}
 
-	public Cliente(Integer id, String nombre, Direccion direccion, Collection<Pedido> pedidoCollection, String telefono) {
-		this.id = id;
+	public Cliente(String nombre, Direccion direccion, String telefono) {
 		this.nombre = nombre;
 		this.direccion = direccion;
-		this.pedidoCollection = pedidoCollection;
+		this.pedidoCollection = new ArrayList<>();
 		this.telefono = telefono;
 	}
 

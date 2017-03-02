@@ -6,6 +6,7 @@
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -32,16 +33,15 @@ public class Direccion {
 	public Direccion() {
 	}
 
-	public Direccion(Integer id, String calle, short nroPuerta, short apartamento, String esquina, Double latitud, Double longitud, Collection<Cliente> clienteCollection, Collection<Sucursal> sucursalCollection) {
-		this.id = id;
+	public Direccion(String calle, String nroPuerta, String apartamento, String esquina, Double latitud, Double longitud) {
 		this.calle = calle;
-		this.nroPuerta = nroPuerta;
-		this.apartamento = apartamento;
+		this.nroPuerta = Short.parseShort(nroPuerta);
+		this.apartamento = Short.parseShort(apartamento);
 		this.esquina = esquina;
 		this.latitud = latitud;
 		this.longitud = longitud;
-		this.clienteCollection = clienteCollection;
-		this.sucursalCollection = sucursalCollection;
+		this.clienteCollection = new ArrayList<>();
+		this.sucursalCollection = new ArrayList<>();
 	}
 
 	public Integer getId() {

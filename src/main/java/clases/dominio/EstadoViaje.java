@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.Collection;
 
-/**
- *
- * @author JMArtegoytia
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class EstadoViaje  {
    
@@ -24,10 +15,8 @@ public class EstadoViaje  {
     public EstadoViaje() {
     }
 
-	public EstadoViaje(Short id, String descripcion, Collection<Viaje> viajeCollection) {
-		this.id = id;
-		this.descripcion = descripcion;
-		this.viajeCollection = viajeCollection;
+	public EstadoViaje(int id) {
+		this.id = (short)id;
 	}
 
     public Short getId() {

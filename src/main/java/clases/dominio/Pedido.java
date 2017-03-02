@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-/**
- *
- * @author JMArtegoytia
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Pedido {
 
@@ -27,19 +18,10 @@ public class Pedido {
 	public Pedido() {
 	}
 
-	public Pedido(PedidoPK pedidoPK, String detalle, String formaPago, Viaje viaje, Cliente cliente) {
-		this.pedidoPK = pedidoPK;
+	public Pedido(String detalle, String formaPago, Cliente cliente) {
+		this.pedidoPK = new PedidoPK();
 		this.detalle = detalle;
 		this.formaPago = formaPago;
-		this.viaje = viaje;
-		this.cliente = cliente;
-	}
-
-	public Pedido(int id, int viajeid, String detalle, String formaPago, Viaje viaje, Cliente cliente) {
-		this.pedidoPK = new PedidoPK(id, viajeid);
-		this.detalle = detalle;
-		this.formaPago = formaPago;
-		this.viaje = viaje;
 		this.cliente = cliente;
 	}
 
@@ -49,6 +31,11 @@ public class Pedido {
 
 	public void setPedidoPK(PedidoPK pedidoPK) {
 		this.pedidoPK = pedidoPK;
+	}
+	
+	public void setPedidoPK(int pedidoId, int viajeId) {
+		this.pedidoPK.setId(pedidoId);
+		this.pedidoPK.setViaje(viajeId);
 	}
 
 	public String getDetalle() {

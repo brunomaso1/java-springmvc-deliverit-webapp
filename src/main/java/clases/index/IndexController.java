@@ -34,6 +34,8 @@ public class IndexController {
 		model.addAttribute("estado", "1");
 		LOGGER.log(Level.FINEST, "Se seteo el estado con el id=1");
 		
+		//return "forward:/viaje.html";
+		
 		return "redirect:/viaje.html";
 		
 		//return "index";

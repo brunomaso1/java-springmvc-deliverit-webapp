@@ -1,12 +1,10 @@
 package clases.viaje;
 
 import clases.dominio.Pedido;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,15 +55,29 @@ public class ViajeController {
 	}
 
 	@RequestMapping(value = "/nuevoViaje", method = POST)
-	public String publicarPopup(@RequestParam String tipo, @RequestParam String precio) {
+	public String publicarPopup(@RequestParam String tipo, @RequestParam String precio, HttpServletRequest request) {
+		String sucursalIdStr = (String) request.getSession(false).getAttribute("sucursalId");
+		String restaurantIdStr = (String) request.getSession(false).getAttribute("restaurantId");
+
+		int sucursalId = Integer.valueOf(sucursalIdStr);
+		int restaurantId = Integer.valueOf(restaurantIdStr);
+
 		if (tipo.equals("publicar") == true) {
 			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");
-			vl.crearViaje(precio, (short) 2);
-			LOGGER.log(Level.FINEST, "Termino la insercion del viaje publicado.");
+			try {
+				vl.crearViaje(precio, 2, sucursalId, restaurantId);
+				LOGGER.log(Level.FINEST, "Termino la insercion del viaje publicado.");
+			} catch (IOException e) {
+				LOGGER.log(Level.SEVERE, "No se pudo procesar el viaje publicado.", e.toString());
+			}
 		} else {
-			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");
-			vl.crearViaje(precio, (short) 1);
-			LOGGER.log(Level.FINEST, "Termino la insercion del viaje publicado.");
+			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje pendiente.");
+			try {
+				vl.crearViaje(precio, 1, sucursalId, restaurantId);
+				LOGGER.log(Level.FINEST, "Termino la insercion del viaje pendiente.");
+			} catch (IOException e) {
+				LOGGER.log(Level.SEVERE, "No se pudo procesar el viaje publicado.", e.toString());
+			}
 		}
 		return "redirect:/viaje.html";
 	}

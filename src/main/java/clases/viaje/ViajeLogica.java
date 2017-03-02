@@ -2,16 +2,12 @@ package clases.viaje;
 
 import clases.dominio.*;
 import clases.configuration.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static jdk.nashorn.internal.runtime.Context.DEBUG;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.HttpClientErrorException;
 
 public class ViajeLogica {
 
@@ -71,43 +67,62 @@ public class ViajeLogica {
 	 * @param precio
 	 * @param estadoid
 	 */
-	public void crearViaje(String precio, short estadoid) {
+	public void crearViaje(String precio, int estadoid, int sucursalId, int restaurantId) throws IOException {
 		RestTemplate restTemplate = new RestTemplate();
+		ObjectMapper mapper = new ObjectMapper();
 
 		//Insertar viaje.
-		Viaje viaje = new Viaje(null, null, Short.valueOf(precio),
-				new ArrayList<Transaccion>(), new ArrayList<Pedido>(), null,
-				new Sucursal((short) 1, 1, null, null, null, new ArrayList<Viaje>()),
-				new EstadoViaje(estadoid, null, new ArrayList<Viaje>()));
+		Viaje viaje = new Viaje(precio, sucursalId, restaurantId, estadoid);
 
-		Viaje v = restTemplate.postForObject(Configuration.restViajePost(), viaje, Viaje.class);
+		RespuestaGeneral rgVje = restTemplate.postForObject(Configuration.restViajePost(), viaje, RespuestaGeneral.class);
+		if (rgVje.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+			LOGGER.log(Level.FINEST, "Se inserto el viaje correctamente.");
+		} else {
+			LOGGER.log(Level.SEVERE, "No se pudo insertar el viaje -> ", rgVje.getCodigo() + " " + rgVje.getMensaje());
+		}
 
-		LOGGER.log(Level.FINEST, "Se inserto el viaje.");
-
+		Object v = rgVje.getObjeto();
+		Viaje vje = mapper.readValue(v.toString(), Viaje.class);
 		int pedidoId = 1;
 		for (Pedido pedido : pedidos) {
 			//Seto el id de viaje al pedido.
-			pedido.setViaje(v);
-			pedido.setPedidoPK(new PedidoPK(pedidoId, v.getId()));
+			pedido.setViaje(vje);
+			pedido.setPedidoPK(pedidoId, vje.getId());
 			LOGGER.log(Level.FINEST, "Se asocio el viaje.");
 
 			//Obtengo la direccion del pedido y la inserto.
-			Direccion dir = restTemplate.postForObject(Configuration.restDireccionPost(), pedido.getCliente().getDireccion(), Direccion.class);
+			RespuestaGeneral rgDir = restTemplate.postForObject(Configuration.restDireccionPost(), pedido.getCliente().getDireccion(), RespuestaGeneral.class);
+			if (rgDir.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+				LOGGER.log(Level.FINEST, "Se inserto la direccion correctamente.");
+			} else {
+				LOGGER.log(Level.SEVERE, "No se pudo insertar la direccion -> ", rgDir.getCodigo() + " " + rgDir.getMensaje());
+			}
+
 			//Le asigno el id de la direccion que traje a la direccion en el pedido .
+			Object d = rgDir.getObjeto();
+			Direccion dir = mapper.readValue(d.toString(), Direccion.class);
 			pedido.getCliente().setDireccion(dir);
-			LOGGER.log(Level.FINEST, "Se inserto la direccion.");
 
 			//Obtengo el cliente y lo inserto.
-			Cliente cli = restTemplate.postForObject(Configuration.restClientePost(), pedido.getCliente(), Cliente.class);
+			RespuestaGeneral rgCli = restTemplate.postForObject(Configuration.restClientePost(), pedido.getCliente(), RespuestaGeneral.class);
+			if (rgCli.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+				LOGGER.log(Level.FINEST, "Se inserto el cliente correctamente.");
+			} else {
+				LOGGER.log(Level.SEVERE, "No se pudo insertar el cliente -> ", rgCli.getCodigo() + " " + rgCli.getMensaje());
+			}
+
 			//Le asigno el id del cliente que traje al pedido.
-			//cli.getPedidoCollection().add(pedido);
+			Object c = rgCli.getObjeto();
+			Cliente cli = mapper.readValue(c.toString(), Cliente.class);
 			pedido.setCliente(cli);
-			LOGGER.log(Level.FINEST, "Se inserto el cliente.");
 
 			//Finalmente inserto el pedido que ya tiene todo lo asociado.
-			Pedido p = restTemplate.postForObject(Configuration.restPedidoPost(), pedido, Pedido.class);
-			LOGGER.log(Level.FINEST, "Se inserto el pedido.", p.getPedidoPK().toString());
-
+			RespuestaGeneral rgPed = restTemplate.postForObject(Configuration.restPedidoPost(), pedido, RespuestaGeneral.class);
+			if (rgCli.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+				LOGGER.log(Level.FINEST, "Se inserto el pedido correctamente.");
+			} else {
+				LOGGER.log(Level.SEVERE, "No se pudo insertar el pedido -> ", rgPed.getCodigo() + " " + rgPed.getMensaje());
+			}
 			pedidoId++;
 		}
 		//Limpio la lista de pedidos para la proxima inserccion.
@@ -182,32 +197,15 @@ public class ViajeLogica {
 	public void nuevoPedido(ViajeFormBean bean) {
 		Direccion dir;
 		if ("".equals(bean.getApartamento())) {
-			dir = new Direccion(null, bean.getCalle(), Short.parseShort(bean.getPuerta()), (short) 0, bean.getEsquina(), -34.9166122d, -56.1568794d, new ArrayList<Cliente>(), new ArrayList<Sucursal>());
+			dir = new Direccion(bean.getCalle(), bean.getPuerta(), "0", bean.getEsquina(), -34.9166122d, -56.1568794d);
 		} else {
-			dir = new Direccion(null, bean.getCalle(), Short.parseShort(bean.getPuerta()), Short.parseShort(bean.getApartamento()), bean.getEsquina(), -34.9166122d, -56.1568794d, new ArrayList<Cliente>(), new ArrayList<Sucursal>());
+			dir = new Direccion(bean.getCalle(), bean.getPuerta(), bean.getApartamento(), bean.getEsquina(), -34.9166122d, -56.1568794d);
 		}
 
-		Cliente cli = new Cliente(null, bean.getNombre(), dir, new ArrayList<Pedido>(), bean.getTelefono());
-		Pedido ped = new Pedido(null, bean.getAclaraciones(), "E", null, cli);
+		Cliente cli = new Cliente(bean.getNombre(), dir, bean.getTelefono());
+
+		Pedido ped = new Pedido(bean.getAclaraciones(), "E", cli);
 
 		pedidos.add(ped);
-	}
-
-	public String test() {
-		RestTemplate restTemplate = new RestTemplate();
-
-		Viaje viaje = new Viaje(null, null, Short.valueOf("50"),
-				new ArrayList<Transaccion>(), new ArrayList<Pedido>(), null,
-				new Sucursal((short) 1, 1, null, null, null, new ArrayList<Viaje>()),
-				new EstadoViaje((short) 1, null, new ArrayList<Viaje>()));
-
-		try {
-			Viaje v = restTemplate.postForObject(Configuration.restViajePost(), viaje, Viaje.class);
-		} catch (Exception e) {
-			System.out.println("Hubo exepcion.");
-			e.printStackTrace();
-		}
-
-		return null;
 	}
 }

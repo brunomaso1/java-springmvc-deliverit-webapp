@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- *
- * @author JMArtegoytia
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Viaje {
 
@@ -34,16 +26,14 @@ public class Viaje {
 	public Viaje() {
 	}
 
-	public Viaje(Integer id, Short calificacion, short precio, Collection<Transaccion> transaccionCollection, Collection<Pedido> pedidoCollection, Delivery delivery, Sucursal sucursal, EstadoViaje estado) {
-		this.id = id;
-		this.calificacion = calificacion;
-		this.precio = precio;
-		this.transaccionCollection = transaccionCollection;
-		this.pedidoCollection = pedidoCollection;
-		this.delivery = delivery;
-		this.sucursal = sucursal;
-		this.estado = estado;
+	public Viaje(String precio, int sucursalId, int restaurantId, int estado) {
+		this.precio = Short.parseShort(precio);
+		this.transaccionCollection = new ArrayList<>();
+		this.pedidoCollection = new ArrayList<>();
+		this.sucursal = new Sucursal(sucursalId, restaurantId);
+		this.estado = new EstadoViaje(estado);
 	}
+	
 
 	public Integer getId() {
 		return id;

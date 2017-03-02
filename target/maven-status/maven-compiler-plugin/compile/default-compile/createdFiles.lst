@@ -16,6 +16,7 @@ clases\dominio\Transaccion.class
 clases\configuration\Configuration.class
 clases\dominio\Direccion.class
 clases\dominio\SucursalPK.class
+clases\dominio\RespuestaGeneral.class
 clases\dominio\Ubicacion.class
 clases\index\IndexFormBean.class
 clases\viaje\ViajeController.class

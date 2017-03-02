@@ -1,17 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.ArrayList;
 import java.util.Collection;
 
-/**
- *
- * @author JMArtegoytia
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sucursal {
 
@@ -27,21 +19,10 @@ public class Sucursal {
 
 	public Sucursal() {
 	}
-
-	public Sucursal(SucursalPK sucursalPK, String nombre, Restaurant restaurant, Direccion direccion, Collection<Viaje> viajeCollection) {
-		this.sucursalPK = sucursalPK;
-		this.nombre = nombre;
-		this.restaurant = restaurant;
-		this.direccion = direccion;
-		this.viajeCollection = viajeCollection;
-	}
 	
-	public Sucursal(short id, Integer restaurantid, String nombre, Restaurant restaurant, Direccion direccion, Collection<Viaje> viajeCollection) {
-		this.sucursalPK = new SucursalPK(id, restaurantid);
-		this.nombre = nombre;
-		this.restaurant = restaurant;
-		this.direccion = direccion;
-		this.viajeCollection = viajeCollection;
+	public Sucursal(int sucursal, int restaurant) {
+		this.sucursalPK = new SucursalPK((short)sucursal, restaurant);
+		this.viajeCollection = new ArrayList<>();
 	}
 
 	public SucursalPK getSucursalPK() {
