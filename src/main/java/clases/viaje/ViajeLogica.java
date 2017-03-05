@@ -118,7 +118,7 @@ public class ViajeLogica {
 
 			//Finalmente inserto el pedido que ya tiene todo lo asociado.
 			RespuestaGeneral rgPed = restTemplate.postForObject(Configuration.restPedidoPost(), pedido, RespuestaGeneral.class);
-			if (rgCli.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+			if (rgPed.getCodigo() == RespuestaGeneral.CODIGO_OK) {
 				LOGGER.log(Level.FINEST, "Se inserto el pedido correctamente.");
 			} else {
 				LOGGER.log(Level.SEVERE, "No se pudo insertar el pedido -> ", rgPed.getCodigo() + " " + rgPed.getMensaje());

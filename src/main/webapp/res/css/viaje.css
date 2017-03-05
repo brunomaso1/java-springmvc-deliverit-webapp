@@ -33,9 +33,9 @@ body {
 }
 
 @media(min-width:768px) {
-    #wrapper {
-        padding-left: 225px;
-    }
+	#wrapper {
+		padding-left: 225px;
+	}
 
     #page-wrapper {
         padding: 10px;
@@ -226,7 +226,73 @@ ul.alert-dropdown {
     color: #df8a13;
 }
 
+
+
 /* Css agregados */
+
+.link-hoover-negro:hover {
+	color: #000000;
+}
+
+.btn-color-naraja {
+	border-color: #ff6633;
+	background-color: #ff6633;
+	color: #FFFFFF;
+}
+
+.panel-height {
+	min-height: 530px;
+}
+
+html, body {
+    height: 100%;
+}
+
+.panel-pendientes {
+	background-image: url("../../res/img/flechaPendiente.png");
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.panel-publicados {
+	background-image: url("../../res/img/flechaPublicado.png");
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.panel-enProceso {
+	background-image: url("../../res/img/flechaEnProceso.png");
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+.panel-finalizado {
+	background-image: url("../../res/img/flechaFinalizado.png");
+	background-position: center;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+}
+
+
+
+.letra-blanca {
+	color: #FFFFFF;
+}
+
+.icono-negro {
+	color: #000000;
+}
 
 /*
  * Mapa
@@ -236,7 +302,8 @@ ul.alert-dropdown {
     overflow:hidden;
     padding-bottom:50%;
     position:relative;
-    height:0;
+    height:100%;
+	min-height: 430px;
 }
 
 /*

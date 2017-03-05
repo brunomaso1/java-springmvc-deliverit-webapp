@@ -17,8 +17,8 @@ public class IndexController {
 
 	//Logger
 	private final static Logger LOGGER = Logger.getLogger(IndexController.class.getName());
-
-	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	
+	@RequestMapping(path = "/index", method = RequestMethod.GET)
 	public String showPage(ModelMap model) {
 		LOGGER.log(Level.FINEST, "Se realizo una solicitud request al index.html");
 		
@@ -41,7 +41,7 @@ public class IndexController {
 		//return "index";
 	}
 
-	@RequestMapping(value = "/registrarse", method = RequestMethod.POST)
+	@RequestMapping(path = "/registrarse", method = RequestMethod.POST)
 	public String registrarse(@ModelAttribute IndexFormBean bean, ModelMap model) {
 		IndexLogica il = new IndexLogica(bean);
 
@@ -58,7 +58,7 @@ public class IndexController {
 		return "redirect:/restaurant.html";
 	}
 
-	@RequestMapping(value = "/loguearse", method = RequestMethod.POST)
+	@RequestMapping(path = "/loguearse", method = RequestMethod.POST)
 	public String loguearse(@RequestParam("nombre") String nombre, @RequestParam("pass") String pass, ModelMap model) {
 		IndexLogica il = new IndexLogica(nombre, pass);
 		
