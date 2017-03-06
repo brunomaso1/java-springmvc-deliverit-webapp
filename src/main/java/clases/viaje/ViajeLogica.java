@@ -4,8 +4,12 @@ import clases.dominio.*;
 import clases.configuration.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.util.AbstractSet;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -13,10 +17,10 @@ public class ViajeLogica {
 
 	private final static Logger LOGGER = Logger.getLogger(ViajeLogica.class.getName());
 
-	private int pedidosPendientes;
-	private int pedidosPublicados;
-	private int pedidosEnProceso;
-	private int pedidosTerminados;
+	private int viajesPendientes;
+	private int viajesPublicados;
+	private int viajesEnProceso;
+	private int viajesTerminados;
 	private ArrayList<Pedido> pedidos;
 
 	public ViajeLogica() {
@@ -27,20 +31,20 @@ public class ViajeLogica {
 		return pedidos;
 	}
 
-	public int getPedidosPendientes() {
-		return pedidosPendientes;
+	public int getViajesPendientes() {
+		return viajesPendientes;
 	}
 
-	public int getPedidosPublicados() {
-		return pedidosPublicados;
+	public int getViajesPublicados() {
+		return viajesPublicados;
 	}
 
-	public int getPedidosEnProceso() {
-		return pedidosEnProceso;
+	public int getViajesEnProceso() {
+		return viajesEnProceso;
 	}
 
-	public int getPedidosTerminados() {
-		return pedidosTerminados;
+	public int getViajesTerminados() {
+		return viajesTerminados;
 	}
 
 	/**
@@ -73,6 +77,11 @@ public class ViajeLogica {
 
 		//Insertar viaje.
 		Viaje viaje = new Viaje(precio, sucursalId, restaurantId, estadoid);
+		
+		/***************************************************************** TEST ARREGLAR!! ***********************************************/
+		Sucursal sucursal = restTemplate.getForObject(Configuration.restSucursalGet(String.valueOf(sucursalId),String.valueOf(restaurantId)), Sucursal.class);
+		viaje.setSucursal(sucursal);
+		/***************************************************************** TEST ARREGLAR!! ***********************************************/
 
 		RespuestaGeneral rgVje = restTemplate.postForObject(Configuration.restViajePost(), viaje, RespuestaGeneral.class);
 		if (rgVje.getCodigo() == RespuestaGeneral.CODIGO_OK) {
@@ -139,38 +148,76 @@ public class ViajeLogica {
 	public Pedido[] filtrarPedidos(Pedido[] pedidos, int estado) {
 		ArrayList<Pedido> pedidosTemp = new ArrayList<>();
 
-		this.pedidosPendientes = 0;
-		this.pedidosPublicados = 0;
-		this.pedidosEnProceso = 0;
-		this.pedidosTerminados = 0;
+		ArrayList<Pedido> pedidosPend = new ArrayList<>();
+		ArrayList<Pedido> pedidosPubl = new ArrayList<>();
+		ArrayList<Pedido> pedidosEnPr = new ArrayList<>();
+		ArrayList<Pedido> pedidosTerm = new ArrayList<>();
+
+		this.viajesPendientes = 0;
+		this.viajesPublicados = 0;
+		this.viajesEnProceso = 0;
+		this.viajesTerminados = 0;
 
 		for (Pedido pedido : pedidos) {
 			switch (pedido.getViaje().getEstado().getId()) {
 				case 1:
-					pedidosPendientes++;
+					pedidosPend.add(pedido);
 					if (estado == 1) {
 						pedidosTemp.add(pedido);
 					}
 					break;
 				case 2:
-					pedidosPublicados++;
+					pedidosPubl.add(pedido);
 					if (estado == 2) {
 						pedidosTemp.add(pedido);
 					}
 					break;
 				case 3:
-					pedidosEnProceso++;
+					pedidosEnPr.add(pedido);
 					if (estado == 3) {
 						pedidosTemp.add(pedido);
 					}
 					break;
 				case 4:
-					pedidosTerminados++;
+					pedidosTerm.add(pedido);
 					if (estado == 4) {
 						pedidosTemp.add(pedido);
 					}
 					break;
 			}
+		}
+
+		//Contadores de los filtros
+		if (!pedidosPend.isEmpty()) {
+			Set<Integer> conjunto = new HashSet<Integer>();
+			for (Pedido pedido : pedidosPend) {
+				conjunto.add(pedido.getViaje().getId());
+			}
+			viajesPendientes = conjunto.size();
+		}
+
+		if (!pedidosPubl.isEmpty()) {
+			Set<Integer> conjunto = new HashSet<Integer>();
+			for (Pedido pedido : pedidosPubl) {
+				conjunto.add(pedido.getViaje().getId());
+			}
+			viajesPublicados = conjunto.size();
+		}
+
+		if (!pedidosEnPr.isEmpty()) {
+			Set<Integer> conjunto = new HashSet<Integer>();
+			for (Pedido pedido : pedidosEnPr) {
+				conjunto.add(pedido.getViaje().getId());
+			}
+			viajesEnProceso = conjunto.size();
+		}
+
+		if (!pedidosTerm.isEmpty()) {
+			Set<Integer> conjunto = new HashSet<Integer>();
+			for (Pedido pedido : pedidosTerm) {
+				conjunto.add(pedido.getViaje().getId());
+			}
+			viajesTerminados = conjunto.size();
 		}
 
 		if (pedidosTemp.isEmpty()) //No hay ningun pedido para filtrar.

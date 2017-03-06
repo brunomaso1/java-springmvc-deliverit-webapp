@@ -19,7 +19,8 @@ public class ViajeControllerHelper {
 	 * del viaje. Estos items ya estan filtrados segun lo que esté en el
 	 * parametro estado.
 	 *
-	 * @param pedidos Arreglo conteniendo los pedidos a colocar en la tabla principal.
+	 * @param pedidos Arreglo conteniendo los pedidos a colocar en la tabla
+	 * principal.
 	 * @return String Una cadena conteniendo los items.
 	 */
 	public String tablaPrincipalHtml(Pedido[] pedidos) {
@@ -64,7 +65,7 @@ public class ViajeControllerHelper {
 		}
 		return tabla;
 	}
-	
+
 	/**
 	 * Parsea un arreglo de entidades Pedidos acorde a los valores de la tabla
 	 * principal.
@@ -91,5 +92,36 @@ public class ViajeControllerHelper {
 			return parser;
 		}
 		return null;
+	}
+
+	public String generateAlerta(Integer alerta) {
+		String mensaje = "";
+		switch (alerta) {
+			case 1:
+				mensaje = "<div class=\"alert alert-success alert-dismissable\">\n"
+						+ "	<button type=\"button\" class=\"close button-cerrar-alerta\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n"
+						+ "	Pedidos pendientes.\n"
+						+ "</div>";
+				break;
+			case 2:
+				mensaje = "<div class=\"alert alert-danger alert-dismissable\">\n"
+						+ "	<button type=\"button\" class=\"close button-cerrar-alerta\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n"
+						+ "	Pedidos publicados.\n"
+						+ "</div>";
+				break;
+			case 3:
+				mensaje = "<div class=\"alert alert-warning alert-dismissable\">\n"
+						+ "	<button type=\"button\" class=\"close button-cerrar-alerta\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n"
+						+ "	Pedidos en proceso.\n"
+						+ "</div>";
+				break;
+			case 4:
+				mensaje = "<div class=\"alert alert-info alert-dismissable\">\n"
+						+ "	<button type=\"button\" class=\"close button-cerrar-alerta\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n"
+						+ "	Pedidos terminados.\n"
+						+ "</div>";
+				break;
+		}
+		return mensaje;
 	}
 }

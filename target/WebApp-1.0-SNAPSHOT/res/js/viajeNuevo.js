@@ -22,11 +22,11 @@ function ingresarDatos() {
 	document.getElementById("esquina").value = "Maldonado";
 	document.getElementById("apartamento").value = "203";
 	document.getElementById("telefono").value = "091414979";
-	document.getElementById("aclaraciones").value = "El gato es violento. Cuidado.";	
+	document.getElementById("aclaraciones").value = "El gato es violento. Cuidado.";
 }
 
 function validarPagina() {
-    var table = document.getElementById("pedidos");
+	var table = document.getElementById("pedidos");
 	if (table.rows.length < 2) {
 		alert("No has ingresado ningun pedido!");
 		return false;
@@ -38,36 +38,30 @@ function validarPagina() {
 	}
 }
 
-function validarPedidoForm(){
+function validarPedidoForm() {
 	var nombre = document.getElementById("nombre");
-	if (nombre.value = "") {
+	if (nombre.value === "") {
 		alert("El nombre no puede ser vacio!");
 		return false;
 	}
 	var calle = document.getElementById("calle");
-	if (calle.value = "") {
+	if (calle.value === "") {
 		alert("El nombre no puede ser vacio!");
 		return false;
 	}
 	var puerta = document.getElementById("puerta");
-	if (puerta.value = "") {
+	if (puerta.value === "") {
 		alert("El numero de puerta no puede ser vacio!");
 		return false;
 	}
 	var esquina = document.getElementById("esquina");
-	if (esquina.value = "") {
+	if (esquina.value === "") {
 		alert("La esquina no puede ser vacio!");
 		return false;
 	}
 	var telefono = document.getElementById("telefono");
-	if (telefono.value = "") {
+	if (telefono.value === "") {
 		alert("El numero de telefono no puede ser vacio!");
-		return false;
-	} else if (telefono.value.length > 9) {
-		alert("El numero de telefono tiene que tener entre 8 y 9 digitos.");
-		return false;
-	} else if (telefono.value.length < 8) {
-		alert("El numero de telefono tiene que tener entre 8 y 9 digitos.");
 		return false;
 	}
 }

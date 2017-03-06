@@ -192,8 +192,8 @@
 												<i class="fa fa-clock-o fa-4x icono-negro" aria-hidden="true"></i>
 											</div>
 											<div class="col-xs-9 text-center">
-												<div class="huge">${pedidosPendientes}</div>
-												<div>Pedidos pendientes hoy!</div>
+												<div class="huge">${viajesPendientes}</div>
+												<div>Viajes pendientes hoy!</div>
 											</div>
 										</div>
 									</div>
@@ -261,6 +261,7 @@
 								</div>
 								<!-- /.row -->
 								<div class="panel-body">
+									${alertaFiltro}
 									<div class="input-group bottom-padding-1">
 										<input type="text" class="form-control" placeholder="Estas buscando algún pedido en particular? Ingresalo acá!">
 										<div class="input-group-btn">

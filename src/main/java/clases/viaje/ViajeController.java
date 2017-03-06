@@ -46,10 +46,12 @@ public class ViajeController {
 
 		model.addAttribute("datosTablaPrincipal", vch.tablaPrincipalHtml(pedidos));
 
-		model.addAttribute("pedidosPendientes", vl.getPedidosPendientes());
-		model.addAttribute("viajesPublicaods", vl.getPedidosPublicados());
-		model.addAttribute("viajesEnProceso", vl.getPedidosEnProceso());
-		model.addAttribute("viajesTerminados", vl.getPedidosTerminados());
+		model.addAttribute("viajesPendientes", vl.getViajesPendientes());
+		model.addAttribute("viajesPublicaods", vl.getViajesPublicados());
+		model.addAttribute("viajesEnProceso", vl.getViajesEnProceso());
+		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
+		
+		model.addAttribute("alertaFiltro", vch.generateAlerta(Integer.parseInt(estado)));
 
 		return "viaje";
 	}
