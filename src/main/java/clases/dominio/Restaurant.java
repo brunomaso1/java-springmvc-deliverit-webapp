@@ -20,12 +20,10 @@ public class Restaurant {
 	public Restaurant() {
 	}
 
-	public Restaurant(Integer id, BigInteger rut, String razonSocial, Usuario usuario, Collection<Sucursal> sucursalCollection) {
-		this.id = id;
+	public Restaurant(BigInteger rut, String razonSocial, Usuario usuario) {
 		this.rut = rut;
 		this.razonSocial = razonSocial;
 		this.usuario = usuario;
-		this.sucursalCollection = sucursalCollection;
 	}
 
 	public Integer getId() {

@@ -7,16 +7,23 @@ public class IndexLogica {
 
 	private String tipo;
 	
+	private String pass;
+	
 	private Restaurant restaurant;
 	
 	private Sucursal sucursal;
+	
+	private String userName;
+	
+	private IndexFormBean bean;
 
-	public IndexLogica(String nombre, String pass) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public IndexLogica(String userName, String pass) {
+		this.userName = userName;
+		this.pass = pass;
 	}
 
 	public IndexLogica(IndexFormBean bean) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.bean = bean;
 	}
 
 	public Sucursal getSucursal() {

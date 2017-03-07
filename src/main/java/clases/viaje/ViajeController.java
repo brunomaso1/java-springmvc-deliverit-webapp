@@ -17,12 +17,13 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controlador de las acciones respecto a los viajes.
  */
 @Controller
-@RequestMapping(value = "/viaje")
+@RequestMapping(path = "/viaje")
 public class ViajeController {
 
 	//Logger
@@ -61,9 +62,9 @@ public class ViajeController {
 		String sucursalIdStr = (String) request.getSession(false).getAttribute("sucursalId");
 		String restaurantIdStr = (String) request.getSession(false).getAttribute("restaurantId");
 
-		int sucursalId = Integer.valueOf(sucursalIdStr);
-		int restaurantId = Integer.valueOf(restaurantIdStr);
-
+		int sucursalId = 1;
+		int restaurantId = 1;
+		
 		if (tipo.equals("publicar") == true) {
 			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");
 			try {
@@ -93,9 +94,9 @@ public class ViajeController {
 	}
 
 	@RequestMapping(path = "/nuevoPedido", method = POST)
-	public String nuevoPedido(@ModelAttribute ViajeFormBean bean, Model model) {
+	public String nuevoPedido(@ModelAttribute ViajeFormBean bean, RedirectAttributes model) {
 		vl.nuevoPedido(bean);
-		model.addAttribute("datosTablaPedido", vch.tablaPedidosHtml(vl.getPedidos()));
+		model.addFlashAttribute("datosTablaPedido", vch.tablaPedidosHtml(vl.getPedidos()));
 		return "redirect:/viaje/viajeNuevo.html";
 	}
 

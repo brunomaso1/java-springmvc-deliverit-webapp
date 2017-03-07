@@ -28,15 +28,20 @@ public class Usuario {
 	}
 
 	public Usuario(Integer id, String nombre, String password, String mail, String telefono, int cuentaRedPagos, byte[] foto, Collection<Delivery> deliveryCollection, Collection<Restaurant> restaurantCollection) {
-		this.id = id;
 		this.nombre = nombre;
 		this.password = password;
 		this.mail = mail;
 		this.telefono = telefono;
 		this.cuentaRedPagos = cuentaRedPagos;
 		this.foto = foto;
-		this.deliveryCollection = deliveryCollection;
-		this.restaurantCollection = restaurantCollection;
+	}
+	
+	public Usuario(Integer id, String nombre, String password, String mail, String telefono, int cuentaRedPagos) {
+		this.nombre = nombre;
+		this.password = password;
+		this.mail = mail;
+		this.telefono = telefono;
+		this.cuentaRedPagos = cuentaRedPagos;
 	}
 
 	public Integer getId() {
