@@ -78,10 +78,8 @@ public class ViajeLogica {
 		//Insertar viaje.
 		Viaje viaje = new Viaje(precio, sucursalId, restaurantId, estadoid);
 		
-		/***************************************************************** TEST ARREGLAR!! ***********************************************/
 		Sucursal sucursal = restTemplate.getForObject(Configuration.restSucursalGet(String.valueOf(sucursalId),String.valueOf(restaurantId)), Sucursal.class);
 		viaje.setSucursal(sucursal);
-		/***************************************************************** TEST ARREGLAR!! ***********************************************/
 
 		RespuestaGeneral rgVje = restTemplate.postForObject(Configuration.restViajePost(), viaje, RespuestaGeneral.class);
 		if (rgVje.getCodigo() == RespuestaGeneral.CODIGO_OK) {
