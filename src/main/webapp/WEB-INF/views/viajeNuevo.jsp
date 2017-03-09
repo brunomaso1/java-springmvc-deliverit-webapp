@@ -218,7 +218,7 @@
 												<tr>
 													<th>#</th>
 													<th>Cliente</th>
-													<th>Direccion</th>
+													<th id="direccionTabla">Direccion</th>
 													<th>Telefono</th>
 												</tr>
 											</thead>

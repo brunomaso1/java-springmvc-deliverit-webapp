@@ -10,7 +10,7 @@ public final class Configuration {
 	
 	private static String produccion = "http://localhost:38526/backcore/ws/";
 	
-	private static String ambiente = ambienteJuan;
+	private static String ambiente = ambienteBruno;
 	
 	public static String restFindPedidosGet(String restaurant, String sucursal) {
 		return ambiente + "sucursal/findPedidos/" + restaurant + "/" + sucursal;
