@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,10 +39,10 @@ public class ViajeController {
 	}
 
 	@GetMapping
-	public String showPage(HttpServletRequest request, Model model) {
-		String sucursalId = (String) request.getSession(false).getAttribute("sucursalId");
-		String restaurantId = (String) request.getSession(false).getAttribute("restaurantId");
-		String estado = (String) request.getSession(false).getAttribute("estado");
+	public String showPage(HttpSession request, Model model) {
+		String sucursalId = (String) request.getAttribute("sucursalId");
+		String restaurantId = (String) request.getAttribute("restaurantId");
+		String estado = (String) request.getAttribute("estado");
 
 		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidos(sucursalId, restaurantId), Integer.parseInt(estado));
 
@@ -62,6 +63,8 @@ public class ViajeController {
 		String sucursalIdStr = (String) request.getSession(false).getAttribute("sucursalId");
 		String restaurantIdStr = (String) request.getSession(false).getAttribute("restaurantId");
 
+		//int sucursalId = Integer.parseInt(sucursalIdStr);
+		//int restaurantId = Integer.parseInt(restaurantIdStr);
 		int sucursalId = 1;
 		int restaurantId = 1;
 		
