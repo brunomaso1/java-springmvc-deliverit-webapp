@@ -2,7 +2,7 @@ package clases.configuration;
 
 public final class Configuration {
 	
-	private static String ambienteJuan = "http://192.168.1.45:8080/BackCore/ws/";
+	private static String ambienteJuan = "http://192.168.43.171:8080/BackCore/ws/";
 	
 	private static String ambienteBruno = "http://localhost:38526/backcore/ws/";
 	
@@ -10,7 +10,7 @@ public final class Configuration {
 	
 	private static String produccion = "http://localhost:38526/backcore/ws/";
 	
-	private static String ambiente = ambienteBruno;
+	private static String ambiente = ambienteJuan;
 	
 	public static String restFindPedidosGet(String restaurant, String sucursal) {
 		return ambiente + "sucursal/findPedidos/" + restaurant + "/" + sucursal;

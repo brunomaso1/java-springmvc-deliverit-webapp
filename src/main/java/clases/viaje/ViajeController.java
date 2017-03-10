@@ -63,10 +63,8 @@ public class ViajeController {
 		String sucursalIdStr = (String) request.getSession(false).getAttribute("sucursalId");
 		String restaurantIdStr = (String) request.getSession(false).getAttribute("restaurantId");
 
-		//int sucursalId = Integer.parseInt(sucursalIdStr);
-		//int restaurantId = Integer.parseInt(restaurantIdStr);
-		int sucursalId = 1;
-		int restaurantId = 1;
+		int sucursalId = Integer.parseInt(sucursalIdStr);
+		int restaurantId = Integer.parseInt(restaurantIdStr);
 		
 		if (tipo.equals("publicar") == true) {
 			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");

@@ -270,9 +270,8 @@
 		
 		<!-- Bootstrap togle JavaScript -->
 		<script src="../res/js/plugins/bootstrap-toggle.min.js"></script>
-		<script>activarModal("agregarPedido","pedidos");</script>
 		<!-- Test -->
 		
-		<script>ingresarDatos();</script>
+		<!-- <script>ingresarDatos();</script> -->
 	</body>
 </html>
