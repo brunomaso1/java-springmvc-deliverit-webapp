@@ -26,10 +26,10 @@
 
 		<!-- Bootstrap Core CSS -->
 		<link href="../res/css/bootstrap.min.css" rel="stylesheet">
-		
+
 		<!-- Bootstrap Core CSS -->
 		<link href="../res/css/plugins/bootstrap-toggle.min.css" rel="stylesheet">
-		
+
 		<!-- Custom CSS -->
 		<link href="../res/css/viajeNuevo.css" rel="stylesheet">
 
@@ -44,134 +44,8 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<!-- Navigation -->
-			<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand bottom-padding-1" href="viaje.html"><img src="../res/img/logo-navibar.png"> </a>
-				</div>
-				<!-- Top Menu Items -->
-				<ul class="nav navbar-right top-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-						<ul class="dropdown-menu message-dropdown">
-							<li class="message-preview">
-								<a href="#">
-									<div class="media">
-										<span class="pull-left">
-											<img class="media-object" src="http://placehold.it/50x50" alt="">
-										</span>
-										<div class="media-body">
-											<h5 class="media-heading"><strong> Venecia Pizzeria Rodo</strong>
-											</h5>
-											<p class="small text-muted"><i class="fa fa-clock-o"></i> Ayer a las 4:32 PM</p>
-											<p> Mañana voy a necesitar 30 cajas, vos tenes alguna caja que te sobre?</p>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li class="message-preview">
-								<a href="#">
-									<div class="media">
-										<span class="pull-left">
-											<img class="media-object" src="http://placehold.it/50x50" alt="">
-										</span>
-										<div class="media-body">
-											<h5 class="media-heading"><strong> Barack Obama</strong>
-											</h5>
-											<p class="small text-muted"><i class="fa fa-clock-o"></i> Hoy a las 00:32 AM</p>
-											<p> Se me quedó la moto, te llamé pero se ve que estas ocupado. Cuando veas llamame.</p>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li class="message-preview">
-								<a href="#">
-									<div class="media">
-										<span class="pull-left">
-											<img class="media-object" src="http://placehold.it/50x50" alt="">
-										</span>
-										<div class="media-body">
-											<h5 class="media-heading"><strong> DeliverIT</strong>
-											</h5>
-											<p class="small text-muted"><i class="fa fa-clock-o"></i> Hoy a las 00:50 PM</p>
-											<p> Michelle Obama ha terminado el viaje 5 correctamente y sin problemas reportados.</p>
-										</div>
-									</div>
-								</a>
-							</li>
-							<li class="message-footer">
-								<a href="#"> Marcar todos como leidos</a>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-						<ul class="dropdown-menu alert-dropdown">
-							<li>
-								<a href="#">Jose Villegas <span class="label label-primary">No entregado</span></a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="#"> Ver todas las alertas</a>
-							</li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Pizzeria Venecia 18 <b class="caret"></b></a>
-						<ul class="dropdown-menu">
-							<li>
-								<a href="#"><i class="fa fa-fw fa-user"></i> Perfil</a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-fw fa-envelope"></i> Mensajes</a>
-							</li>
-							<li>
-								<a href="#"><i class="fa fa-fw fa-gear"></i> Configuración</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="#"><i class="fa fa-fw fa-power-off"></i> Salir</a>
-							</li>
-						</ul>
-					</li>
-				</ul>
-				<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-				<div class="collapse navbar-collapse navbar-ex1-collapse">
-					<ul class="nav navbar-nav side-nav">
-						<li class="active">
-							<a href="../viaje.html"><i class="fa fa-fw fa-motorcycle " aria-hidden="true"></i> Viajes</a> <span class="sr-only">(current)</span>
-						</li>
-						<li>
-							<a href="calificacion.html"><i class="fa fa-fw fa-star" aria-hidden="true"></i> Calificaciones</a>
-						</li>
-						<li>
-							<a href="estadoCuenta.html"><i class="fa fa-fw fa-credit-card-alt" aria-hidden="true"></i> Estado de cuenta</a>
-						</li>
-						<li>
-							<a href="javascript:;" data-toggle="collapse" data-target="#droplist1"><i class="fa fa-fw fa-history" aria-hidden="true"></i> Historial <i class="fa fa-fw fa-caret-down"></i></a>
-							<ul id="droplist1" class="collapse">
-								<li>
-									<a href="#">Viajes</a>
-								</li>
-								<li>
-									<a href="#">Clientes</a>
-								</li>
-								<li>
-									<a href="#">Deliverys</a>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-			</nav>
+			<%@include file="navibars/navibar.html" %>
+
 			<div id="page-wrapper">
 				<div class="container-fluid">
 					<!-- Page Heading -->
@@ -253,7 +127,7 @@
 		<!-- /#wrapper -->
 
 		<%-- Se incluyen los modals --%>
-		<%@include file="viajeNuevoModal.html" %>
+		<%@include file="popups/viajeNuevoPopupNuevoPedido.html" %>
 
 		<!-- jQuery -->
 		<script src="../res/js/jquery-3.1.1.min.js"></script>
@@ -267,11 +141,11 @@
 		<!-- Google Maps -->
 		<script src="../res/js/viajeNuevoMapa.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
-		
+
 		<!-- Bootstrap togle JavaScript -->
 		<script src="../res/js/plugins/bootstrap-toggle.min.js"></script>
 		<!-- Test -->
-		
+		<script>activarPopup();</script>
 		<!-- <script>ingresarDatos();</script> -->
 	</body>
 </html>

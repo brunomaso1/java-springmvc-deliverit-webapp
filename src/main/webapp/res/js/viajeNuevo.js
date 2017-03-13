@@ -1,15 +1,7 @@
-/**
- * Este metodo se encarga de activar el Modal (popup) del elemento deseado. Se
- * ejecuta condicionado segun haya datos en la tabla o no, cada vez que se 
- * carga la pantalla.
- * @param {String} nombreBoton El nombre del boton a activar.
- * @param {String} nombreTabla El nombre de la tabla a buscar los datos.
- * @returns {undefined}
- */
-function activarModal(nombreBoton, nombreTabla) {
-	var table = document.getElementById(nombreTabla);
+function activarPopup() {
+	var table = document.getElementById("pedidos");
 	if (table.rows.length < 2) {
-		document.getElementById(nombreBoton).click();
+		document.getElementById("agregarPedido").click();
 	}
 }
 

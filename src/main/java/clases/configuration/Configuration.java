@@ -10,7 +10,7 @@ public final class Configuration {
 	
 	private static String produccion = "http://localhost:38526/backcore/ws/";
 	
-	private static String ambiente = ambienteJuan;
+	private static String ambiente = ambienteBruno;
 	
 	public static String restFindPedidosGet(String restaurant, String sucursal) {
 		return ambiente + "sucursal/findPedidos/" + restaurant + "/" + sucursal;
@@ -57,7 +57,6 @@ public final class Configuration {
 	}
 	
 	public static String restSucursalGet(String restaurant, String sucursal) {
-		http://localhost:8080/BackCore/ws/sucursal/1;id=1;restaurant=1
 		return ambiente + "sucursal/1;" + "id=" + sucursal + ";" + "restaurant=" + restaurant;
 	}
 }

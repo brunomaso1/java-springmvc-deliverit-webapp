@@ -1,8 +1,4 @@
-<%-- Importaciones, declaracion de contenido, etc. --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="headers/headers.jsp"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -67,7 +63,7 @@
 											<h5 class="media-heading"><strong> Venecia Pizzeria Rodo</strong>
 											</h5>
 											<p class="small text-muted"><i class="fa fa-clock-o"></i> Ayer a las 4:32 PM</p>
-											<p> MaÃ±ana voy a necesitar 30 cajas, vos tenes alguna caja que te sobre?</p>
+											<p> Mañana voy a necesitar 30 cajas, vos tenes alguna caja que te sobre?</p>
 										</div>
 									</div>
 								</a>
@@ -82,7 +78,7 @@
 											<h5 class="media-heading"><strong> Barack Obama</strong>
 											</h5>
 											<p class="small text-muted"><i class="fa fa-clock-o"></i> Hoy a las 00:32 AM</p>
-											<p> Se me quedÃ³ la moto, te llamÃ© pero se ve que estas ocupado. Cuando veas llamame.</p>
+											<p> Se me quedó la moto, te llamé pero se ve que estas ocupado. Cuando veas llamame.</p>
 										</div>
 									</div>
 								</a>
@@ -129,7 +125,7 @@
 								<a href="#"><i class="fa fa-fw fa-envelope"></i> Mensajes</a>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-fw fa-gear"></i> ConfiguraciÃ³n</a>
+								<a href="#"><i class="fa fa-fw fa-gear"></i> Configuración</a>
 							</li>
 							<li class="divider"></li>
 							<li>
@@ -178,7 +174,7 @@
 								<!-- /.row -->
 								<div class="panel-body">
 									<div class="input-group bottom-padding-1">
-										<input type="text" class="form-control" placeholder="Estas buscando algÃºna sucursal en particular? Ingresala acÃ¡!">
+										<input type="text" class="form-control" placeholder="Estas buscando algúna sucursal en particular? Ingresala acá!">
 										<div class="input-group-btn">
 											<button id="advancedSearch" name="advancedSearch" class="btn btn-primary btn-md" data-toggle="tooltip" title="Busqueda avanzada"><span class="glyphicon glyphicon-search"></span></button>
 										</div>												
