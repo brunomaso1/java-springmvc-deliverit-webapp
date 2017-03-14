@@ -69,16 +69,16 @@ public class ViajeLogica {
 	 * cargando en la vista.
 	 *
 	 * @param precio
-	 * @param estadoid
+	 * @param estadoId
 	 */
-	public void crearViaje(String precio, int estadoid, int sucursalId, int restaurantId) throws IOException {
+	public void crearViaje(String precio, String estadoId, String sucursalId, String restaurantId) throws IOException {
 		RestTemplate restTemplate = new RestTemplate();
 		ObjectMapper mapper = new ObjectMapper();
 
 		//Insertar viaje.
-		Viaje viaje = new Viaje(precio, sucursalId, restaurantId, estadoid);
+		Viaje viaje = new Viaje(precio, sucursalId, restaurantId, estadoId);
 		
-		Sucursal sucursal = restTemplate.getForObject(Configuration.restSucursalGet(String.valueOf(sucursalId),String.valueOf(restaurantId)), Sucursal.class);
+		Sucursal sucursal = restTemplate.getForObject(Configuration.restSucursalGet(sucursalId,restaurantId), Sucursal.class);
 		viaje.setSucursal(sucursal);
 
 		RespuestaGeneral rgVje = restTemplate.postForObject(Configuration.restViajePost(), viaje, RespuestaGeneral.class);
@@ -143,7 +143,9 @@ public class ViajeLogica {
 	 * @param estado
 	 * @return Pedidos[] Un arreglo con los pedidos filtrados por el estado.
 	 */
-	public Pedido[] filtrarPedidos(Pedido[] pedidos, int estado) {
+	public Pedido[] filtrarPedidos(Pedido[] pedidos, String estadoId) {
+		int estado = Integer.valueOf(estadoId);
+		
 		ArrayList<Pedido> pedidosTemp = new ArrayList<>();
 
 		ArrayList<Pedido> pedidosPend = new ArrayList<>();

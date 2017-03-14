@@ -94,7 +94,8 @@ public class ViajeControllerHelper {
 		return null;
 	}
 
-	public String generateAlerta(Integer alerta) {
+	public String generateAlerta(String estadoId) {
+		int alerta = Integer.valueOf(estadoId);
 		String mensaje = "";
 		switch (alerta) {
 			case 1:

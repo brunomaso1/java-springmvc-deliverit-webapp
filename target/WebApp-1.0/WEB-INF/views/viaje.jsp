@@ -139,7 +139,7 @@
 										</div>												
 									</div>
 									<div class="table-responsive">
-										<table class="table table-bordered table-hover table-striped">
+										<table class="table table-bordered table-hover table-striped" id="pedidos">
 											<thead>
 												<tr>
 													<th>Viaje</th>
@@ -186,7 +186,6 @@
 		<script src="res/js/viaje.js"></script>	
 
 		<!-- Google Maps -->
-		<script src="res/js/viajeMapa.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
 
 		<!-- User javascripts -->

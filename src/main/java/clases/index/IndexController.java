@@ -1,5 +1,6 @@
 package clases.index;
 
+import clases.configuration.Parametros;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@SessionAttributes({"sucursalId", "restaurantId", "estado"})
+@SessionAttributes({"SUCURSAL_ID", "RESTAURANT_ID", "ESTADO_ID"})
 public class IndexController {
 
 	//Logger
@@ -23,9 +24,9 @@ public class IndexController {
 	public String showPage(Model model) {
 		LOGGER.log(Level.FINEST, "Se realizo una solicitud request al index.html");	
 		
-		model.addAttribute("sucursalId", "1");
-		model.addAttribute("restaurantId", "1");
-		model.addAttribute("estado", "1");
+		model.addAttribute("SUCURSAL_ID", Parametros.SUCURSAL_DEFAULT);
+		model.addAttribute("RESTAURANT_ID", Parametros.RESTAURANT_DEFAULT);
+		model.addAttribute("ESTADO_ID", Parametros.ESTADO_DEFAULT);
 		
 		return "redirect:/viaje.html";
 	}
@@ -43,7 +44,7 @@ public class IndexController {
 
 		LOGGER.log(Level.FINER, "Se ha registrado el cliente correctamente.", rt);
 		LOGGER.log(Level.FINEST, "Ha finalizado el proceso de registro.");
-		return "redirect:/restaurant.html";
+		return "redirect:/viaje.html";
 	}
 
 	@RequestMapping(path = "/loguearse", method = RequestMethod.POST)

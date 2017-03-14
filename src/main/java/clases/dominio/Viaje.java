@@ -26,12 +26,12 @@ public class Viaje {
 	public Viaje() {
 	}
 
-	public Viaje(String precio, int sucursalId, int restaurantId, int estado) {
+	public Viaje(String precio, String sucursalId, String restaurantId, String estado) {
 		this.precio = Short.parseShort(precio);
 		this.transaccionCollection = new ArrayList<>();
 		this.pedidoCollection = new ArrayList<>();
-		this.sucursal = new Sucursal(sucursalId, restaurantId);
-		this.estado = new EstadoViaje(estado);
+		this.sucursal = new Sucursal(Integer.valueOf(sucursalId), Integer.valueOf(restaurantId));
+		this.estado = new EstadoViaje(Integer.valueOf(estado));
 	}
 	
 

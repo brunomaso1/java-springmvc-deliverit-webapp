@@ -249,7 +249,7 @@ html, body {
 }
 
 .panel-pendientes {
-	background-image: url("../../res/img/flechaPendiente.png");
+	background-image: url("../../res/img/flecha.png");
 	background-position: center;
 	background-size: cover;
 	-webkit-background-size: cover;
@@ -258,7 +258,7 @@ html, body {
 }
 
 .panel-publicados {
-	background-image: url("../../res/img/flechaPublicado.png");
+	background-image: url("../../res/img/flecha.png");
 	background-position: center;
 	background-size: cover;
 	-webkit-background-size: cover;
@@ -267,7 +267,7 @@ html, body {
 }
 
 .panel-enProceso {
-	background-image: url("../../res/img/flechaEnProceso.png");
+	background-image: url("../../res/img/flecha.png");
 	background-position: center;
 	background-size: cover;
 	-webkit-background-size: cover;
@@ -276,7 +276,7 @@ html, body {
 }
 
 .panel-finalizado {
-	background-image: url("../../res/img/flechaFinalizado.png");
+	background-image: url("../../res/img/flecha.png");
 	background-position: center;
 	background-size: cover;
 	-webkit-background-size: cover;

@@ -139,13 +139,12 @@
 		<script src="../res/js/viajeNuevo.js"></script>	
 
 		<!-- Google Maps -->
-		<script src="../res/js/viajeNuevoMapa.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
 
 		<!-- Bootstrap togle JavaScript -->
 		<script src="../res/js/plugins/bootstrap-toggle.min.js"></script>
 		<!-- Test -->
 		<script>activarPopup();</script>
-		<!-- <script>ingresarDatos();</script> -->
+		<script>ingresarDatos();</script>
 	</body>
 </html>
