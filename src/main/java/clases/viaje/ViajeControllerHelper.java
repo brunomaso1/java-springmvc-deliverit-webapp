@@ -57,7 +57,7 @@ public class ViajeControllerHelper {
 				tabla += "<td>" + i + "</td>";
 				tabla += "<td>" + pedido.getCliente().getNombre() + "</td>";
 				tabla += "<td>" + pedido.getCliente().getDireccion().getCalle()
-						+ pedido.getCliente().getDireccion().getNroPuerta() + "</td>";
+						+ " " + pedido.getCliente().getDireccion().getNroPuerta() + "</td>";
 				tabla += "<td>" + pedido.getCliente().getTelefono() + "</td>";
 				tabla += "</tr>";
 				i++;
