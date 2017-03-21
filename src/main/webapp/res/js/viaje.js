@@ -1,3 +1,5 @@
+var map;
+
 function activarTooltip(nombreTooltip) {
 	$(document).ready(function () {
 		$('[data-toggle=nombreTooltip]').tooltip();
@@ -12,7 +14,7 @@ function createAutoClosingAlert(selector, delay) {
 }
 
 function initMap() {
-	var map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: -34.397, lng: 150.644},
 		zoom: 16,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -45,7 +47,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 			'Error: Your browser doesn\'t support geolocation.');
 }
 
-function setMarkers(map) {
+function setMarkers() {
 	var table = document.getElementById("pedidos");
 	var posiciones = [];
 	if (table.rows.length > 1) {

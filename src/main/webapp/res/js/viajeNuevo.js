@@ -1,3 +1,5 @@
+var map;
+
 function activarPopup() {
 	var table = document.getElementById("pedidos");
 	if (table.rows.length < 2) {
@@ -59,7 +61,7 @@ function validarPedidoForm() {
 }
 
 function initMap() {
-	var map = new google.maps.Map(document.getElementById('map'), {
+	map = new google.maps.Map(document.getElementById('map'), {
 		center: {lat: -34.397, lng: 150.644},
 		zoom: 14,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -91,7 +93,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 			'Error: Your browser doesn\'t support geolocation.');
 }
 
-function setMarkers(map) {
+function setMarkers() {
 	var table = document.getElementById("pedidos");
 	if (table.rows.length > 1) {
 		for (var r = 1, n = table.rows.length; r < n; r++) {
