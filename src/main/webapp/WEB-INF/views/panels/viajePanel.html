@@ -1,0 +1,31 @@
+<div class="panel panel-default panel-height">
+	<div class="panel-heading">
+		<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Pedidos</h3>
+	</div>
+	<!-- /.row -->
+	<div class="panel-body">
+		${alertaFiltro}
+		<div class="input-group bottom-padding-1">
+			<input type="text" class="form-control" placeholder="Estas buscando algún pedido en particular? Ingresalo acá!">
+			<div class="input-group-btn">
+				<button id="advancedSearch" name="advancedSearch" class="btn btn-primary btn-md" data-toggle="tooltip" title="Busqueda avanzada"><span class="glyphicon glyphicon-search"></span></button>
+			</div>												
+		</div>
+		<div class="table-responsive">
+			<table class="table table-bordered table-hover table-striped" id="pedidos">
+				<thead>
+					<tr>
+						<th>Viaje</th>
+						<th>Cliente</th>
+						<th>Direccion</th>
+						<th>Delivery</th>
+						<th>Telefono</th>
+					</tr>
+				</thead>
+				<tbody>
+					${datosTablaPrincipal}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
