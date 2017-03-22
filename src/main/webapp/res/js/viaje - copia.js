@@ -5,10 +5,6 @@ var mapZoom = 14;
 var colorSet = ['blue'];
 var colorLen = colorSet.length;
 var table = document.getElementById("pedidos");
-var markadores = [];
-var flag = false;
-var intervalo = 0;
-var repeater = 0;
 
 function activarTooltip(nombreTooltip) {
 	$(document).ready(function () {
@@ -18,7 +14,7 @@ function activarTooltip(nombreTooltip) {
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: -34.9082249, lng: -56.1664964},
+		center: {lat: -34.397, lng: 150.644},
 		zoom: mapZoom,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
@@ -65,69 +61,42 @@ function setMarkers() {
 						lat: results[0].geometry.location.lat(),
 						lng: results[0].geometry.location.lng()
 					};
-					markadores.push(posMarker);
-					console.log("Push marker.");
-				} else {
-					markadores.push(null);
-					console.log("Push null.")
-				}
-				if (markadores.length == table.rows.length) {
-					flag = true;
-					console.log("Se cambio flag.");
+					
+					var viaje = table.rows[r].cells[0].innerHTML;
+					
+					var marker = new google.maps.Marker({
+						position: posMarker,
+						map: map,
+						draggable: false,
+						animation: google.maps.Animation.DROP,
+						label: { 
+							text: String(viaje), 
+							color: "black"
+						}
+					});
+					
+					var contentString = "Soy un String";
+					
+					var infowindow = new google.maps.InfoWindow({
+						content: contentString
+					  });
+
+					
+					google.maps.event.addListener(marker,'click',function() {
+						if (marker.getAnimation() !== null) {
+							marker.setAnimation(null);
+							map.setZoom(14);
+							map.setCenter(pos);
+							infoWindow.close(map, marker);
+						  } else {
+							marker.setAnimation(google.maps.Animation.BOUNCE);
+							map.setZoom(9);
+							map.setCenter(marker.getPosition());							
+							infoWindow.open(map, marker);
+						  }
+					  });
 				}
 			});
 		}
-	}
-}
-
-function timeCargarMarkadores() {
-	repeater = window.setInterval(cargarMarkadores, 500);
-}
-
-function cargarMarkadores() {
-	console.log("Se entro en los markadores.");
-	if (flag) {
-		var r = 1;
-		for (posMarker in markadores) {
-			var viaje = table.rows[r].cells[0].innerHTML;
-						
-			var marker = new google.maps.Marker({
-				position: posMarker,
-				map: map,
-				draggable: false,
-				animation: google.maps.Animation.DROP,
-				label: { 
-					text: String(viaje), 
-					color: "black"
-				}
-			});
-			
-			var contentString = "Soy un String";
-			
-			var infowindow = new google.maps.InfoWindow({
-				content: contentString
-			  });
-
-			
-			google.maps.event.addListener(marker,'click',function() {
-				if (marker.getAnimation() !== null) {
-					marker.setAnimation(null);
-					map.setZoom(14);
-					map.setCenter(pos);
-					infoWindow.close(map, marker);
-				  } else {
-					marker.setAnimation(google.maps.Animation.BOUNCE);
-					map.setZoom(9);
-					map.setCenter(marker.getPosition());							
-					infoWindow.open(map, marker);
-				  }
-			  });
-			r++;
-		}
-	}
-	if (intervalo == 10) {
-		clearInterval(repeater);
-	} else {
-		intervalo++;
 	}
 }
