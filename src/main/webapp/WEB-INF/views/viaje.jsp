@@ -57,7 +57,7 @@
 							<%@include file="panels/viajePanel.html" %>
 						</div>
 						<div class="col-lg-6">
-							<div class="panel panel-default panel-height">
+							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Deliverys</h3>
 								</div>
