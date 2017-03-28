@@ -25,11 +25,11 @@
 		<!-- Custom CSS -->
 		<link href="res/css/viaje.css" rel="stylesheet">
 
-		<!-- Morris Charts CSS -->
-		<link href="res/css/plugins/morris.css" rel="stylesheet">
-
 		<!-- Custom Fonts -->
-		<link href="res/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="res/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- Datatables -->
+		<link href="res/css/jquery.dataTables.min.css" rel="stylesheet">	
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/png" href="res/img/favicon.png">
@@ -87,6 +87,15 @@
 		<!-- Google Maps -->
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
 
+		<!-- DataTables -->
+		<script src="res/js/jquery.dataTables.min.js"></script>		
+		<script>
+			$(document).ready(function () {
+				$('#pedidos').DataTable();
+			});
+		</script>
+
 		<!-- User javascripts -->
+
 	</body>
 </html>

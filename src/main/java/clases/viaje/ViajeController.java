@@ -74,7 +74,7 @@ public class ViajeController {
 				vl.crearViaje(precio, Parametros.ESTADO_PENDIENTE, sucursalId, restaurantId);
 				LOGGER.log(Level.FINEST, "Termino la insercion del viaje pendiente.");
 			} catch (IOException e) {
-				LOGGER.log(Level.SEVERE, "No se pudo procesar el viaje publicado.", e.toString());
+				LOGGER.log(Level.SEVERE, "No se pudo procesar el viaje pendiente.", e.toString());
 			}
 		}
 		return "redirect:/viaje.html";
@@ -104,14 +104,14 @@ public class ViajeController {
 
 	@RequestMapping(path = "/refreshPublicado", method = GET)
 	public String refreshPublicado(HttpServletRequest request) {
-		request.getSession(false).setAttribute("ESTADO_ID", Parametros.ESTADO_ENPROCESO);
+		request.getSession(false).setAttribute("ESTADO_ID", Parametros.ESTADO_PUBLICADO);
 		LOGGER.log(Level.FINEST, "Se hizo refresh. Se filtro los viajes al estado 2.");
 		return "redirect:/viaje.html";
 	}
 
 	@RequestMapping(path = "/refreshEnProceso", method = GET)
 	public String refreshEnProceso(HttpServletRequest request) {
-		request.getSession(false).setAttribute("ESTADO_ID", Parametros.ESTADO_PUBLICADO);
+		request.getSession(false).setAttribute("ESTADO_ID", Parametros.ESTADO_ENPROCESO);
 		LOGGER.log(Level.FINEST, "Se hizo refresh. Se filtro los viajes al estado 3.");
 		return "redirect:/viaje.html";
 	}

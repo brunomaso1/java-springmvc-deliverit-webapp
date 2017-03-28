@@ -81,31 +81,7 @@
 					<!-- /.row -->
 					<div class="row">
 						<div class="col-lg-6">
-							<div class="panel panel-green panel-height">
-								<div class="panel-heading">
-									<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Pedidos</h3>
-								</div>
-								<div class="panel-body">
-									<div class="table-responsive">
-										<table id="pedidos" class="table table-striped table-hover">
-											<thead>
-												<tr>
-													<th>#</th>
-													<th>Cliente</th>
-													<th id="direccionTabla">Direccion</th>
-													<th>Telefono</th>
-												</tr>
-											</thead>
-											<tbody>
-												${datosTablaPedido}
-											</tbody>
-										</table>
-									</div>
-								</div>
-								<div class="panel-footer">
-									<button type="button" data-toggle="modal" data-target="#popupNuevoPedido" id="agregarPedido" class="btn btn-warning btn-md pull-right">Agregar Pedido</button>
-								</div>
-							</div>
+							<%@include file="panels/viajeNuevoPanel.html" %>
 						</div>
 						<div class="col-lg-6">
 							<div class="panel panel-green panel-height">
@@ -139,7 +115,7 @@
 		<script src="../res/js/viajeNuevo.js"></script>	
 
 		<!-- Google Maps -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
 
 		<!-- Bootstrap togle JavaScript -->
 		<script src="../res/js/plugins/bootstrap-toggle.min.js"></script>

@@ -25,11 +25,11 @@
 		<!-- Custom CSS -->
 		<link href="res/css/viaje.css" rel="stylesheet">
 
-		<!-- Morris Charts CSS -->
-		<link href="res/css/plugins/morris.css" rel="stylesheet">
-
 		<!-- Custom Fonts -->
-		<link href="res/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+		<link href="res/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+		<!-- Datatables -->
+		<link href="res/css/jquery.dataTables.min.css" rel="stylesheet">	
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/png" href="res/img/favicon.png">
@@ -37,7 +37,6 @@
 	<body>
 		<div id="wrapper">
 			<%@include file="navibars/navibar.html" %>
-			
 			<div id="page-wrapper">
 				<div class="container-fluid">
 					<!-- Page Heading -->
@@ -52,113 +51,13 @@
 						</div>
 					</div>
 					<!-- /.row -->
-					<div class="row">
-						<div class="col-lg-3 col-md-6">
-							<div class="panel">
-								<a class="letra-blanca link-hoover-negro" href="viaje/refreshPendiente.html">
-									<div class="panel-pendientes">
-										<div class="row">
-											<div class="col-xs-3">
-												<i class="fa fa-clock-o fa-4x icono-negro" aria-hidden="true"></i>
-											</div>
-											<div class="col-xs-9 text-center">
-												<div class="huge">${viajesPendientes}</div>
-												<div>Viajes pendientes hoy!</div>
-											</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="panel">
-								<a class="letra-blanca link-hoover-negro" href="viaje/refreshPublicado.html">
-									<div class="panel-publicados">
-										<div class="row">
-											<div class="col-xs-3">
-												<i class="fa fa-check-circle-o fa-4x icono-negro" aria-hidden="true"></i>
-											</div>
-											<div class="col-xs-9 text-center">
-												<div class="huge">${viajesPublicaods}</div>
-												<div>Viajes publicados hoy!</div>
-											</div>
-										</div>
-									</div>
-								</a>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="panel">
-								<a class="letra-blanca link-hoover-negro" href="viaje/refreshEnProceso.html">
-									<div class="panel-enProceso">
-										<div class="row">
-											<div class="col-xs-3 center-block">
-												<i class="fa fa-car fa-4x icono-negro" aria-hidden="true"></i>
-											</div>
-											<div class="col-xs-9 text-center">
-												<div class="huge">${viajesEnProceso}</div>
-												<div>Viajes en proceso!</div>
-											</div>
-										</div>
-									</div>
-								</a>								
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="panel">
-								<a class="letra-blanca link-hoover-negro" href="viaje/refreshTerminado.html">
-									<div class="panel-finalizado">
-										<div class="row">
-											<div class="col-xs-3">
-												<i class="fa fa-bars fa-4x icono-negro" aria-hidden="true"></i>
-											</div>
-											<div class="col-xs-9 text-center">
-												<div class="huge">${viajesTerminados}</div>
-												<div>Viajes terminados hoy!</div>
-											</div>
-										</div>
-									</div>
-								</a>								
-							</div>
-						</div>
-					</div>
-					<!-- /.row -->
+					<%@include file="viajeExtras/botones.html" %>
 					<div class="row">
 						<div class="col-lg-6">
-							<div class="panel panel-default panel-height">
-								<div class="panel-heading">
-									<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Pedidos</h3>
-								</div>
-								<!-- /.row -->
-								<div class="panel-body">
-									${alertaFiltro}
-									<div class="input-group bottom-padding-1">
-										<input type="text" class="form-control" placeholder="Estas buscando algún pedido en particular? Ingresalo acá!">
-										<div class="input-group-btn">
-											<button id="advancedSearch" name="advancedSearch" class="btn btn-primary btn-md" data-toggle="tooltip" title="Busqueda avanzada"><span class="glyphicon glyphicon-search"></span></button>
-										</div>												
-									</div>
-									<div class="table-responsive">
-										<table class="table table-bordered table-hover table-striped" id="pedidos">
-											<thead>
-												<tr>
-													<th>Viaje</th>
-													<th>Cliente</th>
-													<th>Direccion</th>
-													<th>Delivery</th>
-													<th>Telefono</th>
-												</tr>
-											</thead>
-											<tbody>
-												${datosTablaPrincipal}
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
+							<%@include file="panels/viajePanel.html" %>
 						</div>
 						<div class="col-lg-6">
-							<div class="panel panel-default panel-height">
+							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Deliverys</h3>
 								</div>
@@ -186,9 +85,17 @@
 		<script src="res/js/viaje.js"></script>	
 
 		<!-- Google Maps -->
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
+
+		<!-- DataTables -->
+		<script src="res/js/jquery.dataTables.min.js"></script>		
+		<script>
+			$(document).ready(function () {
+				$('#pedidos').DataTable();
+			});
+		</script>
 
 		<!-- User javascripts -->
-		<script>activarTooltip("tooltip");</script>
+
 	</body>
 </html>

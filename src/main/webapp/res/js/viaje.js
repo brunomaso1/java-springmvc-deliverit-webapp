@@ -84,7 +84,9 @@ function setMarkers() {
 }
 
 function timeCargarMarkadores() {
-	repeater = window.setInterval(cargarMarkadores, 500);
+	if (table.rows.length > 1) {
+		repeater = window.setInterval(cargarMarkadores, 500);
+	}
 }
 
 function cargarMarkadores() {

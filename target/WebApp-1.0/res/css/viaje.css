@@ -284,8 +284,6 @@ html, body {
 	-o-background-size: cover;
 }
 
-
-
 .letra-blanca {
 	color: #FFFFFF;
 }
@@ -303,7 +301,7 @@ html, body {
     padding-bottom:50%;
     position:relative;
     height:100%;
-	min-height: 430px;
+	min-height: 460px;
 }
 
 /*

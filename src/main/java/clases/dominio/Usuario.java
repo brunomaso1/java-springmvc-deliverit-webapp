@@ -18,7 +18,7 @@ public class Usuario {
 
 	private int cuentaRedPagos;
 
-	private byte[] foto;
+	private String foto;
 
 	private Collection<Delivery> deliveryCollection;
 
@@ -27,7 +27,7 @@ public class Usuario {
 	public Usuario() {
 	}
 
-	public Usuario(Integer id, String nombre, String password, String mail, String telefono, int cuentaRedPagos, byte[] foto, Collection<Delivery> deliveryCollection, Collection<Restaurant> restaurantCollection) {
+	public Usuario(Integer id, String nombre, String password, String mail, String telefono, int cuentaRedPagos, String foto, Collection<Delivery> deliveryCollection, Collection<Restaurant> restaurantCollection) {
 		this.nombre = nombre;
 		this.password = password;
 		this.mail = mail;
@@ -92,11 +92,11 @@ public class Usuario {
 		this.cuentaRedPagos = cuentaRedPagos;
 	}
 
-	public byte[] getFoto() {
+	public String getFoto() {
 		return foto;
 	}
 
-	public void setFoto(byte[] foto) {
+	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
