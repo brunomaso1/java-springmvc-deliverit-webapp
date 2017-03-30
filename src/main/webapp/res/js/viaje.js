@@ -13,6 +13,12 @@ var flag = false;
 var intervalo = 0;
 var repeater = 0;
 var contents = [];
+var deliverys = [];
+function Delivery(deliveryId, viajeId, markador){
+	this.deliveryId = deliveryId;
+	this.viajeId = viajeId;
+	this.markador = markador;
+}
 
 function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -39,11 +45,36 @@ function initMap() {
 	}
 	setMarkers();
 	timeCargarMarkadores();
-	initTableListener();
 }
 
 function initTableListener() {
 	window.onload = addRowHandlers();
+}
+
+function initDataTable() {
+	$(document).ready(function () {
+				$('#pedidos').DataTable();
+	});
+	$('#pedidos').DataTable( {
+		language: {
+        processing:     "Procesando...",
+        search:         "Busqueda&nbsp;:",
+        lengthMenu:    "Mostrar _MENU_ entradas",
+        info:           "Mostrando _START_ de _END_ de un total de _TOTAL_ entradas",
+        infoEmpty:      "Mostrando 0 de 0 de un total de 0 entradas",
+        infoFiltered:   "(fitradas de _MAX_ entradas en total)",
+        infoPostFix:    "",
+        loadingRecords: "Cargando registros...",
+        zeroRecords:    "No se han encontrado registros",
+        emptyTable:     "No hay datos",
+        paginate: {
+            first:      "Primero",
+            previous:   "Anterior",
+            next:       "Siguiente",
+            last:       "Ultimo"
+        },
+    }
+	} );
 }
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -158,8 +189,16 @@ function addRowHandlers() {
 					stopAnimation(marker);
 				}
             };
-
+		var createDoubleClickHandler = 
+            function(row) 
+            {
+                return function() { 
+					resaltarDelivery(table.rows[row.rowIndex - 1].cells[0].innerHTML)
+				}
+            };
+		
         currentRow.onclick = createClickHandler(currentRow);
+		currentRow.ondblclick = createDoubleClickHandler(currentRow);
     }
 }
 
@@ -167,4 +206,50 @@ function stopAnimation(marker) {
     setTimeout(function () {
         marker.setAnimation(null);
     }, 3000);
+}
+
+function resaltarDelivery(viaje){
+	if (deliverys != null){
+		var delivery = getDeliveryViaje(viaje);
+		var posAnterior = map.getZoom();
+		map.setZoom(9);
+		map.setCenter(delivery.markador.getPosition());
+		window.setTimeout(function() {map.setZoom(posAnterior);},3000);
+	}	
+}
+
+function cargarDeliverys(){
+	var del = $Ajax
+	var i = 0;
+	var l = del.length;
+	for (; i < l; i++){
+		var marker = new google.maps.Marker({
+				position: del[i].posicion,
+				map: map,
+				draggable: false,
+				icon: {
+				  url: "moto"
+				  scaledSize: new google.maps.Size(20, 30),
+				  labelOrigin: new google.maps.Point(10, 10)
+				}
+			});
+		
+		var delivery = new Delivery(del[i].id, del[i].idViaje, marker);
+		
+		deliverys.push(delivery);
+	}
+}
+
+function actualizarDeliverys(){
+	repeater = window.setInterval(cargarDeliverys, 5000);
+}
+
+function getDeliveryViaje(viaje){
+	var i = 0;
+	var l = deliverys.length;
+	for(; i < l; i++){
+		if (deliverys[i].idViaje == viaje){
+			return deliverys[i];
+		}
+	}
 }
