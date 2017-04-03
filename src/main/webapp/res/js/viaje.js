@@ -5,6 +5,7 @@ var mapZoom = 14;
 var urlIcon = 'res/img/iconosMaps/';
 var png = '.png';
 var colorSet = ['blue', 'brown', 'gray', 'green', 'orange', 'purple', 'red', 'yellow'];
+var colors = []
 var colorSetLen = colorSet.length;
 var table = document.getElementById("pedidos");
 var posiciones = [];
@@ -174,7 +175,6 @@ function ajustarZoom(){
 }
 
 function addRowHandlers() {
-    var table = document.getElementById("pedidos");
     var rows = table.getElementsByTagName("tr");
 	var i = 0;
 	var l = rows.length;
@@ -219,7 +219,7 @@ function resaltarDelivery(viaje){
 }
 
 function cargarDeliverys(){
-	var del = $Ajax
+	var del = getAllDelivery();
 	var i = 0;
 	var l = del.length;
 	for (; i < l; i++){
@@ -241,7 +241,7 @@ function cargarDeliverys(){
 }
 
 function actualizarDeliverys(){
-	repeater = window.setInterval(cargarDeliverys, 5000);
+	setInterval(cargarDeliverys, 5000);
 }
 
 function getDeliveryViaje(viaje){
@@ -252,4 +252,30 @@ function getDeliveryViaje(viaje){
 			return deliverys[i];
 		}
 	}
+}
+
+function getAllDelivery(){
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("GET", url, false);
+	xhttp.send();
+	var text = xhttp.responseText;
+	deliverys = JSON.parse(text);
+}
+
+function activateColors(){
+	if (es en proceso){
+		setInterval(changeColors, 10000);
+	}
+}
+
+function changeColors(){
+	var rows = table.getElementsByTagName("tr");
+	var i = 0;
+	var l = rows.length;
+    for (; i < l; i++) {
+        var currentRow = table.rows[i];
+		var time = currentRow.cells[5].innerHTML;
+		switch (true) {
+			case (time < 1000):  currentRow.style.color = "";
+		}
 }
