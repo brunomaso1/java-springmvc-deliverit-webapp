@@ -1,5 +1,6 @@
 package clases.viaje;
 
+import clases.configuration.Configuration;
 import clases.configuration.Parametros;
 import clases.dominio.Pedido;
 import java.io.IOException;
@@ -51,6 +52,8 @@ public class ViajeController {
 		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
 		
 		model.addAttribute("alertaFiltro", vch.generateAlerta(estadoId));
+		
+		model.addAttribute("url", "http://localhost:8080/webapp/delivery");
 
 		return "viaje";
 	}
