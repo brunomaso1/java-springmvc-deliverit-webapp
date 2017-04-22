@@ -51,7 +51,7 @@ function initMap(url) {
 	}
 	setMarkers();
 	timeCargarMarkadores();
-	cargarDeliverys();
+	//cargarDeliverys();
 }
 
 /**

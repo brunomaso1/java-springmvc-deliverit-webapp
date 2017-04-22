@@ -15,4 +15,5 @@
 	</bean>
 	<mvc:annotation-driven />
 	<mvc:resources mapping="/res/**" location="/res/" cache-period="31556926"/>
+	<mvc:resources mapping="viaje/res/**" location="/res/" cache-period="31556926"/>
 </beans>

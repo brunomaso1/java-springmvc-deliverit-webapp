@@ -6,11 +6,13 @@ clases\index\IndexControllerHelper.class
 clases\dominio\Sucursal.class
 clases\dominio\Transaccion.class
 clases\dominio\Direccion.class
+clases\delivery\DeliveryLogica.class
 clases\dominio\RespuestaGeneral.class
 clases\restaurant\RestaurantController.class
 clases\dominio\PedidoPK.class
 clases\configuration\Parametros.class
 clases\viaje\ViajeFormBean.class
+clases\delivery\DeliveryController.class
 clases\dominio\Cliente.class
 clases\dominio\EstadoViaje.class
 clases\restaurant\RestaurantFormBean.class
