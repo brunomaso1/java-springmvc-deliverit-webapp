@@ -25,20 +25,15 @@
 		<meta property="og:description" content="">
 
 		<!-- Bootstrap Core CSS -->
-		<link href="../res/css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- Bootstrap Core CSS -->
-		<link href="../res/css/plugins/bootstrap-toggle.min.css" rel="stylesheet">
-
-		<!-- Custom CSS -->
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+			  rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+			  crossorigin="anonymous">
+		<!-- Fonts -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+			  rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
+			  crossorigin="anonymous">
+		<!-- User CSS -->
 		<link href="../res/css/viajeNuevo.css" rel="stylesheet">
-
-		<!-- Morris Charts CSS -->
-		<link href="../res/css/plugins/morris.css" rel="stylesheet">
-
-		<!-- Custom Fonts -->
-		<link href="../res/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/png" href="../res/img/favicon.png">
 	</head>
@@ -106,20 +101,20 @@
 		<%@include file="popups/viajeNuevoPopupNuevoPedido.html" %>
 
 		<!-- jQuery -->
-		<script src="../res/js/jquery-3.1.1.min.js"></script>
-
+		<script src="https://code.jquery.com/jquery-3.2.1.js" 
+				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" 
+				crossorigin="anonymous">
+		</script>
 		<!-- Bootstrap Core JavaScript -->
-		<script src="../res/js/bootstrap.min.js"></script>
-
-		<!-- Default page javascripts -->
-		<script src="../res/js/viajeNuevo.js"></script>	
-
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+				crossorigin="anonymous">
+		</script>
 		<!-- Google Maps -->
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
-
-		<!-- Bootstrap togle JavaScript -->
-		<script src="../res/js/plugins/bootstrap-toggle.min.js"></script>
-		<!-- Test -->
+		<!-- User javascripts -->
+		<script src="../res/js/viajeNuevo.js"></script>
+		<!-- Test -->		
 		<script>activarPopup();</script>
 		<script>ingresarDatos();</script>
 	</body>

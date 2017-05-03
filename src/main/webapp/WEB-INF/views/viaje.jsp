@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					<!-- /.row -->
-					<%@include file="viajeExtras/botones.html" %>
+					<%@include file="viajeExtras/viajeFiltros.html" %>
 					<div class="row">
 						<div class="col-lg-6">
 							<%@include file="panels/viajePanel.html" %>

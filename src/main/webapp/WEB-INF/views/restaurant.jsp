@@ -20,19 +20,17 @@
 		<meta property="og:description" content="">
 
 		<!-- Bootstrap Core CSS -->
-		<link href="res/css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- Custom CSS -->
-		<link href="res/css/restaurant.css" rel="stylesheet">
-
-		<!-- Morris Charts CSS -->
-		<link href="res/css/plugins/morris.css" rel="stylesheet">
-
-		<!-- Custom Fonts -->
-		<link href="res/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+			  rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+			  crossorigin="anonymous">
+		<!-- Fonts -->
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+			  rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
+			  crossorigin="anonymous">
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/png" href="res/img/favicon.png">
+		<link href="res/img/favicon.png" rel="shortcut icon" type="image/png">
+		<!-- User css -->
+		<link href="res/css/restaurant.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="wrapper">
@@ -160,8 +158,8 @@
 							</h1>
 						</div>
 						<div class="col-lg-3 col-lg-offset-6 text-right top-padding-1">
-<!--							<button id="nuevoViaje" name="nuevoViaje" onclick="location.href = './viaje/viajeNuevo.html'" class="btn btn-lg btn-color-naraja">Nueva Sucursal</button>-->
-						<!--Data model!-->
+							<!--							<button id="nuevoViaje" name="nuevoViaje" onclick="location.href = './viaje/viajeNuevo.html'" class="btn btn-lg btn-color-naraja">Nueva Sucursal</button>-->
+							<!--Data model!-->
 						</div>
 					</div>
 					<!-- /.row -->
@@ -214,21 +212,18 @@
 			<!-- /#page-wrapper -->
 		</div>
 		<!-- /#wrapper -->		
-
 		<!-- jQuery -->
-		<script src="res/js/jquery-3.1.1.min.js"></script>
-
+		<script src="https://code.jquery.com/jquery-3.2.1.js" 
+				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" 
+				crossorigin="anonymous">
+		</script>
 		<!-- Bootstrap Core JavaScript -->
-		<script src="res/js/bootstrap.min.js"></script>
-
-		<!-- Default page javascripts -->
-		<script src="res/js/restaurant.js"></script>	
-
-		<!-- Google Maps -->
-		<script src="res/js/restaurantMapa.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
-
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+				crossorigin="anonymous">
+		</script>
 		<!-- User javascripts -->
+		<script src="res/js/restaurant.js"></script>
 		<script>activarTooltip("tooltip");</script>
 	</body>
 </html>
