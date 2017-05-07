@@ -33,13 +33,13 @@
 			  rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
 			  crossorigin="anonymous">
 		<!-- User CSS -->
-		<link href="../res/css/viajeNuevo.css" rel="stylesheet">
+		<link href="../resources/css/viajeNuevo.css" rel="stylesheet">
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/png" href="../res/img/favicon.png">
+		<link rel="shortcut icon" type="image/png" href="../resources/img/favicon.png">
 	</head>
 	<body>
 		<div id="wrapper">
-			<%@include file="navibars/navibar.html" %>
+			<%@include file="plugins/navibars/navibar.html" %>
 
 			<div id="page-wrapper">
 				<div class="container-fluid">
@@ -76,7 +76,7 @@
 					<!-- /.row -->
 					<div class="row">
 						<div class="col-lg-6">
-							<%@include file="panels/viajeNuevoPanel.html" %>
+							<%@include file="plugins/panels/viajeNuevoPanel.html" %>
 						</div>
 						<div class="col-lg-6">
 							<div class="panel panel-green panel-height">
@@ -98,7 +98,7 @@
 		<!-- /#wrapper -->
 
 		<%-- Se incluyen los modals --%>
-		<%@include file="popups/viajeNuevoPopupNuevoPedido.html" %>
+		<%@include file="plugins/popups/viajeNuevoPopupNuevoPedido.html" %>
 
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.2.1.js" 
@@ -113,7 +113,7 @@
 		<!-- Google Maps -->
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
 		<!-- User javascripts -->
-		<script src="../res/js/viajeNuevo.js"></script>
+		<script src="../resources/js/viajeNuevo.js"></script>
 		<!-- Test -->		
 		<script>activarPopup();</script>
 		<script>ingresarDatos();</script>

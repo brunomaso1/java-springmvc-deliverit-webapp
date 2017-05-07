@@ -1,4 +1,4 @@
-<%@include file="headers/headers.jsp"%>
+<%@include file="plugins/headers/headers.jsp"%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -28,9 +28,9 @@
 			  rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
 			  crossorigin="anonymous">
 		<!-- Favicon -->
-		<link href="res/img/favicon.png" rel="shortcut icon" type="image/png">
+		<link href="resources/img/favicon.png" rel="shortcut icon" type="image/png">
 		<!-- User css -->
-		<link href="res/css/restaurant.css" rel="stylesheet">
+		<link href="resources/css/restaurant.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="wrapper">
@@ -44,7 +44,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand bottom-padding-1" href="viaje.html"><img src="res/img/logo-navibar.png"> </a>
+					<a class="navbar-brand bottom-padding-1" href="viaje.html"><img src="resources/img/logo-navibar.png"> </a>
 				</div>
 				<!-- Top Menu Items -->
 				<ul class="nav navbar-right top-nav">
@@ -223,7 +223,7 @@
 				crossorigin="anonymous">
 		</script>
 		<!-- User javascripts -->
-		<script src="res/js/restaurant.js"></script>
+		<script src="resources/js/restaurant.js"></script>
 		<script>activarTooltip("tooltip");</script>
 	</body>
 </html>

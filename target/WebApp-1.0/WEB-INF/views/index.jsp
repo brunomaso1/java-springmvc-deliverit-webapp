@@ -1,4 +1,4 @@
-<%@include file="headers/headers.jsp" %>
+<%@include file="plugins/headers/headers.jsp" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -37,7 +37,7 @@
 	</head>
 	<body>
 		<%-- Navibar --%>
-		<%@include file="navibars/indexNavibar.html" %>
+		<%@include file="plugins/navibars/indexNavibar.html" %>
 		<header>
 			<div class="container">
 				<div class="row">
@@ -71,10 +71,10 @@
 		</header>
 
 		<!-- Popup Registrarse -->
-		<%@include file="popups/indexPopupRegistrarse.html" %>
+		<%@include file="plugins/popups/indexPopupRegistrarse.html" %>
 
 		<!-- Popup Iniciar Sesion -->
-		<%@include file="popups/indexPopupLogin.html" %>
+		<%@include file="plugins/popups/indexPopupLogin.html" %>
 
 		<!-- Javascript -->
 		<!-- jQuery -->
@@ -90,6 +90,6 @@
 		<!--Wow-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 		<!--User javascript-->
-		<script src="res/js/index.js"></script>
+		<script src="resources/js/index.js"></script>
 	</body>
 </html>

@@ -1,4 +1,4 @@
-<%@include file="headers/headers.jsp" %>
+<%@include file="plugins/headers/headers.jsp" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -28,13 +28,13 @@
 		<link rel="stylesheet" type="text/css" 
 			  href="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.css"/>
 		<!-- Favicon -->
-		<link rel="shortcut icon" type="image/png" href="res/img/favicon.png">
+		<link rel="shortcut icon" type="image/png" href="resources/img/favicon.png">
 		<!-- User stylesheets -->
-		<link href="res/css/viaje.css" rel="stylesheet">
+		<link href="resources/css/viaje.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="wrapper">
-			<%@include file="navibars/navibar.html" %>
+			<%@include file="plugins/navibars/navibar.html" %>
 			<div id="page-wrapper">
 				<div class="container-fluid">
 					<!-- Page Heading -->
@@ -49,10 +49,10 @@
 						</div>
 					</div>
 					<!-- /.row -->
-					<%@include file="viajeExtras/viajeFiltros.html" %>
+					<%@include file="plugins/viajeExtras/viajeFiltros.html" %>
 					<div class="row">
 						<div class="col-lg-6">
-							<%@include file="panels/viajePanel.html" %>
+							<%@include file="plugins/panels/viajePanel.html" %>
 						</div>
 						<div class="col-lg-6">
 							<div class="panel panel-default">
@@ -89,7 +89,7 @@
 		<!-- DataTables -->
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
 		<!-- User javascripts -->
-		<script src="res/js/viaje.js"></script>	
+		<script src="resources/js/viaje.js"></script>	
 		<script>initTableListener();</script>
 		<script>initDataTable();</script>
 	</body>
