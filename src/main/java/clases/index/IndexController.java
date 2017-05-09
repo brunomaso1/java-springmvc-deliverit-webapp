@@ -20,7 +20,7 @@ public class IndexController {
 	//Logger
 	private final static Logger LOGGER = Logger.getLogger(IndexController.class.getName());
 	
-	@RequestMapping(path = {"/index","/"}, method = RequestMethod.GET)
+	@RequestMapping(path = {"/index"}, method = RequestMethod.GET)
 	public String showPage(Model model) {
 		LOGGER.log(Level.FINEST, "Se realizo una solicitud request al index.html");	
 		

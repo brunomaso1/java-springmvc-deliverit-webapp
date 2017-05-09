@@ -63,4 +63,16 @@ public final class Configuration {
 	public static String restDeliveryGet() {
 		return ambiente + "delivery";
 	}
+	
+	public static String restUsuarioGet(){
+		return ambiente + "usuario";
+	}
+	
+	public static String restUsuarioPost(){
+		return ambiente + "usuario";
+	}
+	
+	public static String restUsuarioGetByName(String username){
+		return ambiente + "usuario/findUserByName/" + username;
+	}
 }

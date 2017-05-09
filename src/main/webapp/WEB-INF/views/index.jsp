@@ -29,9 +29,9 @@
 			  rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 			  crossorigin="anonymous">
 		<!--User css-->
-		<link rel="stylesheet" href="res/css/index.css">
+		<link rel="stylesheet" href="resources/css/index.css">
 		<!--Favicon-->
-		<link rel="shortcut icon" type="image/png" href="res/img/favicon.png">
+		<link rel="shortcut icon" type="image/png" href="resources/img/favicon.png">
 		<!--Modernizer-->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
 	</head>
