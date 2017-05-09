@@ -3,7 +3,6 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\delivery\DeliveryCon
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACController.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Transaccion.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Usuario.java
-C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\index\IndexLogica.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\configuration\Configuration.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeLogica.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACUserValidator.java
@@ -27,12 +26,10 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\delivery\DeliveryLog
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Restaurant.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACIUserService.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\index\IndexController.java
-C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\index\IndexControllerHelper.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\restaurant\RestaurantFormBean.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Pedido.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Ubicacion.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\PedidoPK.java
-C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\index\IndexFormBean.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\configuration\Parametros.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Cliente.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACUserServiceImpl.java

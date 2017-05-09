@@ -34,7 +34,7 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<%@include file="plugins/navibars/navibar.html" %>
+			<%@include file="plugins/navibars/navibar.jsp" %>
 			<div id="page-wrapper">
 				<div class="container-fluid">
 					<!-- Page Heading -->
@@ -49,10 +49,10 @@
 						</div>
 					</div>
 					<!-- /.row -->
-					<%@include file="plugins/viajeExtras/viajeFiltros.html" %>
+					<%@include file="plugins/viajeExtras/viajeFiltros.jsp" %>
 					<div class="row">
 						<div class="col-lg-6">
-							<%@include file="plugins/panels/viajePanel.html" %>
+							<%@include file="plugins/panels/viajePanel.jsp" %>
 						</div>
 						<div class="col-lg-6">
 							<div class="panel panel-default">

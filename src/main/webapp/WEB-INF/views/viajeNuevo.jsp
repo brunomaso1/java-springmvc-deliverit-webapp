@@ -39,7 +39,7 @@
 	</head>
 	<body>
 		<div id="wrapper">
-			<%@include file="plugins/navibars/navibar.html" %>
+			<%@include file="plugins/navibars/navibar.jsp" %>
 
 			<div id="page-wrapper">
 				<div class="container-fluid">
@@ -76,7 +76,7 @@
 					<!-- /.row -->
 					<div class="row">
 						<div class="col-lg-6">
-							<%@include file="plugins/panels/viajeNuevoPanel.html" %>
+							<%@include file="plugins/panels/viajeNuevoPanel.jsp" %>
 						</div>
 						<div class="col-lg-6">
 							<div class="panel panel-green panel-height">
@@ -98,7 +98,7 @@
 		<!-- /#wrapper -->
 
 		<%-- Se incluyen los modals --%>
-		<%@include file="plugins/popups/viajeNuevoPopupNuevoPedido.html" %>
+		<%@include file="plugins/popups/viajeNuevoPopupNuevoPedido.jsp" %>
 
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.2.1.js" 

@@ -1,10 +1,8 @@
 clases\dominio\Usuario.class
 clases\viaje\ViajeLogica.class
-clases\index\IndexLogica.class
 clases\viaje\ViajeControllerHelper.class
 clases\accesControl\ACController.class
 clases\accesControl\ACIUserService.class
-clases\index\IndexControllerHelper.class
 clases\dominio\Sucursal.class
 clases\dominio\Transaccion.class
 clases\dominio\Direccion.class
@@ -33,7 +31,6 @@ clases\configuration\Configuration.class
 clases\dominio\SucursalPK.class
 clases\restaurant\RestaurantControllerHelper.class
 clases\dominio\Ubicacion.class
-clases\index\IndexFormBean.class
 clases\viaje\ViajeController.class
 clases\accesControl\ACISecurityService.class
 clases\dominio\Delivery.class

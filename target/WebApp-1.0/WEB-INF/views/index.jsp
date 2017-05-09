@@ -29,7 +29,7 @@
 			  rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 			  crossorigin="anonymous">
 		<!--User css-->
-		<link rel="stylesheet" href="resources/css/index.css">
+		<link href="resources/css/index.css" rel="stylesheet">
 		<!--Favicon-->
 		<link rel="shortcut icon" type="image/png" href="resources/img/favicon.png">
 		<!--Modernizer-->
@@ -37,16 +37,16 @@
 	</head>
 	<body>
 		<%-- Navibar --%>
-		<%@include file="plugins/navibars/indexNavibar.html" %>
+		<%@include file="plugins/navibars/indexNavibar.jsp" %>
 		<header>
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-6">
-						<a href="index.html"> <img src="res/img/fondo-trasparente.png" alt="Logo"> </a>
+						<a href="index.html"> <img src="resources/img/fondo-trasparente.png" alt="Logo"> </a>
 					</div>
 					<div class="col-xs-6 signin text-right navbar-nav"> 
-						<a href="#" data-toggle="modal" data-target="#popupRegistrarse">Registrarse</a> &nbsp; &nbsp;
-						<a href="#" data-toggle="modal" data-target="#popupIniciarSesion">Ingresar</a>&nbsp; &nbsp;
+						<a href="${contextPath}/registration">Registrarse</a> &nbsp; &nbsp;
+						<a href="${contextPath}/login">Ingresar</a>&nbsp; &nbsp;
 					</div>
 				</div>
 				<div class="row header-info">
@@ -59,7 +59,7 @@
 							<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 								<div class="row">
 									<div class="col-md-12 text-center wow fadeInUp" data-wow-delay="1.8s">
-										<button data-toggle="modal" data-target="#popupRegistrarse" class="btn btn-primary btn-lg scroll">Regístrate</button>
+										<button onclick="href=location.href='${contextPath}/login'" class="btn btn-primary btn-lg scroll">Regístrate</button>
 									</div>
 								</div>
 							</div> 
@@ -69,13 +69,6 @@
 				</div>
 			</div>
 		</header>
-
-		<!-- Popup Registrarse -->
-		<%@include file="plugins/popups/indexPopupRegistrarse.html" %>
-
-		<!-- Popup Iniciar Sesion -->
-		<%@include file="plugins/popups/indexPopupLogin.html" %>
-
 		<!-- Javascript -->
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.2.1.js" 
