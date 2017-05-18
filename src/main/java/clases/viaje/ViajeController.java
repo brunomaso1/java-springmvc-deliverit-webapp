@@ -39,10 +39,9 @@ public class ViajeController {
 	@GetMapping
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = (String) request.getAttribute("SUCURSAL_ID");
-		String restaurantId = (String) request.getAttribute("RESTAURANT_ID");
 		String estadoId = (String) request.getAttribute("ESTADO_ID");
 
-		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidos(sucursalId, restaurantId), estadoId);
+		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidos(sucursalId), estadoId);
 
 		model.addAttribute("datosTablaPrincipal", vch.tablaPrincipalHtml(pedidos));
 
@@ -61,12 +60,11 @@ public class ViajeController {
 	@RequestMapping(path = "/viajeNuevo", method = POST)
 	public String nuevoViaje(@RequestParam String tipo, @RequestParam String precio, HttpServletRequest request) {
 		String sucursalId = (String) request.getSession(false).getAttribute("SUCURSAL_ID");
-		String restaurantId = (String) request.getSession(false).getAttribute("RESTAURANT_ID");
 		
 		if (tipo.equals("publicar") == true) {
 			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");
 			try {
-				vl.crearViaje(precio, Parametros.ESTADO_PUBLICADO, sucursalId, restaurantId);
+				vl.crearViaje(precio, Parametros.ESTADO_PUBLICADO, sucursalId);
 				LOGGER.log(Level.FINEST, "Termino la insercion del viaje publicado.");
 			} catch (IOException e) {
 				LOGGER.log(Level.SEVERE, "No se pudo procesar el viaje publicado.", e.toString());
@@ -74,7 +72,7 @@ public class ViajeController {
 		} else {
 			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje pendiente.");
 			try {
-				vl.crearViaje(precio, Parametros.ESTADO_PENDIENTE, sucursalId, restaurantId);
+				vl.crearViaje(precio, Parametros.ESTADO_PENDIENTE, sucursalId);
 				LOGGER.log(Level.FINEST, "Termino la insercion del viaje pendiente.");
 			} catch (IOException e) {
 				LOGGER.log(Level.SEVERE, "No se pudo procesar el viaje pendiente.", e.toString());

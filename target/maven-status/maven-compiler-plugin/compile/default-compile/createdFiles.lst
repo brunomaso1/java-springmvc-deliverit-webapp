@@ -10,7 +10,6 @@ clases\delivery\DeliveryLogica.class
 clases\dominio\RespuestaGeneral.class
 clases\restaurant\RestaurantController.class
 clases\accesControl\ACUserDetailsServiceImpl.class
-clases\dominio\PedidoPK.class
 clases\configuration\Parametros.class
 clases\viaje\ViajeFormBean.class
 clases\accesControl\ACUserValidator.class
@@ -28,7 +27,6 @@ clases\accesControl\ACUserServiceImpl.class
 clases\dominio\Restaurant.class
 clases\accesControl\ACSecurityServiceImpl.class
 clases\configuration\Configuration.class
-clases\dominio\SucursalPK.class
 clases\restaurant\RestaurantControllerHelper.class
 clases\dominio\Ubicacion.class
 clases\viaje\ViajeController.class

@@ -4,10 +4,8 @@ import clases.dominio.*;
 import clases.configuration.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.AbstractSet;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -51,14 +49,13 @@ public class ViajeLogica {
 	 * Consume un servicio rest y obtiene todos los pedidos de una sucursal.
 	 *
 	 * @param sucursal Id de la sucursal.
-	 * @param restaurant Id del restaurant.
 	 * @return Pedido[] Una lista conteniendo entidades pedidos.
 	 */
-	public Pedido[] obtenerPedidos(String sucursal, String restaurant) {
+	public Pedido[] obtenerPedidos(String sucursal) {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//Obtiene la respuesta.
-		Pedido[] pedidosTablaPrincipal = restTemplate.getForObject(Configuration.restFindPedidosGet(restaurant, sucursal), Pedido[].class);
+		Pedido[] pedidosTablaPrincipal = restTemplate.getForObject(Configuration.restFindPedidosGet(sucursal), Pedido[].class);
 
 		return pedidosTablaPrincipal;
 	}
@@ -71,16 +68,31 @@ public class ViajeLogica {
 	 * @param precio
 	 * @param estadoId
 	 */
-	public void crearViaje(String precio, String estadoId, String sucursalId, String restaurantId) throws IOException {
+	public void crearViaje(String precio, String estadoId, String sucursalId) throws IOException {
 		RestTemplate restTemplate = new RestTemplate();
 		ObjectMapper mapper = new ObjectMapper();
 
 		//Insertar viaje.
-		Viaje viaje = new Viaje(precio, sucursalId, restaurantId, estadoId);
+		Viaje viaje = new Viaje(precio, sucursalId, estadoId);
 		
-		Sucursal sucursal = restTemplate.getForObject(Configuration.restSucursalGet(sucursalId,restaurantId), Sucursal.class);
+		Sucursal sucursal = restTemplate.getForObject(Configuration.restSucursalGet(sucursalId), Sucursal.class);
 		viaje.setSucursal(sucursal);
-
+		
+//		RespuestaGeneral rgPed = restTemplate.postForObject(Configuration.restPedidoPost(), pedidos.get(0), RespuestaGeneral.class);
+//		if (rgPed.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+//			LOGGER.log(Level.FINEST, "Se inserto el viaje correctamente.");
+//		} else {
+//			LOGGER.log(Level.SEVERE, "No se pudo insertar el viaje -> ", rgPed.getCodigo() + " " + rgPed.getMensaje());
+//		}
+//		
+//		Object p = rgPed.getObjeto();
+//		Pedido ped = mapper.readValue(p.toString(), Pedido.class);
+//		
+//		pedidos.clear();
+//		pedidos.add(ped);
+		pedidos.get(0).setId(1);
+		viaje.setPedidos(pedidos);
+		
 		RespuestaGeneral rgVje = restTemplate.postForObject(Configuration.restViajePost(), viaje, RespuestaGeneral.class);
 		if (rgVje.getCodigo() == RespuestaGeneral.CODIGO_OK) {
 			LOGGER.log(Level.FINEST, "Se inserto el viaje correctamente.");
@@ -88,49 +100,50 @@ public class ViajeLogica {
 			LOGGER.log(Level.SEVERE, "No se pudo insertar el viaje -> ", rgVje.getCodigo() + " " + rgVje.getMensaje());
 		}
 
-		Object v = rgVje.getObjeto();
-		Viaje vje = mapper.readValue(v.toString(), Viaje.class);
-		int pedidoId = 1;
+//		Object v = rgVje.getObjeto();
+//		Viaje vje = mapper.readValue(v.toString(), Viaje.class);
+//		int pedidoId = 1;
 		for (Pedido pedido : pedidos) {
 			//Seto el id de viaje al pedido.
-			pedido.setViaje(vje);
-			pedido.setPedidoPK(pedidoId, vje.getId());
-			LOGGER.log(Level.FINEST, "Se asocio el viaje.");
+//			pedido.setViaje(vje);
+//			pedido.setPedidoPK(pedidoId, vje.getId());
+//			LOGGER.log(Level.FINEST, "Se asocio el viaje.");
 
-			//Obtengo la direccion del pedido y la inserto.
-			RespuestaGeneral rgDir = restTemplate.postForObject(Configuration.restDireccionPost(), pedido.getCliente().getDireccion(), RespuestaGeneral.class);
-			if (rgDir.getCodigo() == RespuestaGeneral.CODIGO_OK) {
-				LOGGER.log(Level.FINEST, "Se inserto la direccion correctamente.");
-			} else {
-				LOGGER.log(Level.SEVERE, "No se pudo insertar la direccion -> ", rgDir.getCodigo() + " " + rgDir.getMensaje());
-			}
+//			//Obtengo la direccion del pedido y la inserto.
+//			RespuestaGeneral rgDir = restTemplate.postForObject(Configuration.restDireccionPost(), pedido.getCliente().getDireccion(), RespuestaGeneral.class);
+//			if (rgDir.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+//				LOGGER.log(Level.FINEST, "Se inserto la direccion correctamente.");
+//			} else {
+//				LOGGER.log(Level.SEVERE, "No se pudo insertar la direccion -> ", rgDir.getCodigo() + " " + rgDir.getMensaje());
+//			}
+//
+//			//Le asigno el id de la direccion que traje a la direccion en el pedido .
+//			Object d = rgDir.getObjeto();
+//			Direccion dir = mapper.readValue(d.toString(), Direccion.class);
+//			pedido.getCliente().setDireccion(dir);
+//
+//			//Obtengo el cliente y lo inserto.
+//			RespuestaGeneral rgCli = restTemplate.postForObject(Configuration.restClientePost(), pedido.getCliente(), RespuestaGeneral.class);
+//			if (rgCli.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+//				LOGGER.log(Level.FINEST, "Se inserto el cliente correctamente.");
+//			} else {
+//				LOGGER.log(Level.SEVERE, "No se pudo insertar el cliente -> ", rgCli.getCodigo() + " " + rgCli.getMensaje());
+//			}
 
-			//Le asigno el id de la direccion que traje a la direccion en el pedido .
-			Object d = rgDir.getObjeto();
-			Direccion dir = mapper.readValue(d.toString(), Direccion.class);
-			pedido.getCliente().setDireccion(dir);
-
-			//Obtengo el cliente y lo inserto.
-			RespuestaGeneral rgCli = restTemplate.postForObject(Configuration.restClientePost(), pedido.getCliente(), RespuestaGeneral.class);
-			if (rgCli.getCodigo() == RespuestaGeneral.CODIGO_OK) {
-				LOGGER.log(Level.FINEST, "Se inserto el cliente correctamente.");
-			} else {
-				LOGGER.log(Level.SEVERE, "No se pudo insertar el cliente -> ", rgCli.getCodigo() + " " + rgCli.getMensaje());
-			}
-
-			//Le asigno el id del cliente que traje al pedido.
-			Object c = rgCli.getObjeto();
-			Cliente cli = mapper.readValue(c.toString(), Cliente.class);
-			pedido.setCliente(cli);
+//			//Le asigno el id del cliente que traje al pedido.
+//			Object c = rgCli.getObjeto();
+//			Cliente cli = mapper.readValue(c.toString(), Cliente.class);
+//			pedido.setCliente(cli);
 
 			//Finalmente inserto el pedido que ya tiene todo lo asociado.
-			RespuestaGeneral rgPed = restTemplate.postForObject(Configuration.restPedidoPost(), pedido, RespuestaGeneral.class);
-			if (rgPed.getCodigo() == RespuestaGeneral.CODIGO_OK) {
-				LOGGER.log(Level.FINEST, "Se inserto el pedido correctamente.");
-			} else {
-				LOGGER.log(Level.SEVERE, "No se pudo insertar el pedido -> ", rgPed.getCodigo() + " " + rgPed.getMensaje());
-			}
-			pedidoId++;
+//			RespuestaGeneral rgPed = restTemplate.postForObject(Configuration.restPedidoPost(), pedido, RespuestaGeneral.class);
+//			if (rgPed.getCodigo() == RespuestaGeneral.CODIGO_OK) {
+//				LOGGER.log(Level.FINEST, "Se inserto el pedido correctamente.");
+//			} else {
+//				LOGGER.log(Level.SEVERE, "No se pudo insertar el pedido -> ", rgPed.getCodigo() + " " + rgPed.getMensaje());
+//			}
+//			pedidoId++;
+			
 		}
 		//Limpio la lista de pedidos para la proxima inserccion.
 		pedidos.clear();

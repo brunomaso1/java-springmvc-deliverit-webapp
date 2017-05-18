@@ -14,7 +14,6 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\RespuestaGen
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\restaurant\RestaurantControllerHelper.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACAuthenticationSuccessHandlerImpl.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeControllerHelper.java
-C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\SucursalPK.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Vehiculo.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\EstadoViaje.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Viaje.java
@@ -29,7 +28,6 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\index\IndexControlle
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\restaurant\RestaurantFormBean.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Pedido.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Ubicacion.java
-C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\PedidoPK.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\configuration\Parametros.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Cliente.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACUserServiceImpl.java

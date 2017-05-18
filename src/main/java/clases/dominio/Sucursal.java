@@ -7,7 +7,7 @@ import java.util.Collection;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Sucursal {
 
-	protected SucursalPK sucursalPK;
+	private Integer id;
 
 	private String nombre;
 
@@ -20,21 +20,21 @@ public class Sucursal {
 	public Sucursal() {
 	}
 	
-	public Sucursal(int sucursal, int restaurant) {
-		this.sucursalPK = new SucursalPK((short)sucursal, restaurant);
+	public Sucursal(Integer sucursal) {
+		this.id = sucursal;
 		this.viajeCollection = new ArrayList<>();
-	}
-
-	public SucursalPK getSucursalPK() {
-		return sucursalPK;
-	}
-
-	public void setSucursalPK(SucursalPK sucursalPK) {
-		this.sucursalPK = sucursalPK;
 	}
 
 	public String getNombre() {
 		return nombre;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setNombre(String nombre) {
@@ -66,28 +66,8 @@ public class Sucursal {
 	}
 
 	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (sucursalPK != null ? sucursalPK.hashCode() : 0);
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Sucursal)) {
-			return false;
-		}
-		Sucursal other = (Sucursal) object;
-		if ((this.sucursalPK == null && other.sucursalPK != null) || (this.sucursalPK != null && !this.sucursalPK.equals(other.sucursalPK))) {
-			return false;
-		}
-		return true;
-	}
-
-	@Override
 	public String toString() {
-		return "ucu.deliverit.backcore.entidades.Sucursal[ sucursalPK=" + sucursalPK + " ]";
+		return "ucu.deliverit.backcore.entidades.Sucursal[ sucursalId=" + id + " ]";
 	}
 
 }

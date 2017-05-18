@@ -15,7 +15,7 @@ public class Viaje {
 
 	private Collection<Transaccion> transaccionCollection;
 
-	private Collection<Pedido> pedidoCollection;
+	private Collection<Pedido> pedidos;
 
 	private Delivery delivery;
 
@@ -26,14 +26,13 @@ public class Viaje {
 	public Viaje() {
 	}
 
-	public Viaje(String precio, String sucursalId, String restaurantId, String estado) {
+	public Viaje(String precio, String sucursalId, String estado) {
 		this.precio = Short.parseShort(precio);
 		this.transaccionCollection = new ArrayList<>();
-		this.pedidoCollection = new ArrayList<>();
-		this.sucursal = new Sucursal(Integer.valueOf(sucursalId), Integer.valueOf(restaurantId));
+		this.pedidos = new ArrayList<>();
+		this.sucursal = new Sucursal(Integer.valueOf(sucursalId));
 		this.estado = new EstadoViaje(Integer.valueOf(estado));
 	}
-	
 
 	public Integer getId() {
 		return id;
@@ -67,12 +66,12 @@ public class Viaje {
 		this.transaccionCollection = transaccionCollection;
 	}
 
-	public Collection<Pedido> getPedidoCollection() {
-		return pedidoCollection;
+	public Collection<Pedido> getPedidoss() {
+		return pedidos;
 	}
 
-	public void setPedidoCollection(Collection<Pedido> pedidoCollection) {
-		this.pedidoCollection = pedidoCollection;
+	public void setPedidos(Collection<Pedido> pedidoCollection) {
+		this.pedidos = pedidoCollection;
 	}
 
 	public Delivery getDelivery() {
@@ -97,26 +96,6 @@ public class Viaje {
 
 	public void setEstado(EstadoViaje estado) {
 		this.estado = estado;
-	}
-
-	@Override
-	public int hashCode() {
-		int hash = 0;
-		hash += (id != null ? id.hashCode() : 0);
-		return hash;
-	}
-
-	@Override
-	public boolean equals(Object object) {
-		// TODO: Warning - this method won't work in the case the id fields are not set
-		if (!(object instanceof Viaje)) {
-			return false;
-		}
-		Viaje other = (Viaje) object;
-		if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-			return false;
-		}
-		return true;
 	}
 
 	@Override

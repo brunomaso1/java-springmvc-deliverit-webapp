@@ -67,6 +67,7 @@
 									</div><!-- /btn-group -->
 								</div><!-- /input-group -->
 							</div>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="col-lg-2  text-right top-padding-1 ">
 								<button type="submit" name="tipo" value="guardar" class="btn btn-secondary btn-md">Guardar</button>
 								<button type="submit" name="tipo" value="publicar" class="btn btn-danger btn-md">Publicar</button>

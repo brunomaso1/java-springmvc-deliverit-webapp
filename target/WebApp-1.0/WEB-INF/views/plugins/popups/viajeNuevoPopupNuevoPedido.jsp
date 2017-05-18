@@ -45,6 +45,7 @@
 								<label for="aclaraciones">Aclaraciones: </label>
 								<textarea class="form-control" rows="3" placeholder="Cuidado con el perro? " id="aclaraciones" name="aclaraciones"></textarea>
 							</div>
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<button type="submit" class="btn btn-warning">Ingresar</button>
 						</form>
 					</div>

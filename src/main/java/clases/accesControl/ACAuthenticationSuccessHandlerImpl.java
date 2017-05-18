@@ -83,7 +83,6 @@ public class ACAuthenticationSuccessHandlerImpl implements AuthenticationSuccess
 		}
 		session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
 		session.setAttribute("SUCURSAL_ID", SUCURSAL_DEFAULT);
-		session.setAttribute("RESTAURANT_ID", RESTAURANT_DEFAULT);
 		session.setAttribute("ESTADO_ID", ESTADO_DEFAULT);
 	}
 
