@@ -19,4 +19,8 @@ public class Parametros {
 	public static String ESTADO_ENPROCESO = "3";
 	public static String ESTADO_TERMINADO = "4";
 	
+	public static String HISTORIALVIAJE_EXCEL_TOPE = "10000";
+	public static String HISTORIALVIAJE_EXCEL_FECHA_DESDE = "";
+	
+	
 }

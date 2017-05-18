@@ -1,8 +1,10 @@
 package clases.configuration;
 
+import java.util.Date;
+
 public final class Configuration {
 	
-	private static final String ambienteJuan = "http://192.168.1.42:8080/BackCore/ws/";
+	private static final String ambienteJuan = "http://192.168.1.45:8080/BackCore/ws/";
 	
 	private static final String ambienteBruno = "http://localhost:32794/BackCore/ws/";
 	
@@ -18,6 +20,10 @@ public final class Configuration {
 	
 	public static String restViajeGet() {
 		return ambiente + "viaje";
+	}
+	
+	public static String restViajeGet(Date fechaDesde, Date fechaHasta) {
+		return ambiente + "viaje/" + fechaDesde.toString() + "/" + fechaHasta.toString();
 	}
 	
 	public static String restViajePost() {

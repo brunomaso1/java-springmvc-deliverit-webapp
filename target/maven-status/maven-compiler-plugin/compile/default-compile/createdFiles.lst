@@ -1,11 +1,15 @@
 clases\dominio\Usuario.class
+clases\historialViaje\HistorialViajeExcelBuilderView.class
 clases\viaje\ViajeLogica.class
 clases\viaje\ViajeControllerHelper.class
+clases\historialViaje\HistorialViajeFormBean.class
+clases\historialViaje\HistorialViajeController.class
 clases\accesControl\ACController.class
 clases\accesControl\ACIUserService.class
 clases\dominio\Sucursal.class
 clases\dominio\Transaccion.class
 clases\dominio\Direccion.class
+clases\historialViaje\HistorialViajeLogica.class
 clases\delivery\DeliveryLogica.class
 clases\dominio\RespuestaGeneral.class
 clases\restaurant\RestaurantController.class
@@ -29,6 +33,7 @@ clases\accesControl\ACSecurityServiceImpl.class
 clases\configuration\Configuration.class
 clases\restaurant\RestaurantControllerHelper.class
 clases\dominio\Ubicacion.class
+clases\historialViaje\HistorialViajeControllerHelper.class
 clases\viaje\ViajeController.class
 clases\accesControl\ACISecurityService.class
 clases\dominio\Delivery.class

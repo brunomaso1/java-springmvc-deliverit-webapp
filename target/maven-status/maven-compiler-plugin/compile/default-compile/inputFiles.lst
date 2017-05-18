@@ -3,8 +3,10 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\delivery\DeliveryCon
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACController.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Transaccion.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Usuario.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\HistorialViajeController.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\configuration\Configuration.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeLogica.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\HistorialViajeFormBean.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACUserValidator.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Direccion.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\restaurant\RestaurantLogica.java
@@ -14,6 +16,7 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\RespuestaGen
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\restaurant\RestaurantControllerHelper.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACAuthenticationSuccessHandlerImpl.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeControllerHelper.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\HistorialViajeLogica.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Vehiculo.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\EstadoViaje.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Viaje.java
@@ -24,9 +27,11 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeControlle
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\delivery\DeliveryLogica.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Restaurant.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACIUserService.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\HistorialViajeExcelBuilderView.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\index\IndexController.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\restaurant\RestaurantFormBean.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Pedido.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\HistorialViajeControllerHelper.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Ubicacion.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\configuration\Parametros.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Cliente.java
