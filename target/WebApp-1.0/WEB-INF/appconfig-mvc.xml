@@ -29,9 +29,8 @@
 	
 	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
 		<property name="location">
-			<value>/WEB-INF/spring-excel-views.xml</value>
+			<value>/WEB-INF/appconfig-views-excel.xml</value>
 		</property>
 		<property name="order" value="0" />
-	</bean>
-	
+	</bean>	
 </beans>
