@@ -1,7 +1,4 @@
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@include file="plugins/headers/headers.jsp" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
@@ -10,45 +7,42 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
 
-		<title>Log in with your account</title>
+		<title>Ingresa con tu cuenta</title>
 
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
 			  rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
 			  crossorigin="anonymous">
-		<link href="/resources/css/login.css" rel="stylesheet">
-		<%--<link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"> --%>
-		<%--<link href="${contextPath}/resources/css/common.css" rel="stylesheet">--%>
-
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
+		<!--User css-->
+		<link href="resources/css/login.css" rel="stylesheet">
+		<!--Favicon-->
+		<link rel="shortcut icon" type="image/png" href="resources/img/favicon.png">
 	</head>
-
 	<body>
-
 		<div class="container">
-			<form method="POST" action="${contextPath}/login" class="form-signin">
-				<h2 class="form-heading">Log in</h2>
-				<div class="form-group ${error != null ? 'has-error' : ''}">
-					<span>${message}</span>
-					<input name="username" type="text" class="form-control" placeholder="Username"
-						   autofocus="true"/>
-					<input name="password" type="password" class="form-control" placeholder="Password"/>
-					<span>${error}</span>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<div id="login-box">
+				<div class="logo">
+					<img src="resources/img/login-photo.jpg" class="img img-responsive img-circle center-block"/>
+					<h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+				</div><!-- /.logo -->
+				<form method="POST" action="${contextPath}/login" class="form-signin">
+					<div class="form-group ${error != null ? 'has-error' : ''}">
+						<span class="text-white">${message}</span>
+						<input name="username" type="text" class="form-control" placeholder="Usuario"
+							   autofocus="true"/>
+						<input name="password" type="password" class="form-control" placeholder="Contraseña"/>
+						<span class="text-white">${error}</span>
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-					<h4 class="text-center"><a href="${contextPath}/registration">Crear cuenta nueva</a></h4>
-				</div>
-			</form>
-		</div>
-		<!-- /container -->
+						<button class="btn btn-warning btn-md btn3d btn-block" type="submit">Ingresar</button>
+						<h4 class="text-center"><a href="${contextPath}/registration">Crear cuenta nueva</a></h4>
+					</div>
+				</form>
+			</div><!-- /#login-box -->
+		</div><!-- /.container -->
+		<div id="particles-js"></div>
 		<!-- jQuery -->
 		<script src="https://code.jquery.com/jquery-3.2.1.js" 
 				integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" 
@@ -59,5 +53,6 @@
 				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
 				crossorigin="anonymous">
 		</script>
+		<script src="resources/js/login.js"></script>
 	</body>
 </html>

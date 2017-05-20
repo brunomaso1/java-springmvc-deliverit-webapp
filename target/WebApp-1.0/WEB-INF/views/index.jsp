@@ -37,29 +37,31 @@
 	</head>
 	<body>
 		<%-- Navibar --%>
-		<%@include file="plugins/navibars/indexNavibar.jsp" %>
+		<%--<%@include file="plugins/navibars/indexNavibar.jsp" %>--%>
 		<header>
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-6">
 						<a href="index.html"> <img src="resources/img/fondo-trasparente.png" alt="Logo"> </a>
 					</div>
-					<div class="col-xs-6 signin text-right navbar-nav"> 
-						<a href="${contextPath}/registration">Registrarse</a> &nbsp; &nbsp;
-						<a href="${contextPath}/login">Ingresar</a>&nbsp; &nbsp;
+					<div class="col-xs-3 col-xs-offset-2"> 
+						<button onclick="href = location.href = '${contextPath}/login'" class="btn btn-warning btn-sm btn3d">Ingresar</button>
 					</div>
 				</div>
 				<div class="row header-info">
 					<div class="col-sm-10 col-sm-offset-1 text-center">
-						<h1 class="wow fadeIn">Llegó una nueva forma de hacer Delivery!</h1>
+						<h1 class="wow fadeIn"> 
+							Llegó una nueva forma de hacer Delivery!
+						</h1>
 						<br>
-						<p class="lead wow fadeIn" data-wow-delay="0.5s">Eres Delivery y quieres trabajar cuando quieras y como quieras? O necesitas Deliverys para que entregen tus pedidos de comida? <br> Únete a DeliverIT y soluciona tus problemas! <br>
+						<p class="lead wow fadeIn" data-wow-delay="0.5s"> 
+							Eres Delivery y quieres trabajar cuando quieras y como quieras? O necesitas Deliverys para que entregen tus pedidos de comida? <br> Únete a DeliverIT y soluciona tus problemas! <br>
 						</p>
 						<div class="row">
 							<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 								<div class="row">
 									<div class="col-md-12 text-center wow fadeInUp" data-wow-delay="1.8s">
-										<button onclick="href=location.href='${contextPath}/login'" class="btn btn-primary btn-lg scroll">Regístrate</button>
+										<button onclick="href = location.href = '${contextPath}/login'" class="btn btn-warning btn-md btn3d">Ingresar</button>
 									</div>
 								</div>
 							</div> 

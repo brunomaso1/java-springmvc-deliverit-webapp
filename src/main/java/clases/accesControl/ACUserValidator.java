@@ -1,3 +1,6 @@
+/**
+ * Valida los ingresos.
+ */
 package clases.accesControl;
 
 import clases.dominio.Usuario;

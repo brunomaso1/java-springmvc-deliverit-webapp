@@ -1,3 +1,6 @@
+/**
+ * Interfaz del Control de Acceso
+ */
 package clases.accesControl;
 
 public interface ACISecurityService {

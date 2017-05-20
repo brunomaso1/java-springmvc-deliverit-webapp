@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Implementacion del funcionamiento cuando se ingresa correctamente.
  */
 package clases.accesControl;
 
 import static clases.configuration.Parametros.ESTADO_DEFAULT;
-import static clases.configuration.Parametros.RESTAURANT_DEFAULT;
 import static clases.configuration.Parametros.SUCURSAL_DEFAULT;
-import clases.viaje.ViajeController;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -51,28 +46,33 @@ public class ACAuthenticationSuccessHandlerImpl implements AuthenticationSuccess
 		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
 
+	/**
+	 * Determina hacia donde se debe redirigir segun el rol que ha ingresado.
+	 */
 	protected String determineTargetUrl(Authentication authentication) {
-//		boolean isUser = false;
-//		boolean isAdmin = false;
-//		Collection<? extends GrantedAuthority> authorities
-//				= authentication.getAuthorities();
-//		for (GrantedAuthority grantedAuthority : authorities) {
-//			if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
-//				isUser = true;
-//				break;
-//			} else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
-//				isAdmin = true;
-//				break;
-//			}
-//		}
-//
-//		if (isUser) {
-//			return "/homepage.html";
-//		} else if (isAdmin) {
-//			return "/console.html";
-//		} else {
-//			throw new IllegalStateException();
-//		}
+		/* // Para varios roles
+		boolean isUser = false;
+		boolean isAdmin = false;
+		Collection<? extends GrantedAuthority> authorities
+				= authentication.getAuthorities();
+		for (GrantedAuthority grantedAuthority : authorities) {
+			if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
+				isUser = true;
+				break;
+			} else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
+				isAdmin = true;
+				break;
+			}
+		}
+
+		if (isUser) {
+			return "/homepage.html";
+		} else if (isAdmin) {
+			return "/console.html";
+		} else {
+			throw new IllegalStateException();
+		} 
+		*/
 		return "/viaje.html";
 	}
 

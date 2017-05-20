@@ -1,3 +1,6 @@
+/**
+ * Implementacion de la Interfaz Security Service.
+ */
 package clases.accesControl;
 
 import java.util.logging.Level;
