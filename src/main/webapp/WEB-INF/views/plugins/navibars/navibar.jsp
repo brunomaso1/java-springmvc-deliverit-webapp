@@ -44,8 +44,8 @@
 			<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav side-nav">
-					<li class="active">
-						<a href="viaje.html"><i class="fa fa-fw fa-bicycle" aria-hidden="true"></i> Viajes</a> <span class="sr-only">(current)</span>
+					<li>
+						<a href="viaje.html"><i class="fa fa-fw fa-bicycle" aria-hidden="true"></i> Viajes</a>
 					</li>
 					<li>
 						<a href="clientes.html"><i class="fa fa-fw fa-address-book-o" aria-hidden="true"></i> Clientes</a>
@@ -60,13 +60,14 @@
 						<a href="estadoCuenta.html"><i class="fa fa-fw fa-credit-card-alt" aria-hidden="true"></i> Estado de cuenta</a>
 					</li>
 					<li>
-						<a href="javascript:;" data-toggle="collapse" data-target="#droplist1"><i class="fa fa-fw fa-history" aria-hidden="true"></i> Historial <i class="fa fa-fw fa-caret-down"></i></a>
+						<a href="javascript:;" data-toggle="collapse" data-target="#droplist1"><i class="fa fa-fw fa-history" aria-hidden="true"></i> Historial 
+						<i class="fa fa-fw fa-caret-down"></i></a>
 						<ul id="droplist1" class="collapse">
 							<li>
 								<a href="historialViaje.html"><i class="fa fa-fw fa-book" aria-hidden="true"></i> Viajes</a>
 							</li>
 							<li>
-								<a href="#"><i class="fa fa-fw fa-hand-o-up" aria-hidden="true"></i> Pedidos</a>
+								<a href="historialPedidos.html"><i class="fa fa-fw fa-hand-o-up" aria-hidden="true"></i> Pedidos</a>
 							</li>
 						</ul>
 					</li>

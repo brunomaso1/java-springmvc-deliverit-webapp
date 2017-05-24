@@ -38,7 +38,7 @@
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/png" href="resources/img/favicon.png">
 		<!-- User stylesheets -->
-		<link href="resources/css/historialViaje.css" rel="stylesheet">
+		<link href="resources/css/historialPedidos.css" rel="stylesheet">
 	</head>
 	<body>
 		<div id="wrapper">
@@ -49,24 +49,24 @@
 					<div class="row">
 						<div class="col-lg-3">
 							<h1 class="headline">
-								Historial de viajes
+								Historial de pedidos
 							</h1>
 						</div>
 					</div>
 					<!-- /.row -->
 					<div class="row">
-						<%@include file="plugins/panels/historialViajePanel.jsp" %>
+						<%@include file="plugins/panels/historialPedidosPanel.jsp" %>
 					</div>
 					<div class="row">
 						<div class="col-lg-6">
-							<%@include file="plugins/charts/historialViajeCharts/historialViajeChartEstadoViajeDona.jsp" %>
+							<%@include file="plugins/charts/historialPedidosCharts/historialPedidosChartEstadoPedidosDona.jsp" %>
 						</div>
 						<div class="col-lg-6">
-							<%@include file="plugins/charts/historialViajeCharts/historialViajeChartCantViajeMes.jsp" %>
+							<%@include file="plugins/charts/historialPedidosCharts/historialPedidosChartCantPedidosMes.jsp" %>
 						</div>
 					</div>
 					<div class="row">
-						<%@include file="plugins/charts/historialViajeCharts/historialViajeChartGananciaViajeMes.jsp" %>
+						<%@include file="plugins/charts/historialPedidosCharts/historialPedidosChartGananciaPedidosMes.jsp" %>
 					</div>
 				</div>
 			</div>
@@ -97,7 +97,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 		<!-- User javascripts -->
-		<script src="resources/js/historialViaje.js"></script>
+		<script src="resources/js/historialPedidos.js"></script>
 		<script>initDataTable();</script>
 		<script>initCharts(${rawData1}, ${rawData2}, ${rawData3});</script>
 	</body>

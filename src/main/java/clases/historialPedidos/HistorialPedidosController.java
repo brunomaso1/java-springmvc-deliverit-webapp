@@ -1,4 +1,4 @@
-package clases.historialViaje;
+package clases.historialPedidos;
 
 import clases.accesControl.ACSessionServices;
 import clases.configuration.Parametros;
@@ -16,22 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Controlador de las acciones respecto a los viajes.
+ * Controlador de las acciones respecto a los Pedidos.
  */
 @Controller
-@RequestMapping(path = "/historialViaje")
-public class HistorialViajeController {
+@RequestMapping(path = "/historialPedidos")
+public class HistorialPedidosController {
 
 	//Logger
-	private final static Logger LOGGER = Logger.getLogger(HistorialViajeController.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(HistorialPedidosController.class.getName());
 
-	private HistorialViajeLogica hvl;
-	private HistorialViajeControllerHelper vch;
+	private HistorialPedidosLogica hvl;
+	private HistorialPedidosControllerHelper vch;
 	private ACSessionServices acss;
 
-	public HistorialViajeController() {
-		this.hvl = new HistorialViajeLogica();
-		this.vch = new HistorialViajeControllerHelper();
+	public HistorialPedidosController() {
+		this.hvl = new HistorialPedidosLogica();
+		this.vch = new HistorialPedidosControllerHelper();
 		this.acss = new ACSessionServices();
 	}
 
@@ -40,15 +40,15 @@ public class HistorialViajeController {
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
 
-		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
+		Pedido[] pedidos = hvl.obtenerPedidos(sucursalId);
 
-		model.addAttribute("datosTablaHistorialViaje", vch.tablaHistorialViajeHtml(viajes));
-		model.addAttribute("rawData1", vch.chartHistorialViajeDona(viajes));
-		model.addAttribute("rawData2", vch.chartHistorialViajeLinea(viajes));
-		model.addAttribute("rawData3", vch.chartHistorialViajeBarras(viajes));
+		model.addAttribute("datosTablaHistorialPedidos", vch.tablaHistorialPedidosHtml(pedidos));
+		model.addAttribute("rawData1", vch.chartHistorialPedidosDona(pedidos));
+		model.addAttribute("rawData2", vch.chartHistorialPedidosLinea(pedidos));
+		model.addAttribute("rawData3", vch.chartHistorialPedidosBarras(pedidos));
 
 		model.addAttribute("usuarioActual", acss.getUserName());
 
-		return "historialViaje";
+		return "historialPedidos";
 	}
 }

@@ -1,4 +1,4 @@
-package clases.historialViaje;
+package clases.deliverys;
 
 import clases.accesControl.ACSessionServices;
 import clases.configuration.Parametros;
@@ -16,22 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Controlador de las acciones respecto a los viajes.
+ * Controlador de las acciones respecto a los Pedidos.
  */
 @Controller
-@RequestMapping(path = "/historialViaje")
-public class HistorialViajeController {
+@RequestMapping(path = "/deliverys")
+public class DeliverysController {
 
 	//Logger
-	private final static Logger LOGGER = Logger.getLogger(HistorialViajeController.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(DeliverysController.class.getName());
 
-	private HistorialViajeLogica hvl;
-	private HistorialViajeControllerHelper vch;
+	private DeliverysLogica hvl;
+	private DeliverysControllerHelper vch;
 	private ACSessionServices acss;
 
-	public HistorialViajeController() {
-		this.hvl = new HistorialViajeLogica();
-		this.vch = new HistorialViajeControllerHelper();
+	public DeliverysController() {
+		this.hvl = new DeliverysLogica();
+		this.vch = new DeliverysControllerHelper();
 		this.acss = new ACSessionServices();
 	}
 
@@ -40,15 +40,11 @@ public class HistorialViajeController {
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
 
-		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
+		Delivery[] deliverys = hvl.obtenerDeliverys(sucursalId);
 
-		model.addAttribute("datosTablaHistorialViaje", vch.tablaHistorialViajeHtml(viajes));
-		model.addAttribute("rawData1", vch.chartHistorialViajeDona(viajes));
-		model.addAttribute("rawData2", vch.chartHistorialViajeLinea(viajes));
-		model.addAttribute("rawData3", vch.chartHistorialViajeBarras(viajes));
-
+		model.addAttribute("datosTablaDeliverys", vch.tablaDeliverysHtml(deliverys));
 		model.addAttribute("usuarioActual", acss.getUserName());
 
-		return "historialViaje";
+		return "deliverys";
 	}
 }

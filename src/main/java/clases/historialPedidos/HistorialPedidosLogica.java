@@ -16,15 +16,15 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HistorialViajeLogica {
+public class HistorialPedidosLogica {
 
-	private final static Logger LOGGER = Logger.getLogger(HistorialViajeLogica.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(HistorialPedidosLogica.class.getName());
 	
-	public Viaje[] obtenerViajes(String sucursalId) {
+	public Pedido[] obtenerPedidos(String sucursalId) {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//Obtiene la respuesta.
-		Viaje[] viajes = restTemplate.getForObject(Configuration.restFindViajesGet(sucursalId), Viaje[].class);
-		return viajes;
+		Pedido[] pedidos = restTemplate.getForObject(Configuration.restFindPedidosGet(sucursalId), Pedido[].class);
+		return pedidos;
 	}
 }

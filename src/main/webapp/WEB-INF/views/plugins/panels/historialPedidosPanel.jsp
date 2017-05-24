@@ -5,27 +5,27 @@
 	<body>
 		<div class="panel panel-default panel-height">
 			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Viaje </h3>
+				<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Pedidos </h3>
 			</div>
 			<!-- /.row -->
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped compact" id="viajes">
+					<table class="table table-bordered table-hover table-striped compact" id="pedidos">
 						<thead>
 							<tr>
-								<th>Viaje</th>
+								<th>Pedido</th>
+								<th>Forma de Pago</th>
+								<th>Cliente</th>
+								<th>Direccion</th>
+								<th>Telefono Cliente</th>
 								<th>Delivery</th>
 								<th>Telefono Delivery</th>
-								<th>Calificacion Delivery</th>
-								<th>Calificacion Viaje</th>
+								<th>Viaje</th>
 								<th>Estado</th>
-								<th>Fecha</th>
-								<th>Precio</th>
-								<th>Cantidad Pedidos</th>
 							</tr>
 						</thead>
 						<tbody>
-							${datosTablaHistorialViaje}
+							${datosTablaHistorialPedidos}
 						</tbody>
 					</table>
 				</div>

@@ -1,4 +1,4 @@
-package clases.historialViaje;
+package clases.clientes;
 
 import clases.accesControl.ACSessionServices;
 import clases.configuration.Parametros;
@@ -16,22 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * Controlador de las acciones respecto a los viajes.
+ * Controlador de las acciones respecto a los Pedidos.
  */
 @Controller
-@RequestMapping(path = "/historialViaje")
-public class HistorialViajeController {
+@RequestMapping(path = "/clientes")
+public class ClientesController {
 
 	//Logger
-	private final static Logger LOGGER = Logger.getLogger(HistorialViajeController.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(ClientesController.class.getName());
 
-	private HistorialViajeLogica hvl;
-	private HistorialViajeControllerHelper vch;
+	private ClientesLogica hvl;
+	private ClientesControllerHelper vch;
 	private ACSessionServices acss;
 
-	public HistorialViajeController() {
-		this.hvl = new HistorialViajeLogica();
-		this.vch = new HistorialViajeControllerHelper();
+	public ClientesController() {
+		this.hvl = new ClientesLogica();
+		this.vch = new ClientesControllerHelper();
 		this.acss = new ACSessionServices();
 	}
 
@@ -40,15 +40,11 @@ public class HistorialViajeController {
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
 
-		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
+		Cliente[] clientes = hvl.obtenerClientes(sucursalId);
 
-		model.addAttribute("datosTablaHistorialViaje", vch.tablaHistorialViajeHtml(viajes));
-		model.addAttribute("rawData1", vch.chartHistorialViajeDona(viajes));
-		model.addAttribute("rawData2", vch.chartHistorialViajeLinea(viajes));
-		model.addAttribute("rawData3", vch.chartHistorialViajeBarras(viajes));
-
+		model.addAttribute("datosTablaClientes", vch.tablaClientesHtml(clientes));
 		model.addAttribute("usuarioActual", acss.getUserName());
 
-		return "historialViaje";
+		return "clientes";
 	}
 }

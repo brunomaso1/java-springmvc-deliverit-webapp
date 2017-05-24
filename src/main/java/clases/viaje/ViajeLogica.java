@@ -91,38 +91,10 @@ public class ViajeLogica {
 
 		Object v = rgVje.getObjeto();
 		Viaje vje = mapper.readValue(v.toString(), Viaje.class);
-//		int pedidoId = 1;
 		for (Pedido pedido : pedidos) {
 			//Seto el id de viaje al pedido.
 			pedido.setViaje(vje);
-//			pedido.setPedidoPK(pedidoId, vje.getId());
 			LOGGER.log(Level.FINEST, "Se asocio el viaje.");
-
-//			//Obtengo la direccion del pedido y la inserto.
-//			RespuestaGeneral rgDir = restTemplate.postForObject(Configuration.restDireccionPost(), pedido.getCliente().getDireccion(), RespuestaGeneral.class);
-//			if (rgDir.getCodigo() == RespuestaGeneral.CODIGO_OK) {
-//				LOGGER.log(Level.FINEST, "Se inserto la direccion correctamente.");
-//			} else {
-//				LOGGER.log(Level.SEVERE, "No se pudo insertar la direccion -> ", rgDir.getCodigo() + " " + rgDir.getMensaje());
-//			}
-//
-//			//Le asigno el id de la direccion que traje a la direccion en el pedido .
-//			Object d = rgDir.getObjeto();
-//			Direccion dir = mapper.readValue(d.toString(), Direccion.class);
-//			pedido.getCliente().setDireccion(dir);
-//
-//			//Obtengo el cliente y lo inserto.
-//			RespuestaGeneral rgCli = restTemplate.postForObject(Configuration.restClientePost(), pedido.getCliente(), RespuestaGeneral.class);
-//			if (rgCli.getCodigo() == RespuestaGeneral.CODIGO_OK) {
-//				LOGGER.log(Level.FINEST, "Se inserto el cliente correctamente.");
-//			} else {
-//				LOGGER.log(Level.SEVERE, "No se pudo insertar el cliente -> ", rgCli.getCodigo() + " " + rgCli.getMensaje());
-//			}
-
-//			//Le asigno el id del cliente que traje al pedido.
-//			Object c = rgCli.getObjeto();
-//			Cliente cli = mapper.readValue(c.toString(), Cliente.class);
-//			pedido.setCliente(cli);
 
 			//Finalmente inserto el pedido que ya tiene todo lo asociado.
 			RespuestaGeneral rgPed = restTemplate.postForObject(Configuration.restPedidoPost(), pedido, RespuestaGeneral.class);
@@ -130,9 +102,7 @@ public class ViajeLogica {
 				LOGGER.log(Level.FINEST, "Se inserto el pedido correctamente.");
 			} else {
 				LOGGER.log(Level.SEVERE, "No se pudo insertar el pedido -> ", rgPed.getCodigo() + " " + rgPed.getMensaje());
-			}
-//			pedidoId++;
-			
+			}			
 		}
 		//Limpio la lista de pedidos para la proxima inserccion.
 		pedidos.clear();

@@ -10,21 +10,13 @@ import java.util.Collection;
 public class Viaje {
 
 	private Integer id;
-
 	private Short calificacion;
-
 	private short precio;
-
 	private Collection<Transaccion> transaccionCollection;
-
 	private Collection<Pedido> pedidos;
-
 	private Delivery delivery;
-
 	private Sucursal sucursal;
-
 	private EstadoViaje estado;
-
 	private Timestamp fecha;
 
 	public Viaje() {

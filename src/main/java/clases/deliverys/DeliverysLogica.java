@@ -1,4 +1,4 @@
-package clases.historialViaje;
+package clases.deliverys;
 
 import clases.viaje.*;
 import clases.dominio.*;
@@ -16,15 +16,16 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HistorialViajeLogica {
+public class DeliverysLogica {
 
-	private final static Logger LOGGER = Logger.getLogger(HistorialViajeLogica.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(DeliverysLogica.class.getName());
 	
-	public Viaje[] obtenerViajes(String sucursalId) {
+	public Delivery[] obtenerDeliverys(String sucursalId) {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//Obtiene la respuesta.
-		Viaje[] viajes = restTemplate.getForObject(Configuration.restFindViajesGet(sucursalId), Viaje[].class);
-		return viajes;
+		// Falta implementar.
+		Delivery[] deliverys = restTemplate.getForObject(Configuration.restFindDeliverysGet(sucursalId), Delivery[].class);
+		return deliverys;
 	}
 }
