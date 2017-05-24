@@ -94,35 +94,24 @@ public class ViajeControllerHelper {
 		return null;
 	}
 
-	public String generateAlerta(String estadoId) {
-		int alerta = Integer.valueOf(estadoId);
-		String mensaje = "";
-		switch (alerta) {
-			case 1:
-				mensaje = "<div class=\"alert alert-success alert-dismissable\">\n"
-						+ "	<button type=\"button\" class=\"close button-cerrar-alerta\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n"
-						+ "	Pedidos pendientes.\n"
-						+ "</div>";
+	Object getFiltroActual(String estadoId) {
+		String retorno = "";
+		switch (estadoId) {
+			case "1":
+				retorno = "pendientes";
 				break;
-			case 2:
-				mensaje = "<div class=\"alert alert-danger alert-dismissable\">\n"
-						+ "	<button type=\"button\" class=\"close button-cerrar-alerta\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n"
-						+ "	Pedidos publicados.\n"
-						+ "</div>";
+			case "2":
+				retorno = "publicados";
 				break;
-			case 3:
-				mensaje = "<div class=\"alert alert-warning alert-dismissable\">\n"
-						+ "	<button type=\"button\" class=\"close button-cerrar-alerta\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n"
-						+ "	Pedidos en proceso.\n"
-						+ "</div>";
+			case "3":
+				retorno = "en proceso";
 				break;
-			case 4:
-				mensaje = "<div class=\"alert alert-info alert-dismissable\">\n"
-						+ "	<button type=\"button\" class=\"close button-cerrar-alerta\" data-dismiss=\"alert\" aria-hidden=\"true\">×</button>\n"
-						+ "	Pedidos terminados.\n"
-						+ "</div>";
+			case "4":
+				retorno = "terminados";
 				break;
+			default:
+				retorno = "sin filtrar";
 		}
-		return mensaje;
+		return retorno;
 	}
 }

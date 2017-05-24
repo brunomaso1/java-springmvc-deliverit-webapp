@@ -5,13 +5,13 @@
  */
 package clases.configuration;
 
+import java.sql.Date;
+
 /**
  *
  * @author bruno
  */
 public class Parametros {
-	public static String SUCURSAL_DEFAULT = "1";
-	public static String RESTAURANT_DEFAULT = "1";
 	
 	public static String ESTADO_DEFAULT = "2";
 	public static String ESTADO_PENDIENTE = "1";
@@ -21,6 +21,7 @@ public class Parametros {
 	
 	public static String HISTORIALVIAJE_EXCEL_TOPE = "10000";
 	public static String HISTORIALVIAJE_EXCEL_FECHA_DESDE = "";
+	public static String DIA_DEFAULT = "2000-01-01";
 	
 	
 }

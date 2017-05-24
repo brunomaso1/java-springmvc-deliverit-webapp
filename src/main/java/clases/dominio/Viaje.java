@@ -1,6 +1,8 @@
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -23,6 +25,8 @@ public class Viaje {
 
 	private EstadoViaje estado;
 
+	private Timestamp fecha;
+
 	public Viaje() {
 	}
 
@@ -32,6 +36,7 @@ public class Viaje {
 		this.pedidos = new ArrayList<>();
 		this.sucursal = new Sucursal(Integer.valueOf(sucursalId));
 		this.estado = new EstadoViaje(Integer.valueOf(estado));
+		this.fecha = Timestamp.valueOf(LocalDateTime.now());
 	}
 
 	public Integer getId() {
@@ -96,6 +101,14 @@ public class Viaje {
 
 	public void setEstado(EstadoViaje estado) {
 		this.estado = estado;
+	}
+
+	public Timestamp getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Timestamp fecha) {
+		this.fecha = fecha;
 	}
 
 	@Override

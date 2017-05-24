@@ -46,24 +46,9 @@
 					</div>
 					<!-- /.row -->
 					<div class="row">
-						<form action="${contextPath}/historialViaje/exportar" id="filterFormExport" class="form-horizontal" method="POST" >
-							<div>
-								<span>Exportar</span>
-								<label>Fecha Desde: </label><input name="fechaDesdeExport" id=fechaDesdeExport class="form-control"/> 
-								<label>Fecha Hasta: </label><input name="fechaHastaExport" id=fechaHastaExport class="form-control"/> 
-								<label>Tipo Archivo: </label><input name="tipoArchivo" id=tipoArchivo class="form-control"/> 
-								<div>
-									<button class="btn btn-primary" type="submit">XLS</button>
-								</div>
-								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-								<!-- /.row -->
-							</div>
-							<!-- /.container-fluid -->
-						</form>	
+						<%@include file="plugins/panels/historialViajePanel.jsp" %>
 					</div>
-					<!-- /#page-wrapper -->
 				</div>
-				<!-- /#wrapper -->		
 				<!-- jQuery -->
 				<script src="https://code.jquery.com/jquery-3.2.1.js" 
 						integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" 

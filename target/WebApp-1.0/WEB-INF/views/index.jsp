@@ -45,7 +45,7 @@
 						<a href="index.html"> <img src="resources/img/fondo-trasparente.png" alt="Logo"> </a>
 					</div>
 					<div class="col-xs-3 col-xs-offset-2"> 
-						<button onclick="href = location.href = '${contextPath}/login'" class="btn btn-warning btn-sm btn3d">Ingresar</button>
+						<button onclick="href = location.href = '${contextPath}/login'" class="btn btn-warning btn-sm">Ingresar</button>
 					</div>
 				</div>
 				<div class="row header-info">
@@ -61,7 +61,7 @@
 							<div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1">
 								<div class="row">
 									<div class="col-md-12 text-center wow fadeInUp" data-wow-delay="1.8s">
-										<button onclick="href = location.href = '${contextPath}/login'" class="btn btn-warning btn-md btn3d">Ingresar</button>
+										<button onclick="href = location.href = '${contextPath}/login'" class="btn btn-warning btn-md">Ingresar</button>
 									</div>
 								</div>
 							</div> 

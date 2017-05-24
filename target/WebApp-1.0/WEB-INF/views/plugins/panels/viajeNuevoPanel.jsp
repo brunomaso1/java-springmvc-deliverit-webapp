@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 	</head>
 	<body>
-		<div class="panel panel-green panel-height">
+		<div class="panel panel-default panel-height">
 			<div class="panel-heading">
 				<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Pedidos</h3>
 			</div>
@@ -26,7 +26,7 @@
 				</div>
 			</div>
 			<div class="panel-footer">
-				<button type="button" data-toggle="modal" data-target="#popupNuevoPedido" id="agregarPedido" class="btn btn-warning btn-md pull-right">Agregar Pedido</button>
+				<button type="button" data-toggle="modal" data-target="#popupNuevoPedido" id="agregarPedido" class="btn btn-warning btn-md pull-right btn3d">Agregar Pedido</button>
 			</div>
 		</div>
 	</body>

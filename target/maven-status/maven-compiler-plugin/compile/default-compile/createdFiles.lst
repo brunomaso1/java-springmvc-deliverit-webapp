@@ -27,6 +27,7 @@ clases\index\IndexController.class
 clases\restaurant\RestaurantLogica.class
 clases\dominio\Pedido.class
 clases\dominio\Viaje.class
+clases\accesControl\ACSessionServices.class
 clases\accesControl\ACUserServiceImpl.class
 clases\dominio\Restaurant.class
 clases\accesControl\ACSecurityServiceImpl.class

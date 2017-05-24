@@ -1,5 +1,6 @@
 package clases.viaje;
 
+import clases.accesControl.ACSessionServices;
 import clases.configuration.Parametros;
 import clases.dominio.Pedido;
 import java.io.IOException;
@@ -29,27 +30,28 @@ public class ViajeController {
 
 	private ViajeLogica vl;
 	private ViajeControllerHelper vch;
+	private ACSessionServices acss;
 
 	public ViajeController() {
 		this.vl = new ViajeLogica();
 		this.vch = new ViajeControllerHelper();
+		this.acss = new ACSessionServices();
 	}
 
 	@GetMapping
 	public String showPage(HttpSession request, Model model) {
-		String sucursalId = (String) request.getAttribute("SUCURSAL_ID");
+		String sucursalId = acss.getUserId();
 		String estadoId = (String) request.getAttribute("ESTADO_ID");
 
-		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidos(sucursalId), estadoId);
+		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
 
 		model.addAttribute("datosTablaPrincipal", vch.tablaPrincipalHtml(pedidos));
-
+		model.addAttribute("usuarioActual", acss.getUserName());
 		model.addAttribute("viajesPendientes", vl.getViajesPendientes());
 		model.addAttribute("viajesPublicaods", vl.getViajesPublicados());
 		model.addAttribute("viajesEnProceso", vl.getViajesEnProceso());
-		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
-		
-		model.addAttribute("alertaFiltro", vch.generateAlerta(estadoId));
+		model.addAttribute("viajesTerminados", vl.getViajesTerminados());	
+		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
 		
 		model.addAttribute("url", "http://localhost:8080/webapp/delivery");
 
@@ -58,7 +60,7 @@ public class ViajeController {
 	
 	@RequestMapping(path = "/viajeNuevo", method = POST)
 	public String nuevoViaje(@RequestParam String tipo, @RequestParam String precio, HttpServletRequest request) {
-		String sucursalId = (String) request.getSession(false).getAttribute("SUCURSAL_ID");
+		String sucursalId = acss.getUserId();
 		
 		if (tipo.equals("publicar") == true) {
 			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");
@@ -85,6 +87,7 @@ public class ViajeController {
 		if (request.getParameter("datosTablaPedido") != null) {
 			model.addAttribute("datosTablaPedido", request.getParameter("datosTablaPedido"));
 		}
+		model.addAttribute("usuarioActual", acss.getUserName());
 		return "viajeNuevo";
 	}
 

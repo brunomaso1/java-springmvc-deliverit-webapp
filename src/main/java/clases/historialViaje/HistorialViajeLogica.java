@@ -24,9 +24,16 @@ public class HistorialViajeLogica {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//Obtiene la respuesta.
-		//Viaje[] viajes = restTemplate.getForObject(Configuration.restViajeGet(fechaDesde, fechaHasta), Viaje[].class);
 		Viaje[] viajesArry = restTemplate.getForObject(Configuration.restViajeGet(), Viaje[].class);
 		ArrayList<Viaje> viajes = new ArrayList<Viaje>(Arrays.asList(viajesArry));
+		return viajes;
+	}
+	
+	public Viaje[] obtenerViajes(String sucursalId) {
+		RestTemplate restTemplate = new RestTemplate();
+
+		//Obtiene la respuesta.
+		Viaje[] viajes = restTemplate.getForObject(Configuration.restFindViajesGet(sucursalId), Viaje[].class);
 		return viajes;
 	}
 }

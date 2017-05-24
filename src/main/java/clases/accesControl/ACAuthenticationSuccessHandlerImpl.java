@@ -4,7 +4,6 @@
 package clases.accesControl;
 
 import static clases.configuration.Parametros.ESTADO_DEFAULT;
-import static clases.configuration.Parametros.SUCURSAL_DEFAULT;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +41,7 @@ public class ACAuthenticationSuccessHandlerImpl implements AuthenticationSuccess
 					+ targetUrl);
 			return;
 		}
-		
+
 		redirectStrategy.sendRedirect(request, response, targetUrl);
 	}
 
@@ -72,7 +71,7 @@ public class ACAuthenticationSuccessHandlerImpl implements AuthenticationSuccess
 		} else {
 			throw new IllegalStateException();
 		} 
-		*/
+		 */
 		return "/viaje.html";
 	}
 
@@ -82,7 +81,8 @@ public class ACAuthenticationSuccessHandlerImpl implements AuthenticationSuccess
 			return;
 		}
 		session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-		session.setAttribute("SUCURSAL_ID", SUCURSAL_DEFAULT);
+		
+		// Guardo el estado que se deben filtrar los pedidos por defecto.
 		session.setAttribute("ESTADO_ID", ESTADO_DEFAULT);
 	}
 

@@ -1,9 +1,4 @@
-<%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
-<%-- Importaciones, declaracion de contenido, etc. --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>    
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@include file="../views/plugins/headers/headers.jsp" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -69,8 +64,8 @@
 							</div>
 							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 							<div class="col-lg-2  text-right top-padding-1 ">
-								<button type="submit" name="tipo" value="guardar" class="btn btn-secondary btn-md">Guardar</button>
-								<button type="submit" name="tipo" value="publicar" class="btn btn-danger btn-md">Publicar</button>
+								<button type="submit" name="tipo" value="guardar" class="btn btn-primary btn-md btn3d">Guardar</button>
+								<button type="submit" name="tipo" value="publicar" class="btn btn-danger btn-md btn3d">Publicar</button>
 							</div>
 						</form>
 					</div>
@@ -80,7 +75,7 @@
 							<%@include file="plugins/panels/viajeNuevoPanel.jsp" %>
 						</div>
 						<div class="col-lg-6">
-							<div class="panel panel-green panel-height">
+							<div class="panel panel-default panel-height">
 								<div class="panel-heading">
 									<h3 class="panel-title"><i class="fa fa-users fa-fw"></i> Clientes</h3>
 								</div>

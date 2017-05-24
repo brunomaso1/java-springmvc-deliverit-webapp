@@ -4,8 +4,11 @@ import clases.dominio.*;
 import clases.configuration.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
@@ -51,11 +54,11 @@ public class ViajeLogica {
 	 * @param sucursal Id de la sucursal.
 	 * @return Pedido[] Una lista conteniendo entidades pedidos.
 	 */
-	public Pedido[] obtenerPedidos(String sucursal) {
+	public Pedido[] obtenerPedidosHoy(String sucursal) {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//Obtiene la respuesta.
-		Pedido[] pedidosTablaPrincipal = restTemplate.getForObject(Configuration.restFindPedidosGet(sucursal), Pedido[].class);
+		Pedido[] pedidosTablaPrincipal = restTemplate.getForObject(Configuration.restFindPedidosTodayGet(sucursal), Pedido[].class);
 
 		return pedidosTablaPrincipal;
 	}
@@ -75,23 +78,9 @@ public class ViajeLogica {
 		//Insertar viaje.
 		Viaje viaje = new Viaje(precio, sucursalId, estadoId);
 		
+		// Solucionar esto.
 		Sucursal sucursal = restTemplate.getForObject(Configuration.restSucursalGet(sucursalId), Sucursal.class);
 		viaje.setSucursal(sucursal);
-		
-//		RespuestaGeneral rgPed = restTemplate.postForObject(Configuration.restPedidoPost(), pedidos.get(0), RespuestaGeneral.class);
-//		if (rgPed.getCodigo() == RespuestaGeneral.CODIGO_OK) {
-//			LOGGER.log(Level.FINEST, "Se inserto el viaje correctamente.");
-//		} else {
-//			LOGGER.log(Level.SEVERE, "No se pudo insertar el viaje -> ", rgPed.getCodigo() + " " + rgPed.getMensaje());
-//		}
-//		
-//		Object p = rgPed.getObjeto();
-//		Pedido ped = mapper.readValue(p.toString(), Pedido.class);
-//		
-//		pedidos.clear();
-//		pedidos.add(ped);
-//		pedidos.get(0).setId(1);
-//		viaje.setPedidos(pedidos);
 		
 		RespuestaGeneral rgVje = restTemplate.postForObject(Configuration.restViajePost(), viaje, RespuestaGeneral.class);
 		if (rgVje.getCodigo() == RespuestaGeneral.CODIGO_OK) {

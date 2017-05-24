@@ -1,6 +1,9 @@
 package clases.dominio;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Pedido {
@@ -10,6 +13,7 @@ public class Pedido {
 	private String formaPago;
 	private Viaje viaje;
 	private Cliente cliente;
+	private Timestamp fecha;
 
 	public Pedido() {
 	}
@@ -18,6 +22,8 @@ public class Pedido {
 		this.detalle = detalle;
 		this.formaPago = formaPago;
 		this.cliente = cliente;
+		// Pone la fecha de hoy.
+		this.fecha = Timestamp.valueOf(LocalDateTime.now());
 	}
 
 	public Integer getId() {
@@ -27,7 +33,7 @@ public class Pedido {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getDetalle() {
 		return detalle;
 	}
@@ -58,6 +64,14 @@ public class Pedido {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Timestamp getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Timestamp fecha) {
+		this.fecha = fecha;
 	}
 
 	@Override
