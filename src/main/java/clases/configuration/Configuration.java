@@ -75,8 +75,8 @@ public final class Configuration {
 		return ambiente + "sucursal/" + sucursal;		
 	}
 	
-	public static String restDeliveryGet() {
-		return ambiente + "delivery";
+	public static String restDeliveryActualesGet(String sucursalId) {
+		throw new java.lang.UnsuportedOperation();
 	}
 	
 	public static String restUsuarioGet(){
