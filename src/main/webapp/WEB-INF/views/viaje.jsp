@@ -94,5 +94,7 @@
 		<script src="resources/js/viaje.js"></script>	
 		<script>initTableListener();</script>
 		<script>initDataTable();</script>
+		<script>initColors();</script>
+		
 	</body>
 </html>

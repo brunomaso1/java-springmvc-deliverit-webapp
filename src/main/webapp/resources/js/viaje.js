@@ -25,7 +25,7 @@ function Delivery(deliveryId, viajeId, markador) {
 /**
  * Inicia el mapa.
  */
-function initMap(url) {
+function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
             lat: -34.9082249,
@@ -88,6 +88,10 @@ function initDataTable() {
  */
 function initTableListener() {
     window.onload = addRowHandlers();
+}
+
+function initColors() {
+    window.setInterval(changeColors, 5000);
 }
 /**
  * Coloca los markadores.
@@ -283,22 +287,29 @@ function getAllDelivery(url) {
     deliverys = JSON.parse(text);
 }
 
-function activateColors() {
-    if (true) { //algo
-        setInterval(changeColors, 10000);
-    }
-}
-
 function changeColors() {
     var rows = table.getElementsByTagName("tr");
     var i = 0;
     var l = rows.length;
     for (; i < l; i++) {
         var currentRow = table.rows[i];
-        var time = currentRow.cells[5].innerHTML;
+        var timeViaje = new Date(currentRow.cells[5].innerHTML);
+        var timeActual = new Date();
+        var diferencia = new Date(timeActual - timeViaje);
+        var dif = diferencia.getTime();
         switch (true) {
-            case (time < 1000):
-                currentRow.style.color = "";
+            case (dif < 5):
+                currentRow.style.backgroundColor = "#ffe6e6";  
+                break;
+            case (dif < 9):
+                currentRow.style.backgroundColor = "#ff9999";
+                break;
+            case (dif < 12):
+                currentRow.style.backgroundColor = "#ff6666";
+                break;
+            case (dif < 12):
+                currentRow.style.backgroundColor = "#ff1a1a";
+                break;
         }
     }
 }
