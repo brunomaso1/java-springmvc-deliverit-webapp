@@ -45,7 +45,9 @@
 							</h1>
 						</div>
 						<div class="col-lg-3 col-lg-offset-6 text-right top-padding-1">
-							<button id="nuevoViaje" name="nuevoViaje" onclick="location.href = './viaje/viajeNuevo.html'" class="btn btn-primary btn-lg btn3d">Nuevo viaje</button>
+							<button id="nuevoViaje" name="nuevoViaje" onclick="location.href = './viaje/viajeNuevo.html'" 
+							class="btn btn-primary btn-lg btn3d">Nuevo viaje
+							</button>
 						</div>
 					</div>
 					<!-- /.row -->

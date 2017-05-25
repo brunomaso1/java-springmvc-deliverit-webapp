@@ -37,9 +37,9 @@ public class HistorialViajeController {
 		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
 
 		model.addAttribute("datosTablaHistorialViaje", vch.tablaHistorialViajeHtml(viajes));
-		model.addAttribute("rawData1", vch.chartHistorialViajeDona(viajes));
-		model.addAttribute("rawData2", vch.chartHistorialViajeLinea(viajes));
-		model.addAttribute("rawData3", vch.chartHistorialViajeBarras(viajes));
+		model.addAttribute("donutData", vch.chartHistorialViajeDona(viajes));
+		model.addAttribute("lineData", vch.chartHistorialViajeLinea(viajes));
+		model.addAttribute("barrsData", vch.chartHistorialViajeBarras(viajes));
 
 		model.addAttribute("usuarioActual", acss.getUserName());
 

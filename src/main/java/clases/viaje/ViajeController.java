@@ -50,18 +50,18 @@ public class ViajeController {
 		model.addAttribute("viajesPendientes", vl.getViajesPendientes());
 		model.addAttribute("viajesPublicaods", vl.getViajesPublicados());
 		model.addAttribute("viajesEnProceso", vl.getViajesEnProceso());
-		model.addAttribute("viajesTerminados", vl.getViajesTerminados());	
+		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
-		
+
 		model.addAttribute("url", Parametros.URL);
 
 		return "viaje";
 	}
-	
+
 	@RequestMapping(path = "/viajeNuevo", method = POST)
 	public String nuevoViaje(@RequestParam String tipo, @RequestParam String precio, HttpServletRequest request) {
 		String sucursalId = acss.getUserId();
-		
+
 		if (tipo.equals("publicar") == true) {
 			LOGGER.log(Level.FINEST, "Se inicio la insercion del viaje publicado.");
 			try {

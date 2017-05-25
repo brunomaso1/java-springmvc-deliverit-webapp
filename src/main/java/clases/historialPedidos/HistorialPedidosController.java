@@ -37,9 +37,9 @@ public class HistorialPedidosController {
 		Pedido[] pedidos = hvl.obtenerPedidos(sucursalId);
 
 		model.addAttribute("datosTablaHistorialPedidos", vch.tablaHistorialPedidosHtml(pedidos));
-		model.addAttribute("rawData1", vch.chartHistorialPedidosDona(pedidos));
-		model.addAttribute("rawData2", vch.chartHistorialPedidosLinea(pedidos));
-		model.addAttribute("rawData3", vch.chartHistorialPedidosBarras(pedidos));
+		model.addAttribute("donutData", vch.chartHistorialPedidosDona(pedidos));
+		model.addAttribute("lineData", vch.chartHistorialPedidosLinea(pedidos));
+		model.addAttribute("barrsData", vch.chartHistorialPedidosBarras(pedidos));
 
 		model.addAttribute("usuarioActual", acss.getUserName());
 

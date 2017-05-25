@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author bruno
  */
 public class HistorialViajeControllerHelper {
-	
+
 	private HistorialViajeLogica hvl;
 
 	public HistorialViajeControllerHelper() {
@@ -142,7 +142,6 @@ public class HistorialViajeControllerHelper {
 		return null;
 	}
 
-	// Puede haber un tema aca.
 	private String obtenerCantidadPedidos(String viajeId) {
 		return hvl.contarPedidosViaje(viajeId);
 	}
@@ -157,25 +156,25 @@ public class HistorialViajeControllerHelper {
 
 		for (Viaje viaje : viajes) {
 			switch (viaje.getEstado().getId()) {
-				case 1:
-					cantEstadoPendiente++;
-					break;
-				case 2:
-					cantEstadoPublicado++;
-					break;
-				case 3:
-					cantEstadoEnProceso++;
-					break;
-				case 4:
-					cantEstadoTerminado++;
-					break;
+			case 1:
+				cantEstadoPendiente++;
+				break;
+			case 2:
+				cantEstadoPublicado++;
+				break;
+			case 3:
+				cantEstadoEnProceso++;
+				break;
+			case 4:
+				cantEstadoTerminado++;
+				break;
 			}
 		}
 
-		jsonObjectDonutList.add(new JsonObjectDonut("pendientes", Integer.toString(cantEstadoPendiente)));
-		jsonObjectDonutList.add(new JsonObjectDonut("publicados", Integer.toString(cantEstadoPublicado)));
-		jsonObjectDonutList.add(new JsonObjectDonut("enProceso", Integer.toString(cantEstadoEnProceso)));
-		jsonObjectDonutList.add(new JsonObjectDonut("terminados", Integer.toString(cantEstadoTerminado)));
+		jsonObjectDonutList.add(new JsonObjectDonut("Pendientes", Integer.toString(cantEstadoPendiente)));
+		jsonObjectDonutList.add(new JsonObjectDonut("Publicados", Integer.toString(cantEstadoPublicado)));
+		jsonObjectDonutList.add(new JsonObjectDonut("En Proceso", Integer.toString(cantEstadoEnProceso)));
+		jsonObjectDonutList.add(new JsonObjectDonut("Terminados", Integer.toString(cantEstadoTerminado)));
 		String jsonObject = "";
 		try {
 			jsonObject = mapper.writeValueAsString(jsonObjectDonutList);
@@ -185,32 +184,67 @@ public class HistorialViajeControllerHelper {
 		return jsonObject;
 	}
 
-	// Falta implementar
+	/**
+	* Logica: Inserto los string como "yyyymm" para agruparlos por año y mes.
+	* Si la clave existe, sumo uno, sino agrego la clave con una ocurrencia.
+	*/
 	public String chartHistorialViajeLinea(Viaje[] viajes) {
-		/*Viaje[] viajesOrdenados = ordenarViajes(viajes);
+		Map<String, Integer> orderedMap = new TreeMap<String, Integer>(
+		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
+		);
 
-		JSONObject jsonObject = JSONObject.fromObject(jsonObjectLineList);
-		return jsonObject.toString();*/
-		return "";
+		for (Viaje viaje : viajes) {
+			if (viaje.getEstado().getId() == 4) {
+				// Parseo la fecha en el formato "yyyymm".
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(viaje.getFecha());
+				String fechaParseada = String.valueOf(calendar.YEAR) + String.valueOf(calendar.MONTH);
+				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
+				if (orderedMap.containsKey(fechaParseada))
+					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada)++);
+				else
+					orderedMap.put(fechaParseada, 1);
+			}
+		}
+
+		JSONObject jsonObject = JSONObject.fromObject(parsearLineMapToJson(orderedMap));
+		return jsonObject.toString();
 	}
 
-	// Falta implementar
 	public String chartHistorialViajeBarras(Viaje[] viajes) {
+		Map<String, Integer> orderedMap = new TreeMap<String, Integer>(
+		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
+		);
 
-		/*JSONObject jsonObject = JSONObject.fromObject(jsonObjectBarsList);
-		return jsonObject.toString();*/
-		return "";
+		for (Viaje viaje : viajes) {
+			if (viaje.getEstado().getId() == 4) {
+				// Parseo la fecha en el formato "yyyymm".
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(viaje.getFecha());
+				String fechaParseada = String.valueOf(calendar.YEAR) + String.valueOf(calendar.MONTH);
+				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
+				if (orderedMap.containsKey(fechaParseada))
+					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + viaje.getPrecio());
+				else
+					orderedMap.put(fechaParseada, viaje.getPrecio());
+			}
+		}
 
+		JSONObject jsonObject = JSONObject.fromObject(parsearBaraMapToJson(orderedMap));
+		return jsonObject.toString();
 	}
 
-	private Viaje[] ordenarViajes(Viaje[] viajes) {
-//		Collections.sort(viajes, new Comparator<Viaje>() {
-//		  	public int compare(Viaje o1, Viaje o2) {
-//		      	if (o1.getFecha() == null || o2.getFecha() == null)
-//		       		return 0;
-//		     	return o1.getFecha().compareTo(o2.getFecha());
-//		  	}
-//		});
-		return viajes;
+	private List<JsonObjectLine> parsearLineMapToJson (Map<String, Integer> map) {
+		List<JsonObjectLine> jsonObjectLineList = new ArrayList<>();
+		// Agrego a la lista objetos del tipo JsonObjcetLine con clave y valor.
+		map.foreach((k, v) -> jsonObjectLineList.add(new JsonObjectLine(k, v)));
+		return jsonObjectLineList;
+	}
+
+	private List<JsonObjectLine> parsearBaraMapToJson (Map<String, Integer> map) {
+		List<JsonObjectBars> jsonObjectBarsList = new ArrayList<>();
+		// Agrego a la lista objetos del tipo JsonObjcetLine con clave y valor.
+		map.foreach((k, v) -> jsonObjectBarsList.add(new JsonObjectLine(k, v)));
+		return jsonObjectBarsList;
 	}
 }
