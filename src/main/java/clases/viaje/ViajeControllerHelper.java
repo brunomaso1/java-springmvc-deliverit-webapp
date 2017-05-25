@@ -75,7 +75,7 @@ public class ViajeControllerHelper {
 	 * diemnsion contienen los pedidos y la segunda los datos de la tabla.
 	 */
 	private String[][] parsearPedidos(Pedido[] pedidos) {
-		if (pedidos != null) {
+		if ((pedidos != null) && (pedidos.length != 0)) {
 			String[][] parser = new String[pedidos.length][5];
 			for (int i = 0; i < pedidos.length; i++) {
 				parser[i][0] = pedidos[i].getViaje() == null ? "Viaje no encontrado" : pedidos[i].getViaje().getId().toString();

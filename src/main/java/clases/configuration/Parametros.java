@@ -23,5 +23,5 @@ public class Parametros {
 	public static String HISTORIALVIAJE_EXCEL_FECHA_DESDE = "";
 	public static String DIA_DEFAULT = "2000-01-01";
 	
-	
+	public static String URL = "http://localhost:8080/webapp/delivery";
 }

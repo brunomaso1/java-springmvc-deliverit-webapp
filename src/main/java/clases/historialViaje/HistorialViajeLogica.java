@@ -27,4 +27,12 @@ public class HistorialViajeLogica {
 		Viaje[] viajes = restTemplate.getForObject(Configuration.restFindViajesGet(sucursalId), Viaje[].class);
 		return viajes;
 	}
+	
+	public String contarPedidosViaje(String viajeId){
+		RestTemplate restTemplate = new RestTemplate();
+
+		//Obtiene la respuesta.
+		String viajes = restTemplate.getForObject(Configuration.restCountPedidosViaje(viajeId), String.class);
+		return viajes;
+	}
 }

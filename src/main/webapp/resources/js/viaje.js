@@ -1,4 +1,5 @@
 "use strict";
+
 var map;
 var pos;
 var mapZoom = 15;
@@ -16,6 +17,7 @@ var intervalo = 0;
 var repeater = 0;
 var contents = [];
 var deliverys = [];
+
 function Delivery(deliveryId, viajeId, markador) {
 	this.deliveryId = deliveryId;
 	this.viajeId = viajeId;
@@ -24,7 +26,6 @@ function Delivery(deliveryId, viajeId, markador) {
 
 /**
  * Inicia el mapa.
- * @returns {undefined}
  */
 function initMap(url) {
 	map = new google.maps.Map(document.getElementById('map'), {
@@ -66,19 +67,19 @@ function initDataTable() {
 		language: {
 			processing: "Procesando...",
 			search: "Busqueda&nbsp;:",
-			lengthMenu: "Mostrar _MENU_ entradas",
-			info: "_START_ de _END_. Total: _TOTAL_ ",
+			lengthMenu: "Mostrar _MENU_ viajes",
+			info: "",
 			infoEmpty: "Ninguna entrada",
-			infoFiltered: "(fitradas de _MAX_ entradas en total)",
+			infoFiltered: "",
 			infoPostFix: "",
 			loadingRecords: "Cargando registros...",
 			zeroRecords: "No se han encontrado registros",
 			emptyTable: "No hay datos",
 			paginate: {
-				first: "Primero",
-				previous: "Anterior",
-				next: "Siguiente",
-				last: "Ultimo"
+				first: "<<",
+				previous: "<",
+				next: ">",
+				last: ">>"
 			}
 		}
 	});
@@ -162,8 +163,8 @@ function cargarMarkadores() {
 				animation: google.maps.Animation.DROP,
 				icon: {
 					url: urlIcon + colorSet[Number(viaje) % colorSetLen] + png,
-					scaledSize: new google.maps.Size(20, 30),
-					labelOrigin: new google.maps.Point(10, 10)
+					scaledSize: new google.maps.Size(25, 35),
+					labelOrigin: new google.maps.Point(12, 12)
 				},
 				label: {
 					text: String(viaje),
@@ -217,7 +218,7 @@ function addRowHandlers() {
 				function (row)
 				{
 					return function () {
-						resaltarDelivery(table.rows[row.rowIndex - 1].cells[0].innerHTML)
+						resaltarMarkador(table.rows[row.rowIndex - 1].cells[0].innerHTML)
 					}
 				};
 
@@ -237,17 +238,28 @@ function stopAnimation(marker) {
 	}, 3000);
 }
 
-function resaltarDelivery(viaje) {
-	if (deliverys != null) {
-		var delivery = getDeliveryViaje(viaje);
-		var posAnterior = map.getZoom();
-		map.setZoom(13);
-		map.setCenter(delivery.markador.getPosition());
-		window.setTimeout(function () {
-			map.setZoom(posAnterior);
-		}, 3000);
-	}
+//function resaltarDelivery(viaje) {
+//	if (deliverys != null) {
+//		var delivery = getDeliveryViaje(viaje);
+//		var posAnterior = map.getZoom();
+//		map.setZoom(13);
+//		map.setCenter(delivery.markador.getPosition());
+//		window.setTimeout(function () {
+//			map.setZoom(posAnterior);
+//		}, 3000);
+//	}
+//}
+
+function resaltarMarkador(viaje) {
+	var posAnterior = map.getZoom();
+	map.setZoom(17);
+	map.setCenter(markadores[viaje].getPosition());
+	window.setTimeout(function () {
+		map.setZoom(posAnterior);
+	}, 3000);
 }
+
+
 
 function cargarDeliverys() {
 	getAllDelivery('http://localhost:8080/webapp/delivery');

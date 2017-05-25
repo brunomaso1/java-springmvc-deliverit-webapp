@@ -44,7 +44,7 @@
 					<div class="col-xs-6">
 						<a href="index.html"> <img src="resources/img/fondo-trasparente.png" alt="Logo"> </a>
 					</div>
-					<div class="col-xs-3 col-xs-offset-2"> 
+					<div class="col-xs-3 col-xs-offset-3 text-right"> 
 						<button onclick="href = location.href = '${contextPath}/login'" class="btn btn-warning btn-sm">Ingresar</button>
 					</div>
 				</div>

@@ -28,13 +28,10 @@
 		<link rel="stylesheet" type="text/css" 
 			  href="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.css"/>
 		<!-- DataTables Buttons -->
-		<%-- Este puede estar repetido --%>
-		<link rel="stylesheet" type="text/css" 
-			  href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"/>
 		<link rel="stylesheet" type="text/css" 
 			  href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css"/>
 		<!-- Morris Charts -->
-		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
 		<!-- Favicon -->
 		<link rel="shortcut icon" type="image/png" href="resources/img/favicon.png">
 		<!-- User stylesheets -->
@@ -84,8 +81,6 @@
 		<!-- DataTables -->
 		<script src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
 		<!-- DataTables Buttons -->
-		<%-- Este puede estar repetido --%>
-		<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/buttons/1.3.1/js/dataTables.buttons.min.js"></script>
 		<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.flash.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
@@ -94,11 +89,12 @@
 		<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.html5.min.js"></script>
 		<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
 		<!-- Morris Charts -->
-		<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 		<!-- User javascripts -->
 		<script src="resources/js/historialViaje.js"></script>
 		<script>initDataTable();</script>
-		<script>initCharts(${rawData1}, ${rawData2}, ${rawData3});</script>
+		<%--<script>initCharts(${rawData1}, ${rawData2}, ${rawData3});</script>--%>
+		<script>initCharts(${rawData1});</script>
 	</body>
 </html>

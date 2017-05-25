@@ -53,7 +53,7 @@ public class ViajeController {
 		model.addAttribute("viajesTerminados", vl.getViajesTerminados());	
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
 		
-		model.addAttribute("url", "http://localhost:8080/webapp/delivery");
+		model.addAttribute("url", Parametros.URL);
 
 		return "viaje";
 	}

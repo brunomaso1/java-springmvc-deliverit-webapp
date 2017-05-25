@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-             xmlns:beans="http://www.springframework.org/schema/beans"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://www.springframework.org/schema/beans
+			 xmlns:beans="http://www.springframework.org/schema/beans"
+			 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			 xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 		http://www.springframework.org/schema/security
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true">
-        <intercept-url pattern="/viaje.html" access="hasRole('ROLE_USER')"/>
+	<http auto-config="true">
+		<intercept-url pattern="/viaje.html" access="hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/viajeNuevo.html" access="hasRole('ROLE_USER')"/>
-        <form-login login-page="/login" authentication-success-handler-ref="AuthenticationSuccessHandler" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
-        <logout logout-success-url="/login?logout" />
-    </http>
+		<intercept-url pattern="/clientes.html" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/deliverys.html" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/historialPedidos.html" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/historialViaje.html" access="hasRole('ROLE_USER')"/>
+		<form-login login-page="/login" authentication-success-handler-ref="AuthenticationSuccessHandler" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
+		<logout logout-success-url="/login?logout" />
+	</http>
 	
-    <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="userDetailsServiceImpl">
-            <!--<password-encoder ref="encoder"></password-encoder>-->
-        </authentication-provider>
-    </authentication-manager>
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailsServiceImpl">
+<!--			<password-encoder ref="encoder"></password-encoder>-->
+		</authentication-provider>
+	</authentication-manager>
 
-    <beans:bean id="userDetailsServiceImpl" class="clases.accesControl.ACUserDetailsServiceImpl"></beans:bean>
+	<beans:bean id="userDetailsServiceImpl" class="clases.accesControl.ACUserDetailsServiceImpl"></beans:bean>
 
-	 <beans:bean id="AuthenticationSuccessHandler"
-        class="clases.accesControl.ACAuthenticationSuccessHandlerImpl" />
+	<beans:bean id="AuthenticationSuccessHandler"
+				 class="clases.accesControl.ACAuthenticationSuccessHandlerImpl" />
 <!--	<beans:bean id="encoder"
-          class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-        <beans:constructor-arg name="strength" value="11"/>
-    </beans:bean>-->
+				class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<beans:constructor-arg name="strength" value="11"/>
+	</beans:bean>-->
 </beans:beans>

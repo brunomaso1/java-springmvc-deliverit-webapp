@@ -4,7 +4,7 @@ import java.util.Date;
 
 public final class Configuration {
 	
-	private static final String ambienteJuan = "http://192.168.1.44:8080/BackCore/ws/";
+	private static final String ambienteJuan = "http://192.168.1.43:8080/BackCore/ws/";
 	
 	private static final String ambienteBruno = "http://localhost:32794/BackCore/ws/";
 	
@@ -12,7 +12,7 @@ public final class Configuration {
 	
 	private static final String produccion = "http://localhost:38526/backcore/ws/";
 	
-	private static String ambiente = ambienteJuan;
+	private static String ambiente = ambienteBruno;
 	
 	public static String restFindPedidosTodayGet(String sucursal) {
 		return ambiente + "sucursal/findPedidosToday/" + sucursal;
@@ -89,5 +89,17 @@ public final class Configuration {
 	
 	public static String restUsuarioGetByName(String username){
 		return ambiente + "usuario/findUserByName/" + username;
+	}
+	
+	public static String restFindClientesGet(String sucursalId){
+		return ambiente + "cliente/findBySucursal/" + sucursalId;
+	}
+	
+	public static String restFindDeliverysGet(String sucursalId){
+		return ambiente + "delivery/findBySucursal/" + sucursalId;
+	}
+	
+	public static String restCountPedidosViaje(String viajeId){
+		return ambiente + "viaje/countPedidos/" + viajeId;
 	}
 }
