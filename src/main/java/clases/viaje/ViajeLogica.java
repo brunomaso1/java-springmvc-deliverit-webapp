@@ -214,11 +214,13 @@ public class ViajeLogica {
 	 * @param bean Formulario dinamico.
 	 */
 	public void nuevoPedido(ViajeFormBean bean) {
+		ViajeGeocoder vg = new ViajeGeocoder(bean.getCalle(), bean.getPuerta(), bean.getEsquina());
+		
 		Direccion dir;
 		if ("".equals(bean.getApartamento())) {
-			dir = new Direccion(bean.getCalle(), bean.getPuerta(), "0", bean.getEsquina(), -34.9166122d, -56.1568794d);
+			dir = new Direccion(bean.getCalle(), bean.getPuerta(), "0", bean.getEsquina(), (double)vg.getLat(), (double)vg.getLng());
 		} else {
-			dir = new Direccion(bean.getCalle(), bean.getPuerta(), bean.getApartamento(), bean.getEsquina(), -34.9166122d, -56.1568794d);
+			dir = new Direccion(bean.getCalle(), bean.getPuerta(), bean.getApartamento(), bean.getEsquina(), (double)vg.getLat(), (double)vg.getLng());
 		}
 
 		Cliente cli = new Cliente(bean.getNombre(), dir, bean.getTelefono());

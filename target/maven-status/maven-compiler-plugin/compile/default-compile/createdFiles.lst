@@ -31,6 +31,7 @@ clases\viaje\ViajeController.class
 clases\accesControl\ACISecurityService.class
 clases\dominio\Delivery.class
 clases\historialPedidos\HistorialPedidosLogica.class
+clases\viaje\ViajeGeocoder.class
 clases\accesControl\ACIUserService.class
 clases\historialPedidos\HistorialPedidosControllerHelper.class
 clases\historialViaje\HistorialViajeControllerHelper$JsonObjectDonut.class

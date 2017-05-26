@@ -24,4 +24,7 @@ public class Parametros {
 	public static String DIA_DEFAULT = "2000-01-01";
 	
 	public static String URL = "http://localhost:8080/webapp/delivery";
+	
+	public static String DEPARTAMENTO = "Montevideo";
+	public static String PAIS = "Uruguay";
 }

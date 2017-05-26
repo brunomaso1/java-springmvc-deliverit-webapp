@@ -138,8 +138,9 @@ public class HistorialPedidosControllerHelper {
 				parser[i][5] = pedidos[i].getViaje() == null ? "No se especifica" : pedidos[i].getViaje().getDelivery() == null ? "No se especifica"
 						: pedidos[i].getViaje().getDelivery().getUsuario().getNombre();
 				parser[i][6] = pedidos[i].getViaje().getDelivery() == null ? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono();
-				parser[i][7] = pedidos[i].getViaje().getEstado().getDescripcion();
-				parser[i][8] = pedidos[i].getViaje().getId().toString();
+				parser[i][7] = pedidos[i].getViaje().getId().toString();
+				parser[i][8] = pedidos[i].getViaje().getEstado().getDescripcion();
+				
 			}
 			return parser;
 		}

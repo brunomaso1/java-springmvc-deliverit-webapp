@@ -1,7 +1,7 @@
 "use strict";
 var map;
 var pos;
-var mapZoom = 15;
+var mapZoom = 14;
 var urlIcon = 'resources/img/iconosMaps/';
 var urlMoto = 'resources/img/moto.png';
 var png = '.png';
@@ -63,7 +63,7 @@ function initDataTable() {
 	});
 	$('#pedidos').DataTable({
 		"sScrollX": "100%",
-        "sScrollXInner": "110%",
+		"sScrollXInner": "110%",
 		language: {
 			processing: "Procesando...",
 			search: "Busqueda&nbsp;:",
@@ -92,8 +92,11 @@ function initTableListener() {
 	window.onload = addRowHandlers();
 }
 
-function initColors() {
-	window.setInterval(changeColors, 5000);
+function initColors(filtro) {
+	if (filtro == "publicados") {
+		changeColors();
+		window.setInterval(changeColors, 5000);
+	}
 }
 /**
  * Coloca los markadores.
@@ -209,7 +212,7 @@ function addRowHandlers() {
 		};
 		var createDoubleClickHandler = function (row) {
 			return function () {
-				resaltarMarkador(table.rows[row.rowIndex - 1].cells[0].innerHTML)
+				resaltarMarkador(row.rowIndex - 1)
 			}
 		};
 		currentRow.onclick = createClickHandler(currentRow);
@@ -237,13 +240,13 @@ function stopAnimation(marker) {
 //      }, 3000);
 //  }
 //}
-function resaltarMarkador(viaje) {
+function resaltarMarkador(idrow) {
 	var posAnterior = map.getZoom();
 	map.setZoom(17);
-	map.setCenter(markadores[viaje].getPosition());
+	map.setCenter(markadores[idrow].getPosition());
 	window.setTimeout(function () {
 		map.setZoom(posAnterior);
-	}, 3000);
+	}, 5000);
 }
 
 function cargarDeliverys() {
@@ -295,23 +298,32 @@ function changeColors() {
 	var l = rows.length;
 	for (; i < l; i++) {
 		var currentRow = table.rows[i];
-		var timeViaje = new Date(currentRow.cells[5].innerHTML);
-		var timeActual = new Date();
-		var diferencia = new Date(timeActual - timeViaje);
-		var dif = diferencia.getTime();
+		var d = new Date();
+		var t = d.getMilliseconds();
+		var timeViaje = currentRow.cells[6].innerHTML;
+		var timeActual = paddingLeft(d.getHours()) + paddingLeft(d.getMinutes()) + paddingLeft(d.getSeconds());
+		var dif = parseInt(timeActual) - parseInt(timeViaje);
 		switch (true) {
-			case (dif < 5):
+			case (dif < 100):
+				break;
+			case (dif < 1000):
 				currentRow.style.backgroundColor = "#ffe6e6";
 				break;
-			case (dif < 9):
+			case (dif < 2000):
 				currentRow.style.backgroundColor = "#ff9999";
 				break;
-			case (dif < 12):
+			case (dif < 5000):
 				currentRow.style.backgroundColor = "#ff6666";
 				break;
-			case (dif < 12):
+			default:
 				currentRow.style.backgroundColor = "#ff1a1a";
 				break;
 		}
 	}
+}
+
+function paddingLeft(number) {
+	var str = "" + number;
+	var pad = "00";
+	return pad.substring(0, pad.length - str.length) + str;
 }

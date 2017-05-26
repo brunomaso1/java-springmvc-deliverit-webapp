@@ -17,6 +17,7 @@
 		<jstl.version>1.2</jstl.version>
 		<junit.version>4.12</junit.version>
 		<logback.version>1.2.3</logback.version>
+		<geocoder.version>0.16</geocoder.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
@@ -80,7 +81,13 @@
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 			<version>${logback.version}</version>
-		</dependency>		
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.geocoder-java</groupId>
+			<artifactId>geocoder-java</artifactId>
+			<version>${geocoder.version}</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>
