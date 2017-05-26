@@ -299,20 +299,19 @@ function changeColors() {
 	for (; i < l; i++) {
 		var currentRow = table.rows[i];
 		var d = new Date();
-		var t = d.getMilliseconds();
 		var timeViaje = currentRow.cells[6].innerHTML;
-		var timeActual = paddingLeft(d.getHours()) + paddingLeft(d.getMinutes()) + paddingLeft(d.getSeconds());
+		var timeActual = d.getHours() * 60 + d.getMinutes() * 60 + d.getSeconds()
 		var dif = parseInt(timeActual) - parseInt(timeViaje);
 		switch (true) {
-			case (dif < 100):
+			case (dif < 120):
 				break;
-			case (dif < 1000):
+			case (dif < 300):
 				currentRow.style.backgroundColor = "#ffe6e6";
 				break;
-			case (dif < 2000):
+			case (dif < 600):
 				currentRow.style.backgroundColor = "#ff9999";
 				break;
-			case (dif < 5000):
+			case (dif < 900):
 				currentRow.style.backgroundColor = "#ff6666";
 				break;
 			default:
@@ -320,10 +319,4 @@ function changeColors() {
 				break;
 		}
 	}
-}
-
-function paddingLeft(number) {
-	var str = "" + number;
-	var pad = "00";
-	return pad.substring(0, pad.length - str.length) + str;
 }

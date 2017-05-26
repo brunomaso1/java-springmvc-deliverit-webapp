@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import clases.configuration.Parametros;
 
 /**
  *
@@ -134,11 +135,10 @@ public class ViajeControllerHelper {
 	public String obtenerHora(Timestamp timestamp) {
 		Calendar calendar = new GregorianCalendar();
 		calendar.setTime(timestamp);
-		long c = calendar.getTimeInMillis();
-		int hours = (calendar.get(Calendar.HOUR_OF_DAY) + 3) % 24;
-		int minutes = calendar.get(Calendar.MINUTE);
-		int seconds = calendar.get(Calendar.SECOND);
-		String retorno = String.format("%02d", hours) + String.format("%02d", minutes) + String.format("%02d", seconds);
+		int hours = ((calendar.get(Calendar.HOUR_OF_DAY) + Parametros.HORA_PADING_SERVER) % 24) * 120;
+		int minutes = calendar.get(Calendar.MINUTE) * 60;
+		int seconds = calendar.get(Calendar.SECOND); 
+		String retorno = Integer.valueOf(hours + minutes + seconds);
 		return retorno;
 	}
 }
