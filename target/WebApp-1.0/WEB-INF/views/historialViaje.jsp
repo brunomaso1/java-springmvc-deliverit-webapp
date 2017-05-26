@@ -44,7 +44,7 @@
 				<div class="container-fluid">
 					<!-- Page Heading -->
 					<div class="row">
-						<div class="col-lg-3">
+						<div class="col-lg-6">
 							<h1 class="headline">
 								Historial de viajes
 							</h1>
@@ -63,7 +63,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<%@include file="plugins/charts/historialViajeCharts/historialViajeChartGananciaViajeMes.jsp" %>
+						<%@include file="plugins/charts/historialViajeCharts/historialViajeChartCostoViajeMes.jsp" %>
 					</div>
 				</div>
 			</div>
@@ -94,7 +94,6 @@
 		<!-- User javascripts -->
 		<script src="resources/js/historialViaje.js"></script>
 		<script>initDataTable();</script>
-		<%--<script>initCharts(${rawData1}, ${rawData2}, ${rawData3});</script>--%>
-		<script>initCharts(${rawData1});</script>
+		<script>initCharts(${donutData}, ${lineData}, ${barrsData});</script>
 	</body>
 </html>

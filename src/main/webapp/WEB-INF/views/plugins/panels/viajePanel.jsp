@@ -15,9 +15,11 @@
 							<tr>
 								<th>Viaje</th>
 								<th>Cliente</th>
+								<th>Telefono</th>
 								<th>Direccion</th>
 								<th>Delivery</th>
 								<th>Telefono</th>
+								<th style="display:none;">Fecha</th>
 							</tr>
 						</thead>
 						<tbody>

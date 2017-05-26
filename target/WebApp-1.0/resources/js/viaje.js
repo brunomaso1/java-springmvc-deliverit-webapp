@@ -1,5 +1,4 @@
 "use strict";
-
 var map;
 var pos;
 var mapZoom = 15;
@@ -23,17 +22,18 @@ function Delivery(deliveryId, viajeId, markador) {
 	this.viajeId = viajeId;
 	this.markador = markador;
 }
-
 /**
  * Inicia el mapa.
  */
-function initMap(url) {
+function initMap() {
 	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: -34.9082249, lng: -56.1664964},
+		center: {
+			lat: -34.9082249,
+			lng: -56.1664964
+		},
 		zoom: mapZoom,
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
-
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function (position) {
@@ -41,7 +41,6 @@ function initMap(url) {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
-
 			map.setCenter(pos);
 		}, function () {
 			handleLocationError(true, infoWindow, map.getCenter());
@@ -52,39 +51,38 @@ function initMap(url) {
 	}
 	setMarkers();
 	timeCargarMarkadores();
-	//cargarDeliverys();
+	//actualizarDeliverys();
 }
-
 /**
  * Inicia la tabla.
  * @returns {undefined}
  */
 function initDataTable() {
 	$(document).ready(function () {
-		$('#pedidos').DataTable();
-	});
-	$('#pedidos').DataTable({
-		language: {
-			processing: "Procesando...",
-			search: "Busqueda&nbsp;:",
-			lengthMenu: "Mostrar _MENU_ viajes",
-			info: "",
-			infoEmpty: "Ninguna entrada",
-			infoFiltered: "",
-			infoPostFix: "",
-			loadingRecords: "Cargando registros...",
-			zeroRecords: "No se han encontrado registros",
-			emptyTable: "No hay datos",
-			paginate: {
-				first: "<<",
-				previous: "<",
-				next: ">",
-				last: ">>"
+		$('#pedidos').DataTable({
+			"sScrollX": "100%",
+			"sScrollXInner": "110%",
+			language: {
+				processing: "Procesando...",
+				search: "Busqueda&nbsp;:",
+				lengthMenu: "Mostrar _MENU_ viajes",
+				info: "",
+				infoEmpty: "Ninguna entrada",
+				infoFiltered: "",
+				infoPostFix: "",
+				loadingRecords: "Cargando registros...",
+				zeroRecords: "No se han encontrado registros",
+				emptyTable: "No hay datos",
+				paginate: {
+					first: "<<",
+					previous: "<",
+					next: ">",
+					last: ">>"
+				}
 			}
-		}
+		});
 	});
 }
-
 /**
  * Inicia los listeners para la tabla.
  * @returns {undefined}
@@ -93,20 +91,23 @@ function initTableListener() {
 	window.onload = addRowHandlers();
 }
 
+function initColors() {
+	window.setInterval(changeColors, 5000);
+}
 /**
  * Coloca los markadores.
  * @returns {undefined}
  */
 function setMarkers() {
 	var geocoder = new google.maps.Geocoder();
-
 	if (table.rows.length > 1) {
 		var r = 1;
 		var n = table.rows.length;
 		for (; r < n; r++) {
 			var direccion = table.rows[r].cells[2].innerHTML + ", Montevideo";
-
-			geocoder.geocode({'address': direccion}, function (results, status) { // Si le paso otro parametro a esta funcion, no se asigna, ej: r.
+			geocoder.geocode({
+				'address': direccion
+			}, function (results, status) { // Si le paso otro parametro a esta funcion, no se asigna, ej: r.
 				if (status == google.maps.GeocoderStatus.OK) {
 					var posMarker = {
 						lat: results[0].geometry.location.lat(),
@@ -126,7 +127,6 @@ function setMarkers() {
 		}
 	}
 }
-
 /**
  * Carga la funcion markadores cada medio segundo hasta que se ejecute (espera a que este el mapa).
  * @returns {undefined}
@@ -136,7 +136,6 @@ function timeCargarMarkadores() {
 		repeater = window.setInterval(cargarMarkadores, 500);
 	}
 }
-
 /**
  * Carga los markadores.
  * @returns {undefined}
@@ -149,13 +148,11 @@ function cargarMarkadores() {
 		var infowindow = new google.maps.InfoWindow();
 		for (; r <= l; r++) {
 			var i = r - 1;
-
 			var viaje = table.rows[r].cells[0].innerHTML;
 			var cliente = table.rows[r].cells[1].innerHTML;
 			var direccion = table.rows[r].cells[2].innerHTML;
 			var content = "<p><strong>" + cliente + "</strong></p>" + "<p>" + direccion + "</p>";
 			contents.push(content);
-
 			var marker = new google.maps.Marker({
 				position: posiciones[i],
 				map: map,
@@ -171,7 +168,6 @@ function cargarMarkadores() {
 					color: "black"
 				}
 			});
-
 			google.maps.event.addListener(marker, 'click', (function (marker, i) {
 				return function () {
 					infowindow.setContent(contents[i]);
@@ -183,7 +179,6 @@ function cargarMarkadores() {
 		clearInterval(repeater);
 	}
 }
-
 //No se usa.
 function ajustarZoom() {
 	var bounds = new google.maps.LatLngBounds();
@@ -194,7 +189,6 @@ function ajustarZoom() {
 	}
 	map.fitBounds(bounds);
 }
-
 /**
  * Agrega los eventos a las filas.
  * @returns {undefined}
@@ -205,28 +199,22 @@ function addRowHandlers() {
 	var l = rows.length;
 	for (; i < l; i++) {
 		var currentRow = table.rows[i];
-		var createClickHandler =
-				function (row)
-				{
-					return function () {
-						var marker = markadores[row.rowIndex - 1];
-						marker.setAnimation(google.maps.Animation.BOUNCE);
-						stopAnimation(marker);
-					}
-				};
-		var createDoubleClickHandler =
-				function (row)
-				{
-					return function () {
-						resaltarMarkador(table.rows[row.rowIndex - 1].cells[0].innerHTML)
-					}
-				};
-
+		var createClickHandler = function (row) {
+			return function () {
+				var marker = markadores[row.rowIndex - 1];
+				marker.setAnimation(google.maps.Animation.BOUNCE);
+				stopAnimation(marker);
+			}
+		};
+		var createDoubleClickHandler = function (row) {
+			return function () {
+				resaltarMarkador(table.rows[row.rowIndex - 1].cells[0].innerHTML)
+			}
+		};
 		currentRow.onclick = createClickHandler(currentRow);
 		currentRow.ondblclick = createDoubleClickHandler(currentRow);
 	}
 }
-
 /**
  * Para la animacion de un markador.
  * @param {type} marker
@@ -237,19 +225,17 @@ function stopAnimation(marker) {
 		marker.setAnimation(null);
 	}, 3000);
 }
-
 //function resaltarDelivery(viaje) {
-//	if (deliverys != null) {
-//		var delivery = getDeliveryViaje(viaje);
-//		var posAnterior = map.getZoom();
-//		map.setZoom(13);
-//		map.setCenter(delivery.markador.getPosition());
-//		window.setTimeout(function () {
-//			map.setZoom(posAnterior);
-//		}, 3000);
-//	}
+//  if (deliverys != null) {
+//      var delivery = getDeliveryViaje(viaje);
+//      var posAnterior = map.getZoom();
+//      map.setZoom(13);
+//      map.setCenter(delivery.markador.getPosition());
+//      window.setTimeout(function () {
+//          map.setZoom(posAnterior);
+//      }, 3000);
+//  }
 //}
-
 function resaltarMarkador(viaje) {
 	var posAnterior = map.getZoom();
 	map.setZoom(17);
@@ -259,23 +245,23 @@ function resaltarMarkador(viaje) {
 	}, 3000);
 }
 
-
-
 function cargarDeliverys() {
+	deliverys = [];
 	getAllDelivery('http://localhost:8080/webapp/delivery');
 	var i = 0;
 	var l = deliverys.length;
 	for (; i < l; i++) {
-		var posicion = {lat: deliverys[i].ubicacion.latitud, lng: deliverys[i].ubicacion.longitud};
+		var posicion = {
+			lat: deliverys[i].ubicacion.latitud,
+			lng: deliverys[i].ubicacion.longitud
+		};
 		var marker = new google.maps.Marker({
 			position: posicion,
 			map: map,
 			draggable: false,
 			icon: urlMoto
 		});
-
 		var delivery = new Delivery(deliverys[i].id, deliverys[i].idViaje, marker);
-
 		deliverys.push(delivery);
 	}
 }
@@ -302,22 +288,29 @@ function getAllDelivery(url) {
 	deliverys = JSON.parse(text);
 }
 
-function activateColors() {
-	if (true) {//algo
-		setInterval(changeColors, 10000);
-	}
-}
-
 function changeColors() {
 	var rows = table.getElementsByTagName("tr");
 	var i = 0;
 	var l = rows.length;
 	for (; i < l; i++) {
 		var currentRow = table.rows[i];
-		var time = currentRow.cells[5].innerHTML;
+		var timeViaje = new Date(currentRow.cells[5].innerHTML);
+		var timeActual = new Date();
+		var diferencia = new Date(timeActual - timeViaje);
+		var dif = diferencia.getTime();
 		switch (true) {
-			case (time < 1000):
-				currentRow.style.color = "";
+			case (dif < 5):
+				currentRow.style.backgroundColor = "#ffe6e6";
+				break;
+			case (dif < 9):
+				currentRow.style.backgroundColor = "#ff9999";
+				break;
+			case (dif < 12):
+				currentRow.style.backgroundColor = "#ff6666";
+				break;
+			case (dif < 12):
+				currentRow.style.backgroundColor = "#ff1a1a";
+				break;
 		}
 	}
 }

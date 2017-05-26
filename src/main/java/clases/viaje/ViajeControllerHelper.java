@@ -6,7 +6,9 @@
 package clases.viaje;
 
 import clases.dominio.Pedido;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  *
@@ -35,7 +37,7 @@ public class ViajeControllerHelper {
 				int i = 0; // Obtener fecha.
 				for (String string : pedidosParseado) {
 					// tabla += "<td>" + string + "</td>"; Obtener fecha
-					if (i != 5) // Obtener fecha
+					if (i != 6) // Obtener fecha
 						tabla += "<td>" + string + "</td>"; // Obtener fecha
 					else // Obtener fecha
 						tabla += "<td style=\"display:none;\">" + string + "</td>"; // Obtener fecha
@@ -82,20 +84,21 @@ public class ViajeControllerHelper {
 	 */
 	private String[][] parsearPedidos(Pedido[] pedidos) {
 		if ((pedidos != null) && (pedidos.length != 0)) {
-			// String[][] parser = new String[pedidos.length][5]; // Obtener fecha.
-			String[][] parser = new String[pedidos.length][6]; // Obtener fecha.
+			// String[][] parser = new String[pedidos.length][6]; // Obtener fecha.
+			String[][] parser = new String[pedidos.length][7]; // Obtener fecha.
 			for (int i = 0; i < pedidos.length; i++) {
 				parser[i][0] = pedidos[i].getViaje() == null ? "Viaje no encontrado" : pedidos[i].getViaje().getId().toString();
 				parser[i][1] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getNombre();
-				parser[i][2] = pedidos[i].getCliente() == null ? "Cliente no encontrado"
+				parser[i][2] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getTelefono();
+				parser[i][3] = pedidos[i].getCliente() == null ? "Cliente no encontrado"
 				               : pedidos[i].getCliente().getDireccion() == null ? "Direcccion no encontrada"
 				               : pedidos[i].getCliente().getDireccion().getCalle() + " "
 				               + pedidos[i].getCliente().getDireccion().getNroPuerta();
-				parser[i][3] = pedidos[i].getViaje().getDelivery() == null
-				               ? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre();
 				parser[i][4] = pedidos[i].getViaje().getDelivery() == null
+				               ? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre();
+				parser[i][5] = pedidos[i].getViaje().getDelivery() == null
 				               ? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono();
-				parser[i][5] = pedidos[i].getViaje().getFecha() == null ? "Sin fecha" // Obtener fecha.
+				parser[i][6] = pedidos[i].getViaje().getFecha() == null ? "Sin fecha" // Obtener fecha.
 				               : obtenerHora(pedidos[i].getViaje().getFecha()); // Obtener fecha.
 			}
 			return parser;
@@ -127,6 +130,6 @@ public class ViajeControllerHelper {
 	public String obtenerHora(Timestamp timestamp){
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(timestamp);
-		retrun calendar.toString();
+		return calendar.toString();
 	}
 }

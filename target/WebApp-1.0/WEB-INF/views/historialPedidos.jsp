@@ -45,7 +45,7 @@
 				<div class="container-fluid">
 					<!-- Page Heading -->
 					<div class="row">
-						<div class="col-lg-3">
+						<div class="col-lg-6">
 							<h1 class="headline">
 								Historial de pedidos
 							</h1>
@@ -64,7 +64,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<%@include file="plugins/charts/historialPedidosCharts/historialPedidosChartGananciaPedidosMes.jsp" %>
+						<%@include file="plugins/charts/historialPedidosCharts/historialPedidosChartCostoPedidosMes.jsp" %>
 					</div>
 				</div>
 			</div>
@@ -95,6 +95,6 @@
 		<!-- User javascripts -->
 		<script src="resources/js/historialPedidos.js"></script>
 		<script>initDataTable();</script>
-		<script>initCharts(${rawData1}, ${rawData2}, ${rawData3});</script>
+		<script>initCharts(${donutData}, ${lineData}, ${barrsData});</script>
 	</body>
 </html>

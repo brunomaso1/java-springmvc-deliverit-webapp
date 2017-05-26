@@ -57,7 +57,7 @@
 							<%@include file="plugins/panels/viajePanel.jsp" %>
 						</div>
 						<div class="col-lg-6">
-							<div class="panel panel-default">
+							<div class="panel panel-default panel-height">
 								<div class="panel-heading">
 									<h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Deliverys</h3>
 								</div>
@@ -92,9 +92,8 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
 		<!-- User javascripts -->
 		<script src="resources/js/viaje.js"></script>	
-		<script>initTableListener();</script>
+		<!--<script>initTableListener();</script>-->
 		<script>initDataTable();</script>
-		<script>initColors();</script>
-		
+		<!--<script>initColors();</script>-->
 	</body>
 </html>

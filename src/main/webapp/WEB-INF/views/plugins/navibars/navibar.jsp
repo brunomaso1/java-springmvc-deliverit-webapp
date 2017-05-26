@@ -48,10 +48,10 @@
 						<a href="viaje.html"><i class="fa fa-fw fa-bicycle" aria-hidden="true"></i> Viajes</a>
 					</li>
 					<li>
-						<a href="clientes.html"><i class="fa fa-fw fa-address-book-o" aria-hidden="true"></i> Clientes</a>
+						<a href="deliverys.html"><i class="fa fa-fw fa-motorcycle" aria-hidden="true"></i> Deliverys</a>
 					</li>
 					<li>
-						<a href="deliverys.html"><i class="fa fa-fw fa-motorcycle" aria-hidden="true"></i> Deliverys</a>
+						<a href="clientes.html"><i class="fa fa-fw fa-address-book-o" aria-hidden="true"></i> Clientes</a>
 					</li>
 					<li>
 						<a href="calificacion.html"><i class="fa fa-fw fa-star" aria-hidden="true"></i> Calificaciones</a>
@@ -60,7 +60,7 @@
 						<a href="estadoCuenta.html"><i class="fa fa-fw fa-credit-card-alt" aria-hidden="true"></i> Estado de cuenta</a>
 					</li>
 					<li>
-						<a href="javascript:;" data-toggle="collapse" data-target="#droplist1"><i class="fa fa-fw fa-history" aria-hidden="true"></i> Historial 
+						<a href="javascript:;" data-toggle="collapse" data-target="#droplist1"><i class="fa fa-fw fa-bar-chart" aria-hidden="true"></i> Reportes 
 						<i class="fa fa-fw fa-caret-down"></i></a>
 						<ul id="droplist1" class="collapse">
 							<li>

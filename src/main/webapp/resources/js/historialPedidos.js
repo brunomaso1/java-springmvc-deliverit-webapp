@@ -43,11 +43,11 @@ function initCharts(donutData, lineData, barrsData) {
             labels: ['Pedidos']
         });
         new Morris.Bar({
-            element: 'gananciaPedidosMes',
+            element: 'costoPedidosMes',
             data: barrsData,
             xkey: 'anioMes',
-            ykeys: ['ganancia'],
-            labels: ['Ganancia']
+            ykeys: ['costo'],
+            labels: ['Costo']
         });
     });
 }

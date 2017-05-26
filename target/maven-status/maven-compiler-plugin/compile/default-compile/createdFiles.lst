@@ -25,7 +25,6 @@ clases\clientes\ClientesControllerHelper.class
 clases\accesControl\ACSessionServices.class
 clases\accesControl\ACUserServiceImpl.class
 clases\accesControl\ACSecurityServiceImpl.class
-clases\historialPedidos\HistorialPedidosControllerHelper$1.class
 clases\restaurant\RestaurantControllerHelper.class
 clases\dominio\Ubicacion.class
 clases\viaje\ViajeController.class

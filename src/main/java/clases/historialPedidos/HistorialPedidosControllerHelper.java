@@ -9,6 +9,12 @@ import clases.dominio.Pedido;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,6 +25,7 @@ import java.util.logging.Logger;
 public class HistorialPedidosControllerHelper {
 
 	public class JsonObjectDonut {
+
 		private String label;
 		private String value;
 
@@ -47,9 +54,9 @@ public class HistorialPedidosControllerHelper {
 	public class JsonObjectLine {
 
 		private String anioMes;
-		private String viajes;
+		private Integer viajes;
 
-		public JsonObjectLine(String anioMes, String viajes) {
+		public JsonObjectLine(String anioMes, Integer viajes) {
 			this.anioMes = anioMes;
 			this.viajes = viajes;
 		}
@@ -62,12 +69,39 @@ public class HistorialPedidosControllerHelper {
 			this.anioMes = anioMes;
 		}
 
-		public String getViajes() {
+		public Integer getViajes() {
 			return viajes;
 		}
 
-		public void setViajes(String viajes) {
+		public void setViajes(Integer viajes) {
 			this.viajes = viajes;
+		}
+	}
+	
+	public class JsonObjectBars {
+
+		private String anioMes;
+		private Integer costo;
+
+		public JsonObjectBars(String anioMes, Integer ganancia) {
+			this.anioMes = anioMes;
+			this.costo = ganancia;
+		}
+
+		public String getAnioMes() {
+			return anioMes;
+		}
+
+		public void setAnioMes(String anioMes) {
+			this.anioMes = anioMes;
+		}
+
+		public Integer getCosto() {
+			return costo;
+		}
+
+		public void setCosto(Integer costo) {
+			this.costo = costo;
 		}
 	}
 
@@ -96,14 +130,14 @@ public class HistorialPedidosControllerHelper {
 				parser[i][0] = pedidos[i].getId().toString();
 				parser[i][1] = pedidos[i].getFormaPago() == null ? "No se especifica" : pedidos[i].getFormaPago();
 				parser[i][2] = pedidos[i].getCliente() == null ? "No se especifica" : pedidos[i].getCliente().getNombre();
-				parser[i][3] = pedidos[i].getCliente() == null ? "No se especifica"
-						: pedidos[i].getCliente().getDireccion() == null ? "No se especifica" : pedidos[i].getCliente().getDireccion().getCalle() + " "
-						+ pedidos[i].getCliente().getDireccion().getNroPuerta() + pedidos[i].getCliente().getDireccion().getApartamento() == null ? "" : "/"
-						+ pedidos[i].getCliente().getDireccion().getApartamento();
+				parser[i][3] = pedidos[i].getCliente() == null ? "Cliente no encontrado"
+				               : pedidos[i].getCliente().getDireccion() == null ? "Direcccion no encontrada"
+				               : pedidos[i].getCliente().getDireccion().getCalle() + " "
+				               + pedidos[i].getCliente().getDireccion().getNroPuerta();
 				parser[i][4] = pedidos[i].getCliente().getTelefono() == null ? "Sin telefono" : pedidos[i].getCliente().getTelefono();
 				parser[i][5] = pedidos[i].getViaje() == null ? "No se especifica" : pedidos[i].getViaje().getDelivery() == null ? "No se especifica"
 						: pedidos[i].getViaje().getDelivery().getUsuario().getNombre();
-				parser[i][6] = pedidos[i].getViaje().getDelivery().getUsuario().getTelefono();
+				parser[i][6] = pedidos[i].getViaje().getDelivery() == null ? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono();
 				parser[i][7] = pedidos[i].getViaje().getEstado().getDescripcion();
 				parser[i][8] = pedidos[i].getViaje().getId().toString();
 			}
@@ -150,63 +184,76 @@ public class HistorialPedidosControllerHelper {
 		return jsonObject;
 	}
 
-	public String chartHistorialViajeLinea(Pedido[] pedidos) {
+	public String chartHistorialPedidosLinea(Pedido[] pedidos){
+		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Integer> orderedMap = new TreeMap<String, Integer>(
-		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
+				(Comparator<String>) (o1, o2) -> o2.compareTo(o1)
 		);
 
 		for (Pedido pedido : pedidos) {
 			if (pedido.getViaje().getEstado().getId() == 4) {
 				// Parseo la fecha en el formato "yyyymm".
-				Calendar calendar = Calendar.getInstance();
+				Calendar calendar = new GregorianCalendar();
 				calendar.setTime(pedido.getViaje().getFecha());
-				String fechaParseada = String.valueOf(calendar.YEAR) + String.valueOf(calendar.MONTH);
+				String fechaParseada = String.valueOf(calendar.get(Calendar.YEAR)) + "-" + String.valueOf(calendar.get(Calendar.MONTH) + 1);
 				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
-				if (orderedMap.containsKey(fechaParseada))
-					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada)++);
-				else
+				if (orderedMap.containsKey(fechaParseada)) {
+					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + 1);
+				} else {
 					orderedMap.put(fechaParseada, 1);
+				}
 			}
 		}
 
-		JSONObject jsonObject = JSONObject.fromObject(parsearLineMapToJson(orderedMap));
-		return jsonObject.toString();
+		String jsonObject = "";
+		try {
+			jsonObject = mapper.writeValueAsString(parsearLineMapToJson(orderedMap));
+		} catch (JsonProcessingException ex) {
+			Logger.getLogger(HistorialPedidosControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return jsonObject;
 	}
 
-	public String chartHistorialViajeBarras(Pedido[] pedidos) {
+	public String chartHistorialPedidosBarras(Pedido[] pedidos) {
+		ObjectMapper mapper = new ObjectMapper();
 		Map<String, Integer> orderedMap = new TreeMap<String, Integer>(
-		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
+				(Comparator<String>) (o1, o2) -> o2.compareTo(o1)
 		);
 
 		for (Pedido pedido : pedidos) {
 			if (pedido.getViaje().getEstado().getId() == 4) {
 				// Parseo la fecha en el formato "yyyymm".
-				Calendar calendar = Calendar.getInstance();
+				Calendar calendar = new GregorianCalendar();
 				calendar.setTime(pedido.getViaje().getFecha());
-				String fechaParseada = String.valueOf(calendar.YEAR) + String.valueOf(calendar.MONTH);
+				String fechaParseada = String.valueOf(calendar.get(Calendar.YEAR)) + "-" + String.valueOf(calendar.get(Calendar.MONTH) + 1);
 				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
-				if (orderedMap.containsKey(fechaParseada))
+				if (orderedMap.containsKey(fechaParseada)) {
 					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + pedido.getViaje().getPrecio());
-				else
-					orderedMap.put(fechaParseada, pedido.getViaje().getPrecio());
+				} else {
+					orderedMap.put(fechaParseada, (int) pedido.getViaje().getPrecio());
+				}
 			}
 		}
-
-		JSONObject jsonObject = JSONObject.fromObject(parsearBaraMapToJson(orderedMap));
-		return jsonObject.toString();
+		String jsonObject = "";
+		try {
+			jsonObject = mapper.writeValueAsString(parsearBaraMapToJson(orderedMap));
+		} catch (JsonProcessingException ex) {
+			Logger.getLogger(HistorialPedidosControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return jsonObject;
 	}
 
-	private List<JsonObjectLine> parsearLineMapToJson (Map<String, Integer> map) {
+	private List<JsonObjectLine> parsearLineMapToJson(Map<String, Integer> map) {
 		List<JsonObjectLine> jsonObjectLineList = new ArrayList<>();
 		// Agrego a la lista objetos del tipo JsonObjcetLine con clave y valor.
-		map.foreach((k, v) -> jsonObjectLineList.add(new JsonObjectLine(k, v)));
+		map.forEach((k, v) -> jsonObjectLineList.add(new JsonObjectLine(k, v)));
 		return jsonObjectLineList;
 	}
 
-	private List<JsonObjectLine> parsearBaraMapToJson (Map<String, Integer> map) {
+	private List<JsonObjectBars> parsearBaraMapToJson(Map<String, Integer> map) {
 		List<JsonObjectBars> jsonObjectBarsList = new ArrayList<>();
 		// Agrego a la lista objetos del tipo JsonObjcetLine con clave y valor.
-		map.foreach((k, v) -> jsonObjectBarsList.add(new JsonObjectLine(k, v)));
+		map.forEach((k, v) -> jsonObjectBarsList.add(new JsonObjectBars(k, v)));
 		return jsonObjectBarsList;
 	}
 }
