@@ -59,28 +59,29 @@ function initMap() {
  */
 function initDataTable() {
 	$(document).ready(function () {
-		$('#pedidos').DataTable({
-			"sScrollX": "100%",
-			"sScrollXInner": "110%",
-			language: {
-				processing: "Procesando...",
-				search: "Busqueda&nbsp;:",
-				lengthMenu: "Mostrar _MENU_ viajes",
-				info: "",
-				infoEmpty: "Ninguna entrada",
-				infoFiltered: "",
-				infoPostFix: "",
-				loadingRecords: "Cargando registros...",
-				zeroRecords: "No se han encontrado registros",
-				emptyTable: "No hay datos",
-				paginate: {
-					first: "<<",
-					previous: "<",
-					next: ">",
-					last: ">>"
-				}
+		$('#pedidos').DataTable()
+	});
+	$('#pedidos').DataTable({
+		"sScrollX": "100%",
+        "sScrollXInner": "110%",
+		language: {
+			processing: "Procesando...",
+			search: "Busqueda&nbsp;:",
+			lengthMenu: "Mostrar _MENU_ viajes",
+			info: "",
+			infoEmpty: "Ninguna entrada",
+			infoFiltered: "",
+			infoPostFix: "",
+			loadingRecords: "Cargando registros...",
+			zeroRecords: "No se han encontrado registros",
+			emptyTable: "No hay datos",
+			paginate: {
+				first: "<<",
+				previous: "<",
+				next: ">",
+				last: ">>"
 			}
-		});
+		}
 	});
 }
 /**
@@ -104,7 +105,7 @@ function setMarkers() {
 		var r = 1;
 		var n = table.rows.length;
 		for (; r < n; r++) {
-			var direccion = table.rows[r].cells[2].innerHTML + ", Montevideo";
+			var direccion = table.rows[r].cells[3].innerHTML + ", Montevideo";
 			geocoder.geocode({
 				'address': direccion
 			}, function (results, status) { // Si le paso otro parametro a esta funcion, no se asigna, ej: r.
@@ -150,7 +151,7 @@ function cargarMarkadores() {
 			var i = r - 1;
 			var viaje = table.rows[r].cells[0].innerHTML;
 			var cliente = table.rows[r].cells[1].innerHTML;
-			var direccion = table.rows[r].cells[2].innerHTML;
+			var direccion = table.rows[r].cells[3].innerHTML;
 			var content = "<p><strong>" + cliente + "</strong></p>" + "<p>" + direccion + "</p>";
 			contents.push(content);
 			var marker = new google.maps.Marker({
@@ -290,7 +291,7 @@ function getAllDelivery(url) {
 
 function changeColors() {
 	var rows = table.getElementsByTagName("tr");
-	var i = 0;
+	var i = 1;
 	var l = rows.length;
 	for (; i < l; i++) {
 		var currentRow = table.rows[i];
