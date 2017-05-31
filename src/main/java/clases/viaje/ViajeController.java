@@ -45,9 +45,10 @@ public class ViajeController {
 	}
 
 	@GetMapping
-	public String showPage(HttpSession request, Model model) {
+	public String showPage(HttpSession session, HttpServletRequest request, Model model) {
 		String sucursalId = acss.getUserId();
-		String estadoId = (String) request.getAttribute("ESTADO_ID");
+		String url = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
+		String estadoId = (String) session.getAttribute("ESTADO_ID");
 
 		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
 		
@@ -63,7 +64,7 @@ public class ViajeController {
 		
 		// Para Javascript
 		model.addAttribute("listaPedidos", vch.parsePedidos(pedidos));
-		model.addAttribute("opciones", vch.getOpciones(servletContext.getContextPath()));
+		model.addAttribute("opciones", vch.getOpciones(url));
 
 		return "viaje";
 	}

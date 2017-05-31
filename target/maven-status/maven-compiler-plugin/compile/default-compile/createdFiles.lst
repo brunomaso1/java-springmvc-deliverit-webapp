@@ -24,7 +24,6 @@ clases\restaurant\RestaurantLogica.class
 clases\dominio\Viaje.class
 clases\clientes\ClientesControllerHelper.class
 clases\accesControl\ACSessionServices.class
-clases\viaje\ViajeControllerHelper$Opciones.class
 clases\accesControl\ACUserServiceImpl.class
 clases\accesControl\ACSecurityServiceImpl.class
 clases\restaurant\RestaurantControllerHelper.class
@@ -39,6 +38,7 @@ clases\accesControl\ACIUserService.class
 clases\historialPedidos\HistorialPedidosControllerHelper.class
 clases\historialViaje\HistorialViajeControllerHelper$JsonObjectDonut.class
 clases\dominio\Sucursal.class
+clases\configuration\OpcionesJavascript.class
 clases\clientes\ClientesLogica.class
 clases\dominio\RespuestaGeneral.class
 clases\restaurant\RestaurantController.class

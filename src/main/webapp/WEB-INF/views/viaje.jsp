@@ -91,14 +91,10 @@
 		<!-- DataTables -->
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
 		<!-- User javascripts -->
-		<script src="resources/js/viaje.js"></script>	
+		<script src="resources/js/viaje.js"></script>
+		<script>initData(${opciones});</script>
 		<script>
 			initDataTable();
-			
-			
 		</script>
-		<script>initTableListener();</script>
-		<script>initDataTable();</script>
-		<script>initColors('${filtroActual}');</script>
 	</body>
 </html>
