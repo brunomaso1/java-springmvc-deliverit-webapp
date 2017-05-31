@@ -7,10 +7,6 @@ package clases.viaje;
 
 import clases.dominio.Ubicacion;
 import java.util.logging.Logger;
-import javax.servlet.ServletContext;
-import javax.websocket.server.PathParam;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +30,7 @@ public class ViajeRestController {
 			this.vl = new ViajeLogica();
 		}		
 		
-		@RequestMapping(value="/student/{id}/", method=RequestMethod.GET)
+		@RequestMapping(value="/delivery/{id}/", method=RequestMethod.GET)
 		public Ubicacion doRequest(@PathVariable String id) {
 			Ubicacion u = vl.obtenerUbicacionDelivery(id);
 			return u;

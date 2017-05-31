@@ -5,14 +5,13 @@
  */
 package clases.viaje;
 
+import clases.configuration.OpcionesJavascript;
 import clases.dominio.Pedido;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import clases.configuration.Parametros;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,10 +20,6 @@ import java.util.logging.Logger;
  * @author bruno
  */
 public class ViajeControllerHelper {
-
-	public class Opciones {
-		private String url;
-	}
 
 	/**
 	 * Devuelve un String conteniendo los items de la tabla ubicada en la pagina
@@ -316,10 +311,26 @@ public class ViajeControllerHelper {
 
 	public String getOpciones(String contextPath) {
 		ObjectMapper mapper = new ObjectMapper();
-		Opciones opciones = new Opciones();
+		OpcionesJavascript opciones = new OpcionesJavascript();
+
+		// Agrego la url del para la llamada ajax para obtener la ubicacion del dleivery.
+		opciones.setUrl(contextPath + Parametros.URL_DELIVERY);
 		
+		// Agrego los colores de los markadores.
+		Arrays.asList(Parametros.COLORES_MARKADORES).forEach((k) -> {
+			String color = Parametros.UBICACION_MARKADORES + k + Parametros.EXTENSION_MARKADORES;
+			opciones.getColoresMarkadores().add(color);
+		});
 		
+		// Agrego la ubicacion de la moto.
+		opciones.setMoto(Parametros.UBICACION_MOTO);
 		
+		// Agrego el zoom del mapa.
+		opciones.setZoomMap(Parametros.ZOOM_MAPA);
+		
+		// Agrego las opciones de la DataTable.
+		opciones.setDataTableOptions(Parametros.OPCIONES);
+
 		String jsonObject = "";
 		try {
 			jsonObject = mapper.writeValueAsString(opciones);

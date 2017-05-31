@@ -62,7 +62,7 @@ public class ViajeController {
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
 		
 		// Para Javascript
-		//model.addAttribute("listaPedidos", vch.parsePedidos(pedidos));
+		model.addAttribute("listaPedidos", vch.parsePedidos(pedidos));
 		model.addAttribute("opciones", vch.getOpciones(servletContext.getContextPath()));
 
 		return "viaje";

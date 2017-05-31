@@ -46,7 +46,7 @@
 						</div>
 						<div class="col-lg-3 col-lg-offset-6 text-right top-padding-1">
 							<button id="nuevoViaje" name="nuevoViaje" onclick="location.href = './viaje/viajeNuevo.html'" 
-							class="btn btn-primary btn-lg btn3d">Nuevo viaje
+									class="btn btn-primary btn-lg btn3d">Nuevo viaje
 							</button>
 						</div>
 					</div>
@@ -86,12 +86,17 @@
 		</script>
 		<!-- Google Maps -->
 		<script async defer 
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap">
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A">
 		</script>
 		<!-- DataTables -->
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
 		<!-- User javascripts -->
 		<script src="resources/js/viaje.js"></script>	
+		<script>
+			initDataTable();
+			
+			
+		</script>
 		<script>initTableListener();</script>
 		<script>initDataTable();</script>
 		<script>initColors('${filtroActual}');</script>
