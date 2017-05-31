@@ -294,29 +294,31 @@ function getAllDelivery(url) {
 
 function changeColors() {
 	var rows = table.getElementsByTagName("tr");
-	var i = 1;
-	var l = rows.length;
-	for (; i < l; i++) {
-		var currentRow = table.rows[i];
-		var d = new Date();
-		var timeViaje = currentRow.cells[6].innerHTML;
-		var timeActual = d.getHours() * 60 + d.getMinutes() * 60 + d.getSeconds()
-		var dif = parseInt(timeActual) - parseInt(timeViaje);
-		switch (true) {
-			case (dif < 120):
-				break;
-			case (dif < 300):
-				currentRow.style.backgroundColor = "#ffe6e6";
-				break;
-			case (dif < 600):
-				currentRow.style.backgroundColor = "#ff9999";
-				break;
-			case (dif < 900):
-				currentRow.style.backgroundColor = "#ff6666";
-				break;
-			default:
-				currentRow.style.backgroundColor = "#ff1a1a";
-				break;
+	if (rows.length > 1) {
+		var i = 1;
+		var l = rows.length;
+		for (; i < l; i++) {
+			var currentRow = table.rows[i];
+			var d = new Date();
+			var timeViaje = currentRow.cells[6].innerHTML;
+			var timeActual = d.getHours() * 60 + d.getMinutes() * 60 + d.getSeconds()
+			var dif = parseInt(timeActual) - parseInt(timeViaje);
+			switch (true) {
+				case (dif < 120):
+					break;
+				case (dif < 300):
+					currentRow.style.backgroundColor = "#ffe6e6";
+					break;
+				case (dif < 600):
+					currentRow.style.backgroundColor = "#ff9999";
+					break;
+				case (dif < 900):
+					currentRow.style.backgroundColor = "#ff6666";
+					break;
+				default:
+					currentRow.style.backgroundColor = "#ff1a1a";
+					break;
+			}
 		}
 	}
 }

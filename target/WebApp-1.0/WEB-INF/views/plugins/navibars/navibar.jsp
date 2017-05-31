@@ -21,12 +21,12 @@
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${usuarioActual}<b class="caret"></b></a>
 					<ul class="dropdown-menu">
-						<li>
+<!--						<li>
 							<a href="#"><i class="fa fa-fw fa-user"></i> Perfil</a>
 						</li>
 						<li>
 							<a href="#"><i class="fa fa-fw fa-gear"></i> Configuracion</a>
-						</li>
+						</li>-->
 						<li class="divider">
 
 						</li>
@@ -52,12 +52,6 @@
 					</li>
 					<li>
 						<a href="clientes.html"><i class="fa fa-fw fa-address-book-o" aria-hidden="true"></i> Clientes</a>
-					</li>
-					<li>
-						<a href="calificacion.html"><i class="fa fa-fw fa-star" aria-hidden="true"></i> Calificaciones</a>
-					</li>
-					<li>
-						<a href="estadoCuenta.html"><i class="fa fa-fw fa-credit-card-alt" aria-hidden="true"></i> Estado de cuenta</a>
 					</li>
 					<li>
 						<a href="javascript:;" data-toggle="collapse" data-target="#droplist1"><i class="fa fa-fw fa-bar-chart" aria-hidden="true"></i> Reportes 

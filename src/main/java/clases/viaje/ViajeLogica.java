@@ -229,4 +229,13 @@ public class ViajeLogica {
 
 		pedidos.add(ped);
 	}
+	
+	public Ubicacion obtenerUbicacionDelivery(String deliveryId) {
+		RestTemplate restTemplate = new RestTemplate();
+
+		//Obtiene la respuesta.
+		Ubicacion ubicacion = restTemplate.getForObject(Configuration.restUbicacionDelivery(deliveryId), Ubicacion.class);
+
+		return ubicacion;
+	}
 }

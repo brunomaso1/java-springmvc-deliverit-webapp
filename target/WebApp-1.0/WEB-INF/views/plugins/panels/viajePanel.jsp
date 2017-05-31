@@ -12,15 +12,7 @@
 				<div class="table-responsive">
 					<table class="table table-bordered table-hover table-striped compact" id="pedidos">
 						<thead>
-							<tr>
-								<th>Viaje</th>
-								<th>Cliente</th>
-								<th>Telefono</th>
-								<th>Direccion</th>
-								<th>Delivery</th>
-								<th>Telefono</th>
-								<th style="display:none;">Fecha</th>
-							</tr>
+							${modeloTablaPrincipal}
 						</thead>
 						<tbody>
 							${datosTablaPrincipal}

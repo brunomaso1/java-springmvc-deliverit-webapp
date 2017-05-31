@@ -112,6 +112,6 @@
 		<script src="../resources/js/viajeNuevo.js"></script>
 		<!-- Test -->		
 		<script>activarPopup();</script>
-		<script>ingresarDatos();</script>
+		<!--<script>ingresarDatos();</script>-->
 	</body>
 </html>

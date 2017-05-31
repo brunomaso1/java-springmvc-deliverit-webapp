@@ -2,12 +2,15 @@ package clases.viaje;
 
 import clases.accesControl.ACSessionServices;
 import clases.configuration.Parametros;
+import clases.dominio.Delivery;
 import clases.dominio.Pedido;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +30,9 @@ public class ViajeController {
 
 	//Logger
 	private final static Logger LOGGER = Logger.getLogger(ViajeController.class.getName());
+	
+	@Autowired
+    private ServletContext servletContext;
 
 	private ViajeLogica vl;
 	private ViajeControllerHelper vch;
@@ -44,16 +50,20 @@ public class ViajeController {
 		String estadoId = (String) request.getAttribute("ESTADO_ID");
 
 		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
-
-		model.addAttribute("datosTablaPrincipal", vch.tablaPrincipalHtml(pedidos));
+		
+		model.addAttribute("modeloTablaPrincipal", vch.modeloTablaPrincipalHtml(estadoId));
+		model.addAttribute("datosTablaPrincipal", vch.tablaPrincipalHtml(pedidos, estadoId));
+		
 		model.addAttribute("usuarioActual", acss.getUserName());
 		model.addAttribute("viajesPendientes", vl.getViajesPendientes());
 		model.addAttribute("viajesPublicaods", vl.getViajesPublicados());
 		model.addAttribute("viajesEnProceso", vl.getViajesEnProceso());
 		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
-
-		model.addAttribute("url", Parametros.URL);
+		
+		// Para Javascript
+		//model.addAttribute("listaPedidos", vch.parsePedidos(pedidos));
+		model.addAttribute("opciones", vch.getOpciones(servletContext.getContextPath()));
 
 		return "viaje";
 	}

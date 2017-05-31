@@ -15,20 +15,20 @@
 		<intercept-url pattern="/historialPedidos.html" access="hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/historialViaje.html" access="hasRole('ROLE_USER')"/>
 		<form-login login-page="/login" authentication-success-handler-ref="AuthenticationSuccessHandler" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
-		<logout logout-success-url="/login?logout" />
+		<logout logout-success-url="/login?logout"/>
 	</http>
 	
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="userDetailsServiceImpl">
-<!--			<password-encoder ref="encoder"></password-encoder>-->
+			<!--			<password-encoder ref="encoder"></password-encoder>-->
 		</authentication-provider>
 	</authentication-manager>
 
 	<beans:bean id="userDetailsServiceImpl" class="clases.accesControl.ACUserDetailsServiceImpl"></beans:bean>
 
 	<beans:bean id="AuthenticationSuccessHandler"
-				 class="clases.accesControl.ACAuthenticationSuccessHandlerImpl" />
-<!--	<beans:bean id="encoder"
+				class="clases.accesControl.ACAuthenticationSuccessHandlerImpl" />
+	<!--	<beans:bean id="encoder"
 				class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 		<beans:constructor-arg name="strength" value="11"/>
 	</beans:bean>-->

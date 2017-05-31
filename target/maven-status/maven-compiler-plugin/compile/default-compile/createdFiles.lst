@@ -2,6 +2,7 @@ clases\clientes\ClientesController.class
 clases\dominio\Usuario.class
 clases\viaje\ViajeLogica.class
 clases\viaje\ViajeControllerHelper.class
+clases\viaje\ViajeRestController.class
 clases\historialViaje\HistorialViajeController.class
 clases\accesControl\ACController.class
 clases\historialViaje\HistorialViajeControllerHelper$JsonObjectLine.class
@@ -23,6 +24,7 @@ clases\restaurant\RestaurantLogica.class
 clases\dominio\Viaje.class
 clases\clientes\ClientesControllerHelper.class
 clases\accesControl\ACSessionServices.class
+clases\viaje\ViajeControllerHelper$Opciones.class
 clases\accesControl\ACUserServiceImpl.class
 clases\accesControl\ACSecurityServiceImpl.class
 clases\restaurant\RestaurantControllerHelper.class
@@ -32,6 +34,7 @@ clases\accesControl\ACISecurityService.class
 clases\dominio\Delivery.class
 clases\historialPedidos\HistorialPedidosLogica.class
 clases\viaje\ViajeGeocoder.class
+clases\viaje\ViajeRestController$DeliveryController.class
 clases\accesControl\ACIUserService.class
 clases\historialPedidos\HistorialPedidosControllerHelper.class
 clases\historialViaje\HistorialViajeControllerHelper$JsonObjectDonut.class

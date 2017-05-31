@@ -40,6 +40,7 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Pedido.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialPedidos\HistorialPedidosControllerHelper.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\HistorialViajeControllerHelper.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Ubicacion.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeRestController.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\configuration\Parametros.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Cliente.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACUserServiceImpl.java

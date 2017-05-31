@@ -17,13 +17,4 @@ public class DeliverysLogica {
 		Delivery[] deliverys = restTemplate.getForObject(Configuration.restFindDeliverysGet(sucursalId), Delivery[].class);
 		return deliverys;
 	}
-
-	public Delivery[] obtenerDeliverysActuales(String sucursalId){
-		RestTemplate restTemplate = new RestTemplate();
-
-		//Obtiene la respuesta.
-		// Falta implementar.
-		Delivery[] deliverys = restTemplate.getForObject(Configuration.restDeliveryActualesGet(sucursalId), Delivery[].class);
-		return deliverys;
-	}
 }

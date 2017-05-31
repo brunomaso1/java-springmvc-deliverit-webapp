@@ -11,12 +11,20 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import clases.configuration.Parametros;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author bruno
  */
 public class ViajeControllerHelper {
+
+	public class Opciones {
+		private String url;
+	}
 
 	/**
 	 * Devuelve un String conteniendo los items de la tabla ubicada en la pagina
@@ -27,29 +35,24 @@ public class ViajeControllerHelper {
 	 * principal.
 	 * @return String Una cadena conteniendo los items.
 	 */
-	public String tablaPrincipalHtml(Pedido[] pedidos) {
-		String tabla = "";
-
+	public String tablaPrincipalHtml(Pedido[] pedidos, String estadoId) {
 		String[][] pedidosParseados = parsearPedidos(pedidos);
-
-		if (pedidosParseados != null) {
-			//Crea los items.
-			for (String[] pedidosParseado : pedidosParseados) {
-				tabla += "<tr>";
-				int i = 0; // Obtener fecha.
-				for (String string : pedidosParseado) {
-					// tabla += "<td>" + string + "</td>"; Obtener fecha
-					if (i != 6) // Obtener fecha
-					{
-						tabla += "<td>" + string + "</td>"; // Obtener fecha
-					} else // Obtener fecha
-					{
-						tabla += "<td style=\"display:none;\">" + string + "</td>"; // Obtener fecha
-					}
-					i++; // Obtener fecha
-				}
-				tabla += "</tr>";
-			}
+		String tabla = "";
+		switch (estadoId) {
+			case "1":
+				tabla = datosTabPrinEstPen(pedidosParseados);
+				break;
+			case "2":
+				tabla = datosTabPrinEstPub(pedidosParseados);
+				break;
+			case "3":
+				tabla = datosTabPrinEstPro(pedidosParseados);
+				break;
+			case "4":
+				tabla = datosTabPrinEstTer(pedidosParseados);
+				break;
+			default:
+				throw new AssertionError();
 		}
 		return tabla;
 	}
@@ -89,22 +92,23 @@ public class ViajeControllerHelper {
 	 */
 	private String[][] parsearPedidos(Pedido[] pedidos) {
 		if ((pedidos != null) && (pedidos.length != 0)) {
-			// String[][] parser = new String[pedidos.length][6]; // Obtener fecha.
-			String[][] parser = new String[pedidos.length][7]; // Obtener fecha.
+			String[][] parser = new String[pedidos.length][8];
 			for (int i = 0; i < pedidos.length; i++) {
-				parser[i][0] = pedidos[i].getViaje() == null ? "Viaje no encontrado" : pedidos[i].getViaje().getId().toString();
-				parser[i][1] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getNombre();
-				parser[i][2] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getTelefono();
+				parser[i][0] = pedidos[i].getViaje() == null ? "Viaje no encontrado" : pedidos[i].getViaje().getId().toString(); // Id viaje.
+				parser[i][1] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getNombre(); // Nombre Cliente.
+				parser[i][2] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getTelefono(); // Telefono Cliente
 				parser[i][3] = pedidos[i].getCliente() == null ? "Cliente no encontrado"
 						: pedidos[i].getCliente().getDireccion() == null ? "Direcccion no encontrada"
 						: pedidos[i].getCliente().getDireccion().getCalle() + " "
-						+ pedidos[i].getCliente().getDireccion().getNroPuerta();
+						+ pedidos[i].getCliente().getDireccion().getNroPuerta(); // Direccion cliente.
 				parser[i][4] = pedidos[i].getViaje().getDelivery() == null
-						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre();
+						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre(); //Nombre delivery
 				parser[i][5] = pedidos[i].getViaje().getDelivery() == null
-						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono();
-				parser[i][6] = pedidos[i].getViaje().getFecha() == null ? "Sin fecha" // Obtener fecha.
-						: obtenerHora(pedidos[i].getViaje().getFecha()); // Obtener fecha.
+						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono(); // Telefono delivey
+				parser[i][6] = pedidos[i].getViaje().getFecha() == null ? "Sin fecha"
+						: pedidos[i].getViaje().getFecha().toString(); // Fecha viaje.
+				parser[i][7] = pedidos[i].getViaje().getCalificacion() == null ? "Sin calificacion"
+						: pedidos[i].getViaje().getCalificacion().toString(); // Calificacion viaje.
 			}
 			return parser;
 		}
@@ -132,13 +136,196 @@ public class ViajeControllerHelper {
 		return retorno;
 	}
 
-	public String obtenerHora(Timestamp timestamp) {
-		Calendar calendar = new GregorianCalendar();
-		calendar.setTime(timestamp);
-		int hours = ((calendar.get(Calendar.HOUR_OF_DAY) + Parametros.HORA_PADING_SERVER) % 24) * 120;
-		int minutes = calendar.get(Calendar.MINUTE) * 60;
-		int seconds = calendar.get(Calendar.SECOND); 
-		String retorno = Integer.valueOf(hours + minutes + seconds);
-		return retorno;
+	private String datosTabPrinEstPen(String[][] pedidosParseados) {
+		String tabla = "";
+		if (pedidosParseados != null) {
+			//Crea los items.
+			for (String[] pedidosParseado : pedidosParseados) {
+				tabla += "<tr>";
+
+				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
+				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre cliente.
+				tabla += "<td>" + pedidosParseado[2] + "</td>";	// Telefono Cliente.
+				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.
+				tabla += "<td>" + pedidosParseado[6] + "</td>";	// Fecha del viaje.
+
+				tabla += "</tr>";
+			}
+		}
+		return tabla;
+	}
+
+	private String datosTabPrinEstPub(String[][] pedidosParseados) {
+		String tabla = "";
+		if (pedidosParseados != null) {
+			//Crea los items.
+			for (String[] pedidosParseado : pedidosParseados) {
+				tabla += "<tr>";
+
+				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
+				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre cliente.
+				tabla += "<td>" + pedidosParseado[2] + "</td>";	// Telefono Cliente.
+				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.
+				tabla += "<td>" + pedidosParseado[6] + "</td>";	// Fecha del viaje.
+
+				tabla += "</tr>";
+			}
+		}
+		return tabla;
+	}
+
+	private String datosTabPrinEstPro(String[][] pedidosParseados) {
+		String tabla = "";
+		if (pedidosParseados != null) {
+			//Crea los items.
+			for (String[] pedidosParseado : pedidosParseados) {
+				tabla += "<tr>";
+
+				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
+				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre cliente.
+				tabla += "<td>" + pedidosParseado[2] + "</td>";	// Telefono Cliente.
+				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.
+				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Nombre Delivery.
+				tabla += "<td>" + pedidosParseado[5] + "</td>";	// Telefono Delivery.
+
+				tabla += "</tr>";
+			}
+		}
+		return tabla;
+	}
+
+	private String datosTabPrinEstTer(String[][] pedidosParseados) {
+		String tabla = "";
+		if (pedidosParseados != null) {
+			//Crea los items.
+			for (String[] pedidosParseado : pedidosParseados) {
+				tabla += "<tr>";
+
+				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
+				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre cliente.
+				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.
+				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Nombre Delivery.
+				tabla += "<td>" + pedidosParseado[7] + "</td>";	// Calificacion Delivery.
+
+				tabla += "</tr>";
+			}
+		}
+		return tabla;
+	}
+
+	public String parsePedidos(Pedido[] pedidos) {
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonObject = "";
+		try {
+			jsonObject = mapper.writeValueAsString(pedidos);
+		} catch (JsonProcessingException ex) {
+			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return jsonObject;
+	}
+
+	public String getUrl(String contextPath) {
+		return contextPath + Parametros.URL_DELIVERY;
+	}
+
+	public String modeloTablaPrincipalHtml(String estadoId) {
+		String tabla = "";
+		switch (estadoId) {
+			case "1":
+				tabla = modeloTabPrinPend();
+				break;
+			case "2":
+				tabla = modeloTabPrinPub();
+				break;
+			case "3":
+				tabla = modeloTabPrinProc();
+				break;
+			case "4":
+				tabla = modeloTabPrinTer();
+				break;
+			default:
+				throw new AssertionError();
+		}
+		return tabla;
+	}
+
+	private String modeloTabPrinPend() {
+		String tabla = "";
+
+		tabla += "<tr>";
+
+		tabla += "<th>" + "Viaje" + "</th>";	// Id viaje.
+		tabla += "<th>" + "Cliente" + "</th>";	// Nombre cliente.
+		tabla += "<th>" + "Telefono" + "</th>";	// Telefono Cliente.
+		tabla += "<th>" + "Dirección" + "</th>";	// Direccion cliente.
+		tabla += "<th>" + "Fecha" + "</th>";	// Fecha del viaje.
+
+		tabla += "</tr>";
+
+		return tabla;
+	}
+
+	private String modeloTabPrinPub() {
+		String tabla = "";
+
+		tabla += "<tr>";
+
+		tabla += "<th>" + "Viaje" + "</th>";	// Id viaje.
+		tabla += "<th>" + "Cliente" + "</th>";	// Nombre cliente.
+		tabla += "<th>" + "Telefono" + "</th>";	// Telefono Cliente.
+		tabla += "<th>" + "Dirección" + "</th>";	// Direccion cliente.
+		tabla += "<th>" + "Fecha" + "</th>";	// Fecha del viaje.
+
+		tabla += "</tr>";
+
+		return tabla;
+	}
+
+	private String modeloTabPrinProc() {
+		String tabla = "";
+
+		tabla += "<tr>";
+
+		tabla += "<th>" + "Viaje" + "</th>";	// Id viaje.
+		tabla += "<th>" + "Cliente" + "</th>";	// Nombre cliente.
+		tabla += "<th>" + "Telefono" + "</th>";	// Telefono Cliente.
+		tabla += "<th>" + "Dirección" + "</th>";	// Direccion cliente.
+		tabla += "<th>" + "Delivery" + "</th>";	// Nombre Delivery.
+		tabla += "<th>" + "Telefono" + "</th>";	// Telefono Delivery.
+
+		tabla += "</tr>";
+
+		return tabla;
+	}
+
+	private String modeloTabPrinTer() {
+		String tabla = "";
+
+		tabla += "<tr>";
+
+		tabla += "<th>" + "Viaje" + "</th>";	// Id viaje.
+		tabla += "<th>" + "Cliente" + "</th>";	// Nombre cliente.
+		tabla += "<th>" + "Dirección" + "</th>";	// Direccion cliente.
+		tabla += "<th>" + "Delivery" + "</th>";	// Nombre Delivery.
+		tabla += "<th>" + "Calificación" + "</th>";	// Calificacion Delivery.
+
+		tabla += "</tr>";
+
+		return tabla;
+	}
+
+	public String getOpciones(String contextPath) {
+		ObjectMapper mapper = new ObjectMapper();
+		Opciones opciones = new Opciones();
+		
+		
+		
+		String jsonObject = "";
+		try {
+			jsonObject = mapper.writeValueAsString(opciones);
+		} catch (JsonProcessingException ex) {
+			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return jsonObject;
 	}
 }
