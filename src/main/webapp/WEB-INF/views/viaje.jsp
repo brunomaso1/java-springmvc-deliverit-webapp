@@ -86,7 +86,7 @@
 		</script>
 		<!-- Google Maps -->
 		<script async defer 
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A">
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap">
 		</script>
 		<!-- DataTables -->
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
@@ -95,6 +95,8 @@
 		<script>initData(${opciones});</script>
 		<script>
 			initDataTable();
+			initColors();
+			initFiltro();
 		</script>
 	</body>
 </html>

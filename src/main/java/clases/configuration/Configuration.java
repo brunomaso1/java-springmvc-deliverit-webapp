@@ -102,4 +102,8 @@ public final class Configuration {
 	public static String restUbicacionDelivery(String deliveryId){
 		return ambiente + "delivery/getUbicacion/" + deliveryId;
 	}
+	
+	public static String restGetDeliverys(){
+		return ambiente + "delivery/";
+	}
 }

@@ -18,8 +18,11 @@ public class OpcionesJavascript {
 	private String url;
 	private List<String> coloresMarkadores;
 	private String moto;
-	private int zoomMap;
+	private int defZoomMap;
 	private Map<Object, Object> dataTableOptions;
+	private double defLat;
+	private double defLon;
+	private String estadoIdActual;
 
 	public OpcionesJavascript() {
 		this.coloresMarkadores = new ArrayList<>();
@@ -49,12 +52,12 @@ public class OpcionesJavascript {
 		this.moto = moto;
 	}
 
-	public int getZoomMap() {
-		return zoomMap;
+	public int getDefZoomMap() {
+		return defZoomMap;
 	}
 
-	public void setZoomMap(int zoomMap) {
-		this.zoomMap = zoomMap;
+	public void setDefZoomMap(int defZoomMap) {
+		this.defZoomMap = defZoomMap;
 	}
 
 	public Map<Object, Object> getDataTableOptions() {
@@ -63,5 +66,29 @@ public class OpcionesJavascript {
 
 	public void setDataTableOptions(Map<Object, Object> dataTableOptions) {
 		this.dataTableOptions = dataTableOptions;
+	}
+
+	public double getDefLat() {
+		return defLat;
+	}
+
+	public void setDefLat(double defLat) {
+		this.defLat = defLat;
+	}
+
+	public double getDefLon() {
+		return defLon;
+	}
+
+	public void setDefLon(double defLon) {
+		this.defLon = defLon;
+	}
+
+	public String getEstadoIdActual() {
+		return estadoIdActual;
+	}
+
+	public void setEstadoIdActual(String estadoIdActual) {
+		this.estadoIdActual = estadoIdActual;
 	}
 }

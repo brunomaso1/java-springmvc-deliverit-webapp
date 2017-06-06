@@ -70,4 +70,7 @@ public class Parametros {
 		OPCIONES.put("sScrollXInner", "110%");
 		OPCIONES.put("language", LANGUAGE);
 	}
+	
+	public static double DEFAULT_LATITUDE = -34.9082249;
+	public static double DEFAULT_LONGITUDE = -56.1664964;
 }

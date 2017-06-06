@@ -238,4 +238,14 @@ public class ViajeLogica {
 
 		return ubicacion;
 	}
+	
+	// TEST
+	public Delivery[] obtenerUbicacionDelivery() {
+		RestTemplate restTemplate = new RestTemplate();
+
+		//Obtiene la respuesta.
+		Delivery[] deliverys = restTemplate.getForObject(Configuration.restGetDeliverys(), Delivery[].class);
+
+		return deliverys;
+	}
 }

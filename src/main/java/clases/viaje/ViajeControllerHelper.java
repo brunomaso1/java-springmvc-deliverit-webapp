@@ -309,7 +309,7 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
-	public String getOpciones(String contextPath) {
+	public String getOpciones(String contextPath, String estadoId) {
 		ObjectMapper mapper = new ObjectMapper();
 		OpcionesJavascript opciones = new OpcionesJavascript();
 
@@ -326,11 +326,17 @@ public class ViajeControllerHelper {
 		opciones.setMoto(Parametros.UBICACION_MOTO);
 		
 		// Agrego el zoom del mapa.
-		opciones.setZoomMap(Parametros.ZOOM_MAPA);
+		opciones.setDefZoomMap(Parametros.ZOOM_MAPA);
 		
 		// Agrego las opciones de la DataTable.
 		opciones.setDataTableOptions(Parametros.OPCIONES);
-
+		
+		// Agrego la latitud y longitud por defecto.
+		opciones.setDefLat(Parametros.DEFAULT_LATITUDE);
+		opciones.setDefLon(Parametros.DEFAULT_LONGITUDE);
+		
+		// Agrego el estado actual.
+		opciones.setEstadoIdActual(estadoId);
 		String jsonObject = "";
 		try {
 			jsonObject = mapper.writeValueAsString(opciones);

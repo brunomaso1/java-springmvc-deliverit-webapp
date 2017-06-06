@@ -5,6 +5,7 @@
  */
 package clases.viaje;
 
+import clases.dominio.Delivery;
 import clases.dominio.Ubicacion;
 import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,10 +31,17 @@ public class ViajeRestController {
 			this.vl = new ViajeLogica();
 		}		
 		
-		@RequestMapping(value="/delivery/{id}/", method=RequestMethod.GET)
+		@RequestMapping(value="delivery/{id}/", method=RequestMethod.GET)
 		public Ubicacion doRequest(@PathVariable String id) {
 			Ubicacion u = vl.obtenerUbicacionDelivery(id);
 			return u;
+		}
+		
+		// TEST
+		@RequestMapping(value="delivery", method=RequestMethod.GET)
+		public Delivery[] doRequest() {
+			Delivery[] d = vl.obtenerUbicacionDelivery();
+			return d;
 		}
 	}
 }

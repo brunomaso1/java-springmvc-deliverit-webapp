@@ -30,9 +30,6 @@ public class ViajeController {
 
 	//Logger
 	private final static Logger LOGGER = Logger.getLogger(ViajeController.class.getName());
-	
-	@Autowired
-    private ServletContext servletContext;
 
 	private ViajeLogica vl;
 	private ViajeControllerHelper vch;
@@ -64,7 +61,7 @@ public class ViajeController {
 		
 		// Para Javascript
 		model.addAttribute("listaPedidos", vch.parsePedidos(pedidos));
-		model.addAttribute("opciones", vch.getOpciones(url));
+		model.addAttribute("opciones", vch.getOpciones(url, estadoId));
 
 		return "viaje";
 	}
