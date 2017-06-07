@@ -9,7 +9,9 @@ import java.time.LocalDateTime;
 import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -247,5 +249,13 @@ public class ViajeLogica {
 		Delivery[] deliverys = restTemplate.getForObject(Configuration.restFindDeliverysEnProceso(sucursalId), Delivery[].class);
 
 		return deliverys;
+	}
+
+	void calificar(String idViaje, String calificacion) {
+		RestTemplate restTemplate = new RestTemplate();
+		Map<String, String> map = new HashMap<>();
+		
+		//Obtiene la respuesta.
+		restTemplate.put(Configuration.restCalificarDelivery(idViaje, calificacion), null);
 	}
 }

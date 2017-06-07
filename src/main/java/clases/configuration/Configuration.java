@@ -106,4 +106,8 @@ public final class Configuration {
 	public static String restFindDeliverysEnProceso(String sucursalId){
 		return ambiente + "viaje/findDeliverysEnProceso/" + sucursalId;
 	}
+	
+	public static String restCalificarDelivery(String idViaje, String calificacion){
+		return ambiente + "viaje/calificar/" + idViaje + "/" + calificacion;
+	}
 }

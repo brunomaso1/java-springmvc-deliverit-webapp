@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -44,5 +45,10 @@ public class ViajeRestController {
 		String sucursalId = acss.getUserId();
 		Delivery[] d = vl.obtenerDeliverys(sucursalId);
 		return d;
+	}
+	
+	@RequestMapping(value = "calificar/", method = RequestMethod.POST)
+	public void doPut(@RequestParam String idViaje, @RequestParam String calificacion) {
+		vl.calificar(idViaje, calificacion);		
 	}
 }
