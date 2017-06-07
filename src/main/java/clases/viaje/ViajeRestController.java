@@ -5,6 +5,7 @@
  */
 package clases.viaje;
 
+import clases.accesControl.ACSessionServices;
 import clases.dominio.Delivery;
 import clases.dominio.Ubicacion;
 import java.util.logging.Logger;
@@ -17,31 +18,31 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author bruno
  */
+@RestController
 public class ViajeRestController {
 
-	@RestController
-	public class DeliveryController {
+	//Logger
+	private final Logger LOGGER = Logger.getLogger(ViajeRestController.class.getName());
 
-		//Logger
-		private final Logger LOGGER = Logger.getLogger(ViajeRestController.class.getName());
-		
-		private ViajeLogica vl;
+	private ViajeLogica vl;
+	private ACSessionServices acss;
 
-		public DeliveryController() {
-			this.vl = new ViajeLogica();
-		}		
-		
-		@RequestMapping(value="delivery/{id}/", method=RequestMethod.GET)
-		public Ubicacion doRequest(@PathVariable String id) {
-			Ubicacion u = vl.obtenerUbicacionDelivery(id);
-			return u;
-		}
-		
-		// TEST
-		@RequestMapping(value="delivery", method=RequestMethod.GET)
-		public Delivery[] doRequest() {
-			Delivery[] d = vl.obtenerUbicacionDelivery();
-			return d;
-		}
+	public ViajeRestController() {
+		this.vl = new ViajeLogica();
+		this.acss = new ACSessionServices();
+	}
+
+	@RequestMapping(value = "delivery/{id}/", method = RequestMethod.GET)
+	public Ubicacion doRequest(@PathVariable String id) {
+		Ubicacion u = vl.obtenerUbicacionDelivery(id);
+		return u;
+	}
+
+	// TEST
+	@RequestMapping(value = "delivery/", method = RequestMethod.GET)
+	public Delivery[] doRequest() {
+		String sucursalId = acss.getUserId();
+		Delivery[] d = vl.obtenerDeliverys(sucursalId);
+		return d;
 	}
 }

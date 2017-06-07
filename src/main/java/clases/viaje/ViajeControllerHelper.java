@@ -182,6 +182,7 @@ public class ViajeControllerHelper {
 				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.
 				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Nombre Delivery.
 				tabla += "<td>" + pedidosParseado[5] + "</td>";	// Telefono Delivery.
+				tabla += "<td>" + pedidosParseado[6] + "</td>";	// Fecha del viaje.
 
 				tabla += "</tr>";
 			}
@@ -197,10 +198,10 @@ public class ViajeControllerHelper {
 				tabla += "<tr>";
 
 				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
+				tabla += "<td>" + "<div id=\"stars-existing\" class=\"starrr\" data-rating='3'></div>" + "</td>";	// Calificacion Delivery.
+				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Nombre Delivery
 				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre cliente.
-				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.
-				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Nombre Delivery.
-				tabla += "<td>" + pedidosParseado[7] + "</td>";	// Calificacion Delivery.
+				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.				
 
 				tabla += "</tr>";
 			}
@@ -287,6 +288,7 @@ public class ViajeControllerHelper {
 		tabla += "<th>" + "Dirección" + "</th>";	// Direccion cliente.
 		tabla += "<th>" + "Delivery" + "</th>";	// Nombre Delivery.
 		tabla += "<th>" + "Telefono" + "</th>";	// Telefono Delivery.
+		tabla += "<th>" + "Fecha" + "</th>";	// Fecha del viaje.
 
 		tabla += "</tr>";
 
@@ -299,10 +301,10 @@ public class ViajeControllerHelper {
 		tabla += "<tr>";
 
 		tabla += "<th>" + "Viaje" + "</th>";	// Id viaje.
-		tabla += "<th>" + "Cliente" + "</th>";	// Nombre cliente.
-		tabla += "<th>" + "Dirección" + "</th>";	// Direccion cliente.
+		tabla += "<th>" + "Calificar" + "</th>";	// Calificacion Delivery.
 		tabla += "<th>" + "Delivery" + "</th>";	// Nombre Delivery.
-		tabla += "<th>" + "Calificación" + "</th>";	// Calificacion Delivery.
+		tabla += "<th>" + "Cliente" + "</th>";	// Nombre cliente.
+		tabla += "<th>" + "Dirección" + "</th>";	// Direccion cliente.		
 
 		tabla += "</tr>";
 

@@ -240,11 +240,11 @@ public class ViajeLogica {
 	}
 	
 	// TEST
-	public Delivery[] obtenerUbicacionDelivery() {
+	public Delivery[] obtenerDeliverys(String sucursalId) {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//Obtiene la respuesta.
-		Delivery[] deliverys = restTemplate.getForObject(Configuration.restGetDeliverys(), Delivery[].class);
+		Delivery[] deliverys = restTemplate.getForObject(Configuration.restFindDeliverysEnProceso(sucursalId), Delivery[].class);
 
 		return deliverys;
 	}
