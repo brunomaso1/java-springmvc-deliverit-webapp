@@ -1,1 +1,1 @@
-v1.2.1 -> Union de las entidades Viaje/Pedido y Sucursal/Restaurant
+v1.0.0 -> Cambios para organizar el javaScript
