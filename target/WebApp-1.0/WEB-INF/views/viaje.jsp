@@ -94,6 +94,7 @@
 		<script src="resources/js/viaje.js"></script>
 		<script src="resources/js/viajeStars.js"></script>
 		<script>initData(${opciones});</script>
+		<script>initDataViajeStars(${opciones});</script>
 		<script>
 			initDataTable();
 			initColors();

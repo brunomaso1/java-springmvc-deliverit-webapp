@@ -339,6 +339,9 @@ public class ViajeControllerHelper {
 		
 		// Agrego el estado actual.
 		opciones.setEstadoIdActual(estadoId);
+		
+		// Agrego la url de calificar.
+		opciones.setUrlCalificar(contextPath + Parametros.URL_CALIFICAR);
 		String jsonObject = "";
 		try {
 			jsonObject = mapper.writeValueAsString(opciones);

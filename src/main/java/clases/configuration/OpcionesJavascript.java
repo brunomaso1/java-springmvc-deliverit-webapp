@@ -16,6 +16,7 @@ import java.util.Map;
 public class OpcionesJavascript {
 
 	private String url;
+	private String urlCalificar;
 	private List<String> coloresMarkadores;
 	private String moto;
 	private int defZoomMap;
@@ -90,5 +91,13 @@ public class OpcionesJavascript {
 
 	public void setEstadoIdActual(String estadoIdActual) {
 		this.estadoIdActual = estadoIdActual;
+	}
+
+	public String getUrlCalificar() {
+		return urlCalificar;
+	}
+
+	public void setUrlCalificar(String urlCalificar) {
+		this.urlCalificar = urlCalificar;
 	}
 }

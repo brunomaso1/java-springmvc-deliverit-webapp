@@ -1,4 +1,15 @@
 var __slice = [].slice;
+var op = [];
+var idRowClicked = 0;
+var table = document.getElementById("pedidos");
+
+function initDataViajeStars(opciones) {
+	op = opciones;
+}
+
+$(document).on('click', '#pedidos tr', function () {
+	idRowClicked = this.rowIndex;
+});
 
 (function ($, window) {
 	var Starrr;
@@ -103,12 +114,40 @@ $(function () {
 });
 
 $(document).ready(function () {
-
 	$('#stars').on('starrr:change', function (e, value) {
 		$('#count').html(value);
 	});
 
 	$('#stars-existing').on('starrr:change', function (e, value) {
-		$('#count-existing').html(value);
+		var idViaje = getIdViaje(idRowClicked);
+		if (idViaje !== 0)  {
+			calificar(idViaje, value);
+			setRatingStars(idViaje);
+		}		
 	});
 });
+
+function calificar(idViaje, calificacion) {
+	var xhttp = new XMLHttpRequest();
+//	xhttp.onreadystatechange = function () {
+//		if (this.readyState == 4 && this.status == 200) {
+//			document.getElementById("demo").innerHTML = this.responseText;
+//		}
+//	};
+	var data = new FormData();
+	data.append('idViaje', idViaje);
+	data.append('calificacion', calificacion);
+	xhttp.open("POST", op.urlCalificar, true);
+	xhttp.send(data);
+}
+
+function getIdViaje(idRowClicked) {
+	var rows = table.getElementsByTagName("tr");
+	if ((rows.length > 1) && !(rows[1].innerText == "No hay datos")) {
+		alert("entro");
+		return rows[idRowClicked].cells[0].innerHTML;
+	}
+	return 0;
+}
+
+
