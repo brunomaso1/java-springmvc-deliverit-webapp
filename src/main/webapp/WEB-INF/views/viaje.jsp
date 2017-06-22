@@ -97,6 +97,7 @@
 		<script>initDataViajeStars(${opciones});</script>
 		<script>
 			initDataTable();
+			initTableListener();
 			initColors();
 			initFiltro();
 		</script>

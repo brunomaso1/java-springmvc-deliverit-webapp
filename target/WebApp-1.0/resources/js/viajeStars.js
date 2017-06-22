@@ -144,7 +144,7 @@ function calificar(idViaje, calificacion) {
 function getIdViaje(idRowClicked) {
 	var rows = table.getElementsByTagName("tr");
 	if ((rows.length > 1) && !(rows[1].innerText == "No hay datos")) {
-		alert("entro");
+		alert("Se ha calificado el viaje.");
 		return rows[idRowClicked].cells[0].innerHTML;
 	}
 	return 0;
