@@ -46,11 +46,11 @@ public class ViajeController {
 		String sucursalId = acss.getUserId();
 		String url = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
 		String estadoId = (String) session.getAttribute("ESTADO_ID");
+		OpcionesJavascript opciones = new OpcionesJavascript(url, estadoId);
 
 		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
 		
-		model.addAttribute("modeloTablaPrincipal", vch.modeloTablaPrincipalHtml(estadoId));
-		model.addAttribute("datosTablaPrincipal", vch.tablaPrincipalHtml(pedidos, estadoId));
+		model.addAttribute("tablaPrincipal", vch.generateTablaPrincipal());
 		
 		model.addAttribute("usuarioActual", acss.getUserName());
 		model.addAttribute("viajesPendientes", vl.getViajesPendientes());
@@ -58,10 +58,11 @@ public class ViajeController {
 		model.addAttribute("viajesEnProceso", vl.getViajesEnProceso());
 		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
+		model.addAttribute("nombreTablaPrincipal", opciones.getNombreTablaPrincipal());
 		
 		// Para Javascript
-		model.addAttribute("listaPedidos", vch.parsePedidos(pedidos));
-		model.addAttribute("opciones", vch.getOpciones(url, estadoId));
+		model.addAttribute("listaPedidos", vch.toJSON(pedidos));
+		model.addAttribute("opciones", opciones.toJSON());
 
 		return "viaje";
 	}

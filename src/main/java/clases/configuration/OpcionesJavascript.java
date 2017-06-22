@@ -24,9 +24,42 @@ public class OpcionesJavascript {
 	private double defLat;
 	private double defLon;
 	private String estadoIdActual;
+	private String nombreTablaPrincipal;
 
-	public OpcionesJavascript() {
+	public OpcionesJavascript(String contextPath, String estadoId) {
+
+		// Agrego la url del para la llamada ajax para obtener la ubicacion del dleivery.
+		this.url = contextPath + Parametros.URL_DELIVERY;
+
+		// Agrego la url para la llamada ajax para obtener calificar al viaje.
+		this.urlCalificar = contextPath + Parametros.URL_CALIFICAR;
+
+		// Agrego los colores de los markadores.
 		this.coloresMarkadores = new ArrayList<>();
+
+		Arrays.asList(Parametros.COLORES_MARKADORES).forEach((k) -> {
+			String color = Parametros.UBICACION_MARKADORES + k + Parametros.EXTENSION_MARKADORES;
+			this.coloresMarkadores.add(color);
+		});
+
+		// Agrego la ubicacion de la moto.
+		this.moto = Parametros.UBICACION_MOTO;
+
+		// Agrego el zoom del mapa.
+		this.defZoomMap = Parametros.ZOOM_MAPA;
+
+		// Agrego las opciones de la DataTable.
+		this.dataTableOptions = Parametros.OPCIONES;
+
+		// Agrego la latitud y longitud por defecto.
+		this.defLat = Parametros.DEFAULT_LATITUDE;
+		this.defLon = Parametros.DEFAULT_LONGITUDE;
+
+		// Agrego el estado actual.
+		this.estadoIdActual = estadoId;
+
+		// Agrego el nombre de la tabla principal.
+		this.nombreTablaPrincipal = Parametros.NOMBRE_TABLA_PRINCIPAL;
 	}
 
 	public String getUrl() {
@@ -91,6 +124,26 @@ public class OpcionesJavascript {
 
 	public void setEstadoIdActual(String estadoIdActual) {
 		this.estadoIdActual = estadoIdActual;
+	}
+
+	public String getNombreTablaPrincipal() {
+		return nombreTablaPrincipal;
+	}
+
+	public void setNombreTablaPrincipal(String nombreTablaPrincipal) {
+		this.nombreTablaPrincipal = nombreTablaPrincipal;
+	}
+
+	public String toJSON() {
+		ObjectMapper mapper = new ObjectMapper();
+		
+		String jsonObject = "";
+		try {
+			jsonObject = mapper.writeValueAsString(this);
+		} catch (JsonProcessingException ex) {
+			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return jsonObject;
 	}
 
 	public String getUrlCalificar() {
