@@ -9,18 +9,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped compact" id="clientes">
-						<thead>
-							<tr>
-								<th>Id</th>
-								<th>Nombre</th>
-								<th>Direccion</th>
-								<th>Telefono</th>
-							</tr>
-						</thead>
-						<tbody>
-							${datosTablaClientes}
-						</tbody>
+					<table class="table table-bordered table-hover table-striped compact" id="${nombreTablaPrincipal}">
+						${tablaPrincipal}
 					</table>
 				</div>
 			</div>

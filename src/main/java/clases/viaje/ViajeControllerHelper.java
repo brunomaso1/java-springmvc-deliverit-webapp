@@ -1,6 +1,6 @@
 package clases.viaje;
 
-import clases.configuration.OpcionesJavascript;
+import clases.configuration.OpcionesJavascriptViaje;
 import clases.dominio.Pedido;
 import java.util.ArrayList;
 import clases.configuration.Parametros;

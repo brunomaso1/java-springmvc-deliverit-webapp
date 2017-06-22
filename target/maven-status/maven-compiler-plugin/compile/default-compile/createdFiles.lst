@@ -9,6 +9,7 @@ clases\historialViaje\HistorialViajeControllerHelper$JsonObjectLine.class
 clases\dominio\Transaccion.class
 clases\dominio\Direccion.class
 clases\historialViaje\HistorialViajeLogica.class
+clases\configuration\OpcionesJavascriptCliente.class
 clases\accesControl\ACUserDetailsServiceImpl.class
 clases\configuration\Parametros.class
 clases\deliverys\DeliverysController.class
@@ -33,11 +34,11 @@ clases\accesControl\ACISecurityService.class
 clases\dominio\Delivery.class
 clases\historialPedidos\HistorialPedidosLogica.class
 clases\viaje\ViajeGeocoder.class
+clases\configuration\OpcionesJavascriptViaje.class
 clases\accesControl\ACIUserService.class
 clases\historialPedidos\HistorialPedidosControllerHelper.class
 clases\historialViaje\HistorialViajeControllerHelper$JsonObjectDonut.class
 clases\dominio\Sucursal.class
-clases\configuration\OpcionesJavascript.class
 clases\clientes\ClientesLogica.class
 clases\dominio\RespuestaGeneral.class
 clases\restaurant\RestaurantController.class

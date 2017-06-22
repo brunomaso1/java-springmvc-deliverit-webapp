@@ -1,6 +1,7 @@
 package clases.clientes;
 
 import clases.accesControl.ACSessionServices;
+import clases.configuration.OpcionesJavascriptCliente;
 import clases.dominio.Cliente;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -33,11 +34,16 @@ public class ClientesController {
 	//@PreAuthorize("hasAuthority('ROLE_USER')")
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
+		OpcionesJavascriptCliente ojc = new OpcionesJavascriptCliente();
 
 		Cliente[] clientes = hvl.obtenerClientes(sucursalId);
-
-		model.addAttribute("datosTablaClientes", vch.tablaClientesHtml(clientes));
+		
+		model.addAttribute("nombreTablaPrincipal", ojc.getNombreTablaPrincipal());
+		model.addAttribute("tablaPrincipal", vch.tablaClientesHtml(clientes));
 		model.addAttribute("usuarioActual", acss.getUserName());
+		
+		// Para Javascript
+		model.addAttribute("opciones", ojc.toJSON());
 
 		return "clientes";
 	}

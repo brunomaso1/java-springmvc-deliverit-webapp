@@ -91,15 +91,5 @@
 		<!-- DataTables -->
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
 		<!-- User javascripts -->
-		<script src="resources/js/viaje.js"></script>
-		<script>initData(${opciones}, ${listaPedidos});</script>
-		<script src="resources/js/viajeStars.js"></script>
-		<script>initDataViajeStars(${opciones});</script>
-		<script>
-			initDataTable();
-			initColors();
-			initFiltro();
-			initTableListener();
-		</script>
 	</body>
 </html>

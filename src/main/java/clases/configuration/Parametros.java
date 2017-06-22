@@ -37,6 +37,8 @@ public class Parametros {
 	public static String EXTENSION_MARKADORES = ".png";
 	public static String UBICACION_MOTO = "resources/img/moto.png";
 	public static int ZOOM_MAPA = 14;
+	public static String IDENTIFICADOR_JS = "#";
+
 	private static Map<String, String> PAGINATE;
 
 	static {
@@ -47,33 +49,59 @@ public class Parametros {
 		PAGINATE.put("last", ">>");
 	}
 
-	private static Map<Object, Object> LANGUAGE;
+	private static Map<Object, Object> LANGUAJE_VIAJE;
 
 	static {
-		LANGUAGE = new HashMap<>();
-		LANGUAGE.put("processing", "Procesando");
-		LANGUAGE.put("search", "Busqueda&nbsp;:");
-		LANGUAGE.put("lengthMenu", "Mostrar _MENU_ viajes");
-		LANGUAGE.put("info", "");
-		LANGUAGE.put("infoEmpty", "Ningun viaje");
-		LANGUAGE.put("infoFiltered", "");
-		LANGUAGE.put("infoPostFix", "");
-		LANGUAGE.put("loadingRecords", "Cargando viajes...");
-		LANGUAGE.put("zeroRecords", "No se han encontrado viajes");
-		LANGUAGE.put("emptyTable", "No hay viajes hoy");
-		LANGUAGE.put("paginate", PAGINATE);
+		LANGUAJE_VIAJE = new HashMap<>();
+		LANGUAJE_VIAJE.put("processing", "Procesando");
+		LANGUAJE_VIAJE.put("search", "Busqueda&nbsp;:");
+		LANGUAJE_VIAJE.put("lengthMenu", "Mostrar _MENU_ viajes");
+		LANGUAJE_VIAJE.put("info", "");
+		LANGUAJE_VIAJE.put("infoEmpty", "Ningun viaje");
+		LANGUAJE_VIAJE.put("infoFiltered", "");
+		LANGUAJE_VIAJE.put("infoPostFix", "");
+		LANGUAJE_VIAJE.put("loadingRecords", "Cargando viajes...");
+		LANGUAJE_VIAJE.put("zeroRecords", "No se han encontrado viajes");
+		LANGUAJE_VIAJE.put("emptyTable", "No hay viajes hoy");
+		LANGUAJE_VIAJE.put("paginate", PAGINATE);
 	}
-	public static Map<Object, Object> OPCIONES;
+	public static Map<Object, Object> DATATABLE_OPCIONES_VIAJE;
 
 	static {
-		OPCIONES = new HashMap<>();
-		OPCIONES.put("sScrollX", "110%");
-		OPCIONES.put("sScrollXInner", "110%");
-		OPCIONES.put("language", LANGUAGE);
+		DATATABLE_OPCIONES_VIAJE = new HashMap<>();
+		DATATABLE_OPCIONES_VIAJE.put("sScrollX", "110%");
+		DATATABLE_OPCIONES_VIAJE.put("sScrollXInner", "110%");
+		DATATABLE_OPCIONES_VIAJE.put("language", LANGUAJE_VIAJE);
 	}
-	
+
+	private static Map<Object, Object> LANGUAJE_CLIENTE;
+
+	static {
+		LANGUAJE_CLIENTE = new HashMap<>();
+		LANGUAJE_CLIENTE.put("processing", "Procesando");
+		LANGUAJE_CLIENTE.put("search", "Busqueda&nbsp;:");
+		LANGUAJE_CLIENTE.put("lengthMenu", "Mostrar _MENU_ viajes");
+		LANGUAJE_CLIENTE.put("info", "");
+		LANGUAJE_CLIENTE.put("infoEmpty", "Ningun viaje");
+		LANGUAJE_CLIENTE.put("infoFiltered", "");
+		LANGUAJE_CLIENTE.put("infoPostFix", "");
+		LANGUAJE_CLIENTE.put("loadingRecords", "Cargando viajes...");
+		LANGUAJE_CLIENTE.put("zeroRecords", "No se han encontrado viajes");
+		LANGUAJE_CLIENTE.put("emptyTable", "No hay viajes hoy");
+		LANGUAJE_CLIENTE.put("paginate", PAGINATE);
+	}
+	public static Map<Object, Object> DATATABLE_OPCIONES_CLIENTE;
+
+	static {
+		DATATABLE_OPCIONES_CLIENTE = new HashMap<>();
+		DATATABLE_OPCIONES_CLIENTE.put("sScrollX", "110%");
+		DATATABLE_OPCIONES_CLIENTE.put("sScrollXInner", "110%");
+		DATATABLE_OPCIONES_CLIENTE.put("language", LANGUAJE_CLIENTE);
+	}
+
 	public static double DEFAULT_LATITUDE = -34.9082249;
 	public static double DEFAULT_LONGITUDE = -56.1664964;
 
 	public static String NOMBRE_TABLA_PRINCIPAL = "pedidos";
+	public static String NOMBRE_TABLA_CLIENTE = "clientes";
 }

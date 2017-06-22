@@ -15,19 +15,30 @@ public class ClientesControllerHelper {
 
 	public String tablaClientesHtml(Cliente[] clientes) {
 		String tabla = "";
-
 		String[][] clientesParseados = parsearClientes(clientes);
+		
+		tabla += "<thead>";
+		tabla += "<tr>";
+		tabla += "<th>" + "Id" + "</th>";	// Id viaje.
+		tabla += "<th>" + "Nombre" + "</th>";	// Nombre cliente.
+		tabla += "<th>" + "Direccion" + "</th>";	// Direccion Cliente.
+		tabla += "<th>" + "Telefono" + "</th>";	// Telefono cliente.
+		tabla += "</tr>";
+		tabla += "</thead>";
 
+		tabla += "<tbody>";
 		if (clientesParseados != null) {
 			//Crea los items.
-			for (String[] clienteParseado : clientesParseados) {
+			for (String[] pedidosParseado : clientesParseados) {
 				tabla += "<tr>";
-				for (String string : clienteParseado) {
-					tabla += "<td>" + string + "</td>";
-				}
+				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
+				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre cliente.
+				tabla += "<td>" + pedidosParseado[2] + "</td>";	// Direccion Cliente.
+				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Telefono cliente.
 				tabla += "</tr>";
 			}
 		}
+		tabla += "</tbody>";
 		return tabla;
 	}
 
@@ -37,9 +48,9 @@ public class ClientesControllerHelper {
 			for (int i = 0; i < clientes.length; i++) {
 				parser[i][0] = clientes[i].getId().toString();
 				parser[i][1] = clientes[i].getNombre() == null ? "No se especifica" : clientes[i].getNombre();
-				parser[i][2] = clientes[i].getDireccion() == null ? "No se especifica" : clientes[i].getDireccion().getCalle() + " " + 
-					clientes[i].getDireccion().getNroPuerta() + (clientes[i].getDireccion().getApartamento() == 0 ? "" : "/" +
-					clientes[i].getDireccion().getApartamento());
+				parser[i][2] = clientes[i].getDireccion() == null ? "No se especifica" : clientes[i].getDireccion().getCalle() + " "
+						+ clientes[i].getDireccion().getNroPuerta() + (clientes[i].getDireccion().getApartamento() == 0 ? "" : "/"
+						+ clientes[i].getDireccion().getApartamento());
 				parser[i][3] = clientes[i].getTelefono() == null ? "No se especifica" : clientes[i].getTelefono();
 			}
 			return parser;

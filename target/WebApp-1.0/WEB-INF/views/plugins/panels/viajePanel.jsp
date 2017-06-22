@@ -10,13 +10,8 @@
 			<!-- /.row -->
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped compact" id="pedidos">
-						<thead>
-							${modeloTablaPrincipal}
-						</thead>
-						<tbody>
-							${datosTablaPrincipal}
-						</tbody>
+					<table class="table table-bordered table-hover table-striped compact" id="${nombreTablaPrincipal}">
+						${tablaPrincipal}
 					</table>
 				</div>
 			</div>

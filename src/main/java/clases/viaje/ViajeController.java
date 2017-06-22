@@ -1,7 +1,7 @@
 package clases.viaje;
 
 import clases.accesControl.ACSessionServices;
-import clases.configuration.OpcionesJavascript;
+import clases.configuration.OpcionesJavascriptViaje;
 import clases.configuration.Parametros;
 import clases.dominio.Pedido;
 import java.io.IOException;
@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +44,14 @@ public class ViajeController {
 	public String showPage(HttpSession session, HttpServletRequest request, Model model) {
 		String sucursalId = acss.getUserId();
 		String url = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
+		// TEst
+		String url1 = request.getContextPath();
+		String url2 = request.getRequestURI();
+		StringBuffer url3 = request.getRequestURL();
+		String url4 = request.getServletPath();
+		
 		String estadoId = (String) session.getAttribute("ESTADO_ID");
-		OpcionesJavascript opciones = new OpcionesJavascript(url, estadoId);
+		OpcionesJavascriptViaje opciones = new OpcionesJavascriptViaje(url, estadoId);
 
 		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
 		
@@ -99,8 +106,12 @@ public class ViajeController {
 	}
 
 	@RequestMapping(path = "/nuevoPedido", method = POST)
-	public String nuevoPedido(@ModelAttribute ViajeFormBean bean, RedirectAttributes model) {
+	public String nuevoPedido(@ModelAttribute ViajeFormBean bean, RedirectAttributes model, HttpServletRequest request) {
 		vl.nuevoPedido(bean);
+		String url1 = request.getContextPath();
+		String url2 = request.getRequestURI();
+		StringBuffer url3 = request.getRequestURL();
+		String url4 = request.getServletPath();
 		model.addFlashAttribute("datosTablaPedido", vch.tablaPedidosHtml(vl.getPedidos()));
 		return "redirect:/viaje/viajeNuevo.html";
 	}

@@ -27,9 +27,9 @@
 						<li>
 							<a href="#"><i class="fa fa-fw fa-gear"></i> Configuracion</a>
 						</li>-->
-						<li class="divider">
+<!--						<li class="divider">
 
-						</li>
+						</li>-->
 						<li>
 							<c:if test="${pageContext.request.userPrincipal.name != null}">
 								<form id="logoutForm" method="POST" action="${contextPath}/logout">
@@ -45,23 +45,23 @@
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav side-nav">
 					<li>
-						<a href="viaje.html"><i class="fa fa-fw fa-bicycle" aria-hidden="true"></i> Viajes</a>
+						<a href="${contextPath}/viaje.html"><i class="fa fa-fw fa-bicycle" aria-hidden="true"></i> Viajes</a>
 					</li>
 					<li>
-						<a href="deliverys.html"><i class="fa fa-fw fa-motorcycle" aria-hidden="true"></i> Deliverys</a>
+						<a href="${contextPath}/deliverys.html"><i class="fa fa-fw fa-motorcycle" aria-hidden="true"></i> Deliverys</a>
 					</li>
 					<li>
-						<a href="clientes.html"><i class="fa fa-fw fa-address-book-o" aria-hidden="true"></i> Clientes</a>
+						<a href="${contextPath}/clientes.html"><i class="fa fa-fw fa-address-book-o" aria-hidden="true"></i> Clientes</a>
 					</li>
 					<li>
 						<a href="javascript:;" data-toggle="collapse" data-target="#droplist1"><i class="fa fa-fw fa-bar-chart" aria-hidden="true"></i> Reportes 
 						<i class="fa fa-fw fa-caret-down"></i></a>
 						<ul id="droplist1" class="collapse">
 							<li>
-								<a href="historialViaje.html"><i class="fa fa-fw fa-book" aria-hidden="true"></i> Viajes</a>
+								<a href="${contextPath}/historialViaje.html"><i class="fa fa-fw fa-book" aria-hidden="true"></i> Viajes</a>
 							</li>
 							<li>
-								<a href="historialPedidos.html"><i class="fa fa-fw fa-hand-o-up" aria-hidden="true"></i> Pedidos</a>
+								<a href="${contextPath}/historialPedidos.html"><i class="fa fa-fw fa-hand-o-up" aria-hidden="true"></i> Pedidos</a>
 							</li>
 						</ul>
 					</li>

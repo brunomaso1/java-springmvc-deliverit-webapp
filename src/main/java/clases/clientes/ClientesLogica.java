@@ -13,7 +13,6 @@ public class ClientesLogica {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//Obtiene la respuesta.
-		// Falta implementar.
 		Cliente[] clientes = restTemplate.getForObject(Configuration.restFindClientesGet(sucursalId), Cliente[].class);
 		return clientes;
 	}
