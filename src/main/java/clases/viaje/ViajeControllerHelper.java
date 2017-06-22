@@ -1,8 +1,3 @@
-﻿/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases.viaje;
 
 import clases.configuration.OpcionesJavascript;
@@ -28,6 +23,7 @@ public class ViajeControllerHelper {
 	 *
 	 * @param pedidos Arreglo conteniendo los pedidos a colocar en la tabla
 	 * principal.
+	 * @pantalla viaje.jsp
 	 * @return String Una cadena conteniendo los items.
 	 */
 	public String tablaPrincipalHtml(Pedido[] pedidos, String estadoId) {
@@ -55,7 +51,7 @@ public class ViajeControllerHelper {
 	/**
 	 * Realiza lo mismo que el método "tablaPrincipalHtml", solo que esta vez
 	 * polula la tabla pedidos.
-	 *
+	 * @pantalla viajeNuevo.jsp
 	 * @return String Cadena conteniendo los items de la tabla.
 	 */
 	public String tablaPedidosHtml(ArrayList<Pedido> pedidos) {
@@ -111,6 +107,10 @@ public class ViajeControllerHelper {
 		return null;
 	}
 
+	/**
+	 * @param estadoId
+	 * @return 
+	 */
 	public String getFiltroActual(String estadoId) {
 		String retorno = "";
 		switch (estadoId) {
@@ -271,46 +271,6 @@ public class ViajeControllerHelper {
 		String jsonObject = "";
 		try {
 			jsonObject = mapper.writeValueAsString(pedidos);
-		} catch (JsonProcessingException ex) {
-			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return jsonObject;
-	}
-
-	public String getOpciones(String contextPath, String estadoId) {
-		ObjectMapper mapper = new ObjectMapper();
-		OpcionesJavascript opciones = new OpcionesJavascript();
-
-		// Agrego la url del para la llamada ajax para obtener la ubicacion del dleivery.
-		opciones.setUrl(contextPath + Parametros.URL_DELIVERY);
-		
-		// Agrego los colores de los markadores.
-		Arrays.asList(Parametros.COLORES_MARKADORES).forEach((k) -> {
-			String color = Parametros.UBICACION_MARKADORES + k + Parametros.EXTENSION_MARKADORES;
-			opciones.getColoresMarkadores().add(color);
-		});
-		
-		// Agrego la ubicacion de la moto.
-		opciones.setMoto(Parametros.UBICACION_MOTO);
-		
-		// Agrego el zoom del mapa.
-		opciones.setDefZoomMap(Parametros.ZOOM_MAPA);
-		
-		// Agrego las opciones de la DataTable.
-		opciones.setDataTableOptions(Parametros.OPCIONES);
-		
-		// Agrego la latitud y longitud por defecto.
-		opciones.setDefLat(Parametros.DEFAULT_LATITUDE);
-		opciones.setDefLon(Parametros.DEFAULT_LONGITUDE);
-		
-		// Agrego el estado actual.
-		opciones.setEstadoIdActual(estadoId);
-		
-		// Agrego la url de calificar.
-		opciones.setUrlCalificar(contextPath + Parametros.URL_CALIFICAR);
-		String jsonObject = "";
-		try {
-			jsonObject = mapper.writeValueAsString(opciones);
 		} catch (JsonProcessingException ex) {
 			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
 		}

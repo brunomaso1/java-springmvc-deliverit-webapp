@@ -5,9 +5,14 @@
  */
 package clases.configuration;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -133,6 +138,14 @@ public class OpcionesJavascript {
 	public void setNombreTablaPrincipal(String nombreTablaPrincipal) {
 		this.nombreTablaPrincipal = nombreTablaPrincipal;
 	}
+	
+	public String getUrlCalificar() {
+		return urlCalificar;
+	}
+
+	public void setUrlCalificar(String urlCalificar) {
+		this.urlCalificar = urlCalificar;
+	}
 
 	public String toJSON() {
 		ObjectMapper mapper = new ObjectMapper();
@@ -141,16 +154,8 @@ public class OpcionesJavascript {
 		try {
 			jsonObject = mapper.writeValueAsString(this);
 		} catch (JsonProcessingException ex) {
-			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(OpcionesJavascript.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return jsonObject;
-	}
-
-	public String getUrlCalificar() {
-		return urlCalificar;
-	}
-
-	public void setUrlCalificar(String urlCalificar) {
-		this.urlCalificar = urlCalificar;
 	}
 }

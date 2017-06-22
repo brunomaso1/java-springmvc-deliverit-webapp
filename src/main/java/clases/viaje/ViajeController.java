@@ -1,16 +1,14 @@
 package clases.viaje;
 
 import clases.accesControl.ACSessionServices;
+import clases.configuration.OpcionesJavascript;
 import clases.configuration.Parametros;
-import clases.dominio.Delivery;
 import clases.dominio.Pedido;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,7 +48,7 @@ public class ViajeController {
 
 		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
 		
-		model.addAttribute("tablaPrincipal", vch.generateTablaPrincipal());
+		model.addAttribute("tablaPrincipal", vch.tablaPrincipalHtml(pedidos, estadoId));
 		
 		model.addAttribute("usuarioActual", acss.getUserName());
 		model.addAttribute("viajesPendientes", vl.getViajesPendientes());
