@@ -199,6 +199,13 @@ public class HistorialViajeControllerHelper {
 		Map<String, Integer> orderedMap = new TreeMap<>(
 		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
 		);
+		
+		// Test
+		orderedMap.put("2017-01", 0);
+		orderedMap.put("2017-02", 0);
+		orderedMap.put("2017-03", 0);
+		orderedMap.put("2017-04", 0);
+		orderedMap.put("2017-05", 0);
 
 		for (Viaje viaje : viajes) {
 			if (viaje.getEstado().getId() == 4) {
@@ -228,6 +235,12 @@ public class HistorialViajeControllerHelper {
 		Map<String, Integer> orderedMap = new TreeMap<String, Integer>(
 		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
 		);
+		
+		orderedMap.put("2017-01", 0);
+		orderedMap.put("2017-02", 0);
+		orderedMap.put("2017-03", 0);
+		orderedMap.put("2017-04", 0);
+		orderedMap.put("2017-05", 0);
 
 		for (Viaje viaje : viajes) {
 			if (viaje.getEstado().getId() == 4) {

@@ -114,8 +114,8 @@ function initTableListener() {
 	window.onload = addRowHandlers();
 }
 
-function initColors(filtro) {
-	if (filtro == "publicados" || filtro == "enProceso") {
+function initColors() {
+	if (op.estadoIdActual == "2" || op.estadoIdActual == "3") {
 		changeColors();
 		window.setInterval(changeColors, 5000);
 	}
@@ -126,7 +126,8 @@ function initColors(filtro) {
  */
 function setMarkers() {
 	var geocoder = new google.maps.Geocoder();
-	if (table.rows.length > 2) {
+	var rows = table.rows;
+	if ((rows.length > 1) && !(rows[1].innerText == "No hay datos")) {
 		var r = 1;
 		var n = table.rows.length;
 		for (; r < n; r++) {
@@ -293,7 +294,10 @@ function cargarDeliverys() {
 }
 
 function actualizarDeliverys() {
-	setInterval(cargarDeliverys, 5000);
+	if (op.estadoIdActual == "3") {
+		cargarDeliverys();
+		setInterval(cargarDeliverys, 5000);
+	}
 }
 
 function getDeliveryViaje(viaje) {
@@ -316,14 +320,22 @@ function getAllDelivery(url) {
 
 function changeColors() {
 	var rows = table.getElementsByTagName("tr");
-	if (rows.length > 1) {
+	if ((rows.length > 1) && !(rows[1].innerText == "No hay datos")) {
 		var i = 1;
 		var l = rows.length;
 		for (; i < l; i++) {
 			var currentRow = table.rows[i];
 			var d = new Date();
-			var timeViaje = currentRow.cells[6].innerHTML;
-			var timeActual = d.getHours() * 60 + d.getMinutes() * 60 + d.getSeconds()
+			var fechaViaje = op.estadoIdActual == "3" ? currentRow.cells[6].innerHTML : currentRow.cells[4].innerHTML;
+			var fecha = new Date(fechaViaje);
+			var timeViaje = (fecha.getHours() + 3) * 3600 + fecha.getMinutes() * 60 + fecha.getSeconds();
+			var x1 = fecha.getHours();
+			var x2 = fecha.getMinutes();
+			var x3 = fecha.getSeconds();			
+			var timeActual = d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+			var x4 = d.getHours();
+			var x5 = d.getHours();
+			var x6 = d.getHours();
 			var dif = parseInt(timeActual) - parseInt(timeViaje);
 			switch (true) {
 				case (dif < 120):

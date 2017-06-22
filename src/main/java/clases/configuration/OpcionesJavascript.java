@@ -16,6 +16,7 @@ import java.util.Map;
 public class OpcionesJavascript {
 
 	private String url;
+	private String urlCalificar;
 	private List<String> coloresMarkadores;
 	private String moto;
 	private int defZoomMap;
@@ -29,6 +30,9 @@ public class OpcionesJavascript {
 
 		// Agrego la url del para la llamada ajax para obtener la ubicacion del dleivery.
 		this.url = contextPath + Parametros.URL_DELIVERY;
+
+		// Agrego la url para la llamada ajax para obtener calificar al viaje.
+		this.urlCalificar = contextPath + Parametros.URL_CALIFICAR;
 
 		// Agrego los colores de los markadores.
 		this.coloresMarkadores = new ArrayList<>();
@@ -140,5 +144,13 @@ public class OpcionesJavascript {
 			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return jsonObject;
+	}
+
+	public String getUrlCalificar() {
+		return urlCalificar;
+	}
+
+	public void setUrlCalificar(String urlCalificar) {
+		this.urlCalificar = urlCalificar;
 	}
 }

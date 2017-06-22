@@ -4,7 +4,7 @@ import java.util.Date;
 
 public final class Configuration {
 
-	private static final String ambienteJuan = "http://192.168.43.15:8080/BackCore/ws/";
+	private static final String ambienteJuan = "http://192.168.1.46:8080/BackCore/ws/";
 
 	private static final String ambienteBruno = "http://localhost:32794/BackCore/ws/";
 
@@ -103,7 +103,11 @@ public final class Configuration {
 		return ambiente + "delivery/getUbicacion/" + deliveryId;
 	}
 	
-	public static String restGetDeliverys(){
-		return ambiente + "delivery/";
+	public static String restFindDeliverysEnProceso(String sucursalId){
+		return ambiente + "viaje/findDeliverysEnProceso/" + sucursalId;
+	}
+	
+	public static String restCalificarDelivery(String idViaje, String calificacion){
+		return ambiente + "viaje/calificar/" + idViaje + "/" + calificacion;
 	}
 }
