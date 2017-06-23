@@ -24,6 +24,7 @@ public class Parametros {
 	public static String HISTORIALVIAJE_EXCEL_TOPE = "10000";
 	public static String HISTORIALVIAJE_EXCEL_FECHA_DESDE = "";
 	public static String DIA_DEFAULT = "2000-01-01";
+	public static String SEPARADOR_FECHA = " - ";
 
 	public static String URL_DELIVERY = "/delivery/";
 	public static String URL_CALIFICAR = "/calificar/";

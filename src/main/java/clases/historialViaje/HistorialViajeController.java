@@ -33,13 +33,15 @@ public class HistorialViajeController {
 	//@PreAuthorize("hasAuthority('ROLE_USER')")
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
+		Calendar fechaFin = Calendar.getInstance();
+		Calendar fechaInicio = Calendar.getInstance().add(Calendar.MONTH, -6);
 
 		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
 
 		model.addAttribute("datosTablaHistorialViaje", vch.tablaHistorialViajeHtml(viajes));
 		model.addAttribute("donutData", vch.chartHistorialViajeDona(viajes));
-		model.addAttribute("lineData", vch.chartHistorialViajeLinea(viajes));
-		model.addAttribute("barrsData", vch.chartHistorialViajeBarras(viajes));
+		model.addAttribute("lineData", vch.chartHistorialViajeLinea(viajes, fechaInicio, fechaFin));
+		model.addAttribute("barrsData", vch.chartHistorialViajeBarras(viajes, fechaInicio, fechaFin));
 
 		model.addAttribute("usuarioActual", acss.getUserName());
 

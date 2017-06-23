@@ -31,86 +31,6 @@ public class HistorialViajeControllerHelper {
 		this.hvl = new HistorialViajeLogica();
 	}
 
-	public class JsonObjectDonut {
-		private String label;
-		private String value;
-
-		public JsonObjectDonut(String label, String value) {
-			this.label = label;
-			this.value = value;
-		}
-
-		public String getLabel() {
-			return label;
-		}
-
-		public void setLabel(String label) {
-			this.label = label;
-		}
-
-		public String getValue() {
-			return value;
-		}
-
-		public void setValue(String value) {
-			this.value = value;
-		}
-	}
-
-	public class JsonObjectLine {
-
-		private String anioMes;
-		private Integer viajes;
-
-		public JsonObjectLine(String anioMes, Integer viajes) {
-			this.anioMes = anioMes;
-			this.viajes = viajes;
-		}
-
-		public String getAnioMes() {
-			return anioMes;
-		}
-
-		public void setAnioMes(String anioMes) {
-			this.anioMes = anioMes;
-		}
-
-		public Integer getViajes() {
-			return viajes;
-		}
-
-		public void setViajes(Integer viajes) {
-			this.viajes = viajes;
-		}
-	}
-
-	public class JsonObjectBars {
-
-		private String anioMes;
-		private Integer costo;
-
-		public JsonObjectBars(String anioMes, Integer ganancia) {
-			this.anioMes = anioMes;
-			this.costo = ganancia;
-		}
-
-		public String getAnioMes() {
-			return anioMes;
-		}
-
-		public void setAnioMes(String anioMes) {
-			this.anioMes = anioMes;
-		}
-
-		public Integer getCosto() {
-			return costo;
-		}
-
-		public void setCosto(Integer costo) {
-			this.costo = costo;
-		}
-	}
-
 	public String tablaHistorialViajeHtml(Viaje[] viajes) {
 		String tabla = "";
 
@@ -146,10 +66,6 @@ public class HistorialViajeControllerHelper {
 			return parser;
 		}
 		return null;
-	}
-
-	private String obtenerCantidadPedidos(String viajeId) {
-		return hvl.contarPedidosViaje(viajeId);
 	}
 
 	public String chartHistorialViajeDona(Viaje[] viajes) {
@@ -194,25 +110,19 @@ public class HistorialViajeControllerHelper {
 	* Logica: Inserto los string como "yyyymm" para agruparlos por año y mes.
 	* Si la clave existe, sumo uno, sino agrego la clave con una ocurrencia.
 	*/
-	public String chartHistorialViajeLinea(Viaje[] viajes) {
+	public String chartHistorialViajeLinea(Viaje[] viajes, Calendar fechaInicio, Calendar fechaFin) {
 		ObjectMapper mapper = new ObjectMapper();
+		HistorialUtils hu = new HistorialUtils();
 		Map<String, Integer> orderedMap = new TreeMap<>(
 		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
 		);
-		
-		// Test
-		orderedMap.put("2017-01", 0);
-		orderedMap.put("2017-02", 0);
-		orderedMap.put("2017-03", 0);
-		orderedMap.put("2017-04", 0);
-		orderedMap.put("2017-05", 0);
 
 		for (Viaje viaje : viajes) {
-			if (viaje.getEstado().getId() == 4) {
-				// Parseo la fecha en el formato "yyyymm".
-				Calendar calendar = new GregorianCalendar();
-				calendar.setTime(viaje.getFecha());
-				String fechaParseada = String.valueOf(calendar.get(Calendar.YEAR)) + "-" + String.valueOf(calendar.get(Calendar.MONTH) + 1);
+			// Parseo la fecha en el formato "yyyymm".
+			Calendar fechaViaje = new GregorianCalendar();
+			fechaViaje.setTime(viaje.getFecha());
+			if ((viaje.getEstado().getId() == 4) && (hu.fechaDentroDeRango(fechaInicio, fechaFin, fechaViaje))) {
+				String fechaParseada = hu.buildStringFecha(String.valueOf(calendar.get(Calendar.YEAR)), String.valueOf(calendar.get(Calendar.MONTH)));
 				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
 				if (orderedMap.containsKey(fechaParseada))
 					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + 1);
@@ -220,34 +130,31 @@ public class HistorialViajeControllerHelper {
 					orderedMap.put(fechaParseada, 1);
 			}
 		}
-		
+
+		hu.agregarIntervalosFaltantes(fechaInicio, fechaFin, orderedMap);
+
 		String jsonObject = "";
 		try {
-			jsonObject = mapper.writeValueAsString(parsearLineMapToJson(orderedMap));
+			jsonObject = mapper.writeValueAsString(JsonObjectLineHistViaje.mapToJSON(orderedMap));
 		} catch (JsonProcessingException ex) {
 			Logger.getLogger(HistorialViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return jsonObject;
 	}
 
-	public String chartHistorialViajeBarras(Viaje[] viajes) {
+	public String chartHistorialViajeBarras(Viaje[] viajes, Calendar fechaInicio, Calendar fechaFin) {
 		ObjectMapper mapper = new ObjectMapper();
-		Map<String, Integer> orderedMap = new TreeMap<String, Integer>(
+		HistorialUtils hu = new HistorialUtils();
+		Map<String, Integer> orderedMap = new TreeMap<>(
 		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
 		);
-		
-		orderedMap.put("2017-01", 0);
-		orderedMap.put("2017-02", 0);
-		orderedMap.put("2017-03", 0);
-		orderedMap.put("2017-04", 0);
-		orderedMap.put("2017-05", 0);
 
 		for (Viaje viaje : viajes) {
-			if (viaje.getEstado().getId() == 4) {
-				// Parseo la fecha en el formato "yyyymm".
-				Calendar calendar = new GregorianCalendar();
-				calendar.setTime(viaje.getFecha());
-				String fechaParseada = String.valueOf(calendar.get(Calendar.YEAR)) + "-" + String.valueOf(calendar.get(Calendar.MONTH) + 1);
+			// Parseo la fecha en el formato "yyyymm".
+			Calendar fechaViaje = new GregorianCalendar();
+			fechaViaje.setTime(viaje.getFecha());
+			if ((viaje.getEstado().getId() == 4) && (hu.fechaDentroDeRango(fechaInicio, fechaFin, fechaViaje))) {
+				String fechaParseada = hu.buildStringFecha(String.valueOf(calendar.get(Calendar.YEAR)), String.valueOf(calendar.get(Calendar.MONTH)));
 				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
 				if (orderedMap.containsKey(fechaParseada))
 					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + viaje.getPrecio());
@@ -255,27 +162,19 @@ public class HistorialViajeControllerHelper {
 					orderedMap.put(fechaParseada, (int)viaje.getPrecio());
 			}
 		}
-		
+
+		hu.agregarIntervalosFaltantes(fechaInicio, fechaFin, orderedMap);
+
 		String jsonObject = "";
 		try {
-			jsonObject = mapper.writeValueAsString(parsearBaraMapToJson(orderedMap));
+			jsonObject = mapper.writeValueAsString(JsonObjectBarsHistViaje.mapToJSON(orderedMap));
 		} catch (JsonProcessingException ex) {
 			Logger.getLogger(HistorialViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return jsonObject;
 	}
 
-	private List<JsonObjectLine> parsearLineMapToJson (Map<String, Integer> map) {
-		List<JsonObjectLine> jsonObjectLineList = new ArrayList<>();
-		// Agrego a la lista objetos del tipo JsonObjcetLine con clave y valor.
-		map.forEach((k, v) -> jsonObjectLineList.add(new JsonObjectLine(k, v)));
-		return jsonObjectLineList;
-	}
-
-	private List<JsonObjectBars> parsearBaraMapToJson (Map<String, Integer> map) {
-		List<JsonObjectBars> jsonObjectBarsList = new ArrayList<>();
-		// Agrego a la lista objetos del tipo JsonObjcetLine con clave y valor.
-		map.forEach((k, v) -> jsonObjectBarsList.add(new JsonObjectBars(k, v)));
-		return jsonObjectBarsList;
+	private String obtenerCantidadPedidos(String viajeId) {
+		return hvl.contarPedidosViaje(viajeId);
 	}
 }
