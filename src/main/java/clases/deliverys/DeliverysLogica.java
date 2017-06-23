@@ -13,7 +13,6 @@ public class DeliverysLogica {
 		RestTemplate restTemplate = new RestTemplate();
 
 		//Obtiene la respuesta.
-		// Falta implementar.
 		Delivery[] deliverys = restTemplate.getForObject(Configuration.restFindDeliverysGet(sucursalId), Delivery[].class);
 		return deliverys;
 	}

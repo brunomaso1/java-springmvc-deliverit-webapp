@@ -33,11 +33,16 @@ public class DeliverysController {
 	//@PreAuthorize("hasAuthority('ROLE_USER')")
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
+		OpcionesJavascriptCliente ojc = new OpcionesJavascriptCliente();
 
 		Delivery[] deliverys = hvl.obtenerDeliverys(sucursalId);
 
-		model.addAttribute("datosTablaDeliverys", vch.tablaDeliverysHtml(deliverys));
+		model.addAttribute("nombreTablaPrincipal", ojc.getNombreTablaPrincipal());
+		model.addAttribute("tablaPrincipal", vch.tablaClientesHtml(deliverys));
 		model.addAttribute("usuarioActual", acss.getUserName());
+		
+		// Para Javascript
+		model.addAttribute("opciones", ojc.toJSON());
 
 		return "deliverys";
 	}

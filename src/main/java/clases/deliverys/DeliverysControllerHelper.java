@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package clases.deliverys;
 
 import clases.dominio.Delivery;
@@ -18,13 +13,25 @@ public class DeliverysControllerHelper {
 
 		String[][] deliverysParseados = parsearDeliverys(deliverys);
 
+		tabla += "<thead>";
+		tabla += "<tr>";
+		tabla += "<th>" + "Id" + "</th>";	// Id delivery.
+		tabla += "<th>" + "Nombre" + "</th>";	// Nombre delivery.
+		tabla += "<th>" + "Telefono" + "</th>";	// Telefono delivery.
+		tabla += "<th>" + "Vehiculo" + "</th>";	// Vehiculo delivery.
+		tabla += "<th>" + "Calificacion" + "</th>";	// Calificacion delivery.
+		tabla += "</tr>";
+		tabla += "</thead>";
+
 		if (deliverysParseados != null) {
 			//Crea los items.
 			for (String[] deliveryParseado : deliverysParseados) {
 				tabla += "<tr>";
-				for (String string : deliveryParseado) {
-					tabla += "<td>" + string + "</td>";
-				}
+				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id delivery.
+				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre delivery.
+				tabla += "<td>" + pedidosParseado[2] + "</td>";	// Telefono delivery.
+				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Vehiculo delivery.
+				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Calificacion delivery.
 				tabla += "</tr>";
 			}
 		}

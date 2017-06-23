@@ -80,23 +80,44 @@ public class Parametros {
 		LANGUAJE_CLIENTE = new HashMap<>();
 		LANGUAJE_CLIENTE.put("processing", "Procesando");
 		LANGUAJE_CLIENTE.put("search", "Busqueda&nbsp;:");
-		LANGUAJE_CLIENTE.put("lengthMenu", "Mostrar _MENU_ viajes");
+		LANGUAJE_CLIENTE.put("lengthMenu", "Mostrar _MENU_ clientes");
 		LANGUAJE_CLIENTE.put("info", "");
-		LANGUAJE_CLIENTE.put("infoEmpty", "Ningun viaje");
+		LANGUAJE_CLIENTE.put("infoEmpty", "Ningun cliente.");
 		LANGUAJE_CLIENTE.put("infoFiltered", "");
 		LANGUAJE_CLIENTE.put("infoPostFix", "");
-		LANGUAJE_CLIENTE.put("loadingRecords", "Cargando viajes...");
-		LANGUAJE_CLIENTE.put("zeroRecords", "No se han encontrado viajes");
-		LANGUAJE_CLIENTE.put("emptyTable", "No hay viajes hoy");
+		LANGUAJE_CLIENTE.put("loadingRecords", "Cargando clientes...");
+		LANGUAJE_CLIENTE.put("zeroRecords", "No se han encontrado clientes");
+		LANGUAJE_CLIENTE.put("emptyTable", "No hay clientes hoy");
 		LANGUAJE_CLIENTE.put("paginate", PAGINATE);
 	}
 	public static Map<Object, Object> DATATABLE_OPCIONES_CLIENTE;
 
 	static {
 		DATATABLE_OPCIONES_CLIENTE = new HashMap<>();
-		DATATABLE_OPCIONES_CLIENTE.put("sScrollX", "110%");
-		DATATABLE_OPCIONES_CLIENTE.put("sScrollXInner", "110%");
 		DATATABLE_OPCIONES_CLIENTE.put("language", LANGUAJE_CLIENTE);
+	}
+
+	private static Map<Object, Object> LANGUAJE_DELIVERY;
+
+	static {
+		LANGUAJE_DELIVERY = new HashMap<>();
+		LANGUAJE_DELIVERY.put("processing", "Procesando");
+		LANGUAJE_DELIVERY.put("search", "Busqueda&nbsp;:");
+		LANGUAJE_DELIVERY.put("lengthMenu", "Mostrar _MENU_ deliverys");
+		LANGUAJE_DELIVERY.put("info", "");
+		LANGUAJE_DELIVERY.put("infoEmpty", "Ningun delivery.");
+		LANGUAJE_DELIVERY.put("infoFiltered", "");
+		LANGUAJE_DELIVERY.put("infoPostFix", "");
+		LANGUAJE_DELIVERY.put("loadingRecords", "Cargando deliverys...");
+		LANGUAJE_DELIVERY.put("zeroRecords", "No se han encontrado deliverys");
+		LANGUAJE_DELIVERY.put("emptyTable", "No hay deliverys hoy");
+		LANGUAJE_DELIVERY.put("paginate", PAGINATE);
+	}
+	public static Map<Object, Object> DATATABLE_OPCIONES_DELIVERY;
+
+	static {
+		DATATABLE_OPCIONES_DELIVERY = new HashMap<>();
+		DATATABLE_OPCIONES_DELIVERY.put("language", LANGUAJE_DELIVERY);
 	}
 
 	public static double DEFAULT_LATITUDE = -34.9082249;
@@ -104,4 +125,5 @@ public class Parametros {
 
 	public static String NOMBRE_TABLA_PRINCIPAL = "pedidos";
 	public static String NOMBRE_TABLA_CLIENTE = "clientes";
+	public static String NOMBRE_TABLA_DELIVERY = "deliverys";
 }
