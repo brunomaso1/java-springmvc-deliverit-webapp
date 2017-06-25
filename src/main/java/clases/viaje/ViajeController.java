@@ -1,6 +1,7 @@
 package clases.viaje;
 
 import clases.accesControl.ACSessionServices;
+import clases.configuration.OpcionesJavascript;
 import clases.configuration.Parametros;
 import clases.dominio.Delivery;
 import clases.dominio.Pedido;
@@ -50,7 +51,7 @@ public class ViajeController {
 
 		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
 		
-		model.addAttribute("tablaPrincipal", vch.generateTablaPrincipal());
+		model.addAttribute("tablaPrincipal", vch.tablaPrincipalHtml(pedidos, estadoId));
 		
 		model.addAttribute("usuarioActual", acss.getUserName());
 		model.addAttribute("viajesPendientes", vl.getViajesPendientes());

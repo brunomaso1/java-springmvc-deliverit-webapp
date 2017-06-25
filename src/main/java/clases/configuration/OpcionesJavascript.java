@@ -5,9 +5,14 @@
  */
 package clases.configuration;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -60,6 +65,10 @@ public class OpcionesJavascript {
 
 		// Agrego el nombre de la tabla principal.
 		this.nombreTablaPrincipal = Parametros.NOMBRE_TABLA_PRINCIPAL;
+	}
+
+	public OpcionesJavascript() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	public String getUrl() {
@@ -141,7 +150,7 @@ public class OpcionesJavascript {
 		try {
 			jsonObject = mapper.writeValueAsString(this);
 		} catch (JsonProcessingException ex) {
-			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(OpcionesJavascript.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return jsonObject;
 	}
