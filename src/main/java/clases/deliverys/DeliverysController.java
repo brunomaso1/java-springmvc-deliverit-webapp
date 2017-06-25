@@ -1,6 +1,7 @@
 package clases.deliverys;
 
 import clases.accesControl.ACSessionServices;
+import clases.configuration.OpcionesJavascriptCliente;
 import clases.dominio.Delivery;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -38,7 +39,7 @@ public class DeliverysController {
 		Delivery[] deliverys = hvl.obtenerDeliverys(sucursalId);
 
 		model.addAttribute("nombreTablaPrincipal", ojc.getNombreTablaPrincipal());
-		model.addAttribute("tablaPrincipal", vch.tablaClientesHtml(deliverys));
+		model.addAttribute("tablaPrincipal", vch.tablaDeliverysHtml(deliverys));
 		model.addAttribute("usuarioActual", acss.getUserName());
 		
 		// Para Javascript

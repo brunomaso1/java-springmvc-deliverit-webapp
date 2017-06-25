@@ -27,11 +27,11 @@ public class DeliverysControllerHelper {
 			//Crea los items.
 			for (String[] deliveryParseado : deliverysParseados) {
 				tabla += "<tr>";
-				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id delivery.
-				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre delivery.
-				tabla += "<td>" + pedidosParseado[2] + "</td>";	// Telefono delivery.
-				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Vehiculo delivery.
-				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Calificacion delivery.
+				tabla += "<td>" + deliveryParseado[0] + "</td>";	// Id delivery.
+				tabla += "<td>" + deliveryParseado[1] + "</td>";	// Nombre delivery.
+				tabla += "<td>" + deliveryParseado[2] + "</td>";	// Telefono delivery.
+				tabla += "<td>" + deliveryParseado[3] + "</td>";	// Vehiculo delivery.
+				tabla += "<td>" + deliveryParseado[4] + "</td>";	// Calificacion delivery.
 				tabla += "</tr>";
 			}
 		}

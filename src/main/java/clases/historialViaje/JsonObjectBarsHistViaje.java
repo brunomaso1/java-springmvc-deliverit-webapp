@@ -1,13 +1,20 @@
 package clases.historialViaje;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class JsonObjectBarsHistViaje {
 
 	private String anioMes;
 	private Integer costo;
 
-	public JsonObjectBarsHistViaje(String anioMes, Integer ganancia) {
+	public JsonObjectBarsHistViaje() {
+	}
+
+	public JsonObjectBarsHistViaje(String anioMes, Integer costo) {
 		this.anioMes = anioMes;
-		this.costo = ganancia;
+		this.costo = costo;
 	}
 
 	public String getAnioMes() {
@@ -26,7 +33,7 @@ public class JsonObjectBarsHistViaje {
 		this.costo = costo;
 	}
 
-	private List<JsonObjectBarsHistViaje> mapToJSON(Map<String, Integer> map) {
+	public List<JsonObjectBarsHistViaje> mapToJSON(Map<String, Integer> map) {
 		List<JsonObjectBarsHistViaje> jsonObjectBarsList = new ArrayList<>();
 		// Agrego a la lista objetos del tipo JsonObjcetLine con clave y valor.
 		map.forEach((k, v) -> jsonObjectBarsList.add(new JsonObjectBarsHistViaje(k, v)));

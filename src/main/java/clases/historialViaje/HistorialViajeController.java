@@ -2,6 +2,7 @@ package clases.historialViaje;
 
 import clases.accesControl.ACSessionServices;
 import clases.dominio.Viaje;
+import java.util.Calendar;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,13 @@ public class HistorialViajeController {
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
 		Calendar fechaFin = Calendar.getInstance();
-		Calendar fechaInicio = Calendar.getInstance().add(Calendar.MONTH, -6);
-
+		Calendar fechaInicio = Calendar.getInstance();
+		fechaInicio.add(Calendar.MONTH, -6);
+		
+		int anioFin = fechaFin.get(Calendar.YEAR);
+		int mesFin = fechaFin.get(Calendar.MONTH);
+		int anioInicio = fechaInicio.get(Calendar.YEAR);
+		int mesInicio = fechaInicio.get(Calendar.MONTH);
 		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
 
 		model.addAttribute("datosTablaHistorialViaje", vch.tablaHistorialViajeHtml(viajes));

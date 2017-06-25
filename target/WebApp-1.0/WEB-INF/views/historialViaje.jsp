@@ -94,6 +94,6 @@
 		<!-- User javascripts -->
 		<script src="resources/js/historialViaje.js"></script>
 		<script>initDataTable();</script>
-		<script>initCharts(${donutData}, ${lineData}, ${barrsData});</script>
+		<%--<script>initCharts(${donutData}, ${lineData}, ${barrsData});</script>--%>
 	</body>
 </html>

@@ -6,6 +6,8 @@
 package clases.historialViaje;
 
 import clases.dominio.Viaje;
+import clases.utils.HistorialUtils;
+import clases.utils.JsonObjectDonut;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.Serializable;
@@ -13,8 +15,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Map;
+
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -122,7 +124,7 @@ public class HistorialViajeControllerHelper {
 			Calendar fechaViaje = new GregorianCalendar();
 			fechaViaje.setTime(viaje.getFecha());
 			if ((viaje.getEstado().getId() == 4) && (hu.fechaDentroDeRango(fechaInicio, fechaFin, fechaViaje))) {
-				String fechaParseada = hu.buildStringFecha(String.valueOf(calendar.get(Calendar.YEAR)), String.valueOf(calendar.get(Calendar.MONTH)));
+				String fechaParseada = hu.buildStringFecha(fechaViaje.get(Calendar.YEAR), fechaViaje.get(Calendar.MONTH));
 				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
 				if (orderedMap.containsKey(fechaParseada))
 					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + 1);
@@ -134,8 +136,9 @@ public class HistorialViajeControllerHelper {
 		hu.agregarIntervalosFaltantes(fechaInicio, fechaFin, orderedMap);
 
 		String jsonObject = "";
+		JsonObjectLineHistViaje jolhv = new JsonObjectLineHistViaje();
 		try {
-			jsonObject = mapper.writeValueAsString(JsonObjectLineHistViaje.mapToJSON(orderedMap));
+			jsonObject = mapper.writeValueAsString(jolhv.mapToJSON(orderedMap));
 		} catch (JsonProcessingException ex) {
 			Logger.getLogger(HistorialViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -154,7 +157,7 @@ public class HistorialViajeControllerHelper {
 			Calendar fechaViaje = new GregorianCalendar();
 			fechaViaje.setTime(viaje.getFecha());
 			if ((viaje.getEstado().getId() == 4) && (hu.fechaDentroDeRango(fechaInicio, fechaFin, fechaViaje))) {
-				String fechaParseada = hu.buildStringFecha(String.valueOf(calendar.get(Calendar.YEAR)), String.valueOf(calendar.get(Calendar.MONTH)));
+				String fechaParseada = hu.buildStringFecha(fechaViaje.get(Calendar.YEAR), fechaViaje.get(Calendar.MONTH));
 				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
 				if (orderedMap.containsKey(fechaParseada))
 					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + viaje.getPrecio());
@@ -166,8 +169,9 @@ public class HistorialViajeControllerHelper {
 		hu.agregarIntervalosFaltantes(fechaInicio, fechaFin, orderedMap);
 
 		String jsonObject = "";
+		JsonObjectBarsHistViaje jobhv = new JsonObjectBarsHistViaje();
 		try {
-			jsonObject = mapper.writeValueAsString(JsonObjectBarsHistViaje.mapToJSON(orderedMap));
+			jsonObject = mapper.writeValueAsString(jobhv.mapToJSON(orderedMap));
 		} catch (JsonProcessingException ex) {
 			Logger.getLogger(HistorialViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
 		}
