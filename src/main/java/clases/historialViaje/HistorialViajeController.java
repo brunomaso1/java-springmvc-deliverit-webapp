@@ -38,13 +38,11 @@ public class HistorialViajeController {
 		Calendar fechaInicio = Calendar.getInstance();
 		fechaInicio.add(Calendar.MONTH, -6);
 		
-		int anioFin = fechaFin.get(Calendar.YEAR);
-		int mesFin = fechaFin.get(Calendar.MONTH);
-		int anioInicio = fechaInicio.get(Calendar.YEAR);
-		int mesInicio = fechaInicio.get(Calendar.MONTH);
 		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
+		OpcionesJavascriptHistViaje opciones = new OpcionesJavascriptHistViaje();
 
-		model.addAttribute("datosTablaHistorialViaje", vch.tablaHistorialViajeHtml(viajes));
+		model.addAttribute("datosTablaHistViaje", vch.tablaHistorialViajeHTML(viajes));
+		model.addAttribute("nombreTablaHistViaje", opciones.getNombreTablaHistViaje());
 		model.addAttribute("donutData", vch.chartHistorialViajeDona(viajes));
 		model.addAttribute("lineData", vch.chartHistorialViajeLinea(viajes, fechaInicio, fechaFin));
 		model.addAttribute("barrsData", vch.chartHistorialViajeBarras(viajes, fechaInicio, fechaFin));

@@ -88,7 +88,7 @@ public class Parametros {
 		LANGUAJE_CLIENTE.put("infoPostFix", "");
 		LANGUAJE_CLIENTE.put("loadingRecords", "Cargando clientes...");
 		LANGUAJE_CLIENTE.put("zeroRecords", "No se han encontrado clientes");
-		LANGUAJE_CLIENTE.put("emptyTable", "No hay clientes hoy");
+		LANGUAJE_CLIENTE.put("emptyTable", "No hay clientes");
 		LANGUAJE_CLIENTE.put("paginate", PAGINATE);
 	}
 	public static Map<Object, Object> DATATABLE_OPCIONES_CLIENTE;
@@ -111,7 +111,7 @@ public class Parametros {
 		LANGUAJE_DELIVERY.put("infoPostFix", "");
 		LANGUAJE_DELIVERY.put("loadingRecords", "Cargando deliverys...");
 		LANGUAJE_DELIVERY.put("zeroRecords", "No se han encontrado deliverys");
-		LANGUAJE_DELIVERY.put("emptyTable", "No hay deliverys hoy");
+		LANGUAJE_DELIVERY.put("emptyTable", "No hay deliverys");
 		LANGUAJE_DELIVERY.put("paginate", PAGINATE);
 	}
 	public static Map<Object, Object> DATATABLE_OPCIONES_DELIVERY;
@@ -121,10 +121,34 @@ public class Parametros {
 		DATATABLE_OPCIONES_DELIVERY.put("language", LANGUAJE_DELIVERY);
 	}
 
+		private static Map<Object, Object> LANGUAJE_HISTVIAJE;
+
+	static {
+		LANGUAJE_HISTVIAJE = new HashMap<>();
+		LANGUAJE_HISTVIAJE.put("processing", "Procesando");
+		LANGUAJE_HISTVIAJE.put("search", "Busqueda&nbsp;:");
+		LANGUAJE_HISTVIAJE.put("lengthMenu", "Mostrar _MENU_ viajes");
+		LANGUAJE_HISTVIAJE.put("info", "");
+		LANGUAJE_HISTVIAJE.put("infoEmpty", "Ningun viaje.");
+		LANGUAJE_HISTVIAJE.put("infoFiltered", "");
+		LANGUAJE_HISTVIAJE.put("infoPostFix", "");
+		LANGUAJE_HISTVIAJE.put("loadingRecords", "Cargando viajes...");
+		LANGUAJE_HISTVIAJE.put("zeroRecords", "No se han encontrado viajes");
+		LANGUAJE_HISTVIAJE.put("emptyTable", "No hay viajes");
+		LANGUAJE_HISTVIAJE.put("paginate", PAGINATE);
+	}
+	public static Map<Object, Object> DATATABLE_OPCIONES_HISTVIAJE;
+
+	static {
+		DATATABLE_OPCIONES_HISTVIAJE = new HashMap<>();
+		DATATABLE_OPCIONES_HISTVIAJE.put("language", LANGUAJE_HISTVIAJE);
+	}
+
 	public static double DEFAULT_LATITUDE = -34.9082249;
 	public static double DEFAULT_LONGITUDE = -56.1664964;
 
 	public static String NOMBRE_TABLA_PRINCIPAL = "pedidos";
 	public static String NOMBRE_TABLA_CLIENTE = "clientes";
 	public static String NOMBRE_TABLA_DELIVERY = "deliverys";
+	public static String NOMBRE_TABLA_HISTVIAJE = "";
 }

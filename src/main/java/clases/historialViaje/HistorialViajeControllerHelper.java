@@ -33,21 +33,42 @@ public class HistorialViajeControllerHelper {
 		this.hvl = new HistorialViajeLogica();
 	}
 
-	public String tablaHistorialViajeHtml(Viaje[] viajes) {
+	public String tablaHistorialViajeHTML(Viaje[] viajes) {
 		String tabla = "";
-
 		String[][] viajesParseados = parsearViajes(viajes);
 
+		tabla += "<thead>";
+		tabla += "<tr>";
+		tabla += "<th>" + Viaje + "</th>";
+		tabla += "<th>" + Delivery + "</th>";
+		tabla += "<th>" + Telefono Delivery + "</th>";
+		tabla += "<th>" + Calificacion Delivery + "</th>";
+		tabla += "<th>" + Calificacion Viaje + "</th>";
+		tabla += "<th>" + Estado + "</th>";
+		tabla += "<th>" + Fecha + "</th>";
+		tabla += "<th>" + Precio + "</th>";
+		tabla += "<th>" + Cantidad Pedidos + "</th>";
+		tabla += "</tr>";
+		tabla += "</thead>";
+
+		tabla += "<tbody>";
 		if (viajesParseados != null) {
 			//Crea los items.
-			for (String[] viajeParseado : viajesParseados) {
+			for (String[] viajesParseado : viajesParseados) {
 				tabla += "<tr>";
-				for (String string : viajeParseado) {
-					tabla += "<td>" + string + "</td>";
-				}
+				tabla += "<td>" + viajesParseado[0] + "</td>";	// Id viaje.
+				tabla += "<td>" + viajesParseado[1] + "</td>";	// Nombre del delivery.
+				tabla += "<td>" + viajesParseado[2] + "</td>";	// Telefono del delivery.
+				tabla += "<td>" + viajesParseado[3] + "</td>";	// Calificacion del delivery.
+				tabla += "<td>" + viajesParseado[4] + "</td>";	// Calificacion del viaje.
+				tabla += "<td>" + viajesParseado[5] + "</td>";	// Estado del viaje.
+				tabla += "<td>" + viajesParseado[6] + "</td>";	// Fecha del viaje.
+				tabla += "<td>" + viajesParseado[7] + "</td>";	// Precio del viaje.
+				tabla += "<td>" + viajesParseado[8] + "</td>";	// Cantidad de pedidos.
 				tabla += "</tr>";
 			}
 		}
+		tabla += "</tbody>";
 		return tabla;
 	}
 
