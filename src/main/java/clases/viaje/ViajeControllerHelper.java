@@ -1,12 +1,10 @@
 package clases.viaje;
 
-import clases.configuration.OpcionesJavascriptViaje;
+import clases.configuration.Parametros;
 import clases.dominio.Pedido;
 import java.util.ArrayList;
-import clases.configuration.Parametros;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -98,7 +96,7 @@ public class ViajeControllerHelper {
 				               ? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono(); // Telefono delivey
 				parser[i][6] = pedidos[i].getViaje().getFecha() == null ? "Sin fecha"
 				               : pedidos[i].getViaje().getFecha().toString(); // Fecha viaje.
-				parser[i][7] = pedidos[i].getViaje().getCalificacion() == null ? "Sin calificacion"
+				parser[i][7] = pedidos[i].getViaje().getCalificacion() == null ? Parametros.DEFAULT_CALIFICACION_VIAJE
 				               : pedidos[i].getViaje().getCalificacion().toString(); // Calificacion viaje.
 				parser[i][8] = pedidos[i].getId().toString(); // Id del pedido.
 			}
@@ -252,9 +250,10 @@ public class ViajeControllerHelper {
 		if (pedidosParseados != null) {
 			//Crea los items.
 			for (String[] pedidosParseado : pedidosParseados) {
+				String estrellas = "<div id=\"stars-existing\" class=\"starrr\" data-rating='" + pedidosParseado[7] + "'></div>";
 				tabla += "<tr>";
 				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
-				tabla += "<td>" + "<div id=\"stars-existing\" class=\"starrr\" data-rating='3'></div>" + "</td>";	// Calificacion Delivery.
+				tabla += "<td>" + estrellas + "</td>";	// Calificacion Delivery.
 				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.
 				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Nombre Delivery.
 				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre cliente.

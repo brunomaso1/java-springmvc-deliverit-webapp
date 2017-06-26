@@ -33,21 +33,21 @@ public class HistorialViajeControllerHelper {
 		this.hvl = new HistorialViajeLogica();
 	}
 
-	public String tablaHistorialViajeHTML(Viaje[] viajes) {
+	public String getDatosTablaHistViajeHTML(Viaje[] viajes) {
 		String tabla = "";
 		String[][] viajesParseados = parsearViajes(viajes);
 
 		tabla += "<thead>";
 		tabla += "<tr>";
-		tabla += "<th>" + Viaje + "</th>";
-		tabla += "<th>" + Delivery + "</th>";
-		tabla += "<th>" + Telefono Delivery + "</th>";
-		tabla += "<th>" + Calificacion Delivery + "</th>";
-		tabla += "<th>" + Calificacion Viaje + "</th>";
-		tabla += "<th>" + Estado + "</th>";
-		tabla += "<th>" + Fecha + "</th>";
-		tabla += "<th>" + Precio + "</th>";
-		tabla += "<th>" + Cantidad Pedidos + "</th>";
+		tabla += "<th>" + "Viaje" + "</th>";
+		tabla += "<th>" + "Delivery" + "</th>";
+		tabla += "<th>" + "Telefono Delivery" + "</th>";
+		tabla += "<th>" + "Calificacion Delivery" + "</th>";
+		tabla += "<th>" + "Calificacion Viaje" + "</th>";
+		tabla += "<th>" + "Estado" + "</th>";
+		tabla += "<th>" + "Fecha" + "</th>";
+		tabla += "<th>" + "Precio" + "</th>";
+		tabla += "<th>" + "Cantidad Pedidos" + "</th>";
 		tabla += "</tr>";
 		tabla += "</thead>";
 

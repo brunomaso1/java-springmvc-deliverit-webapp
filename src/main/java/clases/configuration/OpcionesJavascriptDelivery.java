@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class OpcionesJavascriptDelivery {
 
 	private Map<Object, Object> dataTableOptions;
-	private String nombreTablaPrincipal;
+	private String nombreTablaDelivery;
 	private String identificadorJS;
 
 	public OpcionesJavascriptDelivery() {
@@ -20,7 +20,7 @@ public class OpcionesJavascriptDelivery {
 		this.dataTableOptions = Parametros.DATATABLE_OPCIONES_DELIVERY;
 
 		// Agrego el nombre de la tabla principal para la pantalla de clientes.
-		this.nombreTablaPrincipal = Parametros.NOMBRE_TABLA_DELIVERY;
+		this.nombreTablaDelivery = Parametros.NOMBRE_TABLA_DELIVERY;
 	}
 
 	public Map<Object, Object> getDataTableOptions() {
@@ -31,12 +31,12 @@ public class OpcionesJavascriptDelivery {
 		this.dataTableOptions = dataTableOptions;
 	}
 
-	public String getNombreTablaPrincipal() {
-		return nombreTablaPrincipal;
+	public String getNombreTablaDelivery() {
+		return nombreTablaDelivery;
 	}
 
-	public void setNombreTablaPrincipal(String nombreTablaPrincipal) {
-		this.nombreTablaPrincipal = nombreTablaPrincipal;
+	public void setNombreTablaDelivery(String nombreTablaDelivery) {
+		this.nombreTablaDelivery = nombreTablaDelivery;
 	}
 
 	public String getIdentificadorJS() {

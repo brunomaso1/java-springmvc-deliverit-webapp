@@ -1,6 +1,7 @@
 package clases.historialViaje;
 
 import clases.accesControl.ACSessionServices;
+import clases.configuration.OpcionesJavascriptHistViaje;
 import clases.dominio.Viaje;
 import java.util.Calendar;
 import java.util.logging.Logger;
@@ -41,8 +42,9 @@ public class HistorialViajeController {
 		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
 		OpcionesJavascriptHistViaje opciones = new OpcionesJavascriptHistViaje();
 
-		model.addAttribute("datosTablaHistViaje", vch.tablaHistorialViajeHTML(viajes));
+		model.addAttribute("datosTablaHistViaje", vch.getDatosTablaHistViajeHTML(viajes));
 		model.addAttribute("nombreTablaHistViaje", opciones.getNombreTablaHistViaje());
+		
 		model.addAttribute("donutData", vch.chartHistorialViajeDona(viajes));
 		model.addAttribute("lineData", vch.chartHistorialViajeLinea(viajes, fechaInicio, fechaFin));
 		model.addAttribute("barrsData", vch.chartHistorialViajeBarras(viajes, fechaInicio, fechaFin));

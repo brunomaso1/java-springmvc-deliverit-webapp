@@ -6,13 +6,13 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class OpcionesJavascriptCliente {
+public class OpcionesJavascriptHistViaje {
 
 	private Map<Object, Object> dataTableOptions;
 	private String nombreTablaHistViaje;
 	private String identificadorJS;
 
-	public OpcionesJavascriptCliente() {
+	public OpcionesJavascriptHistViaje() {
 		// Agrego el identificador JavaScript
 		this.identificadorJS = Parametros.IDENTIFICADOR_JS;
 

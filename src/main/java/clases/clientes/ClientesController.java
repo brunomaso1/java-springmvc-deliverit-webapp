@@ -38,8 +38,8 @@ public class ClientesController {
 
 		Cliente[] clientes = hvl.obtenerClientes(sucursalId);
 		
-		model.addAttribute("nombreTablaPrincipal", ojc.getNombreTablaPrincipal());
-		model.addAttribute("tablaPrincipal", vch.tablaClientesHtml(clientes));
+		model.addAttribute("nombreTablaCliente", ojc.getNombreTablaCliente());
+		model.addAttribute("datosTablaCliente", vch.getDatosTablaClientesHTML(clientes));
 		model.addAttribute("usuarioActual", acss.getUserName());
 		
 		// Para Javascript

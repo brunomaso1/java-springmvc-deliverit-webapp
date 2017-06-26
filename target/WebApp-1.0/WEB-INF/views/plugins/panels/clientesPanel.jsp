@@ -9,8 +9,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped compact" id="${nombreTablaPrincipal}">
-						${tablaPrincipal}
+					<table class="table table-bordered table-hover table-striped compact" id="${nombreTablaCliente}">
+						${datosTablaCliente}
 					</table>
 				</div>
 			</div>

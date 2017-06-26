@@ -12,6 +12,7 @@ clases\dominio\Direccion.class
 clases\historialViaje\HistorialViajeLogica.class
 clases\configuration\OpcionesJavascriptCliente.class
 clases\accesControl\ACUserDetailsServiceImpl.class
+clases\configuration\OpcionesJavascriptHistViaje.class
 clases\configuration\Parametros.class
 clases\deliverys\DeliverysController.class
 clases\viaje\ViajeFormBean.class

@@ -8,7 +8,7 @@ import clases.dominio.Delivery;
  */
 public class DeliverysControllerHelper {
 
-	public String tablaDeliverysHtml(Delivery[] deliverys) {
+	public String getDatosTablaDeliveryHTML(Delivery[] deliverys) {
 		String tabla = "";
 
 		String[][] deliverysParseados = parsearDeliverys(deliverys);

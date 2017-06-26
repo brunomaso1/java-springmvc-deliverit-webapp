@@ -13,7 +13,7 @@ import clases.dominio.Cliente;
  */
 public class ClientesControllerHelper {
 
-	public String tablaClientesHtml(Cliente[] clientes) {
+	public String getDatosTablaClientesHTML(Cliente[] clientes) {
 		String tabla = "";
 		String[][] clientesParseados = parsearClientes(clientes);
 		

@@ -2,6 +2,7 @@ package clases.deliverys;
 
 import clases.accesControl.ACSessionServices;
 import clases.configuration.OpcionesJavascriptCliente;
+import clases.configuration.OpcionesJavascriptDelivery;
 import clases.dominio.Delivery;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpSession;
@@ -34,12 +35,12 @@ public class DeliverysController {
 	//@PreAuthorize("hasAuthority('ROLE_USER')")
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
-		OpcionesJavascriptCliente ojc = new OpcionesJavascriptCliente();
+		OpcionesJavascriptDelivery ojc = new OpcionesJavascriptDelivery();
 
 		Delivery[] deliverys = hvl.obtenerDeliverys(sucursalId);
 
-		model.addAttribute("nombreTablaPrincipal", ojc.getNombreTablaPrincipal());
-		model.addAttribute("tablaPrincipal", vch.tablaDeliverysHtml(deliverys));
+		model.addAttribute("nombreTablaDelivery", ojc.getNombreTablaDelivery());
+		model.addAttribute("datosTablaDelivery", vch.getDatosTablaDeliveryHTML(deliverys));
 		model.addAttribute("usuarioActual", acss.getUserName());
 		
 		// Para Javascript
