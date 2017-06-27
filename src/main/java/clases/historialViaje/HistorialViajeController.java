@@ -35,21 +35,28 @@ public class HistorialViajeController {
 	//@PreAuthorize("hasAuthority('ROLE_USER')")
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
-		Calendar fechaFin = Calendar.getInstance();
-		Calendar fechaInicio = Calendar.getInstance();
-		fechaInicio.add(Calendar.MONTH, -6);
-		
 		Viaje[] viajes = hvl.obtenerViajes(sucursalId);
-		OpcionesJavascriptHistViaje opciones = new OpcionesJavascriptHistViaje();
+
+		Calendar fechaFinChartLineHistViaje = Calendar.getInstance();
+		Calendar fechaInicioChartLineHistViaje = Calendar.getInstance(); fechaInicioChartLineHistViaje.add(Calendar.MONTH, -6);
+		Calendar fechaFinChartBarHistViaje = Calendar.getInstance();
+		Calendar fechaInicioChartBarHistViaje = Calendar.getInstance(); fechaInicioChartBarHistViaje.add(Calendar.MONTH, -6);
+
+		OpcionesJavascriptHistViaje opciones = new OpcionesJavascriptHistViaje(vch.chartHistorialViajeDona(viajes),
+		        vch.chartHistorialViajeLinea(viajes, fechaInicioChartLineHistViaje, fechaFinChartLineHistViaje),
+		        vch.chartHistorialViajeBarras(viajes, fechaInicioChartBarHistViaje, fechaFinChartBarHistViaje));
+
+		model.addAttribute("usuarioActual", acss.getUserName());
 
 		model.addAttribute("datosTablaHistViaje", vch.getDatosTablaHistViajeHTML(viajes));
 		model.addAttribute("nombreTablaHistViaje", opciones.getNombreTablaHistViaje());
-		
-		model.addAttribute("donutData", vch.chartHistorialViajeDona(viajes));
-		model.addAttribute("lineData", vch.chartHistorialViajeLinea(viajes, fechaInicio, fechaFin));
-		model.addAttribute("barrsData", vch.chartHistorialViajeBarras(viajes, fechaInicio, fechaFin));
+		model.addAttribute("nombreChartDonut", opciones.getNombreChartDonut());
+		model.addAttribute("nombreChartLine", opciones.getNombreChartLine());
+		model.addAttribute("nombreChartBar", opciones.getNombreChartBar());
 
-		model.addAttribute("usuarioActual", acss.getUserName());
+
+		// Para Javascript
+		model.addAttribute("opciones", opciones.toJSON());
 
 		return "historialViaje";
 	}

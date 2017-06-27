@@ -36,12 +36,12 @@ public class DeliverysController {
 	public String showPage(HttpSession request, Model model) {
 		String sucursalId = acss.getUserId();
 		OpcionesJavascriptDelivery ojc = new OpcionesJavascriptDelivery();
-
 		Delivery[] deliverys = hvl.obtenerDeliverys(sucursalId);
 
-		model.addAttribute("nombreTablaDelivery", ojc.getNombreTablaDelivery());
-		model.addAttribute("datosTablaDelivery", vch.getDatosTablaDeliveryHTML(deliverys));
 		model.addAttribute("usuarioActual", acss.getUserName());
+
+		model.addAttribute("nombreTablaDelivery", ojc.getNombreTablaDelivery());
+		model.addAttribute("datosTablaDelivery", vch.getDatosTablaDeliveryHTML(deliverys));	
 		
 		// Para Javascript
 		model.addAttribute("opciones", ojc.toJSON());

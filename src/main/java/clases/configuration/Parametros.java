@@ -40,6 +40,18 @@ public class Parametros {
 	public static int ZOOM_MAPA = 14;
 	public static String IDENTIFICADOR_JS = "#";
 
+	public static double DEFAULT_LATITUDE = -34.9082249;
+	public static double DEFAULT_LONGITUDE = -56.1664964;
+	public static String DEFAULT_CALIFICACION_VIAJE = "3";
+
+	public static String NOMBRE_TABLA_PRINCIPAL = "pedidos";
+	public static String NOMBRE_TABLA_CLIENTE = "clientes";
+	public static String NOMBRE_TABLA_DELIVERY = "deliverys";
+	public static String NOMBRE_TABLA_HISTVIAJE = "viajes";
+	public static String NOMBRE_CHART_DONUT = "chartDona";
+	public static String NOMBRE_CHART_LINE = "chartLinea";
+	public static String NOMBRE_CHART_BAR = "chartBaras";
+
 	private static Map<String, String> PAGINATE;
 
 	static {
@@ -121,7 +133,7 @@ public class Parametros {
 		DATATABLE_OPCIONES_DELIVERY.put("language", LANGUAJE_DELIVERY);
 	}
 
-		private static Map<Object, Object> LANGUAJE_HISTVIAJE;
+	private static Map<Object, Object> LANGUAJE_HISTVIAJE;
 
 	static {
 		LANGUAJE_HISTVIAJE = new HashMap<>();
@@ -144,12 +156,27 @@ public class Parametros {
 		DATATABLE_OPCIONES_HISTVIAJE.put("language", LANGUAJE_HISTVIAJE);
 	}
 
-	public static double DEFAULT_LATITUDE = -34.9082249;
-	public static double DEFAULT_LONGITUDE = -56.1664964;
-	public static String DEFAULT_CALIFICACION_VIAJE = "3";
+	public static Map<Object, Object> CHART_OPCIONES_DONUT;
 
-	public static String NOMBRE_TABLA_PRINCIPAL = "pedidos";
-	public static String NOMBRE_TABLA_CLIENTE = "clientes";
-	public static String NOMBRE_TABLA_DELIVERY = "deliverys";
-	public static String NOMBRE_TABLA_HISTVIAJE = "";
+	static {
+		CHART_OPCIONES_DONUT = new HashMap<>();
+		CHART_OPCIONES_DONUT.put("element", NOMBRE_CHART_DONUT);
+		CHART_OPCIONES_DONUT.put("data", "ESPECIFICAR");
+	}
+
+	public static Map<Object, Object> CHART_OPCIONES_LINE;
+
+	static {
+		CHART_OPCIONES_LINE = new HashMap<>();
+		CHART_OPCIONES_LINE.put("element", NOMBRE_CHART_LINE);
+		CHART_OPCIONES_LINE.put("data", "ESPECIFICAR");
+	}
+
+	public static Map<Object, Object> CHART_OPCIONES_BAR;
+
+	static {
+		CHART_OPCIONES_BAR = new HashMap<>();
+		CHART_OPCIONES_BAR.put("element", NOMBRE_CHART_BAR);
+		CHART_OPCIONES_BAR.put("data", "ESPECIFICAR");
+	}
 }

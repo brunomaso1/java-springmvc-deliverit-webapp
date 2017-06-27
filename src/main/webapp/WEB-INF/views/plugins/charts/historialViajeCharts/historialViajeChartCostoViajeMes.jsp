@@ -8,7 +8,7 @@
 				<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Costo viajes por mes </h3>
 			</div>
 			<div class="panel-body">
-				<div id="costoViajeMes" style="height: 250px;"></div>
+				<div id=${nombreChartBar} style="height: 250px;"></div>
 			</div>
 		</div>
 	</body>

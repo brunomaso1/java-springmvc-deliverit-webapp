@@ -1,55 +1,30 @@
+"use strict";
+var op = {};
+
+function initData(opciones) {
+    op = opciones;
+}
+
 /**
- * Inicia la tabla.
- * @returns {undefined}
+ * Inicia la tabla dinamica.
  */
 function initDataTable() {
+    var nombreTabla = op.identificadorJS + op.nombreTablaHistViaje;
     $(document).ready(function() {
-        $('#viajes').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['csv', 'excel', 'pdf', 'print'],
-            language: {
-                processing: "Procesando...",
-                search: "Busqueda&nbsp;:",
-                lengthMenu: "Mostrar _MENU_ viajes",
-                //info: "_START_ de _END_. Total: _TOTAL_ ",
-                info: "",
-                infoEmpty: "Ningun viaje",
-                //infoFiltered: "(fitradas de _MAX_ entradas en total)",
-                infoFiltered: "",
-                infoPostFix: "",
-                loadingRecords: "Cargando registros...",
-                zeroRecords: "No se han encontrado registros",
-                emptyTable: "No hay datos",
-                paginate: {
-                    first: "<<",
-                    previous: "<",
-                    next: ">",
-                    last: ">>"
-                }
-            }
-        });
+        $(nombreTabla).DataTable(op.dataTableOptions);
     });
 }
 
-function initCharts(donutData, lineData, barrsData) {
+function initCharts() {
     $(document).ready(function() {
         new Morris.Donut({
-            element: 'estadoViajesDona',
-            data: donutData
+            op.chartDonutOptions
         });
         new Morris.Line({
-            element: 'cantidadViajeMes',
-            data: lineData,
-            xkey: 'anioMes',
-            ykeys: ['viajes'],
-            labels: ['Viajes']
+            op.chartLineOptions
         });
         new Morris.Bar({
-            element: 'costoViajeMes',
-            data: barrsData,
-            xkey: 'anioMes',
-            ykeys: ['costo'],
-            labels: ['Costo']
+            op.chartsBarOptions
         });
     });
 }
