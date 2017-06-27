@@ -119,7 +119,7 @@ function calificar(idViaje, calificacion) {
 
 function setRatingViajes(idViaje, value) {
     var rows = document.getElementById(op.nombreTablaViaje).rows;
-    if ((rows.length > 1) && !(rows[1].innerText == "No hay datos")) {
+    if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
         var r = 1;
         var n = table.rows.length;
         for (; r < n; r++) {

@@ -17,6 +17,7 @@ public class OpcionesJavascriptHistViaje {
 	private Map<Object, Object> chartDonutOptions;
 	private Map<Object, Object> chartLineOptions;
 	private Map<Object, Object> chartBarOptions;
+	private Map<Object, Object> mensajes;
 
 	public OpcionesJavascriptHistViaje(String dataChartDonutHistViaje,
 	                                   String dataChartLineHistViaje,
@@ -46,6 +47,9 @@ public class OpcionesJavascriptHistViaje {
 		// Agrego las opciones de la barra.
 		this.chartBarOptions = Parametros.CHART_OPCIONES_BAR;
 		this.chartBarOptions.replace("data", dataChartBarHistViaje);
+
+		// Agrego los mensajes.
+		this.mensajes = Parametros.MENSAJES;
 	}
 
 	public Map<Object, Object> getDataTableOptions() {
@@ -118,6 +122,14 @@ public class OpcionesJavascriptHistViaje {
 
 	public void setNombreChartDonut(String nombreChartBar) {
 		this.nombreChartBar = nombreChartBar;
+	}
+
+	public String getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(String mensajes) {
+		this.mensajes = mensajes;
 	}
 
 	public String toJSON() {

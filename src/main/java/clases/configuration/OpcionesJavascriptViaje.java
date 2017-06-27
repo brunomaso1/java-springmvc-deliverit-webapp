@@ -30,6 +30,8 @@ public class OpcionesJavascriptViaje {
 	private double defLon;
 	private String estadoIdActual;
 	private String nombreTablaViaje;
+	private String nombreMapaViaje;
+	private Map<Object, Object> mensajes;
 
 	public OpcionesJavascriptViaje(String contextPath, String estadoId) {
 
@@ -65,6 +67,12 @@ public class OpcionesJavascriptViaje {
 
 		// Agrego el nombre de la tabla principal.
 		this.nombreTablaViaje = Parametros.NOMBRE_TABLA_VIAJE;
+
+		// Agrego el nombre del mapa.
+		this.nombreMapaViaje = Parametros.NOMBRE_MAPA_VIAJE;
+
+		// Agrego los mensajes.
+		this.mensajes = Parametros.MENSAJES;
 	}
 
 	public String getUrl() {
@@ -145,6 +153,22 @@ public class OpcionesJavascriptViaje {
 
 	public void setUrlCalificar(String urlCalificar) {
 		this.urlCalificar = urlCalificar;
+	}
+
+	public String getNombreMapaViaje() {
+		return nombreMapaViaje;
+	}
+
+	public void setNombreMapaViaje(String nombreMapaViaje) {
+		this.nombreMapaViaje = nombreMapaViaje;
+	}
+	
+	public String getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(String mensajes) {
+		this.mensajes = mensajes;
 	}
 
 	public String toJSON() {

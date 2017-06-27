@@ -93,6 +93,10 @@
 		<!-- User javascripts -->
 		<!--<script type="text/javascript" src="resources/js/viajeModificacion.js"></script>-->
 		<script type="text/javascript" src="resources/js/viajeStarsModificacion.js"></script>
+		<script type="text/javascript">initData(${opciones});</script>
+		<script type="text/javascript">
+			
+		</script>
 		<script type="text/javascript">initDataViajeStars(${opciones});</script>
 		<script type="text/javascript">
 			initStarsStruct();

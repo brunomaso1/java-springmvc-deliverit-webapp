@@ -11,6 +11,7 @@ public class OpcionesJavascriptDelivery {
 	private Map<Object, Object> dataTableOptions;
 	private String nombreTablaDelivery;
 	private String identificadorJS;
+	private Map<Object, Object> mensajes;
 
 	public OpcionesJavascriptDelivery() {
 		// Agrego el identificador JavaScript
@@ -21,6 +22,9 @@ public class OpcionesJavascriptDelivery {
 
 		// Agrego el nombre de la tabla principal para la pantalla de clientes.
 		this.nombreTablaDelivery = Parametros.NOMBRE_TABLA_DELIVERY;
+
+		// Agrego los mensajes.
+		this.mensajes = Parametros.MENSAJES;
 	}
 
 	public Map<Object, Object> getDataTableOptions() {
@@ -45,6 +49,14 @@ public class OpcionesJavascriptDelivery {
 
 	public void setIdentificadorJS(String identificadorJS) {
 		this.identificadorJS = identificadorJS;
+	}
+
+	public String getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(String mensajes) {
+		this.mensajes = mensajes;
 	}
 
 	public String toJSON() {

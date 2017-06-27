@@ -51,6 +51,9 @@ public class Parametros {
 	public static String NOMBRE_CHART_DONUT = "chartDona";
 	public static String NOMBRE_CHART_LINE = "chartLinea";
 	public static String NOMBRE_CHART_BAR = "chartBaras";
+	public static String NOMBRE_MAPA_VIAJE = "map";
+
+	public static String DATATABLE_SINDATOS = "No hay datos.";
 
 	private static Map<String, String> PAGINATE;
 
@@ -75,7 +78,7 @@ public class Parametros {
 		LANGUAJE_VIAJE.put("infoPostFix", "");
 		LANGUAJE_VIAJE.put("loadingRecords", "Cargando viajes...");
 		LANGUAJE_VIAJE.put("zeroRecords", "No se han encontrado viajes");
-		LANGUAJE_VIAJE.put("emptyTable", "No hay viajes hoy");
+		LANGUAJE_VIAJE.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_VIAJE.put("paginate", PAGINATE);
 	}
 	public static Map<Object, Object> DATATABLE_OPCIONES_VIAJE;
@@ -100,7 +103,7 @@ public class Parametros {
 		LANGUAJE_CLIENTE.put("infoPostFix", "");
 		LANGUAJE_CLIENTE.put("loadingRecords", "Cargando clientes...");
 		LANGUAJE_CLIENTE.put("zeroRecords", "No se han encontrado clientes");
-		LANGUAJE_CLIENTE.put("emptyTable", "No hay clientes");
+		LANGUAJE_CLIENTE.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_CLIENTE.put("paginate", PAGINATE);
 	}
 	public static Map<Object, Object> DATATABLE_OPCIONES_CLIENTE;
@@ -123,7 +126,7 @@ public class Parametros {
 		LANGUAJE_DELIVERY.put("infoPostFix", "");
 		LANGUAJE_DELIVERY.put("loadingRecords", "Cargando deliverys...");
 		LANGUAJE_DELIVERY.put("zeroRecords", "No se han encontrado deliverys");
-		LANGUAJE_DELIVERY.put("emptyTable", "No hay deliverys");
+		LANGUAJE_DELIVERY.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_DELIVERY.put("paginate", PAGINATE);
 	}
 	public static Map<Object, Object> DATATABLE_OPCIONES_DELIVERY;
@@ -146,7 +149,7 @@ public class Parametros {
 		LANGUAJE_HISTVIAJE.put("infoPostFix", "");
 		LANGUAJE_HISTVIAJE.put("loadingRecords", "Cargando viajes...");
 		LANGUAJE_HISTVIAJE.put("zeroRecords", "No se han encontrado viajes");
-		LANGUAJE_HISTVIAJE.put("emptyTable", "No hay viajes");
+		LANGUAJE_HISTVIAJE.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_HISTVIAJE.put("paginate", PAGINATE);
 	}
 	public static Map<Object, Object> DATATABLE_OPCIONES_HISTVIAJE;
@@ -178,5 +181,13 @@ public class Parametros {
 		CHART_OPCIONES_BAR = new HashMap<>();
 		CHART_OPCIONES_BAR.put("element", NOMBRE_CHART_BAR);
 		CHART_OPCIONES_BAR.put("data", "ESPECIFICAR");
+	}
+
+	public static Map<Object, Object> MENSAJES;
+
+	static {
+		MENSAJES = new HashMap<>();
+		MENSAJES.put("geolocalizacion", "El navegador no soporta la geolocalizacion, no se puede obtener su ubicacion.");
+		MENSAJES.put("sinDatos", DATATABLE_SINDATOS);
 	}
 }

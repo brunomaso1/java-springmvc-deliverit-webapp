@@ -11,6 +11,7 @@ public class OpcionesJavascriptCliente {
 	private Map<Object, Object> dataTableOptions;
 	private String nombreTablaCliente;
 	private String identificadorJS;
+	private Map<Object, Object> mensajes;
 
 	public OpcionesJavascriptCliente() {
 		// Agrego el identificador JavaScript
@@ -21,6 +22,9 @@ public class OpcionesJavascriptCliente {
 
 		// Agrego el nombre de la tabla principal para la pantalla de clientes.
 		this.nombreTablaCliente = Parametros.NOMBRE_TABLA_CLIENTE;
+
+		// Agrego los mensajes.
+		this.mensajes = Parametros.MENSAJES;
 	}
 
 	public Map<Object, Object> getDataTableOptions() {
@@ -45,6 +49,14 @@ public class OpcionesJavascriptCliente {
 
 	public void setIdentificadorJS(String identificadorJS) {
 		this.identificadorJS = identificadorJS;
+	}
+
+	public String getMensajes() {
+		return mensajes;
+	}
+
+	public void setMensajes(String mensajes) {
+		this.mensajes = mensajes;
 	}
 
 	public String toJSON() {
