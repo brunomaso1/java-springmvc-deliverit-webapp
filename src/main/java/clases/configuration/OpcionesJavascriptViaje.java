@@ -29,7 +29,7 @@ public class OpcionesJavascriptViaje {
 	private double defLat;
 	private double defLon;
 	private String estadoIdActual;
-	private String nombreTablaPrincipal;
+	private String nombreTablaViaje;
 
 	public OpcionesJavascriptViaje(String contextPath, String estadoId) {
 
@@ -64,7 +64,7 @@ public class OpcionesJavascriptViaje {
 		this.estadoIdActual = estadoId;
 
 		// Agrego el nombre de la tabla principal.
-		this.nombreTablaPrincipal = Parametros.NOMBRE_TABLA_PRINCIPAL;
+		this.nombreTablaViaje = Parametros.NOMBRE_TABLA_VIAJE;
 	}
 
 	public String getUrl() {
@@ -131,12 +131,12 @@ public class OpcionesJavascriptViaje {
 		this.estadoIdActual = estadoIdActual;
 	}
 
-	public String getNombreTablaPrincipal() {
-		return nombreTablaPrincipal;
+	public String getNombreTablaViaje() {
+		return nombreTablaViaje;
 	}
 
-	public void setNombreTablaPrincipal(String nombreTablaPrincipal) {
-		this.nombreTablaPrincipal = nombreTablaPrincipal;
+	public void setNombreTablaViaje(String nombreTablaViaje) {
+		this.nombreTablaViaje = nombreTablaViaje;
 	}
 	
 	public String getUrlCalificar() {

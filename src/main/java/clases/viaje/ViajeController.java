@@ -55,7 +55,7 @@ public class ViajeController {
 
 		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
 		
-		model.addAttribute("tablaPrincipal", vch.tablaPrincipalHtml(pedidos, estadoId));
+		model.addAttribute("datosTablaViaje", vch.getDatosTablaViajeHTML(pedidos, estadoId));
 		
 		model.addAttribute("usuarioActual", acss.getUserName());
 		model.addAttribute("viajesPendientes", vl.getViajesPendientes());
@@ -63,7 +63,7 @@ public class ViajeController {
 		model.addAttribute("viajesEnProceso", vl.getViajesEnProceso());
 		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
-		model.addAttribute("nombreTablaPrincipal", opciones.getNombreTablaPrincipal());
+		model.addAttribute("nombreTablaViaje", opciones.getNombreTablaViajes());
 		
 		// Para Javascript
 		model.addAttribute("listaPedidos", vch.toJSON(pedidos));

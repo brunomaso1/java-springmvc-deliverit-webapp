@@ -24,7 +24,7 @@ public class ViajeControllerHelper {
 	 * @pantalla viaje.jsp
 	 * @return String Una cadena conteniendo los items.
 	 */
-	public String tablaPrincipalHtml(Pedido[] pedidos, String estadoId) {
+	public String getDatosTablaViajeHTML(Pedido[] pedidos, String estadoId) {
 		String[][] pedidosParseados = parsearPedidos(pedidos);
 		String tabla = "";
 		switch (estadoId) {
