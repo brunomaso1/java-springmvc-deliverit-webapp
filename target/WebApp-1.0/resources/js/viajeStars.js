@@ -131,7 +131,7 @@ function calificar(idViaje, calificacion) {
 	var xhttp = new XMLHttpRequest();
 //	xhttp.onreadystatechange = function () {
 //		if (this.readyState == 4 && this.status == 200) {
-//			document.getElementById("demo").innerHTML = this.responseText;
+//			document.getElementById("demo").textContent = this.responseText;
 //		}
 //	};
 	var data = new FormData();
@@ -145,7 +145,7 @@ function getIdViaje(idRowClicked) {
 	var rows = table.getElementsByTagName("tr");
 	if ((rows.length > 1) && !(rows[1].innerText == "No hay datos")) {
 		alert("entro");
-		return rows[idRowClicked].cells[0].innerHTML;
+		return rows[idRowClicked].cells[0].textContent;
 	}
 	return 0;
 }

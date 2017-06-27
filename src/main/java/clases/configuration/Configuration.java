@@ -12,7 +12,7 @@ public final class Configuration {
 
 	private static final String produccion = "http://localhost:38526/backcore/ws/";
 
-	private static String ambiente = ambienteJuan;
+	private static String ambiente = ambienteBruno;
 
 	public static String restFindPedidosTodayGet(String sucursal) {
 		return ambiente + "sucursal/findPedidosToday/" + sucursal;

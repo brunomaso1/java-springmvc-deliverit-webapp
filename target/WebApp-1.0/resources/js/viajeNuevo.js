@@ -95,7 +95,7 @@ function setMarkers() {
     var table = document.getElementById("pedidos");
     if (table.rows.length > 1) {
         for (var r = 1, n = table.rows.length; r < n; r++) {
-            direccion = table.rows[r].cells[2].innerHTML + ", Montevideo";
+            direccion = table.rows[r].cells[2].textContent + ", Montevideo";
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({
                 'address': direccion

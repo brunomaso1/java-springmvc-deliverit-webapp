@@ -1,9 +1,10 @@
 var __slice = [].slice;
-var op = [];
+var op = {};
 
 function initDataViajeStars(opciones) {
 	op = opciones;
-};
+}
+;
 
 (function ($, window) {
 	var Starrr;
@@ -109,32 +110,40 @@ $(function () {
 
 $(document).ready(function () {
 	$('#stars-existing').on('starrr:change', function (e, value) {
-		var rowIndex = document.getElementById('stars-existing').parentNode.parentNode.rowIndex;
-		
+		var idViaje = document.getElementById('stars-existing').parentNode.parentNode.cells[0].textContent;
+		calificar(idViaje, value);
+//		setRatingViajes(idViaje, value);
 	});
 });
 
 function calificar(idViaje, calificacion) {
 	var xhttp = new XMLHttpRequest();
+	//var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+	var csrfToken = $("meta[name='_csrf']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			alert("El viaje se ha calificado correctamente");
+			document.getElementById(op.nombreTablaViaje).reload();
 		}
 	};
-	var data = new FormData();
-	data.append('idViaje', idViaje);
-	data.append('calificacion', calificacion);
+	var params = 'idViaje=' + idViaje + '&calificacion=' + calificacion;
 	xhttp.open("POST", op.urlCalificar, true);
-	xhttp.send(data);
+	xhttp.setRequestHeader(csrfHeader, csrfToken);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(params.toString());
 }
 
-//function getIdViaje(idRowClicked) {
-//	var rows = table.getElementsByTagName("tr");
-//	if ((rows.length > 1) && !(rows[1].innerText == "No hay datos")) {
-//		alert("entro");
-//		return rows[idRowClicked].cells[0].innerHTML;
+//function setRatingViajes(idViaje, value) {
+//	var rows = document.getElementById(op.nombreTablaViaje).rows;
+//	if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
+//		var r = 1;
+//		var n = rows.length;
+//		for (; r < n; r++) {
+//			var idViajeRow = rows[r].cells[0].textContent;
+//			if (idViajeRow == idViaje) {
+//				rows[r].cells[1].lastChild.dataset.rating = value;
+//			}
+//		}
 //	}
-//	return 0;
 //}
-
-

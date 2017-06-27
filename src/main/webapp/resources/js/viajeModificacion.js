@@ -50,7 +50,7 @@ function setMarkers() {
 		var r = 1;
 		var n = table.rows.length;
 		for (; r < n; r++) {
-			var direccion = table.rows[r].cells[3].innerHTML + ", Montevideo";
+			var direccion = table.rows[r].cells[3].textContent + ", Montevideo";
 			geocoder.geocode({
 				'address': direccion
 			}, function (results, status) { // Si le paso otro parametro a esta funcion, no se asigna, ej: r.

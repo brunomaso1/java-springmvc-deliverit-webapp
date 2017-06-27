@@ -51,11 +51,11 @@ public class OpcionesJavascriptCliente {
 		this.identificadorJS = identificadorJS;
 	}
 
-	public String getMensajes() {
+	public Map<Object, Object> getMensajes() {
 		return mensajes;
 	}
 
-	public void setMensajes(String mensajes) {
+	public void setMensajes(Map<Object, Object> mensajes) {
 		this.mensajes = mensajes;
 	}
 

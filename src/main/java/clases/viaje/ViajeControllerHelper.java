@@ -29,16 +29,16 @@ public class ViajeControllerHelper {
 		String tabla = "";
 		switch (estadoId) {
 		case "1":
-			tabla = tablaPrincipalPendiente(pedidosParseados);
+			tabla = generateDatosTablaViajeEstPend(pedidosParseados);
 			break;
 		case "2":
-			tabla = tablaPrincipalPublicado(pedidosParseados);
+			tabla = generateTablaViajeEstPub(pedidosParseados);
 			break;
 		case "3":
-			tabla = tablaPrincipalProceso(pedidosParseados);
+			tabla = generateDataTablaViajeEstPro(pedidosParseados);
 			break;
 		case "4":
-			tabla = tablaPrincipalTerminado(pedidosParseados);
+			tabla = generateDataTablaViajeEstTer(pedidosParseados);
 			break;
 		default:
 			throw new AssertionError();
@@ -52,7 +52,7 @@ public class ViajeControllerHelper {
 	 * @pantalla viajeNuevo.jsp
 	 * @return String Cadena conteniendo los items de la tabla.
 	 */
-	public String tablaPedidosHtml(ArrayList<Pedido> pedidos) {
+	public String getDatosTablaViajeNuevoHTML(ArrayList<Pedido> pedidos) {
 		String tabla = "";
 
 		if (pedidos != null) {
@@ -130,7 +130,7 @@ public class ViajeControllerHelper {
 		return retorno;
 	}
 
-	private String tablaPrincipalPendiente(String[][] pedidosParseados) {
+	private String generateDatosTablaViajeEstPend(String[][] pedidosParseados) {
 		String tabla = "";
 
 		tabla += "<thead>";
@@ -162,7 +162,7 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
-	private String tablaPrincipalPublicado(String[][] pedidosParseados) {
+	private String generateTablaViajeEstPub(String[][] pedidosParseados) {
 		String tabla = "";
 
 		tabla += "<thead>";
@@ -196,7 +196,7 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
-	private String tablaPrincipalProceso(String[][] pedidosParseados) {
+	private String generateDataTablaViajeEstPro(String[][] pedidosParseados) {
 		String tabla = "";
 
 		tabla += "<thead>";
@@ -232,7 +232,7 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
-	private String tablaPrincipalTerminado(String[][] pedidosParseados) {
+	private String generateDataTablaViajeEstTer(String[][] pedidosParseados) {
 		String tabla = "";
 
 		tabla += "<thead>";
@@ -255,8 +255,8 @@ public class ViajeControllerHelper {
 				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
 				tabla += "<td>" + estrellas + "</td>";	// Calificacion Delivery.
 				tabla += "<td>" + pedidosParseado[3] + "</td>";	// Direccion cliente.
-				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Nombre Delivery.
 				tabla += "<td>" + pedidosParseado[1] + "</td>";	// Nombre cliente.
+				tabla += "<td>" + pedidosParseado[4] + "</td>";	// Nombre Delivery.
 				tabla += "<td style=\"display:none;\">" + pedidosParseado[8] + "</td>";	// Id del pedido.
 				tabla += "</tr>";
 			}

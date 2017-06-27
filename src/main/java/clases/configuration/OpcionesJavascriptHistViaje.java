@@ -76,30 +76,6 @@ public class OpcionesJavascriptHistViaje {
 		this.identificadorJS = identificadorJS;
 	}
 
-	public String getChartDonutOptions() {
-		return chartDonutOptions;
-	}
-
-	public void setChartDonutOptions(String chartDonutOptions) {
-		this.chartDonutOptions = chartDonutOptions;
-	}
-
-	public String getChartLineOptions() {
-		return chartLineOptions;
-	}
-
-	public void setChartLineOptions(String chartLineOptions) {
-		this.chartLineOptions = chartLineOptions;
-	}
-
-	public String getChartBarOptions() {
-		return chartBarOptions;
-	}
-
-	public void setChartBarOptions(String chartBarOptions) {
-		this.chartBarOptions = chartBarOptions;
-	}
-
 	public String getNombreChartDonut() {
 		return nombreChartDonut;
 	}
@@ -116,19 +92,43 @@ public class OpcionesJavascriptHistViaje {
 		this.nombreChartLine = nombreChartLine;
 	}
 
-	public String getNombreChartDonut() {
+	public String getNombreChartBar() {
 		return nombreChartBar;
 	}
 
-	public void setNombreChartDonut(String nombreChartBar) {
+	public void setNombreChartBar(String nombreChartBar) {
 		this.nombreChartBar = nombreChartBar;
 	}
 
-	public String getMensajes() {
+	public Map<Object, Object> getChartDonutOptions() {
+		return chartDonutOptions;
+	}
+
+	public void setChartDonutOptions(Map<Object, Object> chartDonutOptions) {
+		this.chartDonutOptions = chartDonutOptions;
+	}
+
+	public Map<Object, Object> getChartLineOptions() {
+		return chartLineOptions;
+	}
+
+	public void setChartLineOptions(Map<Object, Object> chartLineOptions) {
+		this.chartLineOptions = chartLineOptions;
+	}
+
+	public Map<Object, Object> getChartBarOptions() {
+		return chartBarOptions;
+	}
+
+	public void setChartBarOptions(Map<Object, Object> chartBarOptions) {
+		this.chartBarOptions = chartBarOptions;
+	}
+
+	public Map<Object, Object> getMensajes() {
 		return mensajes;
 	}
 
-	public void setMensajes(String mensajes) {
+	public void setMensajes(Map<Object, Object> mensajes) {
 		this.mensajes = mensajes;
 	}
 

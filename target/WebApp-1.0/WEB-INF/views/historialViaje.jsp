@@ -93,7 +93,10 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 		<!-- User javascripts -->
 		<script src="resources/js/historialViaje.js"></script>
-		<script>initDataTable();</script>
-		<%--<script>initCharts(${donutData}, ${lineData}, ${barrsData});</script>--%>
+		<script>initData(${opciones});</script>
+		<script>
+			initDataTable();
+			initCharts();
+		</script>
 	</body>
 </html>

@@ -63,7 +63,7 @@ public class ViajeController {
 		model.addAttribute("viajesEnProceso", vl.getViajesEnProceso());
 		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
-		model.addAttribute("nombreTablaViaje", opciones.getNombreTablaViajes());
+		model.addAttribute("nombreTablaViaje", opciones.getNombreTablaViaje());
 		
 		// Para Javascript
 		model.addAttribute("listaPedidos", vch.toJSON(pedidos));
@@ -112,7 +112,7 @@ public class ViajeController {
 		String url2 = request.getRequestURI();
 		StringBuffer url3 = request.getRequestURL();
 		String url4 = request.getServletPath();
-		model.addFlashAttribute("datosTablaPedido", vch.tablaPedidosHtml(vl.getPedidos()));
+		model.addFlashAttribute("datosTablaPedido", vch.getDatosTablaViajeNuevoHTML(vl.getPedidos()));
 		return "redirect:/viaje/viajeNuevo.html";
 	}
 

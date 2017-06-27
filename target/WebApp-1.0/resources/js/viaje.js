@@ -131,7 +131,7 @@ function setMarkers() {
 		var r = 1;
 		var n = table.rows.length;
 		for (; r < n; r++) {
-			var direccion = table.rows[r].cells[3].innerHTML + ", Montevideo";
+			var direccion = table.rows[r].cells[3].textContent + ", Montevideo";
 			geocoder.geocode({
 				'address': direccion
 			}, function (results, status) { // Si le paso otro parametro a esta funcion, no se asigna, ej: r.
@@ -175,9 +175,9 @@ function cargarMarkadores() {
 		var infowindow = new google.maps.InfoWindow();
 		for (; r <= l; r++) {
 			var i = r - 1;
-			var viaje = table.rows[r].cells[0].innerHTML;
-			var cliente = table.rows[r].cells[1].innerHTML;
-			var direccion = table.rows[r].cells[3].innerHTML;
+			var viaje = table.rows[r].cells[0].textContent;
+			var cliente = table.rows[r].cells[1].textContent;
+			var direccion = table.rows[r].cells[3].textContent;
 			var content = "<p><strong>" + cliente + "</strong></p>" + "<p>" + direccion + "</p>";
 			contents.push(content);
 			var marker = new google.maps.Marker({
@@ -326,7 +326,7 @@ function changeColors() {
 		for (; i < l; i++) {
 			var currentRow = table.rows[i];
 			var d = new Date();
-			var fechaViaje = op.estadoIdActual == "3" ? currentRow.cells[6].innerHTML : currentRow.cells[4].innerHTML;
+			var fechaViaje = op.estadoIdActual == "3" ? currentRow.cells[6].textContent : currentRow.cells[4].textContent;
 			var fecha = new Date(fechaViaje);
 			var timeViaje = (fecha.getHours() + 3) * 3600 + fecha.getMinutes() * 60 + fecha.getSeconds();
 			var x1 = fecha.getHours();

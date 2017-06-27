@@ -2,29 +2,23 @@
 var op = {};
 
 function initData(opciones) {
-    op = opciones;
+	op = opciones;
 }
 
 /**
  * Inicia la tabla dinamica.
  */
 function initDataTable() {
-    var nombreTabla = op.identificadorJS + op.nombreTablaHistViaje;
-    $(document).ready(function() {
-        $(nombreTabla).DataTable(op.dataTableOptions);
-    });
+	var nombreTabla = op.identificadorJS + op.nombreTablaHistViaje;
+	$(document).ready(function () {
+		$(nombreTabla).DataTable(op.dataTableOptions);
+	});
 }
 
 function initCharts() {
-    $(document).ready(function() {
-        new Morris.Donut({
-            op.chartDonutOptions
-        });
-        new Morris.Line({
-            op.chartLineOptions
-        });
-        new Morris.Bar({
-            op.chartsBarOptions
-        });
-    });
+	$(document).ready(function () {
+		new Morris.Donut(op.chartDonutOptions);
+		new Morris.Line(op.chartLineOptions);
+		new Morris.Bar(op.chartsBarOptions);
+	});
 }

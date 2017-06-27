@@ -162,12 +162,12 @@ public class OpcionesJavascriptViaje {
 	public void setNombreMapaViaje(String nombreMapaViaje) {
 		this.nombreMapaViaje = nombreMapaViaje;
 	}
-	
-	public String getMensajes() {
+
+	public Map<Object, Object> getMensajes() {
 		return mensajes;
 	}
 
-	public void setMensajes(String mensajes) {
+	public void setMensajes(Map<Object, Object> mensajes) {
 		this.mensajes = mensajes;
 	}
 
