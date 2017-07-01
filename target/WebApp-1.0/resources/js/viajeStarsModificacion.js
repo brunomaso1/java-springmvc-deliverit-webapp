@@ -109,10 +109,9 @@ $(function () {
 });
 
 $(document).ready(function () {
-	$('#stars-existing').on('starrr:change', function (e, value) {
-		var idViaje = document.getElementById('stars-existing').parentNode.parentNode.cells[0].textContent;
+	$('.stars-existing').on('starrr:change', function (e, value) {
+		var idViaje = this.parentNode.parentNode.cells[0].textContent;
 		calificar(idViaje, value);
-//		setRatingViajes(idViaje, value);
 	});
 });
 
@@ -124,7 +123,7 @@ function calificar(idViaje, calificacion) {
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			alert("El viaje se ha calificado correctamente");
-			document.getElementById(op.nombreTablaViaje).reload();
+			location.reload(); //location.reload(false); -> Saca del cahce
 		}
 	};
 	var params = 'idViaje=' + idViaje + '&calificacion=' + calificacion;
@@ -133,17 +132,3 @@ function calificar(idViaje, calificacion) {
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send(params.toString());
 }
-
-//function setRatingViajes(idViaje, value) {
-//	var rows = document.getElementById(op.nombreTablaViaje).rows;
-//	if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
-//		var r = 1;
-//		var n = rows.length;
-//		for (; r < n; r++) {
-//			var idViajeRow = rows[r].cells[0].textContent;
-//			if (idViajeRow == idViaje) {
-//				rows[r].cells[1].lastChild.dataset.rating = value;
-//			}
-//		}
-//	}
-//}

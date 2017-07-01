@@ -1,5 +1,6 @@
 <%@include file="plugins/headers/headers.jsp" %>
 
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>

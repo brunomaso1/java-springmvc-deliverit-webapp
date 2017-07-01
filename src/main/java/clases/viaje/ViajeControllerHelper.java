@@ -250,7 +250,7 @@ public class ViajeControllerHelper {
 		if (pedidosParseados != null) {
 			//Crea los items.
 			for (String[] pedidosParseado : pedidosParseados) {
-				String estrellas = "<div id=\"stars-existing\" class=\"starrr\" data-rating='" + pedidosParseado[7] + "'></div>";
+				String estrellas = "<div class=\"starrr stars-existing\" data-rating='" + pedidosParseado[7] + "'></div>";
 				tabla += "<tr>";
 				tabla += "<td>" + pedidosParseado[0] + "</td>";	// Id viaje.
 				tabla += "<td>" + estrellas + "</td>";	// Calificacion Delivery.

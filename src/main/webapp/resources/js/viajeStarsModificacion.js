@@ -109,10 +109,9 @@ $(function () {
 });
 
 $(document).ready(function () {
-	$('#stars-existing').on('starrr:change', function (e, value) {
-		var idViaje = document.getElementById('stars-existing').parentNode.parentNode.cells[0].textContent;
+	$('.stars-existing').on('starrr:change', function (e, value) {
+		var idViaje = this.parentNode.parentNode.cells[0].textContent;
 		calificar(idViaje, value);
-//		setRatingViajes(idViaje, value);
 	});
 });
 
