@@ -44,11 +44,6 @@ public class ViajeController {
 	public String showPage(HttpSession session, HttpServletRequest request, Model model) {
 		String sucursalId = acss.getUserId();
 		String url = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
-		// TEst
-		String url1 = request.getContextPath();
-		String url2 = request.getRequestURI();
-		StringBuffer url3 = request.getRequestURL();
-		String url4 = request.getServletPath();
 		
 		String estadoId = (String) session.getAttribute("ESTADO_ID");
 		OpcionesJavascriptViaje opciones = new OpcionesJavascriptViaje(url, estadoId);

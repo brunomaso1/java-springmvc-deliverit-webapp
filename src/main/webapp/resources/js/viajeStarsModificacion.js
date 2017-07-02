@@ -3,8 +3,7 @@ var op = {};
 
 function initDataViajeStars(opciones) {
 	op = opciones;
-}
-;
+};
 
 (function ($, window) {
 	var Starrr;
@@ -117,13 +116,12 @@ $(document).ready(function () {
 
 function calificar(idViaje, calificacion) {
 	var xhttp = new XMLHttpRequest();
-	//var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
 	var csrfToken = $("meta[name='_csrf']").attr("content");
 	var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
 			alert("El viaje se ha calificado correctamente");
-			location.reload(); //location.reload(false); -> Saca del cahce
+			location.reload();
 		}
 	};
 	var params = 'idViaje=' + idViaje + '&calificacion=' + calificacion;

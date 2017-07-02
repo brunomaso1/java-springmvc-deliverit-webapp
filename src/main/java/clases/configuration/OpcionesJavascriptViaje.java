@@ -31,6 +31,7 @@ public class OpcionesJavascriptViaje {
 	private String estadoIdActual;
 	private String nombreTablaViaje;
 	private String nombreMapaViaje;
+	private String identificadorJS;
 	private Map<Object, Object> mensajes;
 
 	public OpcionesJavascriptViaje(String contextPath, String estadoId) {
@@ -73,6 +74,9 @@ public class OpcionesJavascriptViaje {
 
 		// Agrego los mensajes.
 		this.mensajes = Parametros.MENSAJES;
+		
+		// Agrego el identificador JavaScript
+		this.identificadorJS = Parametros.IDENTIFICADOR_JS;
 	}
 
 	public String getUrl() {
@@ -169,6 +173,14 @@ public class OpcionesJavascriptViaje {
 
 	public void setMensajes(Map<Object, Object> mensajes) {
 		this.mensajes = mensajes;
+	}
+
+	public String getIdentificadorJS() {
+		return identificadorJS;
+	}
+
+	public void setIdentificadorJS(String identificadorJS) {
+		this.identificadorJS = identificadorJS;
 	}
 
 	public String toJSON() {

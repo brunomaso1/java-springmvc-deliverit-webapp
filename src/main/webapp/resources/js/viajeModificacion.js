@@ -1,12 +1,28 @@
+/**
+ * Este programa se encarga de las siguientes funcionalidades:
+ *	- Inicializar el mapa en el panel correspondiente.
+ *	- Utilizar geolocaclizacion para ubicar a la sucursal y centrar el mapa en dicha ubicacion.
+ *	- Colocar markadores por cada pedido de la lista de pedidos (aparecen todos los pedidos).
+ * @type type
+ */
+
 "use strict";
 var op = {};
+var pedidos = {};
 
-function initData(opciones) {
+/**
+ * Inicializa los datos a utilizar para las funciones.
+ * @param {OpcionesJavascriptViaje} opciones
+ * @param {List<Pedido>} listaPedidos
+ * @returns {void}
+ */
+function initData(opciones, listaPedidos) {
     op = opciones;
+	pedidos = listaPedidos;
 }
 
 /**
- * Inicia la tabla dinamica.
+ * Inicia la DataTable. Los valores de inicializacion los obtiene de las opciones.
  */
 function initDataTable() {
 	var nombreTabla = op.identificadorJS + op.nombreTablaViaje;
@@ -15,6 +31,12 @@ function initDataTable() {
     });
 }
 
+/**
+ * Inicializa el mapa y ejecuta el siguiente pipe de funciones:
+ *	- Coloca todos los markadores de la lista de pedidos en el mapa.
+ *	- Agrega funciones a los pedidos 
+ * @returns {undefined}
+ */
 function initMap() {
 	map = new google.maps.Map(document.getElementById(op.nombreMapaViaje), {
 		center: {
@@ -39,16 +61,15 @@ function initMap() {
 		// Browser doesn't support Geolocation
 		window.window.alert(op.mensajes.geolocalizacion);
 	}
-
 	setMarkers();
 }
 
 function setMarkers() {
 	var geocoder = new google.maps.Geocoder();
 	var rows = document.getElementById(op.nombreTablaViaje).rows;
-	if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
+	if ((rows.length > 1) && !(rows[1].textContent == op.mensajes.sinDatos)) {
 		var r = 1;
-		var n = table.rows.length;
+		var n = rows.length;
 		for (; r < n; r++) {
 			var direccion = table.rows[r].cells[3].textContent + ", Montevideo";
 			geocoder.geocode({

@@ -94,7 +94,11 @@
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
 		<!-- User javascripts -->
 		<script type="text/javascript" src="resources/js/viajeModificacion.js"></script>
-		<script src="resources/js/viajeStarsModificacion.js"></script>
-		<script type="text/javascript">initDataViajeStars(${opciones});</script>
+		<script type="text/javascript" src="resources/js/viajeStarsModificacion.js"></script>
+		<script>initData(${opciones},${listaPedidos});</script>
+		<script>initDataViajeStars(${opciones});</script>
+		<script>
+			initDataTable();
+		</script>
 	</body>
 </html>
