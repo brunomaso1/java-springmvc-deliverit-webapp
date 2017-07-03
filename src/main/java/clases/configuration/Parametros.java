@@ -55,6 +55,8 @@ public class Parametros {
 
 	public static String DATATABLE_SINDATOS = "No hay datos.";
 
+	public static int TIEMPOACTIVACIONCAMBIOCOLORES = 5000;
+
 	private static Map<String, String> PAGINATE;
 
 	static {
@@ -189,5 +191,20 @@ public class Parametros {
 		MENSAJES = new HashMap<>();
 		MENSAJES.put("geolocalizacion", "El navegador no soporta la geolocalizacion, no se puede obtener su ubicacion.");
 		MENSAJES.put("sinDatos", DATATABLE_SINDATOS);
+	}
+
+	public static Map<Object, Object> ICONSIZE;
+	static {
+		ICONSIZE = new HashMap<>();
+		ICONSIZE.put("altura", 25);
+		ICONSIZE.put("ancho", 35);
+	}
+
+	public static Map<Object, Object> LABELORIGIN;
+	static {
+		LABELORIGIN = new HashMap<>();
+		LABELORIGIN.put("altura", 12);
+		LABELORIGIN.put("ancho", 12);
+		LABELORIGIN.put("color", "black");
 	}
 }

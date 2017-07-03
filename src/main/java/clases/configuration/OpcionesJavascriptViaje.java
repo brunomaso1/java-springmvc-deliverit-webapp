@@ -23,6 +23,7 @@ public class OpcionesJavascriptViaje {
 	private String url;
 	private String urlCalificar;
 	private List<String> coloresMarkadores;
+	private int tiempoActivacionCambioColores;
 	private String moto;
 	private int defZoomMap;
 	private Map<Object, Object> dataTableOptions;
@@ -33,6 +34,8 @@ public class OpcionesJavascriptViaje {
 	private String nombreMapaViaje;
 	private String identificadorJS;
 	private Map<Object, Object> mensajes;
+	private Map<Object, Object> iconSize;
+	private Map<Object, Object> labelOrigin;
 
 	public OpcionesJavascriptViaje(String contextPath, String estadoId) {
 
@@ -74,9 +77,18 @@ public class OpcionesJavascriptViaje {
 
 		// Agrego los mensajes.
 		this.mensajes = Parametros.MENSAJES;
-		
+
 		// Agrego el identificador JavaScript
 		this.identificadorJS = Parametros.IDENTIFICADOR_JS;
+
+		// Tamaño de los iconos.
+		this.iconSize = Parametros.ICONSIZE;
+
+		// Agrego la ubicacion de origen de las etiquetas de los iconos.
+		this.labelOrigin = Parametros.LABELORIGIN;
+
+		// Agrego el tiempo en que se activa la funcion para cambiar los colores.
+		this.tiempoActivacionCambioColores = Parametros.TIEMPOACTIVACIONCAMBIOCOLORES;
 	}
 
 	public String getUrl() {
@@ -150,7 +162,7 @@ public class OpcionesJavascriptViaje {
 	public void setNombreTablaViaje(String nombreTablaViaje) {
 		this.nombreTablaViaje = nombreTablaViaje;
 	}
-	
+
 	public String getUrlCalificar() {
 		return urlCalificar;
 	}
@@ -185,7 +197,7 @@ public class OpcionesJavascriptViaje {
 
 	public String toJSON() {
 		ObjectMapper mapper = new ObjectMapper();
-		
+
 		String jsonObject = "";
 		try {
 			jsonObject = mapper.writeValueAsString(this);
