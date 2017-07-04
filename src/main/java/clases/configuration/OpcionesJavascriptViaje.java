@@ -20,11 +20,15 @@ import java.util.logging.Logger;
  */
 public class OpcionesJavascriptViaje {
 
-	private String url;
+	private String urlGetAllDelivery;
 	private String urlCalificar;
+	private String urlObtenerPedidosTabla;
+	private String urlObtenerViajesArray;
 	private List<String> coloresMarkadores;
 	private int tiempoActivacionCambioColores;
-	private String moto;
+	private int serverHourPadding;
+	private Map<Object, Object> tiempoColores;
+	private String urlMoto;
 	private int defZoomMap;
 	private Map<Object, Object> dataTableOptions;
 	private double defLat;
@@ -36,6 +40,13 @@ public class OpcionesJavascriptViaje {
 	private Map<Object, Object> mensajes;
 	private Map<Object, Object> iconSize;
 	private Map<Object, Object> labelOrigin;
+	private Map<Object, Object> tiempoColores;
+	private Map<Object, Object> nombreFiltros;
+	private int markerBounceTimeOut;
+	private int zoomResaltarMarkador;
+	private int timeOutResaltarMarkador;
+	private int actualizarDeliverysTime;
+	private int tiempoActivacionUpdates;
 
 	public OpcionesJavascriptViaje(String contextPath, String estadoId) {
 
@@ -44,6 +55,12 @@ public class OpcionesJavascriptViaje {
 
 		// Agrego la url para la llamada ajax para obtener calificar al viaje.
 		this.urlCalificar = contextPath + Parametros.URL_CALIFICAR;
+
+		// Agreg la url para la llamada ajax para obtener los pedidos para modificar la tabla.
+		this.urlObtenerPedidosTabla = contextPath + Parametros.URL_OBTENERPEDIDOSTABLA;
+
+		// Agrego la url para la llamada ajax de los viajes.
+		this.urlObtenerViajesArray = contextPath + Parametros.URL_OBTENERVIAJESARRAY;
 
 		// Agrego los colores de los markadores.
 		this.coloresMarkadores = new ArrayList<>();
@@ -89,6 +106,30 @@ public class OpcionesJavascriptViaje {
 
 		// Agrego el tiempo en que se activa la funcion para cambiar los colores.
 		this.tiempoActivacionCambioColores = Parametros.TIEMPOACTIVACIONCAMBIOCOLORES;
+
+		// Agrego el padding para la hora del server.
+		this.serverHourPadding = Parametros.SERVERHOURPADDING;
+
+		// Agrego los tiempos para los colores.
+		this.tiempoColores = Parametros.TIEMPOCOLORES;
+
+		// Agrego el nombre de los filtros.
+		this.nombreFiltros = Parametros.NOMBREFILTROS;
+
+		// Agrego el tiempo de para terminar la animacion del markador.
+		this.markerBounceTimeOut = Parametros.MARKERBOUNCETIMEOUT;
+
+		// Agrego el zoom que se realiza al resaltar el markador.
+		this.zoomResaltarMarkador = Parametros.ZOOMRESALTARMARKADOR;
+
+		// Agrego el time out de resaltar markadores.
+		this.timeOutResaltarMarkador = Parametros.TIMEOUTRESALTARMARKADOR;
+
+		// Agrego el tiempo que se ejecuta el actualizarDeliverys;
+		this.actualizarDeliverysTime = Parametros.ACTUALIZARDELIVERYSTIME;
+
+		// Agrego el tiempo de actualziacion de los updates.
+		this.tiempoActivacionUpdates = Parametros.TIEMPOACTIVACIONUPDATES;
 	}
 
 	public String getUrl() {

@@ -232,16 +232,6 @@ public class ViajeLogica {
 		pedidos.add(ped);
 	}
 	
-	public Ubicacion obtenerUbicacionDelivery(String deliveryId) {
-		RestTemplate restTemplate = new RestTemplate();
-
-		//Obtiene la respuesta.
-		Ubicacion ubicacion = restTemplate.getForObject(Configuration.restUbicacionDelivery(deliveryId), Ubicacion.class);
-
-		return ubicacion;
-	}
-	
-	// TEST
 	public Delivery[] obtenerDeliverys(String sucursalId) {
 		RestTemplate restTemplate = new RestTemplate();
 
@@ -251,11 +241,17 @@ public class ViajeLogica {
 		return deliverys;
 	}
 
-	void calificar(String idViaje, String calificacion) {
+	public void calificar(String idViaje, String calificacion) {
 		RestTemplate restTemplate = new RestTemplate();
 		Map<String, String> map = new HashMap<>();
 		
 		//Obtiene la respuesta.
 		restTemplate.put(Configuration.restCalificarDelivery(idViaje, calificacion), null);
+	}
+
+	public String obtenerViajesTabla(Pedido[] pedidos, String sucursalId, String estadoId){
+		Pedido[] pedidoAux = obtenerPedidosHoy(sucursalId);
+		pedidoAux = filtrarPedidos(pedidosAux, estadoId);
+		return pedidosAux;
 	}
 }

@@ -28,13 +28,6 @@ public class ViajeRestController {
 		this.acss = new ACSessionServices();
 	}
 
-	@RequestMapping(value = "/delivery/{id}", method = RequestMethod.GET)
-	public Ubicacion doRequest(@PathVariable String id) {
-		Ubicacion u = vl.obtenerUbicacionDelivery(id);
-		return u;
-	}
-
-	// TEST
 	@RequestMapping(value = "/delivery", method = RequestMethod.GET)
 	public Delivery[] doRequest() {
 		String sucursalId = acss.getUserId();

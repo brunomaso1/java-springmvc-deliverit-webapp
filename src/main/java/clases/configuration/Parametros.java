@@ -28,10 +28,12 @@ public class Parametros {
 
 	public static String URL_DELIVERY = "/delivery/";
 	public static String URL_CALIFICAR = "/calificar/";
+	public static String URL_OBTENERPEDIDOSTABLA = "/obtenerViajesTabla/";
+	public static String URL_OBTENERVIAJESARRAY = "/urlObtenerViajesArray/";
 
 	public static String DEPARTAMENTO = "Montevideo";
 	public static String PAIS = "Uruguay";
-	public static int HORA_PADING_SERVER = 3;
+	public static int SERVERHOURPADDING = 3;
 
 	public static String[] COLORES_MARKADORES = {"blue", "brown", "gray", "green", "orange", "purple", "red", "yellow"};
 	public static String UBICACION_MARKADORES = "resources/img/iconosMaps/";
@@ -56,6 +58,37 @@ public class Parametros {
 	public static String DATATABLE_SINDATOS = "No hay datos.";
 
 	public static int TIEMPOACTIVACIONCAMBIOCOLORES = 5000;
+	public static int MARKERBOUNCETIMEOUT = 3000; //Milisegundos.
+	public static int ZOOMRESALTARMARKADOR = 17;
+	public static int TIMEOUTRESALTARMARKADOR = 3000; // Milisegundos.
+	public static int ACTUALIZARDELIVERYSTIME = 5000; // Milisegundos.
+	public static int TIEMPOACTIVACIONUPDATES = 2000;
+
+	public static Map<Object, Object> NOMBREFILTROS;
+
+	static {
+		NOMBREFILTROS = new HashMap<>();
+		NOMBREFILTROS.put("filtroPendiende", "filtroPendiende");
+		NOMBREFILTROS.put("filtroPublicado", "filtroPublicado");
+		NOMBREFILTROS.put("filtroProceso", "filtroProceso");
+		NOMBREFILTROS.put("filtroTerminado", "filtroTerminado");
+		NOMBREFILTROS.put("backgroundColorFiltros", "#000000");
+	}
+
+	public static Map<Object, Object> TIEMPOCOLORES;
+
+	static {
+		TIEMPOCOLORES = new HashMap<>();
+		TIEMPOCOLORES.put("tiempo1", 60); // 1 minuto
+		TIEMPOCOLORES.put("tiempo2", 120); // 2 minutos
+		TIEMPOCOLORES.put("tiempo3", 240); // 4 minutos
+		TIEMPOCOLORES.put("tiempo4", 480); // 8 minutos
+
+		TIEMPOCOLORES.put("colorTiempo2", "#ffe6e6");
+		TIEMPOCOLORES.put("colorTiempo3", "#ff9999");
+		TIEMPOCOLORES.put("colorTiempo4", "#ff6666");
+		TIEMPOCOLORES.put("colorTiempoDefault", "#ff1a1a");
+	}
 
 	private static Map<String, String> PAGINATE;
 

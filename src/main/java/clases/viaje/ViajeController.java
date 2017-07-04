@@ -33,6 +33,7 @@ public class ViajeController {
 	private ViajeLogica vl;
 	private ViajeControllerHelper vch;
 	private ACSessionServices acss;
+	private Pedido[] pedidos;
 
 	public ViajeController() {
 		this.vl = new ViajeLogica();
@@ -44,14 +45,14 @@ public class ViajeController {
 	public String showPage(HttpSession session, HttpServletRequest request, Model model) {
 		String sucursalId = acss.getUserId();
 		String url = request.getRequestURL().toString().replace(request.getRequestURI(), request.getContextPath());
-		
+
 		String estadoId = (String) session.getAttribute("ESTADO_ID");
 		OpcionesJavascriptViaje opciones = new OpcionesJavascriptViaje(url, estadoId);
 
-		Pedido[] pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
-		
+		pedidos = vl.filtrarPedidos(vl.obtenerPedidosHoy(sucursalId), estadoId);
+
 		model.addAttribute("datosTablaViaje", vch.getDatosTablaViajeHTML(pedidos, estadoId));
-		
+
 		model.addAttribute("usuarioActual", acss.getUserName());
 		model.addAttribute("viajesPendientes", vl.getViajesPendientes());
 		model.addAttribute("viajesPublicaods", vl.getViajesPublicados());
@@ -59,7 +60,11 @@ public class ViajeController {
 		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
 		model.addAttribute("nombreTablaViaje", opciones.getNombreTablaViaje());
-		
+		model.addAttribute("nombreFiltroPendiende", Parametros.NOMBREFILTROS.get("filtroPendiende"));
+		model.addAttribute("nombreFiltroPublicado", Parametros.NOMBREFILTROS.get("filtroPublicado"));
+		model.addAttribute("nombreFiltroProceso", Parametros.NOMBREFILTROS.get("filtroProceso"));
+		model.addAttribute("nombreFiltroTerminado", Parametros.NOMBREFILTROS.get("filtroTerminado"));
+
 		// Para Javascript
 		model.addAttribute("listaPedidos", vch.toJSON(pedidos));
 		model.addAttribute("opciones", opciones.toJSON());
@@ -137,5 +142,26 @@ public class ViajeController {
 		request.getSession(false).setAttribute("ESTADO_ID", Parametros.ESTADO_TERMINADO);
 		LOGGER.log(Level.FINEST, "Se hizo refresh. Se filtro los viajes al estado 4.");
 		return "redirect:/viaje.html";
+	}
+
+	@RequestMapping(value = "/obtenerViajesTabla/{estadoId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Pedido[] obtenerViajesTabla(@PathVariable String estadoId) {
+		String sucursalId = acss.getUserId();
+		Pedido[] pedidosAux = vl.obtenerViajesTabla(pedidos, sucursalId, estadoId);
+		if (Arrays.equals(pedidos, pedidosAux))
+			return vch.crearObjAux();
+		else {
+			pedidos = pedidosAux;
+			return vch.crearObjAux(pedidos);
+		}
+	}
+
+	@RequestMapping(value = "/urlObtenerViajesArray/{estadoId}", method = RequestMethod.GET)
+	@ResponseBody
+	public Pedido[] obtenerViajesTabla(@PathVariable String estadoId) {
+		String sucursalId = acss.getUserId();
+		Pedido[] pedidosAux = vl.obtenerViajesTabla(pedidos, sucursalId, estadoId);
+		return vch.toJSON(pedidosAux);
 	}
 }

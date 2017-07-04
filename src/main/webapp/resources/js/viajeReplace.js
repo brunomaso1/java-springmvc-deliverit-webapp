@@ -55,22 +55,7 @@ function initMap() {
 	actualizarDeliverys();
 }
 
-function initFiltro() {
-	switch (op.estadoIdActual) {
-		case "1":
-			document.getElementById("botonPendiente").style.backgroundColor = "#000000";
-			break;
-		case "2":
-			document.getElementById("botonPublicado").style.backgroundColor = "#000000";
-			break;
-		case "3":
-			document.getElementById("botonEnProceso").style.backgroundColor = "#000000";
-			break;
-		case "4":
-			document.getElementById("botonTerminado").style.backgroundColor = "#000000";
-			break;
-	}
-}
+
 
 /**
  * Inicia los listeners para la tabla.
@@ -80,15 +65,6 @@ function initTableListener() {
 	window.onload = addRowHandlers();
 }
 
-/**
- * Carga la funcion markadores cada medio segundo hasta que se ejecute (espera a que este el mapa).
- * @returns {undefined}
- */
-function timeCargarMarkadores() {
-	if (table.rows.length > 1) {
-		repeater = window.setInterval(cargarMarkadores, 500);
-	}
-}
 //No se usa.
 function ajustarZoom() {
 	var bounds = new google.maps.LatLngBounds();
@@ -103,38 +79,13 @@ function ajustarZoom() {
  * Agrega los eventos a las filas.
  * @returns {undefined}
  */
-function addRowHandlers() {
-	var rows = table.getElementsByTagName("tr");
-	var i = 0;
-	var l = rows.length;
-	for (; i < l; i++) {
-		var currentRow = table.rows[i];
-		var createClickHandler = function (row) {
-			return function () {
-				var marker = markadores[row.rowIndex - 1];
-				marker.setAnimation(google.maps.Animation.BOUNCE);
-				stopAnimation(marker);
-			}
-		};
-		var createDoubleClickHandler = function (row) {
-			return function () {
-				resaltarMarkador(row.rowIndex - 1)
-			}
-		};
-		currentRow.onclick = createClickHandler(currentRow);
-		currentRow.ondblclick = createDoubleClickHandler(currentRow);
-	}
-}
+
 /**
  * Para la animacion de un markador.
  * @param {type} marker
  * @returns {undefined}
  */
-function stopAnimation(marker) {
-	setTimeout(function () {
-		marker.setAnimation(null);
-	}, 3000);
-}
+
 //function resaltarDelivery(viaje) {
 //  if (deliverys != null) {
 //      var delivery = getDeliveryViaje(viaje);
@@ -146,14 +97,7 @@ function stopAnimation(marker) {
 //      }, 3000);
 //  }
 //}
-function resaltarMarkador(idrow) {
-	var posAnterior = map.getZoom();
-	map.setZoom(17);
-	map.setCenter(markadores[idrow].getPosition());
-	window.setTimeout(function () {
-		map.setZoom(posAnterior);
-	}, 5000);
-}
+
 
 function cargarDeliverys() {
 	deliverys = [];

@@ -275,4 +275,10 @@ public class ViajeControllerHelper {
 		}
 		return jsonObject;
 	}
+
+	public String crearDataSet(Pedido[] pedidos) {
+		// Hacer magia.
+		// https://datatables.net/examples/data_sources/js_array.html
+		return "";
+	}
 }
