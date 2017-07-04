@@ -23,7 +23,6 @@ public class OpcionesJavascriptViaje {
 	private String urlGetAllDelivery;
 	private String urlCalificar;
 	private String urlObtenerPedidosTabla;
-	private String urlObtenerViajesArray;
 	private List<String> coloresMarkadores;
 	private int tiempoActivacionCambioColores;
 	private int serverHourPadding;
@@ -57,9 +56,6 @@ public class OpcionesJavascriptViaje {
 
 		// Agreg la url para la llamada ajax para obtener los pedidos para modificar la tabla.
 		this.urlObtenerPedidosTabla = contextPath + Parametros.URL_OBTENERPEDIDOSTABLA;
-
-		// Agrego la url para la llamada ajax de los viajes.
-		this.urlObtenerViajesArray = contextPath + Parametros.URL_OBTENERVIAJESARRAY;
 
 		// Agrego los colores de los markadores.
 		this.coloresMarkadores = new ArrayList<>();
@@ -232,14 +228,6 @@ public class OpcionesJavascriptViaje {
 
 	public void setUrlObtenerPedidosTabla(String urlObtenerPedidosTabla) {
 		this.urlObtenerPedidosTabla = urlObtenerPedidosTabla;
-	}
-
-	public String getUrlObtenerViajesArray() {
-		return urlObtenerViajesArray;
-	}
-
-	public void setUrlObtenerViajesArray(String urlObtenerViajesArray) {
-		this.urlObtenerViajesArray = urlObtenerViajesArray;
 	}
 
 	public int getTiempoActivacionCambioColores() {

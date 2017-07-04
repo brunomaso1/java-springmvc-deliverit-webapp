@@ -29,7 +29,6 @@ public class Parametros {
 	public static String URL_DELIVERY = "/delivery/";
 	public static String URL_CALIFICAR = "/calificar/";
 	public static String URL_OBTENERPEDIDOSTABLA = "/obtenerViajesTabla/";
-	public static String URL_OBTENERVIAJESARRAY = "/urlObtenerViajesArray/";
 
 	public static String DEPARTAMENTO = "Montevideo";
 	public static String PAIS = "Uruguay";

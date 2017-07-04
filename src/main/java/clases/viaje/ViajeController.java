@@ -158,16 +158,8 @@ public class ViajeController {
 		}
 		else {
 			pedidos = pedidosAux;
-			ObjAux objAux = new ObjAux(pedidos);
+			ObjAux objAux = new ObjAux(pedidos, vch.toJSON(pedidos), estadoId);
 			return objAux.toJSON();
 		}
-	}
-
-	@RequestMapping(value = "/urlObtenerViajesArray/{estadoId}", method = GET)
-	@ResponseBody
-	public String obtenerViajesTablaArray(@PathVariable String estadoId) {
-		String sucursalId = acss.getUserId();
-		Pedido[] pedidosAux = vl.obtenerViajesTabla(pedidos, sucursalId, estadoId);
-		return vch.toJSON(pedidosAux);
 	}
 }

@@ -28,20 +28,20 @@ public class ViajeControllerHelper {
 		String[][] pedidosParseados = parsearPedidos(pedidos);
 		String tabla = "";
 		switch (estadoId) {
-		case "1":
-			tabla = generateDatosTablaViajeEstPend(pedidosParseados);
-			break;
-		case "2":
-			tabla = generateTablaViajeEstPub(pedidosParseados);
-			break;
-		case "3":
-			tabla = generateDataTablaViajeEstPro(pedidosParseados);
-			break;
-		case "4":
-			tabla = generateDataTablaViajeEstTer(pedidosParseados);
-			break;
-		default:
-			throw new AssertionError();
+			case "1":
+				tabla = generateDatosTablaViajeEstPend(pedidosParseados);
+				break;
+			case "2":
+				tabla = generateTablaViajeEstPub(pedidosParseados);
+				break;
+			case "3":
+				tabla = generateDataTablaViajeEstPro(pedidosParseados);
+				break;
+			case "4":
+				tabla = generateDataTablaViajeEstTer(pedidosParseados);
+				break;
+			default:
+				throw new AssertionError();
 		}
 		return tabla;
 	}
@@ -49,6 +49,7 @@ public class ViajeControllerHelper {
 	/**
 	 * Realiza lo mismo que el método "tablaPrincipalHtml", solo que esta vez
 	 * polula la tabla pedidos.
+	 *
 	 * @pantalla viajeNuevo.jsp
 	 * @return String Cadena conteniendo los items de la tabla.
 	 */
@@ -62,7 +63,7 @@ public class ViajeControllerHelper {
 				tabla += "<td>" + i + "</td>";
 				tabla += "<td>" + pedido.getCliente().getNombre() + "</td>";
 				tabla += "<td>" + pedido.getCliente().getDireccion().getCalle()
-				         + " " + pedido.getCliente().getDireccion().getNroPuerta() + "</td>";
+						+ " " + pedido.getCliente().getDireccion().getNroPuerta() + "</td>";
 				tabla += "<td>" + pedido.getCliente().getTelefono() + "</td>";
 				tabla += "</tr>";
 				i++;
@@ -79,7 +80,7 @@ public class ViajeControllerHelper {
 	 * @return String[][] Un arreglo multidimensional, en donde: La primera
 	 * diemnsion contienen los pedidos y la segunda los datos de la tabla.
 	 */
-	private String[][] parsearPedidos(Pedido[] pedidos) {
+	public String[][] parsearPedidos(Pedido[] pedidos) {
 		if ((pedidos != null) && (pedidos.length != 0)) {
 			String[][] parser = new String[pedidos.length][9];
 			for (int i = 0; i < pedidos.length; i++) {
@@ -87,17 +88,17 @@ public class ViajeControllerHelper {
 				parser[i][1] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getNombre(); // Nombre Cliente.
 				parser[i][2] = pedidos[i].getCliente() == null ? "Cliente no encontrado" : pedidos[i].getCliente().getTelefono(); // Telefono Cliente
 				parser[i][3] = pedidos[i].getCliente() == null ? "Cliente no encontrado"
-				               : pedidos[i].getCliente().getDireccion() == null ? "Direcccion no encontrada"
-				               : pedidos[i].getCliente().getDireccion().getCalle() + " "
-				               + pedidos[i].getCliente().getDireccion().getNroPuerta(); // Direccion cliente.
+						: pedidos[i].getCliente().getDireccion() == null ? "Direcccion no encontrada"
+						: pedidos[i].getCliente().getDireccion().getCalle() + " "
+						+ pedidos[i].getCliente().getDireccion().getNroPuerta(); // Direccion cliente.
 				parser[i][4] = pedidos[i].getViaje().getDelivery() == null
-				               ? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre(); //Nombre delivery
+						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre(); //Nombre delivery
 				parser[i][5] = pedidos[i].getViaje().getDelivery() == null
-				               ? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono(); // Telefono delivey
+						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono(); // Telefono delivey
 				parser[i][6] = pedidos[i].getViaje().getFecha() == null ? "Sin fecha"
-				               : pedidos[i].getViaje().getFecha().toString(); // Fecha viaje.
+						: pedidos[i].getViaje().getFecha().toString(); // Fecha viaje.
 				parser[i][7] = pedidos[i].getViaje().getCalificacion() == null ? Parametros.DEFAULT_CALIFICACION_VIAJE
-				               : pedidos[i].getViaje().getCalificacion().toString(); // Calificacion viaje.
+						: pedidos[i].getViaje().getCalificacion().toString(); // Calificacion viaje.
 				parser[i][8] = pedidos[i].getId().toString(); // Id del pedido.
 			}
 			return parser;
@@ -107,25 +108,25 @@ public class ViajeControllerHelper {
 
 	/**
 	 * @param estadoId
-	 * @return 
+	 * @return
 	 */
 	public String getFiltroActual(String estadoId) {
 		String retorno = "";
 		switch (estadoId) {
-		case "1":
-			retorno = "pendientes";
-			break;
-		case "2":
-			retorno = "publicados";
-			break;
-		case "3":
-			retorno = "en proceso";
-			break;
-		case "4":
-			retorno = "terminados";
-			break;
-		default:
-			retorno = "sin filtrar";
+			case "1":
+				retorno = "pendientes";
+				break;
+			case "2":
+				retorno = "publicados";
+				break;
+			case "3":
+				retorno = "en proceso";
+				break;
+			case "4":
+				retorno = "terminados";
+				break;
+			default:
+				retorno = "sin filtrar";
 		}
 		return retorno;
 	}
@@ -162,6 +163,24 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
+	public ArrayList<String> generateDatosTablaViajeAjaxEstPend(String[][] pedidosParseados) {
+		ArrayList<String> lista = new ArrayList<>();
+		if (pedidosParseados != null) {
+			//Crea los items.
+			for (String[] pedidosParseado : pedidosParseados) {
+				String tabla = "";
+				tabla += pedidosParseado[0] + ", ";	// Id viaje.
+				tabla += pedidosParseado[1] + ", ";	// Nombre cliente.
+				tabla += pedidosParseado[2] + ", ";	// Telefono Cliente.
+				tabla += pedidosParseado[3] + ", ";	// Direccion cliente.
+				tabla += pedidosParseado[6] + ", ";	// Fecha del viaje.
+				tabla += pedidosParseado[8];	// Id del pedido.
+				lista.add(tabla);
+			}
+		}
+		return lista;
+	}
+
 	private String generateTablaViajeEstPub(String[][] pedidosParseados) {
 		String tabla = "";
 
@@ -194,6 +213,26 @@ public class ViajeControllerHelper {
 		}
 		tabla += "</tbody>";
 		return tabla;
+	}
+
+	public ArrayList<String> generateTablaViajeAjaxEstPub(String[][] pedidosParseados) {
+		ArrayList<String> lista = new ArrayList<>();
+		if (pedidosParseados != null) {
+			//Crea los items.
+			for (String[] pedidosParseado : pedidosParseados) {
+				String tabla = "";
+
+				tabla += pedidosParseado[0] + ", ";	// Id viaje.
+				tabla += pedidosParseado[1] + ", ";	// Nombre cliente.
+				tabla += pedidosParseado[2] + ", ";	// Telefono Cliente.
+				tabla += pedidosParseado[3] + ", ";	// Direccion cliente.
+				tabla += pedidosParseado[6] + ", ";	// Fecha del viaje.
+				tabla += pedidosParseado[8];	// Id del pedido.
+
+				lista.add(tabla);
+			}
+		}
+		return lista;
 	}
 
 	private String generateDataTablaViajeEstPro(String[][] pedidosParseados) {
@@ -232,6 +271,26 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
+	public ArrayList<String> generateDataTablaViajeAjaxEstPro(String[][] pedidosParseados) {
+		ArrayList<String> lista = new ArrayList<>();
+		if (pedidosParseados != null) {
+			//Crea los items.
+			for (String[] pedidosParseado : pedidosParseados) {
+				String tabla = "";
+				tabla += pedidosParseado[0] + ", ";	// Id viaje.
+				tabla += pedidosParseado[1] + ", ";	// Nombre cliente.
+				tabla += pedidosParseado[2] + ", ";	// Telefono Cliente.
+				tabla += pedidosParseado[3] + ", ";	// Direccion cliente.
+				tabla += pedidosParseado[4] + ", ";	// Nombre Delivery.
+				tabla += pedidosParseado[5] + ", ";	// Telefono Delivery.
+				tabla += pedidosParseado[6] + ", ";	// Fecha del viaje.
+				tabla += pedidosParseado[8];	// Id del pedido.
+				lista.add(tabla);
+			}
+		}
+		return lista;
+	}
+
 	private String generateDataTablaViajeEstTer(String[][] pedidosParseados) {
 		String tabla = "";
 
@@ -265,6 +324,24 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
+	public ArrayList<String> generateDataTablaViajeAjaxEstTer(String[][] pedidosParseados) {
+		ArrayList<String> lista = new ArrayList<>();
+		if (pedidosParseados != null) {
+			//Crea los items.
+			for (String[] pedidosParseado : pedidosParseados) {
+				String tabla = "";
+				tabla += pedidosParseado[0] + ", ";	// Id viaje.
+				tabla += pedidosParseado[7] + ", ";	// Calificacion Delivery.
+				tabla += pedidosParseado[3] + ", ";	// Direccion cliente.
+				tabla += pedidosParseado[1] + ", ";	// Nombre cliente.
+				tabla += pedidosParseado[4] + ", ";	// Nombre Delivery.
+				tabla += pedidosParseado[8];	// Id del pedido.
+				lista.add(tabla);
+			}
+		}
+		return lista;
+	}
+
 	public String toJSON(Pedido[] pedidos) {
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonObject = "";
@@ -274,11 +351,5 @@ public class ViajeControllerHelper {
 			Logger.getLogger(ViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return jsonObject;
-	}
-
-	public String crearDataSet(Pedido[] pedidos) {
-		// Hacer magia.
-		// https://datatables.net/examples/data_sources/js_array.html
-		return "";
 	}
 }
