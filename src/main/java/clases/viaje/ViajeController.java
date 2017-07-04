@@ -1,23 +1,26 @@
 package clases.viaje;
 
 import clases.accesControl.ACSessionServices;
+import clases.configuration.ObjAux;
 import clases.configuration.OpcionesJavascriptViaje;
 import clases.configuration.Parametros;
 import clases.dominio.Pedido;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.ws.rs.core.Request;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
@@ -144,22 +147,25 @@ public class ViajeController {
 		return "redirect:/viaje.html";
 	}
 
-	@RequestMapping(value = "/obtenerViajesTabla/{estadoId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/obtenerViajesTabla/{estadoId}", method = GET)
 	@ResponseBody
-	public Pedido[] obtenerViajesTabla(@PathVariable String estadoId) {
+	public String obtenerViajesTabla(@PathVariable String estadoId) {
 		String sucursalId = acss.getUserId();
 		Pedido[] pedidosAux = vl.obtenerViajesTabla(pedidos, sucursalId, estadoId);
-		if (Arrays.equals(pedidos, pedidosAux))
-			return vch.crearObjAux();
+		if (Arrays.equals(pedidos, pedidosAux)){
+			ObjAux objAux = new ObjAux();
+			return objAux.toJSON();
+		}
 		else {
 			pedidos = pedidosAux;
-			return vch.crearObjAux(pedidos);
+			ObjAux objAux = new ObjAux(pedidos);
+			return objAux.toJSON();
 		}
 	}
 
-	@RequestMapping(value = "/urlObtenerViajesArray/{estadoId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/urlObtenerViajesArray/{estadoId}", method = GET)
 	@ResponseBody
-	public Pedido[] obtenerViajesTabla(@PathVariable String estadoId) {
+	public String obtenerViajesTablaArray(@PathVariable String estadoId) {
 		String sucursalId = acss.getUserId();
 		Pedido[] pedidosAux = vl.obtenerViajesTabla(pedidos, sucursalId, estadoId);
 		return vch.toJSON(pedidosAux);

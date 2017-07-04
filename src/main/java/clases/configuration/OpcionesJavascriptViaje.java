@@ -40,7 +40,6 @@ public class OpcionesJavascriptViaje {
 	private Map<Object, Object> mensajes;
 	private Map<Object, Object> iconSize;
 	private Map<Object, Object> labelOrigin;
-	private Map<Object, Object> tiempoColores;
 	private Map<Object, Object> nombreFiltros;
 	private int markerBounceTimeOut;
 	private int zoomResaltarMarkador;
@@ -51,7 +50,7 @@ public class OpcionesJavascriptViaje {
 	public OpcionesJavascriptViaje(String contextPath, String estadoId) {
 
 		// Agrego la url del para la llamada ajax para obtener la ubicacion del dleivery.
-		this.url = contextPath + Parametros.URL_DELIVERY;
+		this.urlGetAllDelivery = contextPath + Parametros.URL_DELIVERY;
 
 		// Agrego la url para la llamada ajax para obtener calificar al viaje.
 		this.urlCalificar = contextPath + Parametros.URL_CALIFICAR;
@@ -71,7 +70,7 @@ public class OpcionesJavascriptViaje {
 		});
 
 		// Agrego la ubicacion de la moto.
-		this.moto = Parametros.UBICACION_MOTO;
+		this.urlMoto = Parametros.UBICACION_MOTO;
 
 		// Agrego el zoom del mapa.
 		this.defZoomMap = Parametros.ZOOM_MAPA;
@@ -131,29 +130,12 @@ public class OpcionesJavascriptViaje {
 		// Agrego el tiempo de actualziacion de los updates.
 		this.tiempoActivacionUpdates = Parametros.TIEMPOACTIVACIONUPDATES;
 	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
-
 	public List<String> getColoresMarkadores() {
 		return coloresMarkadores;
 	}
 
 	public void setColoresMarkadores(List<String> coloresMarkadores) {
 		this.coloresMarkadores = coloresMarkadores;
-	}
-
-	public String getMoto() {
-		return moto;
-	}
-
-	public void setMoto(String moto) {
-		this.moto = moto;
 	}
 
 	public int getDefZoomMap() {
@@ -234,6 +216,126 @@ public class OpcionesJavascriptViaje {
 
 	public void setIdentificadorJS(String identificadorJS) {
 		this.identificadorJS = identificadorJS;
+	}
+
+	public String getUrlGetAllDelivery() {
+		return urlGetAllDelivery;
+	}
+
+	public void setUrlGetAllDelivery(String urlGetAllDelivery) {
+		this.urlGetAllDelivery = urlGetAllDelivery;
+	}
+
+	public String getUrlObtenerPedidosTabla() {
+		return urlObtenerPedidosTabla;
+	}
+
+	public void setUrlObtenerPedidosTabla(String urlObtenerPedidosTabla) {
+		this.urlObtenerPedidosTabla = urlObtenerPedidosTabla;
+	}
+
+	public String getUrlObtenerViajesArray() {
+		return urlObtenerViajesArray;
+	}
+
+	public void setUrlObtenerViajesArray(String urlObtenerViajesArray) {
+		this.urlObtenerViajesArray = urlObtenerViajesArray;
+	}
+
+	public int getTiempoActivacionCambioColores() {
+		return tiempoActivacionCambioColores;
+	}
+
+	public void setTiempoActivacionCambioColores(int tiempoActivacionCambioColores) {
+		this.tiempoActivacionCambioColores = tiempoActivacionCambioColores;
+	}
+
+	public int getServerHourPadding() {
+		return serverHourPadding;
+	}
+
+	public void setServerHourPadding(int serverHourPadding) {
+		this.serverHourPadding = serverHourPadding;
+	}
+
+	public Map<Object, Object> getTiempoColores() {
+		return tiempoColores;
+	}
+
+	public void setTiempoColores(Map<Object, Object> tiempoColores) {
+		this.tiempoColores = tiempoColores;
+	}
+
+	public String getUrlMoto() {
+		return urlMoto;
+	}
+
+	public void setUrlMoto(String urlMoto) {
+		this.urlMoto = urlMoto;
+	}
+
+	public Map<Object, Object> getIconSize() {
+		return iconSize;
+	}
+
+	public void setIconSize(Map<Object, Object> iconSize) {
+		this.iconSize = iconSize;
+	}
+
+	public Map<Object, Object> getLabelOrigin() {
+		return labelOrigin;
+	}
+
+	public void setLabelOrigin(Map<Object, Object> labelOrigin) {
+		this.labelOrigin = labelOrigin;
+	}
+
+	public Map<Object, Object> getNombreFiltros() {
+		return nombreFiltros;
+	}
+
+	public void setNombreFiltros(Map<Object, Object> nombreFiltros) {
+		this.nombreFiltros = nombreFiltros;
+	}
+
+	public int getMarkerBounceTimeOut() {
+		return markerBounceTimeOut;
+	}
+
+	public void setMarkerBounceTimeOut(int markerBounceTimeOut) {
+		this.markerBounceTimeOut = markerBounceTimeOut;
+	}
+
+	public int getZoomResaltarMarkador() {
+		return zoomResaltarMarkador;
+	}
+
+	public void setZoomResaltarMarkador(int zoomResaltarMarkador) {
+		this.zoomResaltarMarkador = zoomResaltarMarkador;
+	}
+
+	public int getTimeOutResaltarMarkador() {
+		return timeOutResaltarMarkador;
+	}
+
+	public void setTimeOutResaltarMarkador(int timeOutResaltarMarkador) {
+		this.timeOutResaltarMarkador = timeOutResaltarMarkador;
+	}
+
+	public int getActualizarDeliverysTime() {
+		return actualizarDeliverysTime;
+	}
+
+	public void setActualizarDeliverysTime(int actualizarDeliverysTime) {
+		this.actualizarDeliverysTime = actualizarDeliverysTime;
+	}
+
+	public int getTiempoActivacionUpdates() {
+		return tiempoActivacionUpdates;
+	}
+
+	public void setTiempoActivacionUpdates(int tiempoActivacionUpdates) {
+		this.tiempoActivacionUpdates = tiempoActivacionUpdates;
 	}
 
 	public String toJSON() {
