@@ -376,5 +376,9 @@ function excecuteUpdate() {
     xhttp.send(params.toString());
 }
 
-function mostrarNotificaciones(objAux) { //aada
+function mostrarNotificaciones(objAux) {
+    if (op.estadoIdActual == "2")
+        $.notify("Un delivery ha tomado un viaje.", "info");
+    else if (op.estadoIdActual == "3")
+        $.notify("Se ha terminado un viaje.", "success");
 }
