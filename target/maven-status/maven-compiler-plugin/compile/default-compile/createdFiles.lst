@@ -20,6 +20,7 @@ clases\accesControl\ACUserValidator.class
 clases\deliverys\DeliverysLogica.class
 clases\historialPedidos\HistorialPedidosControllerHelper$JsonObjectDonut.class
 clases\dominio\Cliente.class
+clases\configuration\ObjAux.class
 clases\dominio\EstadoViaje.class
 clases\accesControl\ACAuthenticationSuccessHandlerImpl.class
 clases\dominio\Vehiculo.class

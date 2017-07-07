@@ -1,15 +1,23 @@
 /**
  * Este programa se encarga de las siguientes funcionalidades:
- *	- Inicializar el mapa en el panel correspondiente.
- *	- Utilizar geolocaclizacion para ubicar a la sucursal y centrar el mapa en dicha ubicacion.
- *	- Colocar markadores por cada pedido de la lista de pedidos (aparecen todos los pedidos).
+ *  - Inicializar el mapa en el panel correspondiente.
+ *  - Utilizar geolocaclizacion para ubicar a la sucursal y centrar el mapa en dicha ubicacion.
+ *  - Colocar markadores por cada pedido de la lista de pedidos (aparecen todos los pedidos).
  * @type type
  */
-
 "use strict";
 var op = {};
-var pedidos = {};
+var pedidos = [];
+var map = {};
+var deliverys = [];
 
+function DeliveryBuilder(deliveryId, viajeId, markador, ubicacion) {
+	this.deliveryId = deliveryId;
+	this.viajeId = viajeId;
+	this.markador = markador;
+	this.listaUbicaciones = [];
+	this.listaUbicaciones.push(ubicacion);
+}
 /**
  * Inicializa los datos a utilizar para las funciones.
  * @param {OpcionesJavascriptViaje} opciones
@@ -17,24 +25,23 @@ var pedidos = {};
  * @returns {void}
  */
 function initData(opciones, listaPedidos) {
-    op = opciones;
+	op = opciones;
 	pedidos = listaPedidos;
+	modificarEstructuraPedido();
 }
-
 /**
  * Inicia la DataTable. Los valores de inicializacion los obtiene de las opciones.
  */
 function initDataTable() {
 	var nombreTabla = op.identificadorJS + op.nombreTablaViaje;
-    $(document).ready(function() {
-        $(nombreTabla).DataTable(op.dataTableOptions);
-    });
+	$(document).ready(function () {
+		$(nombreTabla).DataTable(op.dataTableOptions);
+	});
 }
-
 /**
  * Inicializa el mapa y ejecuta el siguiente pipe de funciones:
- *	- Coloca todos los markadores de la lista de pedidos en el mapa.
- *	- Agrega funciones a los pedidos 
+ *  - Coloca todos los markadores de la lista de pedidos en el mapa.
+ *  - Agrega funciones a los pedidos.
  * @returns {undefined}
  */
 function initMap() {
@@ -47,7 +54,7 @@ function initMap() {
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 	// Try HTML5 geolocation.
-	if (navigator.geolocation) {
+	if (navigator.geolocation) { // La variable global "navigator" contiene toda la info del navegador.
 		navigator.geolocation.getCurrentPosition(function (position) {
 			pos = {
 				lat: position.coords.latitude,
@@ -62,35 +69,339 @@ function initMap() {
 		window.window.alert(op.mensajes.geolocalizacion);
 	}
 	setMarkers();
+	setMarkersVisible();
+	addRowHandlers();
+	actualizarDeliverys();
 }
 
-function setMarkers() {
-	var geocoder = new google.maps.Geocoder();
-	var rows = document.getElementById(op.nombreTablaViaje).rows;
-	if ((rows.length > 1) && !(rows[1].textContent == op.mensajes.sinDatos)) {
-		var r = 1;
-		var n = rows.length;
-		for (; r < n; r++) {
-			var direccion = table.rows[r].cells[3].textContent + ", Montevideo";
-			geocoder.geocode({
-				'address': direccion
-			}, function (results, status) { // Si le paso otro parametro a esta funcion, no se asigna, ej: r.
-				if (status == google.maps.GeocoderStatus.OK) {
-					var posMarker = {
-						lat: results[0].geometry.location.lat(),
-						lng: results[0].geometry.location.lng()
-					};
-					posiciones.push(posMarker);
-					console.log("Push marker.");
-				} else {
-					posiciones.push(null);
-					console.log("Push null.")
+function initColors() {
+	if (op.estadoIdActual == "2" || op.estadoIdActual == "3") {
+		changeColors();
+		window.setInterval(changeColors, op.tiempoActivacionCambioColores);
+	}
+}
+
+function initFiltroColor() {
+	switch (op.estadoIdActual) {
+		case "1":
+			document.getElementById(op.nombreFiltros.filtroPendiende).style.backgroundColor = op.nombreFiltros.backgroundColorFiltros;
+			break;
+		case "2":
+			document.getElementById(op.nombreFiltros.filtroPublicado).style.backgroundColor = op.nombreFiltros.backgroundColorFiltros;
+			break;
+		case "3":
+			document.getElementById(op.nombreFiltros.filtroProceso).style.backgroundColor = op.nombreFiltros.backgroundColorFiltros;
+			break;
+		case "4":
+			document.getElementById(op.nombreFiltros.filtroTerminado).style.backgroundColor = op.nombreFiltros.backgroundColorFiltros;
+			break;
+	}
+}
+
+function initUpdates() {
+	excecuteUpdate();
+	window.setInterval(excecuteUpdate, op.tiempoActivacionUpdates);
+}
+
+function modificarEstructuraPedido() {
+	if (pedidos != null && pedidos.length > 0) {
+		for (var i = 0, length = pedidos.length; i < length; i++) {
+			pedidos[i].marker = {};
+			pedidos[i].getViajeId = pedidos[i].viaje.id;
+			pedidos[i].getClienteNombre = pedidos[i].cliente.nombre;
+
+			var direccion = "";
+			direccion = pedidos[i].cliente.direccion.calle + " " + pedidos[i].cliente.direccion.nroPuerta;
+			direccion += (pedidos[i].cliente.direccion.apartamento != null || pedidos[i].cliente.direccion.apartamento != "") ?
+					"/" + pedidos[i].cliente.direccion.apartamento : "";
+
+			pedidos[i].getDireccionCompleta = direccion;
+
+			var delivery = "";
+			delivery += (pedidos[i].viaje.delivery != null) ? pedidos[i].viaje.delivery.usuario : "";
+
+			pedidos[i].getDeliveryNombre = delivery;
+			pedidos[i].getFechaHoraViaje = pedidos[i].viaje.fecha;
+
+			var myLatLng = {
+				lat: pedidos[i].cliente.direccion.latitud,
+				lng: pedidos[i].cliente.direccion.longitud
+			};
+			
+			pedidos[i].getPedidoId = pedidos[i].id;
+			
+			pedidos[i].getLatLng = myLatLng;
+		}
+		;
+	}
+	;
+}
+
+function changeColors() {
+	if (pedidos != null && pedidos.length > 0) {
+		var rows = document.getElementById(op.nombreTablaViaje).rows;
+		if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
+			for (var i = 1, length = rows.length; i < length; i++) {
+				var fechaHoraActual = new Date();
+				var horaActual = fechaHoraActual.getHours() * 3600 + fechaHoraActual.getMinutes() * 60 + fechaHoraActual.getSeconds();
+				var fechaHoraViaje = new Date(getPedidoFromRow(rows[i]).getFechaHoraViaje());
+				var horaViaje = (fechaHoraViaje.getHours() + op.serverHourPadding) * 3600 + fechaHoraViaje.getMinutes() * 60 + fechaHoraViaje.getSeconds();
+				var dif = parseInt(horaActual) - parseInt(horaViaje);
+				switch (true) {
+					case (dif < op.tiempoColores.tiempo1):
+						break;
+					case (dif < op.tiempoColores.tiempo2):
+						rows[i].style.backgroundColor = op.tiempoColores.colorTiempo2;
+						break;
+					case (dif < op.tiempoColores.tiempo3):
+						rows[i].style.backgroundColor = op.tiempoColores.colorTiempo3;
+						break;
+					case (dif < op.tiempoColores.tiempo4):
+						rows[i].style.backgroundColor = op.tiempoColores.colorTiempo4;
+						break;
+					default:
+						rows[i].style.backgroundColor = op.tiempoColores.colorTiempoDefault;
+						break;
 				}
-				if (posiciones.length == table.rows.length - 1) {
-					flag = true;
-					console.log("Se cambio flag.");
-				}
-			});
+			}
 		}
 	}
+}
+/**
+ * Coloca los markadores en todos los pedidos de la lista y los pone a todos invisibles.
+ * @returns {undefined}
+ */
+function setMarkers() {
+	if (pedidos != null && pedidos.length > 0) {
+		var infowindow = new google.maps.InfoWindow();
+		for (var i = 0, length = pedidos.length; i < length; i++) {
+			var idViaje = pedidos[i].getViajeId;
+			var cliente = pedidos[i].getClienteNombre;
+			var direccion = pedidos[i].getDireccionCompleta;
+			var delivery = pedidos[i].getDeliveryNombre;
+			var contenido = "<p><strong>" + cliente + "</strong></p>" + "<p>" + direccion + "</p>";
+			if (delivery != "")
+				contenido += "Delivery: " + "<p>" + delivery + "</p>";
+			var posMarker = pedidos[i].getLatLng;
+			var marker = new google.maps.Marker({
+				position: posMarker,
+				map: map,
+				draggable: false,
+				animation: google.maps.Animation.DROP,
+				visible: false,
+				icon: {
+					url: op.coloresMarkadores[Number(idViaje) % op.coloresMarkadores.length],
+					scaledSize: new google.maps.Size(op.iconSize.altura, op.iconSize.ancho),
+					labelOrigin: new google.maps.Point(op.labelOrigin.altura, op.labelOrigin.ancho)
+				},
+				label: {
+					text: String(idViaje),
+					color: op.labelOrigin.color
+				}
+			});
+			google.maps.event.addListener(marker, 'click', (function (marker, contenido) {
+				return function () {
+					infowindow.setContent(contenido);
+					infowindow.open(map, marker);
+				};
+			})(marker, contenido));
+			pedidos[i].marker = marker;
+		}
+	}
+}
+
+function setMarkersVisible() {
+	if (pedidos != null && pedidos.length > 0) {
+		// Oculto todos los markadores.
+		for (var i = 0, length = pedidos.length; i < length; i++) {
+			if (!("undefined" === typeof pedidos[i].marker)) {
+				pedidos[i].marker.setVisible(false);
+			}
+		}
+		var rows = document.getElementById(op.nombreTablaViaje).rows;
+		if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
+			for (var i = 1, length = rows.length; i < length; i++) {
+				getPedidoFromRow(rows[i]).marker.setVisible(true);
+			}
+		}
+	}
+}
+
+function getPedidoIdFromRow(row) {
+	switch (op.estadoIdActual) {
+		case "1":
+			return row.cells[5].textContent;
+			break;
+		case "2":
+			return row.cells[5].textContent;
+			break;
+		case "3":
+			return row.cells[7].textContent;
+			break;
+		case "4":
+			return row.cells[5].textContent;
+			break;
+	}
+	return row.cells[0].textContent;
+}
+
+function getPedidoFromPedidos(pedidoId) {
+	for (var i = 0, length = pedidos.length; i < length; i++) {
+		if (pedidos[i].getPedidoId == pedidoId)
+			return pedidos[i];
+	}
+}
+
+function getPedidoFromRow(row) {
+	return getPedidoFromPedidos(getPedidoIdFromRow(row));
+}
+
+function addRowHandlers() {
+	if (pedidos != null && pedidos.length > 0) {
+		var rows = document.getElementById(op.nombreTablaViaje).rows; // Cuando databables no esta inicializado esto da null.
+		if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
+			for (var i = 1, length = rows.length; i < length; i++) {
+				var createClickHandler = function (pedido) {
+					return function () {
+						pedido.marker.setAnimation(google.maps.Animation.BOUNCE);
+						stopAnimation(pedido.marker);
+					};
+				};
+				var createDoubleClickHandler = function (pedido) {
+					return function () {
+						resaltarMarkador(pedido.marker);
+					};
+				};
+				rows[i].onclick = createClickHandler(getPedidoFromRow(rows[i]));
+				rows[i].ondblclick = createDoubleClickHandler(getPedidoFromRow(rows[i]));
+			}
+		}
+	}
+}
+
+function stopAnimation(marker) {
+	setTimeout(function () {
+		marker.setAnimation(null);
+	}, op.markerBounceTimeOut);
+}
+
+function resaltarMarkador(marker) {
+	var posAnterior = map.getZoom();
+	map.setZoom(op.zoomResaltarMarkador);
+	map.setCenter(marker.getPosition());
+	window.setTimeout(function () {
+		map.setZoom(posAnterior);
+	}, op.timeOutResaltarMarkador);
+}
+
+function cargarDeliverys() {
+	getAllDelivery(op.urlGetAllDelivery);
+}
+
+function actualizarDeliverys() {
+	if (op.estadoIdActual == "3") {
+		cargarDeliverys();
+		setInterval(cargarDeliverys, op.actualizarDeliverysTime);
+	}
+}
+
+function getDeliveryViaje(viaje) {
+	var i = 0;
+	var l = deliverys.length;
+	for (; i < l; i++) {
+		if (deliverys[i].idViaje == viaje) {
+			return deliverys[i];
+		}
+	}
+}
+
+function getAllDelivery(url) {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			deliverysJSON = JSON.parse(this.responseText);
+			abmDeliverysMap(deliverysJSON);
+		}
+	};
+	xhttp.open("GET", url, true);
+	xhttp.send();
+}
+
+function abmDeliverysMap(deliverysJSON) {
+	for (var i = 0, length = deliverysJSON.length; i < length; i++) {
+		if (findDeliverysJSONIdInDeliverys(deliverysJSON[i].id)) { // Modificar
+			var delivery = getDelivery(deliverysJSON[i].id);
+			if (!(delivery.marker.position.lat == deliverysJSON.ubicacion.latitud && delivery.marker.position.lng == deliverysJSON[i].ubicacion.longitud)) {
+				var myLatLng = {
+					lat: deliverysJSON[i].ubicacion.latitud,
+					lng: deliverysJSON[i].ubicacion.longitud
+				};
+				delivery.marker.position = myLatLng;
+				delivery.listaUbicaciones.push(myLatLng);
+			}
+		} else { // Alta
+			var myLatLng = {
+				lat: deliverysJSON[i].ubicacion.latitud,
+				lng: deliverysJSON[i].ubicacion.longitud
+			};
+			var marker = new google.maps.Marker({
+				position: myLatLng,
+				map: map,
+				draggable: false,
+				icon: op.urlMoto
+			});
+			var delivery = new DeliveryBuilder(deliverysJSON[i].deliveryId, deliverysJSON[i].viajeId, marker, myLatLng);
+			deliverys.push(delivery);
+		}
+	}
+	;
+	for (var i = 0, length = deliverys.length; i < length; i++) { // Baja
+		if (!(findDeliverysIdInDeliverysJSON(deliverys[i].deliveryId, deliverysJSON))) {
+			deliverys.splice(i, 1); // Elimina el elemento.
+		}
+	}
+}
+
+function findDeliverysJSONIdInDeliverys(deliveryJSONId) {
+	for (var i = 0, length = deliverys.length; i < length; i++) {
+		if (deliverys[i].deliveryId == deliveryJSONId)
+			return true;
+	}
+	;
+	return false;
+}
+
+function findDeliverysIdInDeliverysJSON(deliveryId, deliverysJSON) {
+	for (var i = 0, length = deliverysJSON.length; i < length; i++) {
+		if (deliverysJSON[i].deliveryId == deliveryId)
+			return true;
+	}
+	;
+	return false;
+}
+
+function excecuteUpdate() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			objAux = JSON.parse(this.responseText);
+			if (!(objAux.cambios == "true")) {
+				mostrarNotificaciones(objAux);
+				var nombreTabla = op.identificadorJS + op.nombreTablaViaje;
+				$(nombreTabla).DataTable({
+					data: objAux.dataSet
+				});
+			}
+		}
+	};
+	var params = 'estadoId=' + op.estadoIdActual;
+	xhttp.open("GET", op.urlObtenerPedidosTabla, true);
+	xhttp.send(params.toString());
+}
+
+function mostrarNotificaciones(objAux) {
+	if (op.estadoIdActual == "2")
+		$.notify("Un delivery ha tomado un viaje.", "info");
+	else if (op.estadoIdActual == "3")
+		$.notify("Se ha terminado un viaje.", "success");
 }

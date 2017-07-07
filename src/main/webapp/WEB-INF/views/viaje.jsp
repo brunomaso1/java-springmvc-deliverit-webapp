@@ -103,10 +103,10 @@
 		<script>initData(${opciones},${listaPedidos});</script>
 		<script>initDataViajeStars(${opciones});</script>
 		<script>
-			initDataTable();
-			initColors();
-			initFiltroColor();
-			initUpdates();
+			<!-- initDataTable(); -->
+			<!-- initColors(); -->
+			<!-- initFiltroColor(); -->
+			<!-- initUpdates(); -->
 		</script>
 	</body>
 </html>

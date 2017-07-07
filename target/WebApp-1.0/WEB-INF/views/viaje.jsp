@@ -86,10 +86,15 @@
 				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
 				crossorigin="anonymous">
 		</script>
+		<!-- NotifyJS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" 
+				integrity="sha256-tSRROoGfGWTveRpDHFiWVz+UXt+xKNe90wwGn25lpw8=" 
+				crossorigin="anonymous">		
+		</script>
 		<!-- Google Maps -->
 		<script async defer 
-				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap">
-		</script>
+				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"> 
+		</script> <%-- initMap(); --%>
 		<!-- DataTables -->
 		<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.js"></script>
 		<!-- User javascripts -->
@@ -98,7 +103,10 @@
 		<script>initData(${opciones},${listaPedidos});</script>
 		<script>initDataViajeStars(${opciones});</script>
 		<script>
-			initDataTable();
+			<!-- initDataTable(); -->
+			<!-- initColors(); -->
+			<!-- initFiltroColor(); -->
+			<!-- initUpdates(); -->
 		</script>
 	</body>
 </html>
