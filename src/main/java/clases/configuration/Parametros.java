@@ -55,6 +55,7 @@ public class Parametros {
 	public static String NOMBRE_MAPA_VIAJE = "map";
 
 	public static String DATATABLE_SINDATOS = "No hay datos.";
+	public static String DATATABLE_SINDATOSBUSQUEDA = "No se han encontrado datos.";
 
 	public static int TIEMPOACTIVACIONCAMBIOCOLORES = 5000;
 	public static int MARKERBOUNCETIMEOUT = 3000; //Milisegundos.
@@ -107,11 +108,11 @@ public class Parametros {
 		LANGUAJE_VIAJE.put("search", "Busqueda&nbsp;:");
 		LANGUAJE_VIAJE.put("lengthMenu", "Mostrar _MENU_ viajes");
 		LANGUAJE_VIAJE.put("info", "");
-		LANGUAJE_VIAJE.put("infoEmpty", "Ningun viaje");
+		LANGUAJE_VIAJE.put("infoEmpty", DATATABLE_SINDATOS);
 		LANGUAJE_VIAJE.put("infoFiltered", "");
 		LANGUAJE_VIAJE.put("infoPostFix", "");
 		LANGUAJE_VIAJE.put("loadingRecords", "Cargando viajes...");
-		LANGUAJE_VIAJE.put("zeroRecords", "No se han encontrado viajes");
+		LANGUAJE_VIAJE.put("zeroRecords", DATATABLE_SINDATOSBUSQUEDA);
 		LANGUAJE_VIAJE.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_VIAJE.put("paginate", PAGINATE);
 	}
@@ -132,11 +133,11 @@ public class Parametros {
 		LANGUAJE_CLIENTE.put("search", "Busqueda&nbsp;:");
 		LANGUAJE_CLIENTE.put("lengthMenu", "Mostrar _MENU_ clientes");
 		LANGUAJE_CLIENTE.put("info", "");
-		LANGUAJE_CLIENTE.put("infoEmpty", "Ningun cliente.");
+		LANGUAJE_CLIENTE.put("infoEmpty", DATATABLE_SINDATOS);
 		LANGUAJE_CLIENTE.put("infoFiltered", "");
 		LANGUAJE_CLIENTE.put("infoPostFix", "");
 		LANGUAJE_CLIENTE.put("loadingRecords", "Cargando clientes...");
-		LANGUAJE_CLIENTE.put("zeroRecords", "No se han encontrado clientes");
+		LANGUAJE_CLIENTE.put("zeroRecords", DATATABLE_SINDATOSBUSQUEDA);
 		LANGUAJE_CLIENTE.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_CLIENTE.put("paginate", PAGINATE);
 	}
@@ -155,11 +156,11 @@ public class Parametros {
 		LANGUAJE_DELIVERY.put("search", "Busqueda&nbsp;:");
 		LANGUAJE_DELIVERY.put("lengthMenu", "Mostrar _MENU_ deliverys");
 		LANGUAJE_DELIVERY.put("info", "");
-		LANGUAJE_DELIVERY.put("infoEmpty", "Ningun delivery.");
+		LANGUAJE_DELIVERY.put("infoEmpty", DATATABLE_SINDATOS);
 		LANGUAJE_DELIVERY.put("infoFiltered", "");
 		LANGUAJE_DELIVERY.put("infoPostFix", "");
 		LANGUAJE_DELIVERY.put("loadingRecords", "Cargando deliverys...");
-		LANGUAJE_DELIVERY.put("zeroRecords", "No se han encontrado deliverys");
+		LANGUAJE_DELIVERY.put("zeroRecords", DATATABLE_SINDATOSBUSQUEDA);
 		LANGUAJE_DELIVERY.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_DELIVERY.put("paginate", PAGINATE);
 	}
@@ -178,11 +179,11 @@ public class Parametros {
 		LANGUAJE_HISTVIAJE.put("search", "Busqueda&nbsp;:");
 		LANGUAJE_HISTVIAJE.put("lengthMenu", "Mostrar _MENU_ viajes");
 		LANGUAJE_HISTVIAJE.put("info", "");
-		LANGUAJE_HISTVIAJE.put("infoEmpty", "Ningun viaje.");
+		LANGUAJE_HISTVIAJE.put("infoEmpty", DATATABLE_SINDATOS);
 		LANGUAJE_HISTVIAJE.put("infoFiltered", "");
 		LANGUAJE_HISTVIAJE.put("infoPostFix", "");
 		LANGUAJE_HISTVIAJE.put("loadingRecords", "Cargando viajes...");
-		LANGUAJE_HISTVIAJE.put("zeroRecords", "No se han encontrado viajes");
+		LANGUAJE_HISTVIAJE.put("zeroRecords", DATATABLE_SINDATOSBUSQUEDA);
 		LANGUAJE_HISTVIAJE.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_HISTVIAJE.put("paginate", PAGINATE);
 	}
@@ -223,6 +224,7 @@ public class Parametros {
 		MENSAJES = new HashMap<>();
 		MENSAJES.put("geolocalizacion", "El navegador no soporta la geolocalizacion, no se puede obtener su ubicacion.");
 		MENSAJES.put("sinDatos", DATATABLE_SINDATOS);
+		MENSAJES.put("sinDatosBusqueda", DATATABLE_SINDATOSBUSQUEDA);
 	}
 
 	public static Map<Object, Object> ICONSIZE;

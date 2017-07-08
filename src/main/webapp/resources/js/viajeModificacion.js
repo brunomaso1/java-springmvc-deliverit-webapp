@@ -56,7 +56,7 @@ function initMap() {
 	// Try HTML5 geolocation.
 	if (navigator.geolocation) { // La variable global "navigator" contiene toda la info del navegador.
 		navigator.geolocation.getCurrentPosition(function (position) {
-			pos = {
+			var pos = {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
 			};
@@ -71,7 +71,7 @@ function initMap() {
 	setMarkers();
 	setMarkersVisible();
 	addRowHandlers();
-	actualizarDeliverys();
+	//actualizarDeliverys();	
 }
 
 function initColors() {
@@ -112,24 +112,27 @@ function modificarEstructuraPedido() {
 
 			var direccion = "";
 			direccion = pedidos[i].cliente.direccion.calle + " " + pedidos[i].cliente.direccion.nroPuerta;
-			direccion += (pedidos[i].cliente.direccion.apartamento != null || pedidos[i].cliente.direccion.apartamento != "") ?
-					"/" + pedidos[i].cliente.direccion.apartamento : "";
+			direccion += (pedidos[i].cliente.direccion.apartamento != null
+					&& pedidos[i].cliente.direccion.apartamento != ""
+					&& pedidos[i].cliente.direccion.apartamento != "0")
+					? "/" + pedidos[i].cliente.direccion.apartamento : "";
 
 			pedidos[i].getDireccionCompleta = direccion;
 
 			var delivery = "";
-			delivery += (pedidos[i].viaje.delivery != null) ? pedidos[i].viaje.delivery.usuario : "";
+			delivery += (pedidos[i].viaje.delivery != null) ? pedidos[i].viaje.delivery.usuario.nombre : "";
 
 			pedidos[i].getDeliveryNombre = delivery;
+			pedidos[i].getDeliveryId = (pedidos[i].viaje.delivery != null) ? pedidos[i].viaje.delivery.id : null;
 			pedidos[i].getFechaHoraViaje = pedidos[i].viaje.fecha;
 
 			var myLatLng = {
 				lat: pedidos[i].cliente.direccion.latitud,
 				lng: pedidos[i].cliente.direccion.longitud
 			};
-			
+
 			pedidos[i].getPedidoId = pedidos[i].id;
-			
+
 			pedidos[i].getLatLng = myLatLng;
 		}
 		;
@@ -140,11 +143,11 @@ function modificarEstructuraPedido() {
 function changeColors() {
 	if (pedidos != null && pedidos.length > 0) {
 		var rows = document.getElementById(op.nombreTablaViaje).rows;
-		if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
+		if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos) && !(rows[1].innerText == op.mensajes.sinDatosBusqueda)) {
 			for (var i = 1, length = rows.length; i < length; i++) {
 				var fechaHoraActual = new Date();
 				var horaActual = fechaHoraActual.getHours() * 3600 + fechaHoraActual.getMinutes() * 60 + fechaHoraActual.getSeconds();
-				var fechaHoraViaje = new Date(getPedidoFromRow(rows[i]).getFechaHoraViaje());
+				var fechaHoraViaje = new Date(getPedidoFromRow(rows[i]).getFechaHoraViaje);
 				var horaViaje = (fechaHoraViaje.getHours() + op.serverHourPadding) * 3600 + fechaHoraViaje.getMinutes() * 60 + fechaHoraViaje.getSeconds();
 				var dif = parseInt(horaActual) - parseInt(horaViaje);
 				switch (true) {
@@ -181,7 +184,7 @@ function setMarkers() {
 			var delivery = pedidos[i].getDeliveryNombre;
 			var contenido = "<p><strong>" + cliente + "</strong></p>" + "<p>" + direccion + "</p>";
 			if (delivery != "")
-				contenido += "Delivery: " + "<p>" + delivery + "</p>";
+				contenido += "Delivery: " + "<strong>" + delivery + "</strong>";
 			var posMarker = pedidos[i].getLatLng;
 			var marker = new google.maps.Marker({
 				position: posMarker,
@@ -259,12 +262,15 @@ function getPedidoFromRow(row) {
 function addRowHandlers() {
 	if (pedidos != null && pedidos.length > 0) {
 		var rows = document.getElementById(op.nombreTablaViaje).rows; // Cuando databables no esta inicializado esto da null.
-		if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos)) {
+		if ((rows.length > 1) && !(rows[1].innerText == op.mensajes.sinDatos) && !(rows[1].innerText == op.mensajes.sinDatosBusqueda)) {
 			for (var i = 1, length = rows.length; i < length; i++) {
 				var createClickHandler = function (pedido) {
 					return function () {
 						pedido.marker.setAnimation(google.maps.Animation.BOUNCE);
-						stopAnimation(pedido.marker);
+						var markerDelivery = obtenerMarkadorDelivery(pedido.getDeliveryId);
+						if (markerDelivery != null)
+							markerDelivery.setAnimation(google.maps.Animation.BOUNCE);
+						stopAnimation(pedido.marker, markerDelivery);
 					};
 				};
 				var createDoubleClickHandler = function (pedido) {
@@ -279,9 +285,21 @@ function addRowHandlers() {
 	}
 }
 
-function stopAnimation(marker) {
+function obtenerMarkadorDelivery(deliveryId) {
+	if (deliverys != null && deliverys.length > 0) {
+		for (var i = 0, length = deliverys.length; i < length; i++) {
+			if (deliverys[i].deliveryId == deliveryId)
+				return deliverys[i].markador;
+		}
+	}
+	return null;
+}
+
+function stopAnimation(marker, markerDellivery) {
 	setTimeout(function () {
 		marker.setAnimation(null);
+		if (markerDellivery != null)
+			markerDellivery.setAnimation(null);
 	}, op.markerBounceTimeOut);
 }
 
@@ -319,8 +337,9 @@ function getAllDelivery(url) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
-			deliverysJSON = JSON.parse(this.responseText);
+			var deliverysJSON = JSON.parse(this.responseText);
 			abmDeliverysMap(deliverysJSON);
+			addRowHandlers();
 		}
 	};
 	xhttp.open("GET", url, true);
@@ -328,10 +347,16 @@ function getAllDelivery(url) {
 }
 
 function abmDeliverysMap(deliverysJSON) {
+	for (var i = 0, length = deliverys.length; i < length; i++) { // Baja
+		if (!(findDeliverysIdInDeliverysJSON(deliverys[i].deliveryId, deliverysJSON))) {
+			deliverys.splice(i, 1); // Elimina el elemento.
+		}
+	}
+	;
 	for (var i = 0, length = deliverysJSON.length; i < length; i++) {
 		if (findDeliverysJSONIdInDeliverys(deliverysJSON[i].id)) { // Modificar
 			var delivery = getDelivery(deliverysJSON[i].id);
-			if (!(delivery.marker.position.lat == deliverysJSON.ubicacion.latitud && delivery.marker.position.lng == deliverysJSON[i].ubicacion.longitud)) {
+			if (!(delivery.marker.position.lat == deliverysJSON[i].ubicacion.latitud && delivery.marker.position.lng == deliverysJSON[i].ubicacion.longitud)) {
 				var myLatLng = {
 					lat: deliverysJSON[i].ubicacion.latitud,
 					lng: deliverysJSON[i].ubicacion.longitud
@@ -340,6 +365,7 @@ function abmDeliverysMap(deliverysJSON) {
 				delivery.listaUbicaciones.push(myLatLng);
 			}
 		} else { // Alta
+			var infowindow = new google.maps.InfoWindow();
 			var myLatLng = {
 				lat: deliverysJSON[i].ubicacion.latitud,
 				lng: deliverysJSON[i].ubicacion.longitud
@@ -350,16 +376,33 @@ function abmDeliverysMap(deliverysJSON) {
 				draggable: false,
 				icon: op.urlMoto
 			});
-			var delivery = new DeliveryBuilder(deliverysJSON[i].deliveryId, deliverysJSON[i].viajeId, marker, myLatLng);
+			var deliveryViajeId = getViajeIdFromDeliverysJSON(deliverysJSON[i].id);
+			var nombre = deliverysJSON[i].usuario.nombre;
+			var contenido = "<strong>" + nombre + "</strong>";
+			contenido += "<p>" + "Viaje: " + "<strong>" + deliveryViajeId + "</strong>" + "</p>";
+			google.maps.event.addListener(marker, 'click', (function (marker, contenido) {
+				return function () {
+					infowindow.setContent(contenido);
+					infowindow.open(map, marker);
+				};
+			})(marker, contenido));
+			var delivery = new DeliveryBuilder(deliverysJSON[i].id, deliveryViajeId, marker, myLatLng);
 			deliverys.push(delivery);
+		}
+		;
+	}
+	;
+}
+
+function getViajeIdFromDeliverysJSON(deliverId) {
+	if (pedidos != null && pedidos.length > 0) {
+		for (var i = 0, length = pedidos.length; i < length; i++) {
+			if (pedidos[i].getDeliveryId == deliverId)
+				return pedidos[i].getViajeId;
 		}
 	}
 	;
-	for (var i = 0, length = deliverys.length; i < length; i++) { // Baja
-		if (!(findDeliverysIdInDeliverysJSON(deliverys[i].deliveryId, deliverysJSON))) {
-			deliverys.splice(i, 1); // Elimina el elemento.
-		}
-	}
+	throw "Error";
 }
 
 function findDeliverysJSONIdInDeliverys(deliveryJSONId) {
@@ -391,6 +434,7 @@ function excecuteUpdate() {
 				$(nombreTabla).DataTable({
 					data: objAux.dataSet
 				});
+				initMap();
 			}
 		}
 	};
