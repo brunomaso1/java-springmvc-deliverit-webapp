@@ -434,7 +434,10 @@ function excecuteUpdate() {
 				$(nombreTabla).DataTable({
 					data: objAux.dataSet
 				});
-				initMap();
+				setMarkers();
+				setMarkersVisible();
+				addRowHandlers();
+				cargarDeliverys();
 			}
 		}
 	};
