@@ -40,6 +40,30 @@ public class ObjAux {
 		this.pedidos.put("dataSet", generarLista(pedidos, estadoId));
 	}
 
+	public boolean isCambios() {
+		return cambios;
+	}
+
+	public void setCambios(boolean cambios) {
+		this.cambios = cambios;
+	}
+
+	public Map<Object, Object> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Map<Object, Object> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public String getPedidosJSON() {
+		return pedidosJSON;
+	}
+
+	public void setPedidosJSON(String pedidosJSON) {
+		this.pedidosJSON = pedidosJSON;
+	}
+
 	private List<String> generarLista(Pedido[] pedidos, String estadoId) {
 		ArrayList<String> listaPedidos = new ArrayList<>();
 		String[][] pedidosParseados = vch.parsearPedidos(pedidos);

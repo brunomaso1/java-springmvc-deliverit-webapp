@@ -249,7 +249,7 @@ public class ViajeLogica {
 		restTemplate.put(Configuration.restCalificarDelivery(idViaje, calificacion), null);
 	}
 
-	public Pedido[] obtenerViajesTabla(Pedido[] pedidos, String sucursalId, String estadoId){
+	public Pedido[] obtenerViajesTabla(String sucursalId, String estadoId){
 		Pedido[] pedidosAux = obtenerPedidosHoy(sucursalId);
 		pedidosAux = filtrarPedidos(pedidosAux, estadoId);
 		return pedidosAux;

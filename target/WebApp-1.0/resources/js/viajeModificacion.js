@@ -71,7 +71,7 @@ function initMap() {
 	setMarkers();
 	setMarkersVisible();
 	addRowHandlers();
-	//actualizarDeliverys();	
+	//actualizarDeliverys();
 }
 
 function initColors() {
@@ -313,7 +313,9 @@ function resaltarMarkador(marker) {
 }
 
 function cargarDeliverys() {
-	getAllDelivery(op.urlGetAllDelivery);
+	if (op.estadoIdActual == "3") {
+		getAllDelivery(op.urlGetAllDelivery);
+	}
 }
 
 function actualizarDeliverys() {
@@ -425,10 +427,12 @@ function findDeliverysIdInDeliverysJSON(deliveryId, deliverysJSON) {
 
 function excecuteUpdate() {
 	var xhttp = new XMLHttpRequest();
+	var csrfToken = $("meta[name='_csrf']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");
 	xhttp.onreadystatechange = function () {
 		if (this.readyState == 4 && this.status == 200) {
-			objAux = JSON.parse(this.responseText);
-			if (!(objAux.cambios == "true")) {
+			var objAux = JSON.parse(this.responseText);
+			if (objAux.cambios == true) {
 				mostrarNotificaciones(objAux);
 				var nombreTabla = op.identificadorJS + op.nombreTablaViaje;
 				$(nombreTabla).DataTable({
@@ -442,13 +446,20 @@ function excecuteUpdate() {
 		}
 	};
 	var params = 'estadoId=' + op.estadoIdActual;
-	xhttp.open("GET", op.urlObtenerPedidosTabla, true);
+	xhttp.open("POST", op.urlObtenerPedidosTabla, true);
+	xhttp.setRequestHeader(csrfHeader, csrfToken);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send(params.toString());
 }
 
 function mostrarNotificaciones(objAux) {
-	if (op.estadoIdActual == "2")
+	if (op.estadoIdActual == "2") {
 		$.notify("Un delivery ha tomado un viaje.", "info");
-	else if (op.estadoIdActual == "3")
+		var cantPed = parseInt(document.getElementById(op.nombreFiltros.filtroProceso).firstElementChild.textContent);
+		document.getElementById(op.nombreFiltros.filtroProceso).firstElementChild.textContent = (cantPed + 1).toString();
+	} else if (op.estadoIdActual == "3") {
 		$.notify("Se ha terminado un viaje.", "success");
+		var cantPed = parseInt(document.getElementById(op.nombreFiltros.filtroTerminado).firstElementChild.textContent);
+		document.getElementById(op.nombreFiltros.filtroTerminado).firstElementChild.textContent = (cantPed + 1).toString();
+	}
 }

@@ -16,6 +16,7 @@
 		<intercept-url pattern="/historialViaje.html" access="hasRole('ROLE_USER')"/>
 		<form-login login-page="/login" authentication-success-handler-ref="AuthenticationSuccessHandler" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
 		<logout logout-success-url="/login?logout"/>
+		<!--<csrf disabled="true"/>-->
 	</http>
 	
 	<authentication-manager alias="authenticationManager">

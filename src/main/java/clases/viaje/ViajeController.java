@@ -62,7 +62,7 @@ public class ViajeController {
 		model.addAttribute("viajesEnProceso", vl.getViajesEnProceso());
 		model.addAttribute("viajesTerminados", vl.getViajesTerminados());
 		model.addAttribute("filtroActual", vch.getFiltroActual(estadoId));
-		model.addAttribute("nombreTablaViaje", opciones.getNombreTablaViaje());
+		model.addAttribute("nombreTablaViaje", Parametros.NOMBRE_TABLA_VIAJE);
 		model.addAttribute("nombreFiltroPendiende", Parametros.NOMBREFILTROS.get("filtroPendiende"));
 		model.addAttribute("nombreFiltroPublicado", Parametros.NOMBREFILTROS.get("filtroPublicado"));
 		model.addAttribute("nombreFiltroProceso", Parametros.NOMBREFILTROS.get("filtroProceso"));
@@ -147,11 +147,11 @@ public class ViajeController {
 		return "redirect:/viaje.html";
 	}
 
-	@RequestMapping(value = "/obtenerViajesTabla/{estadoId}", method = GET)
+	@RequestMapping(value = "/obtenerViajesTabla", method = POST)
 	@ResponseBody
-	public String obtenerViajesTabla(@PathVariable String estadoId) {
+	public String obtenerViajesTabla(@RequestParam String estadoId) {
 		String sucursalId = acss.getUserId();
-		Pedido[] pedidosAux = vl.obtenerViajesTabla(pedidos, sucursalId, estadoId);
+		Pedido[] pedidosAux = vl.obtenerViajesTabla(sucursalId, estadoId);
 		if (Arrays.equals(pedidos, pedidosAux)){
 			ObjAux objAux = new ObjAux();
 			return objAux.toJSON();
