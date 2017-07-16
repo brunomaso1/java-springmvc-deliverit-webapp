@@ -152,7 +152,7 @@ public class ViajeController {
 	public String obtenerViajesTabla(@RequestParam String estadoId) {
 		String sucursalId = acss.getUserId();
 		Pedido[] pedidosAux = vl.obtenerViajesTabla(sucursalId, estadoId);
-		if (Arrays.equals(pedidos, pedidosAux)){
+		if (Arrays.deepEquals(pedidos, pedidosAux)) {
 			ObjAux objAux = new ObjAux();
 			return objAux.toJSON();
 		}
