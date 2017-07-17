@@ -7,7 +7,6 @@ clases\viaje\ViajeControllerHelper.class
 clases\viaje\ViajeRestController.class
 clases\historialViaje\HistorialViajeController.class
 clases\accesControl\ACController.class
-clases\dominio\Transaccion.class
 clases\dominio\Direccion.class
 clases\historialViaje\HistorialViajeLogica.class
 clases\configuration\OpcionesJavascriptCliente.class
@@ -19,13 +18,11 @@ clases\viaje\ViajeFormBean.class
 clases\accesControl\ACUserValidator.class
 clases\deliverys\DeliverysLogica.class
 clases\historialPedidos\HistorialPedidosControllerHelper$JsonObjectDonut.class
-clases\dominio\Cliente.class
 clases\configuration\ObjAux.class
 clases\dominio\EstadoViaje.class
 clases\accesControl\ACAuthenticationSuccessHandlerImpl.class
 clases\dominio\Vehiculo.class
 clases\restaurant\RestaurantLogica.class
-clases\dominio\Viaje.class
 clases\clientes\ClientesControllerHelper.class
 clases\accesControl\ACSessionServices.class
 clases\accesControl\ACUserServiceImpl.class
@@ -34,10 +31,8 @@ clases\restaurant\RestaurantControllerHelper.class
 clases\dominio\Ubicacion.class
 clases\viaje\ViajeController.class
 clases\accesControl\ACISecurityService.class
-clases\dominio\Delivery.class
 clases\historialViaje\JsonObjectLineHistViaje.class
 clases\configuration\OpcionesJavascriptDelivery.class
-clases\historialPedidos\HistorialPedidosLogica.class
 clases\viaje\ViajeGeocoder.class
 clases\configuration\OpcionesJavascriptViaje.class
 clases\accesControl\ACIUserService.class
@@ -50,7 +45,6 @@ clases\historialPedidos\HistorialPedidosController.class
 clases\historialPedidos\HistorialPedidosControllerHelper$JsonObjectBars.class
 clases\restaurant\RestaurantFormBean.class
 clases\index\IndexController.class
-clases\dominio\Pedido.class
 clases\dominio\Restaurant.class
 clases\configuration\Configuration.class
 clases\historialPedidos\HistorialPedidosControllerHelper$JsonObjectLine.class

@@ -351,6 +351,7 @@ function getAllDelivery(url) {
 function abmDeliverysMap(deliverysJSON) {
 	for (var i = 0, length = deliverys.length; i < length; i++) { // Baja
 		if (!(findDeliverysIdInDeliverysJSON(deliverys[i].deliveryId, deliverysJSON))) {
+			deliverys[i].markador.setMap(null);
 			deliverys.splice(i, 1); // Elimina el elemento.
 		}
 	}
@@ -358,9 +359,9 @@ function abmDeliverysMap(deliverysJSON) {
 	for (var i = 0, length = deliverysJSON.length; i < length; i++) {
 		if (findDeliverysJSONIdInDeliverys(deliverysJSON[i].id)) { // Modificar
 			var delivery = getDeliveryFromDeliverys(deliverysJSON[i].id);
-			var num = deliverysJSON[i].ubicacion.longitud; // Arreglo porque la api de google redondea a 6 decimales
+			var num = delivery.markador.position.lng(); // Arreglo porque la api de google redondea a 6 decimales
 			num = Math.round(num * 1000000) / 1000000 // Hay que tener cuidado, en algunos casos no redonda bien. Bug de chorme.
-			if (!((delivery.markador.position.lat() == deliverysJSON[i].ubicacion.latitud) && (delivery.markador.position.lng() == num))) {
+			if (!((delivery.markador.position.lat() == deliverysJSON[i].ubicacion.latitud) && (num == deliverysJSON[i].ubicacion.longitud))) {
 				var myLatLng = {
 					lat: deliverysJSON[i].ubicacion.latitud,
 					lng: deliverysJSON[i].ubicacion.longitud
@@ -445,8 +446,11 @@ function excecuteUpdate() {
 			if (objAux.cambios == true) {
 				mostrarNotificaciones(objAux);
 				var nombreTabla = op.identificadorJS + op.nombreTablaViaje;
+				deleteMarkers();
 				$(nombreTabla).DataTable().destroy();
 				document.getElementById(op.nombreTablaViaje).innerHTML = objAux.tablaPedidos;
+				pedidos = objAux.pedidosJSON;
+				modificarEstructuraPedido();
 				initDataTable();
 				setMarkers();
 				setMarkersVisible();
@@ -460,6 +464,14 @@ function excecuteUpdate() {
 	xhttp.setRequestHeader(csrfHeader, csrfToken);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send(params.toString());
+}
+
+function deleteMarkers(){
+	if (pedidos != null && pedidos.length > 0) {
+		for (var i = 0, length = pedidos.length; i < length; i++) {
+			pedidos[i].marker.setMap(null);
+		}
+	}
 }
 
 function mostrarNotificaciones(objAux) {

@@ -21,6 +21,7 @@ public class ObjAux {
 	private boolean cambios;
 	private ViajeControllerHelper vch = new ViajeControllerHelper();
 	private String tablaPedidos;
+	private Pedido[] pedidosJSON;
 
 	public ObjAux() {
 		this.cambios = false;
@@ -29,6 +30,15 @@ public class ObjAux {
 	public ObjAux(Pedido[] pedidos, String estadoId) {
 		this.cambios = true;
 		this.tablaPedidos = vch.getDatosTablaViajeHTML(pedidos, estadoId);
+		this.pedidosJSON = pedidos;
+	}
+
+	public Pedido[] getPedidosJSON() {
+		return pedidosJSON;
+	}
+
+	public void setPedidosJSON(Pedido[] pedidosJSON) {
+		this.pedidosJSON = pedidosJSON;
 	}
 
 	public String getTablaPedidos() {
