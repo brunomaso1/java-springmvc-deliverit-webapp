@@ -357,13 +357,15 @@ function abmDeliverysMap(deliverysJSON) {
 	;
 	for (var i = 0, length = deliverysJSON.length; i < length; i++) {
 		if (findDeliverysJSONIdInDeliverys(deliverysJSON[i].id)) { // Modificar
-			var delivery = getDelivery(deliverysJSON[i].id);
-			if (!(delivery.marker.position.lat == deliverysJSON[i].ubicacion.latitud && delivery.marker.position.lng == deliverysJSON[i].ubicacion.longitud)) {
+			var delivery = getDeliveryFromDeliverys(deliverysJSON[i].id);
+			var num = deliverysJSON[i].ubicacion.longitud; // Arreglo porque la api de google redondea a 6 decimales
+			num = Math.round(num * 1000000) / 1000000 // Hay que tener cuidado, en algunos casos no redonda bien. Bug de chorme.
+			if (!((delivery.markador.position.lat() == deliverysJSON[i].ubicacion.latitud) && (delivery.markador.position.lng() == num))) {
 				var myLatLng = {
 					lat: deliverysJSON[i].ubicacion.latitud,
 					lng: deliverysJSON[i].ubicacion.longitud
 				};
-				delivery.marker.position = myLatLng;
+				delivery.markador.position = myLatLng;
 				delivery.listaUbicaciones.push(myLatLng);
 			}
 		} else { // Alta
@@ -396,6 +398,14 @@ function abmDeliverysMap(deliverysJSON) {
 	;
 }
 
+function getDeliveryFromDeliverys(deliveryId){
+	for (var i = 0, length = deliverys.length; i < length; i++) {
+		if (deliverys[i].deliveryId == deliveryId)
+			return deliverys[i];
+	}
+	throw "Error";
+}
+
 function getViajeIdFromDeliverysJSON(deliverId) {
 	if (pedidos != null && pedidos.length > 0) {
 		for (var i = 0, length = pedidos.length; i < length; i++) {
@@ -418,7 +428,7 @@ function findDeliverysJSONIdInDeliverys(deliveryJSONId) {
 
 function findDeliverysIdInDeliverysJSON(deliveryId, deliverysJSON) {
 	for (var i = 0, length = deliverysJSON.length; i < length; i++) {
-		if (deliverysJSON[i].deliveryId == deliveryId)
+		if (deliverysJSON[i].id == deliveryId)
 			return true;
 	}
 	;
@@ -435,9 +445,9 @@ function excecuteUpdate() {
 			if (objAux.cambios == true) {
 				mostrarNotificaciones(objAux);
 				var nombreTabla = op.identificadorJS + op.nombreTablaViaje;
-				$(nombreTabla).DataTable({
-					data: objAux.dataSet
-				});
+				$(nombreTabla).DataTable().destroy();
+				document.getElementById(op.nombreTablaViaje).innerHTML = objAux.tablaPedidos;
+				initDataTable();
 				setMarkers();
 				setMarkersVisible();
 				addRowHandlers();
@@ -455,11 +465,19 @@ function excecuteUpdate() {
 function mostrarNotificaciones(objAux) {
 	if (op.estadoIdActual == "2") {
 		$.notify("Un delivery ha tomado un viaje.", "info");
+		// Aumento los pedidos en proceso.
 		var cantPed = parseInt(document.getElementById(op.nombreFiltros.filtroProceso).firstElementChild.textContent);
 		document.getElementById(op.nombreFiltros.filtroProceso).firstElementChild.textContent = (cantPed + 1).toString();
+		// Disminuyo los pedidos publicados.
+		var cantPed = parseInt(document.getElementById(op.nombreFiltros.filtroPublicado).firstElementChild.textContent);
+		document.getElementById(op.nombreFiltros.filtroPublicado).firstElementChild.textContent = (cantPed - 1).toString();
 	} else if (op.estadoIdActual == "3") {
 		$.notify("Se ha terminado un viaje.", "success");
+		// Aumento los pedidos terminados.
 		var cantPed = parseInt(document.getElementById(op.nombreFiltros.filtroTerminado).firstElementChild.textContent);
 		document.getElementById(op.nombreFiltros.filtroTerminado).firstElementChild.textContent = (cantPed + 1).toString();
+		//Disminuyo los pedidos en proceso.
+		var cantPed = parseInt(document.getElementById(op.nombreFiltros.filtroProceso).firstElementChild.textContent);
+		document.getElementById(op.nombreFiltros.filtroProceso).firstElementChild.textContent = (cantPed - 1).toString();
 	}
 }

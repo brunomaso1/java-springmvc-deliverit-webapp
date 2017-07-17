@@ -152,13 +152,14 @@ public class ViajeController {
 	public String obtenerViajesTabla(@RequestParam String estadoId) {
 		String sucursalId = acss.getUserId();
 		Pedido[] pedidosAux = vl.obtenerViajesTabla(sucursalId, estadoId);
-		if (Arrays.deepEquals(pedidos, pedidosAux)) {
+		if ((pedidos == null && pedidosAux == null) || ((pedidos != null && pedidosAux != null) && (pedidos.length == pedidosAux.length))){
+//		if (Arrays.deepEquals(pedidos, pedidosAux)) {
 			ObjAux objAux = new ObjAux();
 			return objAux.toJSON();
 		}
 		else {
 			pedidos = pedidosAux;
-			ObjAux objAux = new ObjAux(pedidos, vch.toJSON(pedidos), estadoId);
+			ObjAux objAux = new ObjAux(pedidos, estadoId);
 			return objAux.toJSON();
 		}
 	}

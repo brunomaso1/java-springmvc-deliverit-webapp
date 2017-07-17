@@ -163,24 +163,6 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
-	public ArrayList<String> generateDatosTablaViajeAjaxEstPend(String[][] pedidosParseados) {
-		ArrayList<String> lista = new ArrayList<>();
-		if (pedidosParseados != null) {
-			//Crea los items.
-			for (String[] pedidosParseado : pedidosParseados) {
-				String tabla = "";
-				tabla += pedidosParseado[0] + ", ";	// Id viaje.
-				tabla += pedidosParseado[1] + ", ";	// Nombre cliente.
-				tabla += pedidosParseado[2] + ", ";	// Telefono Cliente.
-				tabla += pedidosParseado[3] + ", ";	// Direccion cliente.
-				tabla += pedidosParseado[6] + ", ";	// Fecha del viaje.
-				tabla += pedidosParseado[8];	// Id del pedido.
-				lista.add(tabla);
-			}
-		}
-		return lista;
-	}
-
 	private String generateTablaViajeEstPub(String[][] pedidosParseados) {
 		String tabla = "";
 
@@ -213,26 +195,6 @@ public class ViajeControllerHelper {
 		}
 		tabla += "</tbody>";
 		return tabla;
-	}
-
-	public ArrayList<String> generateTablaViajeAjaxEstPub(String[][] pedidosParseados) {
-		ArrayList<String> lista = new ArrayList<>();
-		if (pedidosParseados != null) {
-			//Crea los items.
-			for (String[] pedidosParseado : pedidosParseados) {
-				String tabla = "";
-
-				tabla += pedidosParseado[0] + ", ";	// Id viaje.
-				tabla += pedidosParseado[1] + ", ";	// Nombre cliente.
-				tabla += pedidosParseado[2] + ", ";	// Telefono Cliente.
-				tabla += pedidosParseado[3] + ", ";	// Direccion cliente.
-				tabla += pedidosParseado[6] + ", ";	// Fecha del viaje.
-				tabla += pedidosParseado[8];	// Id del pedido.
-
-				lista.add(tabla);
-			}
-		}
-		return lista;
 	}
 
 	private String generateDataTablaViajeEstPro(String[][] pedidosParseados) {
@@ -271,26 +233,6 @@ public class ViajeControllerHelper {
 		return tabla;
 	}
 
-	public ArrayList<String> generateDataTablaViajeAjaxEstPro(String[][] pedidosParseados) {
-		ArrayList<String> lista = new ArrayList<>();
-		if (pedidosParseados != null) {
-			//Crea los items.
-			for (String[] pedidosParseado : pedidosParseados) {
-				String tabla = "";
-				tabla += pedidosParseado[0] + ", ";	// Id viaje.
-				tabla += pedidosParseado[1] + ", ";	// Nombre cliente.
-				tabla += pedidosParseado[2] + ", ";	// Telefono Cliente.
-				tabla += pedidosParseado[3] + ", ";	// Direccion cliente.
-				tabla += pedidosParseado[4] + ", ";	// Nombre Delivery.
-				tabla += pedidosParseado[5] + ", ";	// Telefono Delivery.
-				tabla += pedidosParseado[6] + ", ";	// Fecha del viaje.
-				tabla += pedidosParseado[8];	// Id del pedido.
-				lista.add(tabla);
-			}
-		}
-		return lista;
-	}
-
 	private String generateDataTablaViajeEstTer(String[][] pedidosParseados) {
 		String tabla = "";
 
@@ -322,24 +264,6 @@ public class ViajeControllerHelper {
 		}
 		tabla += "</tbody>";
 		return tabla;
-	}
-
-	public ArrayList<String> generateDataTablaViajeAjaxEstTer(String[][] pedidosParseados) {
-		ArrayList<String> lista = new ArrayList<>();
-		if (pedidosParseados != null) {
-			//Crea los items.
-			for (String[] pedidosParseado : pedidosParseados) {
-				String tabla = "";
-				tabla += pedidosParseado[0] + ", ";	// Id viaje.
-				tabla += pedidosParseado[7] + ", ";	// Calificacion Delivery.
-				tabla += pedidosParseado[3] + ", ";	// Direccion cliente.
-				tabla += pedidosParseado[1] + ", ";	// Nombre cliente.
-				tabla += pedidosParseado[4] + ", ";	// Nombre Delivery.
-				tabla += pedidosParseado[8];	// Id del pedido.
-				lista.add(tabla);
-			}
-		}
-		return lista;
 	}
 
 	public String toJSON(Pedido[] pedidos) {
