@@ -111,7 +111,7 @@
 				</configuration>
 			</plugin>
 			<!-- Cloud Computing -->
-			<!-- <plugin>
+			<plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
             <version>${maven-dependency-plugin.version}</version>
@@ -131,7 +131,7 @@
                     </configuration>
                 </execution>
             </executions>
-			</plugin>-->
+			</plugin>
 		</plugins>
 	</build>
 </project>
