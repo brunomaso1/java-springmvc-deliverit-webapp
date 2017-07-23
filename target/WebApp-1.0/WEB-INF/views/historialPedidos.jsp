@@ -28,7 +28,6 @@
 		<link rel="stylesheet" type="text/css" 
 			  href="https://cdn.datatables.net/v/bs/dt-1.10.13/r-2.1.1/datatables.min.css"/>
 		<!-- DataTables Buttons -->
-		<%-- Este puede estar repetido --%>
 		<link rel="stylesheet" type="text/css" 
 			  href="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css"/>
 		<!-- Morris Charts -->
@@ -92,9 +91,13 @@
 		<!-- Morris Charts -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
-		<!-- User javascripts -->
+		<!-- User javascripts -->	
 		<script src="resources/js/historialPedidos.js"></script>
-		<script>initDataTable();</script>
-		<script>initCharts(${donutData}, ${lineData}, ${barrsData});</script>
+		<script>initData(${opciones});</script>
+		<script>
+			initDataTable();
+			initCharts();
+		</script>
+		
 	</body>
 </html>

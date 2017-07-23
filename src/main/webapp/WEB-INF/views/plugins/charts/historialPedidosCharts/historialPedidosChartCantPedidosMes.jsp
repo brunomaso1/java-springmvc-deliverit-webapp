@@ -8,7 +8,7 @@
 				<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Cantidad de pedidos por mes </h3>
 			</div>
 			<div class="panel-body">
-				<div id="cantidadPedidosMes" style="height: 250px;"></div>
+				<div id=${nombreChartLine} style="height: 250px;"></div>
 			</div>
 		</div>
 	</body>

@@ -53,8 +53,7 @@ public class HistorialViajeController {
 		model.addAttribute("nombreChartDonut", opciones.getNombreChartDonut());
 		model.addAttribute("nombreChartLine", opciones.getNombreChartLine());
 		model.addAttribute("nombreChartBar", opciones.getNombreChartBar());
-
-
+		
 		// Para Javascript
 		model.addAttribute("opciones", opciones.toJSON());
 

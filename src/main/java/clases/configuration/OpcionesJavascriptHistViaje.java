@@ -1,7 +1,9 @@
 package clases.configuration;
 
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,9 +21,9 @@ public class OpcionesJavascriptHistViaje {
 	private Map<Object, Object> chartBarOptions;
 	private Map<Object, Object> mensajes;
 
-	public OpcionesJavascriptHistViaje(String dataChartDonutHistViaje,
-	                                   String dataChartLineHistViaje,
-	                                   String dataChartBarHistViaje) {
+	public OpcionesJavascriptHistViaje(ArrayList dataChartDonutHistViaje,
+	                                   ArrayList dataChartLineHistViaje,
+	                                   ArrayList dataChartBarHistViaje) {
 		// Agrego el identificador JavaScript
 		this.identificadorJS = Parametros.IDENTIFICADOR_JS;
 
@@ -29,7 +31,7 @@ public class OpcionesJavascriptHistViaje {
 		this.dataTableOptions = Parametros.DATATABLE_OPCIONES_HISTVIAJE;
 
 		// Agrego el nombre de la tabla principal para la pantalla de clientes.
-		this.nombreTablaHistViaje = Parametros.NOMBRE_TABLA_CLIENTE;
+		this.nombreTablaHistViaje = Parametros.NOMBRE_TABLA_HISTVIAJE;
 
 		// Agrego el nombre de las gráficas.
 		this.nombreChartDonut = Parametros.NOMBRE_CHART_DONUT;
@@ -37,15 +39,15 @@ public class OpcionesJavascriptHistViaje {
 		this.nombreChartBar = Parametros.NOMBRE_CHART_BAR;
 
 		// Agrego las opciones de la dona.
-		this.chartDonutOptions = Parametros.CHART_OPCIONES_DONUT;
+		this.chartDonutOptions = Parametros.HISTVIAJECHART_OPCIONES_DONUT;
 		this.chartDonutOptions.replace("data", dataChartDonutHistViaje);
 
 		// Agrego las opciones de la linea.
-		this.chartLineOptions = Parametros.CHART_OPCIONES_LINE;
+		this.chartLineOptions = Parametros.HISTVIAJECHART_OPCIONES_LINE;
 		this.chartLineOptions.replace("data", dataChartLineHistViaje);
 
 		// Agrego las opciones de la barra.
-		this.chartBarOptions = Parametros.CHART_OPCIONES_BAR;
+		this.chartBarOptions = Parametros.HISTVIAJECHART_OPCIONES_BAR;
 		this.chartBarOptions.replace("data", dataChartBarHistViaje);
 
 		// Agrego los mensajes.
@@ -139,7 +141,7 @@ public class OpcionesJavascriptHistViaje {
 		try {
 			jsonObject = mapper.writeValueAsString(this);
 		} catch (JsonProcessingException ex) {
-			Logger.getLogger(OpcionesJavascriptCliente.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(OpcionesJavascriptHistViaje.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return jsonObject;
 	}

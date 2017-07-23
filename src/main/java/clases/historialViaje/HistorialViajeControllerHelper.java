@@ -77,7 +77,7 @@ public class HistorialViajeControllerHelper {
 			String[][] parser = new String[viajes.length][9];
 			for (int i = 0; i < viajes.length; i++) {
 				parser[i][0] = viajes[i].getId().toString();
-				parser[i][1] = viajes[i].getDelivery() == null ? "No asignado" : viajes[i].getDelivery().getUsuario().getNombre();
+				parser[i][1] = viajes[i].getDelivery() == null ? "No asignado" : viajes[i].getDelivery().getNombre();
 				parser[i][2] = viajes[i].getDelivery() == null ? "No asignado" : viajes[i].getDelivery().getUsuario().getTelefono();
 				parser[i][3] = viajes[i].getDelivery() == null ? "No asignado" : viajes[i].getDelivery().getCalificacion().toString();
 				parser[i][4] = viajes[i].getCalificacion() == null ? "Sin calificacion" : viajes[i].getCalificacion().toString();
@@ -91,8 +91,7 @@ public class HistorialViajeControllerHelper {
 		return null;
 	}
 
-	public String chartHistorialViajeDona(Viaje[] viajes) {
-		ObjectMapper mapper = new ObjectMapper();
+	public ArrayList chartHistorialViajeDona(Viaje[] viajes) {
 		ArrayList<JsonObjectDonut> jsonObjectDonutList = new ArrayList<>();
 		int cantEstadoPendiente = 0;
 		int cantEstadoPublicado = 0;
@@ -101,18 +100,18 @@ public class HistorialViajeControllerHelper {
 
 		for (Viaje viaje : viajes) {
 			switch (viaje.getEstado().getId()) {
-			case 1:
-				cantEstadoPendiente++;
-				break;
-			case 2:
-				cantEstadoPublicado++;
-				break;
-			case 3:
-				cantEstadoEnProceso++;
-				break;
-			case 4:
-				cantEstadoTerminado++;
-				break;
+				case 1:
+					cantEstadoPendiente++;
+					break;
+				case 2:
+					cantEstadoPublicado++;
+					break;
+				case 3:
+					cantEstadoEnProceso++;
+					break;
+				case 4:
+					cantEstadoTerminado++;
+					break;
 			}
 		}
 
@@ -120,24 +119,17 @@ public class HistorialViajeControllerHelper {
 		jsonObjectDonutList.add(new JsonObjectDonut("Publicados", Integer.toString(cantEstadoPublicado)));
 		jsonObjectDonutList.add(new JsonObjectDonut("En Proceso", Integer.toString(cantEstadoEnProceso)));
 		jsonObjectDonutList.add(new JsonObjectDonut("Terminados", Integer.toString(cantEstadoTerminado)));
-		String jsonObject = "";
-		try {
-			jsonObject = mapper.writeValueAsString(jsonObjectDonutList);
-		} catch (JsonProcessingException ex) {
-			Logger.getLogger(HistorialViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return jsonObject;
+		return jsonObjectDonutList;
 	}
 
 	/**
-	* Logica: Inserto los string como "yyyymm" para agruparlos por año y mes.
-	* Si la clave existe, sumo uno, sino agrego la clave con una ocurrencia.
-	*/
-	public String chartHistorialViajeLinea(Viaje[] viajes, Calendar fechaInicio, Calendar fechaFin) {
-		ObjectMapper mapper = new ObjectMapper();
+	 * Logica: Inserto los string como "yyyymm" para agruparlos por año y mes.
+	 * Si la clave existe, sumo uno, sino agrego la clave con una ocurrencia.
+	 */
+	public ArrayList chartHistorialViajeLinea(Viaje[] viajes, Calendar fechaInicio, Calendar fechaFin) {
 		HistorialUtils hu = new HistorialUtils();
 		Map<String, Integer> orderedMap = new TreeMap<>(
-		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
+				(Comparator<String>) (o1, o2) -> o2.compareTo(o1)
 		);
 
 		for (Viaje viaje : viajes) {
@@ -147,30 +139,22 @@ public class HistorialViajeControllerHelper {
 			if ((viaje.getEstado().getId() == 4) && (hu.fechaDentroDeRango(fechaInicio, fechaFin, fechaViaje))) {
 				String fechaParseada = hu.buildStringFecha(fechaViaje.get(Calendar.YEAR), fechaViaje.get(Calendar.MONTH));
 				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
-				if (orderedMap.containsKey(fechaParseada))
+				if (orderedMap.containsKey(fechaParseada)) {
 					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + 1);
-				else
+				} else {
 					orderedMap.put(fechaParseada, 1);
+				}
 			}
 		}
-
-		hu.agregarIntervalosFaltantes(fechaInicio, fechaFin, orderedMap);
-
-		String jsonObject = "";
+		hu.agregarIntervalosFaltantes(fechaInicio, fechaFin, orderedMap);	
 		JsonObjectLineHistViaje jolhv = new JsonObjectLineHistViaje();
-		try {
-			jsonObject = mapper.writeValueAsString(jolhv.mapToJSON(orderedMap));
-		} catch (JsonProcessingException ex) {
-			Logger.getLogger(HistorialViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return jsonObject;
+		return jolhv.mapToArrayList(orderedMap);
 	}
 
-	public String chartHistorialViajeBarras(Viaje[] viajes, Calendar fechaInicio, Calendar fechaFin) {
-		ObjectMapper mapper = new ObjectMapper();
+	public ArrayList chartHistorialViajeBarras(Viaje[] viajes, Calendar fechaInicio, Calendar fechaFin) {
 		HistorialUtils hu = new HistorialUtils();
 		Map<String, Integer> orderedMap = new TreeMap<>(
-		    (Comparator<String>) (o1, o2) -> o2.compareTo(o1)
+				(Comparator<String>) (o1, o2) -> o2.compareTo(o1)
 		);
 
 		for (Viaje viaje : viajes) {
@@ -180,23 +164,17 @@ public class HistorialViajeControllerHelper {
 			if ((viaje.getEstado().getId() == 4) && (hu.fechaDentroDeRango(fechaInicio, fechaFin, fechaViaje))) {
 				String fechaParseada = hu.buildStringFecha(fechaViaje.get(Calendar.YEAR), fechaViaje.get(Calendar.MONTH));
 				// Chequeo si el valor está en la lista, lo agrego, sino agrego un nuevo elemento en la lista.
-				if (orderedMap.containsKey(fechaParseada))
+				if (orderedMap.containsKey(fechaParseada)) {
 					orderedMap.replace(fechaParseada, orderedMap.get(fechaParseada) + viaje.getPrecio());
-				else
-					orderedMap.put(fechaParseada, (int)viaje.getPrecio());
+				} else {
+					orderedMap.put(fechaParseada, (int) viaje.getPrecio());
+				}
 			}
 		}
 
 		hu.agregarIntervalosFaltantes(fechaInicio, fechaFin, orderedMap);
-
-		String jsonObject = "";
 		JsonObjectBarsHistViaje jobhv = new JsonObjectBarsHistViaje();
-		try {
-			jsonObject = mapper.writeValueAsString(jobhv.mapToJSON(orderedMap));
-		} catch (JsonProcessingException ex) {
-			Logger.getLogger(HistorialViajeControllerHelper.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return jsonObject;
+		return jobhv.mapToArrayList(orderedMap);
 	}
 
 	private String obtenerCantidadPedidos(String viajeId) {

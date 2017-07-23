@@ -9,23 +9,8 @@
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive">
-					<table class="table table-bordered table-hover table-striped compact" id="pedidos">
-						<thead>
-							<tr>
-								<th>Pedido</th>
-								<th>Forma de Pago</th>
-								<th>Cliente</th>
-								<th>Direccion</th>
-								<th>Telefono Cliente</th>
-								<th>Delivery</th>
-								<th>Telefono Delivery</th>
-								<th>Viaje</th>
-								<th>Estado</th>
-							</tr>
-						</thead>
-						<tbody>
-							${datosTablaHistorialPedidos}
-						</tbody>
+					<table class="table table-bordered table-hover table-striped compact" id=${nombreTablaHistPedido}>
+						${datosTablaHistPedido}
 					</table>
 				</div>
 			</div>

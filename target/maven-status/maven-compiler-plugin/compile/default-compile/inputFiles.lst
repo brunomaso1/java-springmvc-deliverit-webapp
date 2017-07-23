@@ -10,6 +10,7 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeControlle
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeGeocoder.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Vehiculo.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Viaje.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialPedidos\JsonObjectBarsHistPedidos.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\index\IndexController.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialPedidos\HistorialPedidosControllerHelper.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Ubicacion.java
@@ -47,10 +48,12 @@ C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\clientes\ClientesCon
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\restaurant\RestaurantFormBean.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\deliverys\DeliverysLogica.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\JsonObjectLineHistViaje.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\configuration\OpcionesJavascriptHistPedidos.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\dominio\Pedido.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\HistorialViajeControllerHelper.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\viaje\ViajeRestController.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\configuration\ObjAux.java
+C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialPedidos\JsonObjectLineHistPedidos.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\accesControl\ACUserServiceImpl.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\historialViaje\JsonObjectBarsHistViaje.java
 C:\Users\bruno\Documents\GitHub\webapp\src\main\java\clases\restaurant\RestaurantController.java

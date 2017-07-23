@@ -92,7 +92,7 @@ public class ViajeControllerHelper {
 						: pedidos[i].getCliente().getDireccion().getCalle() + " "
 						+ pedidos[i].getCliente().getDireccion().getNroPuerta(); // Direccion cliente.
 				parser[i][4] = pedidos[i].getViaje().getDelivery() == null
-						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getNombre(); //Nombre delivery
+						? "No asignado" : pedidos[i].getViaje().getDelivery().getNombre(); //Nombre delivery
 				parser[i][5] = pedidos[i].getViaje().getDelivery() == null
 						? "No asignado" : pedidos[i].getViaje().getDelivery().getUsuario().getTelefono(); // Telefono delivey
 				parser[i][6] = pedidos[i].getViaje().getFecha() == null ? "Sin fecha"

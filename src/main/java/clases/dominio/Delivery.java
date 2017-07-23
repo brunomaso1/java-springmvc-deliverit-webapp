@@ -15,6 +15,8 @@ public class Delivery {
 	private Vehiculo vehiculo;
 
 	private Usuario usuario;
+	
+	private String nombre;
 
 	private Ubicacion ubicacion;
 
@@ -23,14 +25,23 @@ public class Delivery {
 	public Delivery() {
 	}
 
-	public Delivery(Integer id, Short calificacion, String token, Vehiculo vehiculo, Usuario usuario, Ubicacion ubicacion, Collection<Viaje> viajeCollection) {
+	public Delivery(Integer id, Short calificacion, String token, Vehiculo vehiculo, Usuario usuario, Ubicacion ubicacion, Collection<Viaje> viajeCollection, String nombre) {
 		this.id = id;
 		this.calificacion = calificacion;
 		this.token = token;
 		this.vehiculo = vehiculo;
 		this.usuario = usuario;
 		this.ubicacion = ubicacion;
+		this.nombre = nombre;
 		this.viajeCollection = viajeCollection;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public Integer getId() {

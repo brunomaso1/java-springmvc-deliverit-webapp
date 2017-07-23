@@ -5,6 +5,7 @@
  */
 package clases.configuration;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -48,6 +49,7 @@ public class Parametros {
 	public static String NOMBRE_TABLA_CLIENTE = "clientes";
 	public static String NOMBRE_TABLA_DELIVERY = "deliverys";
 	public static String NOMBRE_TABLA_HISTVIAJE = "viajes";
+	public static String NOMBRE_TABLA_HISTPEDIDO = "pedidos";
 	public static String NOMBRE_CHART_DONUT = "chartDona";
 	public static String NOMBRE_CHART_LINE = "chartLinea";
 	public static String NOMBRE_CHART_BAR = "chartBaras";
@@ -192,31 +194,165 @@ public class Parametros {
 		DATATABLE_OPCIONES_HISTVIAJE = new HashMap<>();
 		DATATABLE_OPCIONES_HISTVIAJE.put("language", LANGUAJE_HISTVIAJE);
 	}
-
-	public static Map<Object, Object> CHART_OPCIONES_DONUT;
-
-	static {
-		CHART_OPCIONES_DONUT = new HashMap<>();
-		CHART_OPCIONES_DONUT.put("element", NOMBRE_CHART_DONUT);
-		CHART_OPCIONES_DONUT.put("data", "ESPECIFICAR");
-	}
-
-	public static Map<Object, Object> CHART_OPCIONES_LINE;
+	
+	private static Map<Object, Object> LANGUAJE_HISTPEDIDO;
 
 	static {
-		CHART_OPCIONES_LINE = new HashMap<>();
-		CHART_OPCIONES_LINE.put("element", NOMBRE_CHART_LINE);
-		CHART_OPCIONES_LINE.put("data", "ESPECIFICAR");
+		LANGUAJE_HISTPEDIDO = new HashMap<>();
+		LANGUAJE_HISTPEDIDO.put("processing", "Procesando");
+		LANGUAJE_HISTPEDIDO.put("search", "Busqueda&nbsp;:");
+		LANGUAJE_HISTPEDIDO.put("lengthMenu", "Mostrar _MENU_ viajes");
+		LANGUAJE_HISTPEDIDO.put("info", "");
+		LANGUAJE_HISTPEDIDO.put("infoEmpty", DATATABLE_SINDATOS);
+		LANGUAJE_HISTPEDIDO.put("infoFiltered", "");
+		LANGUAJE_HISTPEDIDO.put("infoPostFix", "");
+		LANGUAJE_HISTPEDIDO.put("loadingRecords", "Cargando viajes...");
+		LANGUAJE_HISTPEDIDO.put("zeroRecords", DATATABLE_SINDATOSBUSQUEDA);
+		LANGUAJE_HISTPEDIDO.put("emptyTable", DATATABLE_SINDATOS);
+		LANGUAJE_HISTPEDIDO.put("paginate", PAGINATE);
 	}
-
-	public static Map<Object, Object> CHART_OPCIONES_BAR;
+	
+	/***************************************************************************
+	 **************************** HISTORIAL PEDIDOS **************************** 
+	 **************************************************************************/
+	public static Map<Object, Object> DATATABLE_OPCIONES_HISTPEDIDO;
 
 	static {
-		CHART_OPCIONES_BAR = new HashMap<>();
-		CHART_OPCIONES_BAR.put("element", NOMBRE_CHART_BAR);
-		CHART_OPCIONES_BAR.put("data", "ESPECIFICAR");
+		DATATABLE_OPCIONES_HISTPEDIDO = new HashMap<>();
+		DATATABLE_OPCIONES_HISTPEDIDO.put("language", LANGUAJE_HISTPEDIDO);
+	}
+	
+	public static Map<Object, Object> HISTPEDIDOCHART_OPCIONES_DONUT;
+
+	static {
+		HISTPEDIDOCHART_OPCIONES_DONUT = new HashMap<>();
+		HISTPEDIDOCHART_OPCIONES_DONUT.put("element", NOMBRE_CHART_DONUT);
+		HISTPEDIDOCHART_OPCIONES_DONUT.put("data", "ESPECIFICAR");
+	}
+	
+	public static String HISTPEDIDOCHART_OPCIONES_LINE_XKEY = "anioMeso";
+	public static ArrayList HISTPEDIDOCHART_OPCIONES_LINE_YKEYS;
+
+	static {
+		HISTPEDIDOCHART_OPCIONES_LINE_YKEYS = new ArrayList<>();
+		HISTPEDIDOCHART_OPCIONES_LINE_YKEYS.add("Costo");
+	}
+	
+	public static ArrayList HISTPEDIDOCHART_OPCIONES_LINE_LABELS;
+	
+	static {
+		HISTPEDIDOCHART_OPCIONES_LINE_LABELS = new ArrayList<>();
+		HISTPEDIDOCHART_OPCIONES_LINE_LABELS.add("pedidos");
 	}
 
+	public static Map<Object, Object> HISTPEDIDOCHART_OPCIONES_LINE;
+
+	static {
+		HISTPEDIDOCHART_OPCIONES_LINE = new HashMap<>();
+		HISTPEDIDOCHART_OPCIONES_LINE.put("element", NOMBRE_CHART_LINE);
+		HISTPEDIDOCHART_OPCIONES_LINE.put("xkey", HISTPEDIDOCHART_OPCIONES_LINE_XKEY);
+		HISTPEDIDOCHART_OPCIONES_LINE.put("ykeys", HISTPEDIDOCHART_OPCIONES_LINE_YKEYS);
+		HISTPEDIDOCHART_OPCIONES_LINE.put("labels", HISTPEDIDOCHART_OPCIONES_LINE_LABELS);		
+		HISTPEDIDOCHART_OPCIONES_LINE.put("data", "ESPECIFICAR");
+	}
+	
+	public static String HISTPEDIDOCHART_OPCIONES_BAR_XKEY = "anioMes";
+	public static ArrayList HISTPEDIDOCHART_OPCIONES_BAR_YKEYS;
+
+	static {
+		HISTPEDIDOCHART_OPCIONES_BAR_YKEYS = new ArrayList<>();
+		HISTPEDIDOCHART_OPCIONES_BAR_YKEYS.add("Costo");
+	}
+	
+	public static ArrayList HISTPEDIDOCHART_OPCIONES_BAR_LABELS;
+	
+	static {
+		HISTPEDIDOCHART_OPCIONES_BAR_LABELS = new ArrayList<>();
+		HISTPEDIDOCHART_OPCIONES_BAR_LABELS.add("costo");
+	}
+
+	public static Map<Object, Object> HISTPEDIDOCHART_OPCIONES_BAR;
+
+	static {
+		HISTPEDIDOCHART_OPCIONES_BAR = new HashMap<>();
+		HISTPEDIDOCHART_OPCIONES_BAR.put("element", NOMBRE_CHART_BAR);
+		HISTPEDIDOCHART_OPCIONES_BAR.put("xkey", HISTPEDIDOCHART_OPCIONES_BAR_XKEY);
+		HISTPEDIDOCHART_OPCIONES_BAR.put("ykeys", HISTPEDIDOCHART_OPCIONES_BAR_YKEYS);
+		HISTPEDIDOCHART_OPCIONES_BAR.put("labels", HISTPEDIDOCHART_OPCIONES_BAR_LABELS);
+		HISTPEDIDOCHART_OPCIONES_BAR.put("data", "ESPECIFICAR");
+	}
+	
+	/***************************************************************************
+	 **************************** HISTORIAL VIAJE ****************************** 
+	 **************************************************************************/
+	public static boolean HISTVIAJECHART_OPCIONES_LINE_PARSETIME = false;
+	public static boolean HISTVIAJECHART_OPCIONES_LINE_GRID = false;
+	public static Map<Object, Object> HISTVIAJECHART_OPCIONES_DONUT;
+
+	static {
+		HISTVIAJECHART_OPCIONES_DONUT = new HashMap<>();
+		HISTVIAJECHART_OPCIONES_DONUT.put("element", NOMBRE_CHART_DONUT);
+		HISTVIAJECHART_OPCIONES_DONUT.put("data", "ESPECIFICAR");
+	}
+	
+	public static String HISTVIAJECHART_OPCIONES_LINE_XKEY = "anioMes";
+	public static ArrayList HISTVIAJECHART_OPCIONES_LINE_YKEYS;
+
+	static {
+		HISTVIAJECHART_OPCIONES_LINE_YKEYS = new ArrayList<>();
+		HISTVIAJECHART_OPCIONES_LINE_YKEYS.add("viajes");
+	}
+	
+	public static ArrayList HISTVIAJECHART_OPCIONES_LINE_LABELS;
+	
+	static {
+		HISTVIAJECHART_OPCIONES_LINE_LABELS = new ArrayList<>();
+		HISTVIAJECHART_OPCIONES_LINE_LABELS.add("Viajes");
+	}
+
+	public static Map<Object, Object> HISTVIAJECHART_OPCIONES_LINE;
+
+	static {
+		HISTVIAJECHART_OPCIONES_LINE = new HashMap<>();
+		HISTVIAJECHART_OPCIONES_LINE.put("element", NOMBRE_CHART_LINE);
+		HISTVIAJECHART_OPCIONES_LINE.put("xkey", HISTVIAJECHART_OPCIONES_LINE_XKEY);
+		HISTVIAJECHART_OPCIONES_LINE.put("ykeys", HISTVIAJECHART_OPCIONES_LINE_YKEYS);
+		HISTVIAJECHART_OPCIONES_LINE.put("labels", HISTVIAJECHART_OPCIONES_LINE_LABELS);	
+		HISTVIAJECHART_OPCIONES_LINE.put("parseTime", HISTVIAJECHART_OPCIONES_LINE_PARSETIME);	
+		HISTVIAJECHART_OPCIONES_LINE.put("grid", HISTVIAJECHART_OPCIONES_LINE_GRID);	
+		HISTVIAJECHART_OPCIONES_LINE.put("data", "ESPECIFICAR");
+		
+	}
+	
+	public static String HISTVIAJECHART_OPCIONES_BAR_XKEY = "anioMes";
+	public static ArrayList HISTVIAJECHART_OPCIONES_BAR_YKEYS;
+
+	static {
+		HISTVIAJECHART_OPCIONES_BAR_YKEYS = new ArrayList<>();
+		HISTVIAJECHART_OPCIONES_BAR_YKEYS.add("costo");
+	}
+	
+	public static ArrayList HISTVIAJECHART_OPCIONES_BAR_LABELS;
+	
+	static {
+		HISTVIAJECHART_OPCIONES_BAR_LABELS = new ArrayList<>();
+		HISTVIAJECHART_OPCIONES_BAR_LABELS.add("Costo");
+	}
+
+	public static Map<Object, Object> HISTVIAJECHART_OPCIONES_BAR;
+
+	static {
+		HISTVIAJECHART_OPCIONES_BAR = new HashMap<>();
+		HISTVIAJECHART_OPCIONES_BAR.put("element", NOMBRE_CHART_BAR);
+		HISTVIAJECHART_OPCIONES_BAR.put("xkey", HISTVIAJECHART_OPCIONES_BAR_XKEY);
+		HISTVIAJECHART_OPCIONES_BAR.put("ykeys", HISTVIAJECHART_OPCIONES_BAR_YKEYS);
+		HISTVIAJECHART_OPCIONES_BAR.put("labels", HISTVIAJECHART_OPCIONES_BAR_LABELS);
+		HISTVIAJECHART_OPCIONES_BAR.put("data", "ESPECIFICAR");
+	}
+	
+	/***************************************************************************
+	 **************************** MENSAJES ************************************* 
+	 **************************************************************************/
 	public static Map<Object, Object> MENSAJES;
 
 	static {

@@ -33,8 +33,8 @@ public class JsonObjectLineHistViaje {
 		this.viajes = viajes;
 	}
 
-	public List<JsonObjectLineHistViaje> mapToJSON (Map<String, Integer> map) {
-		List<JsonObjectLineHistViaje> jsonObjectLineList = new ArrayList<>();
+	public ArrayList mapToArrayList (Map<String, Integer> map) {
+		ArrayList<JsonObjectLineHistViaje> jsonObjectLineList = new ArrayList<>();
 		// Agrego a la lista objetos del tipo JsonObjcetLine con clave y valor.
 		map.forEach((k, v) -> jsonObjectLineList.add(new JsonObjectLineHistViaje(k, v)));
 		return jsonObjectLineList;

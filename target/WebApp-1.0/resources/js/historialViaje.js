@@ -18,7 +18,7 @@ function initDataTable() {
 function initCharts() {
 	$(document).ready(function () {
 		new Morris.Donut(op.chartDonutOptions);
-		new Morris.Line(op.chartLineOptions);
-		new Morris.Bar(op.chartsBarOptions);
+		//new Morris.Line(op.chartLineOptions);
+		//new Morris.Bar(op.chartsBarOptions);
 	});
 }

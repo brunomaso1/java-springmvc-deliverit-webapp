@@ -1,15 +1,9 @@
 var __slice = [].slice;
-var op = [];
-var idRowClicked = 0;
-var table = document.getElementById("pedidos");
+var op = {};
 
 function initDataViajeStars(opciones) {
 	op = opciones;
-}
-
-$(document).on('click', '#pedidos tr', function () {
-	idRowClicked = this.rowIndex;
-});
+};
 
 (function ($, window) {
 	var Starrr;
@@ -114,40 +108,25 @@ $(function () {
 });
 
 $(document).ready(function () {
-	$('#stars').on('starrr:change', function (e, value) {
-		$('#count').html(value);
-	});
-
-	$('#stars-existing').on('starrr:change', function (e, value) {
-		var idViaje = getIdViaje(idRowClicked);
-		if (idViaje !== 0)  {
-			calificar(idViaje, value);
-			setRatingStars(idViaje);
-		}		
+	$('.stars-existing').on('starrr:change', function (e, value) {
+		var idViaje = this.parentNode.parentNode.cells[0].textContent;
+		calificar(idViaje, value);
 	});
 });
 
 function calificar(idViaje, calificacion) {
 	var xhttp = new XMLHttpRequest();
-//	xhttp.onreadystatechange = function () {
-//		if (this.readyState == 4 && this.status == 200) {
-//			document.getElementById("demo").textContent = this.responseText;
-//		}
-//	};
-	var data = new FormData();
-	data.append('idViaje', idViaje);
-	data.append('calificacion', calificacion);
+	var csrfToken = $("meta[name='_csrf']").attr("content");
+	var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+	xhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			alert("El viaje se ha calificado correctamente");
+			location.reload();
+		}
+	};
+	var params = 'idViaje=' + idViaje + '&calificacion=' + calificacion;
 	xhttp.open("POST", op.urlCalificar, true);
-	xhttp.send(data);
+	xhttp.setRequestHeader(csrfHeader, csrfToken);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send(params.toString());
 }
-
-function getIdViaje(idRowClicked) {
-	var rows = table.getElementsByTagName("tr");
-	if ((rows.length > 1) && !(rows[1].innerText == "No hay datos")) {
-		alert("entro");
-		return rows[idRowClicked].cells[0].textContent;
-	}
-	return 0;
-}
-
-

@@ -8,7 +8,7 @@
 				<h3 class="panel-title"><i class="fa fa-fw fa-cutlery" aria-hidden="true"></i> Estado pedidos </h3>
 			</div>
 			<div class="panel-body">
-				<div id="estadoPedidosDona" style="height: 250px;"></div>
+				<div id=${nombreChartDonut} style="height: 250px;"></div>
 			</div>
 		</div>
 	</body>
