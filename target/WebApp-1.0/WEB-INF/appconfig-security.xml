@@ -8,12 +8,18 @@
 		http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http auto-config="true">
-		<intercept-url pattern="/viaje.html" access="hasRole('ROLE_USER')"/>
-		<intercept-url pattern="/viajeNuevo.html" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/viaje" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/viaje.html" access="hasRole('ROLE_USER')" />
+		<intercept-url pattern="/viaje/viajeNuevo" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/viaje/viajeNuevo.html" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/clientes" access="hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/clientes.html" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/deliverys" access="hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/deliverys.html" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/historialPedidos" access="hasRole('ROLE_USER')"/>
 		<intercept-url pattern="/historialPedidos.html" access="hasRole('ROLE_USER')"/>
-		<intercept-url pattern="/historialViaje.html" access="hasRole('ROLE_USER')"/>
+		<intercept-url pattern="/historialViaje" access="hasRole('ROLE_USER')"/>	
+		<intercept-url pattern="/historialViaje.html" access="hasRole('ROLE_USER')"/>	
 		<form-login login-page="/login" authentication-success-handler-ref="AuthenticationSuccessHandler" authentication-failure-url="/login?error" username-parameter="username" password-parameter="password"/>
 		<logout logout-success-url="/login?logout"/>
 		<!--<csrf disabled="true"/>-->

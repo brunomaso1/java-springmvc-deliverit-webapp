@@ -382,7 +382,7 @@ function abmDeliverysMap(deliverysJSON) {
 				icon: op.urlMoto
 			});
 			var deliveryViajeId = getViajeIdFromDeliverysJSON(deliverysJSON[i].id);
-			var nombre = deliverysJSON[i].usuario.nombre;
+			var nombre = deliverysJSON[i].nombre;
 			var contenido = "<strong>" + nombre + "</strong>";
 			contenido += "<p>" + "Viaje: " + "<strong>" + deliveryViajeId + "</strong>" + "</p>";
 			google.maps.event.addListener(marker, 'click', (function (marker, contenido) {

@@ -3,10 +3,10 @@ package clases.viaje;
 import clases.accesControl.ACSessionServices;
 import clases.configuration.ObjAux;
 import clases.configuration.OpcionesJavascriptViaje;
+import clases.configuration.OpcionesJavascriptViajeNuevo;
 import clases.configuration.Parametros;
 import clases.dominio.Pedido;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -101,10 +100,13 @@ public class ViajeController {
 
 	@RequestMapping(path = "/viajeNuevo", method = GET)
 	public String showViajeNuevo(Model model, HttpServletRequest request) {
+		OpcionesJavascriptViajeNuevo opciones = new OpcionesJavascriptViajeNuevo();
 		if (request.getParameter("datosTablaPedido") != null) {
 			model.addAttribute("datosTablaPedido", request.getParameter("datosTablaPedido"));
 		}
 		model.addAttribute("usuarioActual", acss.getUserName());
+		
+		model.addAttribute("opciones", opciones.toJSON());
 		return "viajeNuevo";
 	}
 

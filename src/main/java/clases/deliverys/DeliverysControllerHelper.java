@@ -26,12 +26,14 @@ public class DeliverysControllerHelper {
 		if (deliverysParseados != null) {
 			//Crea los items.
 			for (String[] deliveryParseado : deliverysParseados) {
+				String calificacionDeliveryAux = "<div class=\"starrr stars-existing\" data-rating='" + deliveryParseado[4] + "'></div>";
+				String calificacionDelivery = (deliveryParseado[4].equals("No especifica"))? deliveryParseado[4] : calificacionDeliveryAux;
 				tabla += "<tr>";
 				tabla += "<td>" + deliveryParseado[0] + "</td>";	// Id delivery.
 				tabla += "<td>" + deliveryParseado[1] + "</td>";	// Nombre delivery.
 				tabla += "<td>" + deliveryParseado[2] + "</td>";	// Telefono delivery.
 				tabla += "<td>" + deliveryParseado[3] + "</td>";	// Vehiculo delivery.
-				tabla += "<td>" + deliveryParseado[4] + "</td>";	// Calificacion delivery.
+				tabla += "<td>" + calificacionDelivery + "</td>";	// Calificacion delivery.
 				tabla += "</tr>";
 			}
 		}

@@ -55,12 +55,18 @@ public class HistorialViajeControllerHelper {
 		if (viajesParseados != null) {
 			//Crea los items.
 			for (String[] viajesParseado : viajesParseados) {
+				String calificacionDeliveryAux = "<div class=\"starrr stars-existing\" data-rating='" + viajesParseado[3] + "'></div>";
+				String calificacionViajeAux = "<div class=\"starrr stars-existing\" data-rating='" + viajesParseado[4] + "'></div>";
+				String calificacionDelivery = (viajesParseado[3].equals("No asignado") || viajesParseado[3].equals("Sin calificacion"))? viajesParseado[3] : calificacionDeliveryAux;
+				String calificacionViaje = (viajesParseado[4].equals("No asignado") || viajesParseado[4].equals("Sin calificacion"))? viajesParseado[4] : calificacionViajeAux;
 				tabla += "<tr>";
 				tabla += "<td>" + viajesParseado[0] + "</td>";	// Id viaje.
 				tabla += "<td>" + viajesParseado[1] + "</td>";	// Nombre del delivery.
 				tabla += "<td>" + viajesParseado[2] + "</td>";	// Telefono del delivery.
-				tabla += "<td>" + viajesParseado[3] + "</td>";	// Calificacion del delivery.
-				tabla += "<td>" + viajesParseado[4] + "</td>";	// Calificacion del viaje.
+				
+				tabla += "<td>" + calificacionDelivery + "</td>";	// Calificacion del delivery.
+				tabla += "<td>" + calificacionViaje + "</td>";	// Calificacion del viaje.
+				
 				tabla += "<td>" + viajesParseado[5] + "</td>";	// Estado del viaje.
 				tabla += "<td>" + viajesParseado[6] + "</td>";	// Fecha del viaje.
 				tabla += "<td>" + viajesParseado[7] + "</td>";	// Precio del viaje.

@@ -54,5 +54,6 @@
 				crossorigin="anonymous">
 		</script>
 		<script src="resources/js/login.js"></script>
+		<script src="resources/js/particulas.js"></script>
 	</body>
 </html>

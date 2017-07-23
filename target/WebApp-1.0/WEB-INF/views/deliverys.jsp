@@ -77,6 +77,7 @@
 		<script src="https://cdn.datatables.net/buttons/1.3.1/js/buttons.print.min.js"></script>
 		<!-- User javascripts -->
 		<script src="resources/js/deliverys.js"></script>
+		<script src="resources/js/calificacion.js"></script>
 		<script>initData(${opciones});</script>
 		<script>initDataTable();</script>
 	</body>

@@ -93,6 +93,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 		<!-- User javascripts -->
 		<script src="resources/js/historialViaje.js"></script>
+		<script src="resources/js/calificacion.js"></script>
 		<script>initData(${opciones});</script>
 		<script>
 			initDataTable();

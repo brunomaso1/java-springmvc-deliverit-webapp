@@ -110,8 +110,7 @@
 		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA2NCnQBRCbuXHbNeUY7mW-lvP-v4V3x8A&callback=initMap"></script>
 		<!-- User javascripts -->
 		<script src="../resources/js/viajeNuevo.js"></script>
-		<!-- Test -->		
+		<script>initData(${opciones});</script>
 		<script>activarPopup();</script>
-		<!--<script>ingresarDatos();</script>-->
 	</body>
 </html>
