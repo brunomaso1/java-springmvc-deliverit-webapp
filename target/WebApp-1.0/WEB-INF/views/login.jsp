@@ -37,7 +37,7 @@
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 						<button class="btn btn-warning btn-md btn3d btn-block" type="submit">Ingresar</button>
-						<h4 class="text-center"><a href="${contextPath}/registration">Crear cuenta nueva</a></h4>
+						<h4 class="text-center"><a>Crear cuenta nueva</a></h4>
 					</div>
 				</form>
 			</div><!-- /#login-box -->

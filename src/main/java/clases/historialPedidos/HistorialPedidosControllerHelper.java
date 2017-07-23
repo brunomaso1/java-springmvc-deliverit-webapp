@@ -8,17 +8,12 @@ package clases.historialPedidos;
 import clases.dominio.Pedido;
 import clases.utils.HistorialUtils;
 import clases.utils.JsonObjectDonut;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
-import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -54,9 +49,12 @@ public class HistorialPedidosControllerHelper {
 		if (viajesParseados != null) {
 			//Crea los items.
 			for (String[] viajesParseado : viajesParseados) {
+				String formaDePago = (viajesParseado[1].equals("E") || viajesParseado[1].equals("e"))?
+						"<i class=\"fa fa-money fa-lg\" aria-hidden=\"true\"></i> Efectivo" : 
+						"<i class=\"fa fa-credit-card fa-lg\" aria-hidden=\"true\"></i> Tarjeta";
 				tabla += "<tr>";
 				tabla += "<td>" + viajesParseado[0] + "</td>";	// Id pedido.
-				tabla += "<td>" + viajesParseado[1] + "</td>";	// Forma de Pago
+				tabla += "<td>" + formaDePago + "</td>";	// Forma de Pago
 				tabla += "<td>" + viajesParseado[2] + "</td>";	// Cliente.
 				tabla += "<td>" + viajesParseado[3] + "</td>";	// Direccion.
 				tabla += "<td>" + viajesParseado[4] + "</td>";	// Telefono cliente.

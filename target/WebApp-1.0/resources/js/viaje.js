@@ -120,7 +120,7 @@ function modificarEstructuraPedido() {
 			pedidos[i].getDireccionCompleta = direccion;
 
 			var delivery = "";
-			delivery += (pedidos[i].viaje.delivery != null) ? pedidos[i].viaje.delivery.usuario.nombre : "";
+			delivery += (pedidos[i].viaje.delivery != null) ? pedidos[i].viaje.delivery.nombre : "";
 
 			pedidos[i].getDeliveryNombre = delivery;
 			pedidos[i].getDeliveryId = (pedidos[i].viaje.delivery != null) ? pedidos[i].viaje.delivery.id : null;
@@ -359,15 +359,12 @@ function abmDeliverysMap(deliverysJSON) {
 	for (var i = 0, length = deliverysJSON.length; i < length; i++) {
 		if (findDeliverysJSONIdInDeliverys(deliverysJSON[i].id)) { // Modificar
 			var delivery = getDeliveryFromDeliverys(deliverysJSON[i].id);
-			var num = delivery.markador.position.lng; // Arreglo porque la api de google redondea a 6 decimales
+			var num = delivery.markador.getPosition().lng(); // Arreglo porque la api de google redondea a 6 decimales
 			num = Math.round(num * 1000000) / 1000000 // Hay que tener cuidado, en algunos casos no redonda bien. Bug de chorme.
-			if (!((delivery.markador.position.lat == deliverysJSON[i].ubicacion.latitud) && (num == deliverysJSON[i].ubicacion.longitud))) {
-				var myLatLng = {
-					lat: deliverysJSON[i].ubicacion.latitud,
-					lng: deliverysJSON[i].ubicacion.longitud
-				};
-				delivery.markador.position = myLatLng;
-				delivery.listaUbicaciones.push(myLatLng);
+			if (!((delivery.markador.getPosition().lat() == deliverysJSON[i].ubicacion.latitud) && (num == deliverysJSON[i].ubicacion.longitud))) {
+				var latlng = new google.maps.LatLng( deliverysJSON[i].ubicacion.latitud, deliverysJSON[i].ubicacion.longitud);
+				delivery.markador.setPosition(latlng);
+				delivery.listaUbicaciones.push(latlng);
 			}
 		} else { // Alta
 			var infowindow = new google.maps.InfoWindow();
