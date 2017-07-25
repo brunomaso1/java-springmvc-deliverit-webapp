@@ -16,6 +16,9 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+/**
+ * Implementación del funcionamiento cuando se ingresa correctamente a la aplicación.
+ */
 public class ACAuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
 
 	private final static Logger LOGGER = Logger.getLogger(ACAuthenticationSuccessHandlerImpl.class.getName());
@@ -37,7 +40,7 @@ public class ACAuthenticationSuccessHandlerImpl implements AuthenticationSuccess
 		String targetUrl = determineTargetUrl(authentication);
 
 		if (response.isCommitted()) {
-			LOGGER.log(Level.SEVERE, "Response has already been committed. Unable to redirect to "
+			LOGGER.log(Level.SEVERE, "No se puede redirigir, la respuesta ya fue comiteada."
 					+ targetUrl);
 			return;
 		}

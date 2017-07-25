@@ -10,6 +10,9 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+/**
+ * Valida los formularios de ingreso.
+ */
 @Component
 public class ACUserValidator implements Validator {
     @Autowired

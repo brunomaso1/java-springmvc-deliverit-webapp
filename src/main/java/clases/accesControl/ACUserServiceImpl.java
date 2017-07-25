@@ -15,12 +15,15 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class ACUserServiceImpl implements ACIUserService {
-	 // Para hashear las contraseñas con BCrypt.
+	
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	private final static Logger LOGGER = Logger.getLogger(ACUserServiceImpl.class.getName());
 
+	/**
+ 	 * Guarda el usuario hasheando la contraseña con BCrypt.
+	 */
 	@Override
 	public void save(Usuario user) {
 		// Para hashear el pasword andes de guardarlo.
@@ -34,6 +37,9 @@ public class ACUserServiceImpl implements ACIUserService {
 		}
 	}
 
+	/**
+	 * Obtiene el usuario de la API. Deuvelve null en caso de que no se encuentre.
+	 */
 	@Override
 	public Usuario findByUsername(String username) {
 		RestTemplate restTemplate = new RestTemplate();

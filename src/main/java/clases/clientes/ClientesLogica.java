@@ -1,3 +1,6 @@
+/**
+ * Ejecuta la lógica del controlador ClientesController.
+ */
 package clases.clientes;
 
 import clases.dominio.*;
@@ -9,6 +12,9 @@ public class ClientesLogica {
 
 	private final static Logger LOGGER = Logger.getLogger(ClientesLogica.class.getName());
 	
+	/**
+	 * Consulta a la API para obtener los clientes pertenecientes a una sucursal.
+	 */
 	public Cliente[] obtenerClientes(String sucursalId) {
 		RestTemplate restTemplate = new RestTemplate();
 

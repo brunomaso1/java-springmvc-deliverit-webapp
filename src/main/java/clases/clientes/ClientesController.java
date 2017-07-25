@@ -1,3 +1,6 @@
+/**
+ * Controlador de la clase Clientes.
+ */
 package clases.clientes;
 
 import clases.accesControl.ACSessionServices;
@@ -11,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * Controlador de las acciones respecto a los Pedidos.
+ * Controlador de las acciones respecto a los Clientes. Mapea solitudes relacionadas con los clientes.
  */
 @Controller
 @RequestMapping(path = "/clientes")
@@ -30,6 +33,9 @@ public class ClientesController {
 		this.acss = new ACSessionServices();
 	}
 
+	/**
+	 * Muestra la página principal de los clientes.
+	 */
 	@GetMapping
 	//@PreAuthorize("hasAuthority('ROLE_USER')")
 	public String showPage(HttpSession request, Model model) {

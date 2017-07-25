@@ -1,3 +1,6 @@
+/**
+ * Contiene la configuración de los servicios y direcciones de la WebApp.
+ */
 package clases.configuration;
 
 import java.util.Date;
@@ -71,7 +74,6 @@ public final class Configuration {
 	}
 
 	public static String restSucursalGet(String sucursal) {
-		//return ambiente + "sucursal/1;" + "id=" + sucursal + ";" + "restaurant=" + restaurant;
 		return ambiente + "sucursal/" + sucursal;
 	}
 

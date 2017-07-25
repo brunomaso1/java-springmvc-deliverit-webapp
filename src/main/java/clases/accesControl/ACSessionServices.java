@@ -8,11 +8,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
- *
- * @author bruno
- */
+ * Esta clase brinda soluciones para el Control de Acceso.
+ */ 
 public class ACSessionServices {
 	
+	/**
+	 * Obtiene el identificador del usuario logueado.
+	 */
 	public String getUserId(){
 		//Obtener el usuario del SecurityContextHolder
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -28,6 +30,9 @@ public class ACSessionServices {
 		return usr.getId().toString();
 	}	
 
+	/**
+	 * Obtiene el nombre del usuario logueado.
+	 */
 	public String getUserName() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;

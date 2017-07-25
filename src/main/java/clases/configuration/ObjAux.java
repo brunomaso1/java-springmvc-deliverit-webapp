@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Objeto auxiliar para utilizarse como respuesta de la obtención de los pedidos
+ * mediante una llamada AJAX.
  */
 package clases.configuration;
 
@@ -13,8 +12,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author bruno
+ * Esta clase crea un objeto auxiliar para utilizarse como respuesta de la obtención de los pedidos
+ * mediante una llamada AJAX.
  */
 public class ObjAux {
 
@@ -57,6 +56,9 @@ public class ObjAux {
 		this.cambios = cambios;
 	}
 
+	/**
+	 * Parsea este objeto a JSON.
+ 	 */
 	public String toJSON() {
 		ObjectMapper mapper = new ObjectMapper();
 

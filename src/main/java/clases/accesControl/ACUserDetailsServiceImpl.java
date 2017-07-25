@@ -1,3 +1,6 @@
+/**
+ * Implementación de UserDetalilsService (Srping Security)
+ */
 package clases.accesControl;
 
 import clases.dominio.Usuario;
@@ -11,6 +14,9 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.transaction.Transactional;
 
+/**
+ * Implementa las funciones a utilizarse para loguear al usuario.
+ */
 public class ACUserDetailsServiceImpl implements UserDetailsService{
 
 	/**

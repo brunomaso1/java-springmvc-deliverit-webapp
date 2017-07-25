@@ -23,6 +23,9 @@ public class ACSecurityServiceImpl implements ACISecurityService{
 
     private final static Logger LOGGER = Logger.getLogger(ACSecurityServiceImpl.class.getName());
 
+    /**
+     * Obtiene el usuario logeado, en caso contrario devuelve null.
+     */
     @Override
     public String findLoggedInUsername() {
         Object userDetails = SecurityContextHolder.getContext().getAuthentication().getDetails();
@@ -33,6 +36,9 @@ public class ACSecurityServiceImpl implements ACISecurityService{
         return null;
     }
 
+    /**
+     * Loguea automáticamente al usuario.
+     */
     @Override
     public void autologin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);

@@ -13,29 +13,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- *
- * @author bruno
+ * Controlador del Control de Acceso.
  */
 @Controller
 public class ACController {
-	
-	@Autowired
-	private ACIUserService userService;
-	
-	@Autowired
-	private ACISecurityService securityService;
-	
-	@Autowired
-	private ACUserValidator userValidator;
-	
-	@RequestMapping(value = "/registration", method = RequestMethod.GET)
+
+    @Autowired
+    private ACIUserService userService;
+
+    @Autowired
+    private ACISecurityService securityService;
+
+    @Autowired
+    private ACUserValidator userValidator;
+
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new Usuario());
 
         return "registration";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    /**
+     * Nuevo registro.
+     */
+    /*@RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registration(@ModelAttribute("userForm") Usuario userForm, BindingResult bindingResult, Model model) {
         userValidator.validate(userForm, bindingResult);
 
@@ -47,9 +49,12 @@ public class ACController {
 
         securityService.autologin(userForm.getNombre(), userForm.getPassword());
 
-        return "redirect:/welcome";
-    }
+        return "redirect:/viaje";
+    }*/
 
+    /**
+     *  Login.
+     */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null)

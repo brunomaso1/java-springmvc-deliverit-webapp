@@ -1,3 +1,6 @@
+/**
+ * Objeto auxiliar para comunicarse con JavaScript del lado del cliente.
+ */
 package clases.configuration;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -6,6 +9,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Contiene todas las opciones que se le pasa desde el controlador del ClientesController
+ * a la vista del clientes.jsp.
+ */
 public class OpcionesJavascriptCliente {
 
 	private Map<Object, Object> dataTableOptions;
@@ -59,6 +66,9 @@ public class OpcionesJavascriptCliente {
 		this.mensajes = mensajes;
 	}
 
+	/**
+	 * Parsea este objeto a JSON.
+ 	 */
 	public String toJSON() {
 		ObjectMapper mapper = new ObjectMapper();
 
