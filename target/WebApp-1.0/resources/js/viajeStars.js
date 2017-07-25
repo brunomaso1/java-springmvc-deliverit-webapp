@@ -110,7 +110,12 @@ $(function () {
 $(document).ready(function () {
 	$('.stars-existing').on('starrr:change', function (e, value) {
 		var idViaje = this.parentNode.parentNode.cells[0].textContent;
-		calificar(idViaje, value);
+		if  (!(this.dataset.rating == "0")){
+			alert("El viaje ya fue calificado.")
+			location.reload();
+		}
+		else
+			calificar(idViaje, value);
 	});
 });
 

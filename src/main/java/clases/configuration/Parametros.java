@@ -43,7 +43,7 @@ public class Parametros {
 
 	public static double DEFAULT_LATITUDE = -34.9082249;
 	public static double DEFAULT_LONGITUDE = -56.1664964;
-	public static String DEFAULT_CALIFICACION_VIAJE = "3";
+	public static String DEFAULT_CALIFICACION_VIAJE = "0";
 
 	public static String NOMBRE_TABLA_VIAJE = "viajes";
 	public static String NOMBRE_TABLA_CLIENTE = "clientes";
