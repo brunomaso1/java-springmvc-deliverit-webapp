@@ -102,9 +102,6 @@ public class OpcionesJavascriptViaje {
 		// Agrego el tiempo en que se activa la funcion para cambiar los colores.
 		this.tiempoActivacionCambioColores = Parametros.TIEMPOACTIVACIONCAMBIOCOLORES;
 
-		// Agrego el padding para la hora del server.
-		this.serverHourPadding = Parametros.SERVERHOURPADDING;
-
 		// Agrego los tiempos para los colores.
 		this.tiempoColores = Parametros.TIEMPOCOLORES;
 
@@ -237,15 +234,7 @@ public class OpcionesJavascriptViaje {
 	public void setTiempoActivacionCambioColores(int tiempoActivacionCambioColores) {
 		this.tiempoActivacionCambioColores = tiempoActivacionCambioColores;
 	}
-
-	public int getServerHourPadding() {
-		return serverHourPadding;
-	}
-
-	public void setServerHourPadding(int serverHourPadding) {
-		this.serverHourPadding = serverHourPadding;
-	}
-
+	
 	public Map<Object, Object> getTiempoColores() {
 		return tiempoColores;
 	}

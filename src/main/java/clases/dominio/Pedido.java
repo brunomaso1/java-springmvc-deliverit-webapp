@@ -1,9 +1,9 @@
 package clases.dominio;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Pedido {
@@ -13,6 +13,7 @@ public class Pedido {
 	private String formaPago;
 	private Viaje viaje;
 	private Cliente cliente;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss", timezone="America/Montevideo")
 	private Timestamp fecha;
 
 	public Pedido() {

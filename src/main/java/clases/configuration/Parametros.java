@@ -32,7 +32,6 @@ public class Parametros {
 
 	public static String DEPARTAMENTO = "Montevideo";
 	public static String PAIS = "Uruguay";
-	public static int SERVERHOURPADDING = 3;
 
 	public static String[] COLORES_MARKADORES = {"blue", "brown", "gray", "green", "orange", "purple", "red", "yellow"};
 	public static String UBICACION_MARKADORES = "resources/img/iconosMaps/";
@@ -91,6 +90,10 @@ public class Parametros {
 		TIEMPOCOLORES.put("colorTiempoDefault", "#ff1a1a");
 	}
 
+	/**
+	 * *************************************************************************
+	 **************************** VIAJE ****************************************
+	 * *************************************************************************/
 	private static Map<String, String> PAGINATE;
 
 	static {
@@ -100,6 +103,7 @@ public class Parametros {
 		PAGINATE.put("next", ">");
 		PAGINATE.put("last", ">>");
 	}
+
 
 	private static Map<Object, Object> LANGUAJE_VIAJE;
 
@@ -136,6 +140,11 @@ public class Parametros {
 		DATATABLE_OPCIONES_VIAJE.put("sScrollXInner", "110%");
 		DATATABLE_OPCIONES_VIAJE.put("language", LANGUAJE_VIAJE);
 	}
+	
+	/**
+	 * *************************************************************************
+	 **************************** CLIENTE **************************************
+	 * *************************************************************************/
 
 	private static Map<Object, Object> LANGUAJE_CLIENTE;
 
@@ -161,6 +170,11 @@ public class Parametros {
 		DATATABLE_OPCIONES_CLIENTE.put("dom", DATATABLE_BUTTONS_DOM);
 		DATATABLE_OPCIONES_CLIENTE.put("buttons", DATATABLE_BUTTONS_OPTIONS);
 	}
+	
+	/**
+	 * *************************************************************************
+	 **************************** DELIVERY *************************************
+	 * *************************************************************************/
 
 	private static Map<Object, Object> LANGUAJE_DELIVERY;
 
@@ -186,32 +200,16 @@ public class Parametros {
 		DATATABLE_OPCIONES_DELIVERY.put("buttons", DATATABLE_BUTTONS_OPTIONS);
 		DATATABLE_OPCIONES_DELIVERY.put("language", LANGUAJE_DELIVERY);
 	}
-
-	private static Map<Object, Object> LANGUAJE_HISTVIAJE;
-
-	static {
-		LANGUAJE_HISTVIAJE = new HashMap<>();
-		LANGUAJE_HISTVIAJE.put("processing", "Procesando");
-		LANGUAJE_HISTVIAJE.put("search", "Busqueda&nbsp;:");
-		LANGUAJE_HISTVIAJE.put("lengthMenu", "Mostrar _MENU_ viajes");
-		LANGUAJE_HISTVIAJE.put("info", "");
-		LANGUAJE_HISTVIAJE.put("infoEmpty", DATATABLE_SINDATOS);
-		LANGUAJE_HISTVIAJE.put("infoFiltered", "");
-		LANGUAJE_HISTVIAJE.put("infoPostFix", "");
-		LANGUAJE_HISTVIAJE.put("loadingRecords", "Cargando viajes...");
-		LANGUAJE_HISTVIAJE.put("zeroRecords", DATATABLE_SINDATOSBUSQUEDA);
-		LANGUAJE_HISTVIAJE.put("emptyTable", DATATABLE_SINDATOS);
-		LANGUAJE_HISTVIAJE.put("paginate", PAGINATE);
-	}
-	public static Map<Object, Object> DATATABLE_OPCIONES_HISTVIAJE;
-
-	static {
-		DATATABLE_OPCIONES_HISTVIAJE = new HashMap<>();
-		DATATABLE_OPCIONES_HISTVIAJE.put("language", LANGUAJE_HISTVIAJE);
-		DATATABLE_OPCIONES_HISTVIAJE.put("dom", DATATABLE_BUTTONS_DOM);
-		DATATABLE_OPCIONES_HISTVIAJE.put("buttons", DATATABLE_BUTTONS_OPTIONS);
-	}
-
+	
+	/**
+	 * *************************************************************************
+	 **************************** HISTORIAL PEDIDOS ****************************
+	 * *************************************************************************/
+	public static boolean HISTPEDIDOCHART_OPCIONES_LINE_PARSETIME = false;
+	public static boolean HISTPEDIDOCHART_OPCIONES_BAR_PARSETIME = false;
+	public static boolean HISTPEDIDOCHART_OPCIONES_LINE_GRID = false;
+	public static boolean HISTPEDIDOCHART_OPCIONES_BAR_GRID = false;
+	
 	private static Map<Object, Object> LANGUAJE_HISTPEDIDO;
 
 	static {
@@ -228,15 +226,6 @@ public class Parametros {
 		LANGUAJE_HISTPEDIDO.put("emptyTable", DATATABLE_SINDATOS);
 		LANGUAJE_HISTPEDIDO.put("paginate", PAGINATE);
 	}
-
-	/**
-	 * *************************************************************************
-	 **************************** HISTORIAL PEDIDOS ****************************
-	 * *************************************************************************/
-	public static boolean HISTPEDIDOCHART_OPCIONES_LINE_PARSETIME = false;
-	public static boolean HISTPEDIDOCHART_OPCIONES_BAR_PARSETIME = false;
-	public static boolean HISTPEDIDOCHART_OPCIONES_LINE_GRID = false;
-	public static boolean HISTPEDIDOCHART_OPCIONES_BAR_GRID = false;
 	public static Map<Object, Object> DATATABLE_OPCIONES_HISTPEDIDO;
 
 	static {
@@ -320,6 +309,32 @@ public class Parametros {
 	public static boolean HISTVIAJECHART_OPCIONES_BAR_PARSETIME = false;
 	public static boolean HISTVIAJECHART_OPCIONES_LINE_GRID = false;
 	public static boolean HISTVIAJECHART_OPCIONES_BAR_GRID = false;
+	
+	private static Map<Object, Object> LANGUAJE_HISTVIAJE;
+
+	static {
+		LANGUAJE_HISTVIAJE = new HashMap<>();
+		LANGUAJE_HISTVIAJE.put("processing", "Procesando");
+		LANGUAJE_HISTVIAJE.put("search", "Busqueda&nbsp;:");
+		LANGUAJE_HISTVIAJE.put("lengthMenu", "Mostrar _MENU_ viajes");
+		LANGUAJE_HISTVIAJE.put("info", "");
+		LANGUAJE_HISTVIAJE.put("infoEmpty", DATATABLE_SINDATOS);
+		LANGUAJE_HISTVIAJE.put("infoFiltered", "");
+		LANGUAJE_HISTVIAJE.put("infoPostFix", "");
+		LANGUAJE_HISTVIAJE.put("loadingRecords", "Cargando viajes...");
+		LANGUAJE_HISTVIAJE.put("zeroRecords", DATATABLE_SINDATOSBUSQUEDA);
+		LANGUAJE_HISTVIAJE.put("emptyTable", DATATABLE_SINDATOS);
+		LANGUAJE_HISTVIAJE.put("paginate", PAGINATE);
+	}
+	public static Map<Object, Object> DATATABLE_OPCIONES_HISTVIAJE;
+
+	static {
+		DATATABLE_OPCIONES_HISTVIAJE = new HashMap<>();
+		DATATABLE_OPCIONES_HISTVIAJE.put("language", LANGUAJE_HISTVIAJE);
+		DATATABLE_OPCIONES_HISTVIAJE.put("dom", DATATABLE_BUTTONS_DOM);
+		DATATABLE_OPCIONES_HISTVIAJE.put("buttons", DATATABLE_BUTTONS_OPTIONS);
+	}
+	
 	public static Map<Object, Object> HISTVIAJECHART_OPCIONES_DONUT;
 
 	static {

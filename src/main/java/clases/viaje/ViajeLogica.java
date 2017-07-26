@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -58,10 +59,10 @@ public class ViajeLogica {
 	 */
 	public Pedido[] obtenerPedidosHoy(String sucursal) {
 		RestTemplate restTemplate = new RestTemplate();
-
+		
 		//Obtiene la respuesta.
 		Pedido[] pedidosTablaPrincipal = restTemplate.getForObject(Configuration.restFindPedidosTodayGet(sucursal), Pedido[].class);
-
+		
 		return pedidosTablaPrincipal;
 	}
 

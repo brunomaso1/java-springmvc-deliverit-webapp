@@ -1,5 +1,6 @@
 package clases.dominio;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ public class Viaje {
 	private Delivery delivery;
 	private Sucursal sucursal;
 	private EstadoViaje estado;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss", timezone="America/Montevideo")
 	private Timestamp fecha;
 
 	public Viaje() {

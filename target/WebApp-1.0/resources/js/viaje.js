@@ -148,7 +148,7 @@ function changeColors() {
 				var fechaHoraActual = new Date();
 				var horaActual = fechaHoraActual.getHours() * 3600 + fechaHoraActual.getMinutes() * 60 + fechaHoraActual.getSeconds();
 				var fechaHoraViaje = new Date(getPedidoFromRow(rows[i]).getFechaHoraViaje);
-				var horaViaje = (fechaHoraViaje.getHours() + op.serverHourPadding) * 3600 + fechaHoraViaje.getMinutes() * 60 + fechaHoraViaje.getSeconds();
+				var horaViaje = (fechaHoraViaje.getHours()) * 3600 + fechaHoraViaje.getMinutes() * 60 + fechaHoraViaje.getSeconds();
 				var dif = parseInt(horaActual) - parseInt(horaViaje);
 				switch (true) {
 					case (dif < op.tiempoColores.tiempo1):
